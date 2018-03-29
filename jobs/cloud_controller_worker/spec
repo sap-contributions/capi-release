@@ -127,6 +127,9 @@ properties:
   cc.default_health_check_timeout:
     default: 60
     description: "Default health check timeout (in seconds) that can be set for the app"
+  cc.maximum_health_check_timeout:
+    default: 180
+    description: "Maximum health check timeout (in seconds) that can be set for the app"
 
   cc.stacks:
     default:
