@@ -142,10 +142,13 @@ properties:
     default:
       - name: "cflinuxfs2"
         description: "Cloud Foundry Linux-based filesystem"
-    description: "Tag used by the DEA to describe capabilities (i.e. 'Windows7', 'python-linux'). DEA and CC must agree."
+    description: |
+      List of hashes describing stacks intended for developers to choose from when pushing apps.
+      A stack is a prebuilt root file system (rootfs) that supports a specific operating system.
+      Note: removing items in this list will not remove the records in the Cloud Controller's database.
   cc.default_stack:
     default: "cflinuxfs2"
-    description: "The default stack to use if no custom stack is specified by an app."
+    description: "The default stack name to use if no custom stack is specified by an app."
 
   cc.staging_upload_user:
     description: "User name used to access internal endpoints of Cloud Controller to upload files when staging"
