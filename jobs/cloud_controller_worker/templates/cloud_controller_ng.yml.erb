@@ -46,6 +46,7 @@ nginx:
 
 index: <%= spec.index %>
 name: <%= name %>
+volume_services_enabled: <%= link("cloud_controller_internal").p("cc.volume_services_enabled") %>
 
 logging:
   file: /var/vcap/sys/log/cloud_controller_worker/cloud_controller_worker.log

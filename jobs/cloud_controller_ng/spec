@@ -82,6 +82,7 @@ provides:
 - name: cloud_controller_internal
   type: cloud_controller_internal
   properties:
+  - cc.volume_services_enabled
   - copilot.enabled
   - copilot.host
   - copilot.client_ca_file
