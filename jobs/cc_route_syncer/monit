@@ -1,0 +1,18 @@
+<% if p("bpm.enabled") %>
+check process cc_route_syncer
+  with pidfile /var/vcap/sys/run/bpm/cc_route_syncer/cc_route_syncer.pid
+  start program "/var/vcap/jobs/bpm/bin/bpm start cc_route_syncer"
+  stop program "/var/vcap/jobs/bpm/bin/bpm stop cc_route_syncer"
+  group vcap
+<% else %>
+check process cc_route_syncer
+  with pidfile /var/vcap/sys/run/cc_route_syncer/cc_route_syncer.pid
+  start program "/var/vcap/jobs/cc_route_syncer/bin/cc_route_syncer_ctl start"
+    as uid vcap and gid vcap
+  stop program "/var/vcap/jobs/cc_route_syncer/bin/cc_route_syncer_ctl stop"
+    as uid vcap and gid vcap
+  group vcap
+  if totalmem > <%= p("cc.thresholds.api.alert_if_above_mb") %> Mb for 3 cycles then alert
+  if totalmem > <%= p("cc.thresholds.api.restart_if_consistently_above_mb") %> Mb for 15 cycles then restart
+  if totalmem > <%= p("cc.thresholds.api.restart_if_above_mb") %> Mb for 3 cycles then restart
+<% end %>
