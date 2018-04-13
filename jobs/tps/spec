@@ -9,9 +9,7 @@ templates:
   post-restore-unlock.sh.erb: bin/bbr/post-restore-unlock
   drain.sh.erb: bin/drain
 
-  tps_listener_as_vcap.erb: bin/tps_listener_as_vcap
   tps_watcher_as_vcap.erb: bin/tps_watcher_as_vcap
-  tps_listener_ctl.erb: bin/tps_listener_ctl
   tps_watcher_ctl.erb: bin/tps_watcher_ctl
   bbs_ca.crt.erb: config/certs/bbs/ca.crt
   bbs_client.crt.erb: config/certs/bbs/client.crt
@@ -19,7 +17,6 @@ templates:
   cc_ca.crt.erb: config/certs/cc/ca.crt
   cc_client.crt.erb: config/certs/cc/client.crt
   cc_client.key.erb: config/certs/cc/client.key
-  tps_listener_config.json.erb: config/tps_listener_config.json
   tps_watcher_config.json.erb: config/tps_watcher_config.json
 
 packages:
@@ -80,13 +77,6 @@ properties:
   capi.tps.cc.client_key:
     description: "PEM-encoded client key"
 
-  capi.tps.listener.listen_addr:
-    description: "address at which to serve API requests"
-    default: "0.0.0.0:1518"
-  capi.tps.listener.debug_addr:
-    description: "address at which to serve debug info"
-    default: "127.0.0.1:17014"
-
   capi.tps.watcher.debug_addr:
     description: "address at which to serve debug info"
     default: "127.0.0.1:17015"
@@ -96,10 +86,6 @@ properties:
   capi.tps.watcher.skip_consul_lock:
     description: "Determines whether to skip obtaining a lock from Consul"
     default: false
-
-  capi.tps.listener_enabled:
-    description: "Flag to enable TPS listener. Listener functionality has be absorbed into modern CC"
-    default: true
 
   release_level_backup:
     default: true

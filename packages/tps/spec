@@ -30,7 +30,6 @@ files:
   - capi-release/src/code.cloudfoundry.org/runtimeschema/cc_messages/*.go # gosub
   - capi-release/src/code.cloudfoundry.org/tps/*.go # gosub
   - capi-release/src/code.cloudfoundry.org/tps/cc_client/*.go # gosub
-  - capi-release/src/code.cloudfoundry.org/tps/cmd/tps-listener/*.go # gosub
   - capi-release/src/code.cloudfoundry.org/tps/cmd/tps-watcher/*.go # gosub
   - capi-release/src/code.cloudfoundry.org/tps/config/*.go # gosub
   - capi-release/src/code.cloudfoundry.org/tps/handler/*.go # gosub
