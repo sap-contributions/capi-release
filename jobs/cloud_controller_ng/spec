@@ -851,21 +851,6 @@ properties:
     description: "stack to use for staging Docker applications"
     default: "cflinuxfs2"
 
-  cc.diego.temporary_local_staging:
-    description: "Temporary flag to enable staging directly to the bbs from cc"
-    default: true
-  cc.diego.temporary_local_tasks:
-    description: "Temporary flag to run tasks directly to the bbs from cc"
-    default: true
-  cc.diego.temporary_local_apps:
-    description: "Temporary flag to manage app state directly to the bbs from cc"
-    default: true
-  cc.diego.temporary_local_sync:
-    description: "Temporary flag to run sync job between cc and bbs"
-    default: true
-  cc.diego.temporary_local_tps:
-    description: "Temporary flag to fetch app instances directly to the bbs from cc"
-    default: true
   cc.diego.temporary_cc_uploader_mtls:
     description: "Temporary flag to ensure droplet upload callback endpoints require mTLS"
     default: true
