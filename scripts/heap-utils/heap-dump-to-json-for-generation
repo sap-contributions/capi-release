@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+if [[ $# < 3 ]]; then
+  echo "This script will scan through a Ruby ObjectSpace heap dump and will output"
+  echo "a valid JSON file containing the objects for the specified heap generation"
+  echo ""
+  echo "Usage: heap-dump-to-json-for-generation <heap-dump-input-file> <output-file> <heap-gen-number>"
+  echo "Requirements: grep and sed"
+  exit 1
+fi
+
+heap_dump_input_file=$1
+output_file=$2
+heap_generation_number=$3
+
+grep "generation\":${heap_generation_number}," $heap_dump_input_file | sed '1s/^/[/;$!s/$/,/;$s/$/]/' > $output_file

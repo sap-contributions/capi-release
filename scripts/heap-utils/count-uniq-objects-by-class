@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+if [[ $# < 1 ]]; then
+  echo "This script will scan through an array of JSON objects converted from"
+  echo "a Ruby ObjectSpace heap dump and count the number of objects by Class"
+  echo ""
+  echo "NOTE: Intended to be used with files output by ./heap-dump-to-json-for-generation"
+  echo ""
+  echo "Usage: count-uniq-objects-by-class <heap-dump-json>"
+  echo "Requirements: jq, sort, and uniq"
+  exit 1
+fi
+
+heap_dump_json=$1
+
+cat $heap_dump_json | jq '.[].class' | sort |  uniq -c | sort -rn
