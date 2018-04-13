@@ -18,11 +18,6 @@ This is the [bosh release](http://bosh.io/docs/release.html) for Cloud Foundry's
 
 For more details on the integration between Diego and Capi Release, see [Diego Design Notes](https://github.com/cloudfoundry/diego-design-notes).
 
-#### The following components have been replaced by direct communication between Cloud Controller and the Diego BBS API:
-* [Stager](https://github.com/cloudfoundry/stager): Proxies staging requests from Cloud Controller to the Diego BBS API.
-* [Nsync](https://github.com/cloudfoundry/nsync): Proxies task and app start requests from Cloud Controller to the Diego BBS API. Synchronizes health and state of apps and tasks between the BBS and Cloud Controller.
-* [TPS Listener](https://github.com/cloudfoundry/tps): Proxies metrics information from Diego BBS API to Cloud Controller.
-
 #### Deprecated:
 
 * [NFS Debian Server](https://github.com/cloudfoundry/capi-release/tree/develop/jobs/debian_nfs_server): An optional stand-alone blobstore for the Cloud Controller. Replaced by Webdav Blobstore.

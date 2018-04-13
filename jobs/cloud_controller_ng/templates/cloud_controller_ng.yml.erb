@@ -384,13 +384,10 @@ diego:
   file_server_url: <%= p("cc.diego.file_server_url") %>
   insecure_docker_registry_list: <%= p("cc.diego.insecure_docker_registry_list") %>
   lifecycle_bundles: <%= p("cc.diego.lifecycle_bundles").to_json %>
-  nsync_url: <%= p("cc.diego.nsync_url") %>
   pid_limit: <%= p("cc.diego.pid_limit") %>
-  stager_url: <%= p("cc.diego.stager_url") %>
   temporary_cc_uploader_mtls: <%= p("cc.diego.temporary_cc_uploader_mtls") %>
   temporary_droplet_download_mtls: <%= p("cc.diego.temporary_droplet_download_mtls") %>
   temporary_oci_buildpack_mode: <%= p("cc.diego.temporary_oci_buildpack_mode", nil) %>
-  tps_url: <%= p("cc.diego.tps_url") %>
   use_privileged_containers_for_running: <%= p("cc.diego.use_privileged_containers_for_running") %>
   use_privileged_containers_for_staging: <%= p("cc.diego.use_privileged_containers_for_staging") %>
 

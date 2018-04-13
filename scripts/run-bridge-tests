@@ -7,5 +7,5 @@ bridge_path="$scripts_path/../src/code.cloudfoundry.org"
 
 pushd $bridge_path > /dev/null
   ginkgo -r -keepGoing -p -trace -randomizeAllSpecs -progress --race \
-    cc-uploader nsync stager tps
+    cc-uploader tps
 popd > /dev/null

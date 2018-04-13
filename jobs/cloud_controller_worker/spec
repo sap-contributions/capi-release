@@ -496,15 +496,6 @@ properties:
   cc.mutual_tls.private_key:
     description: "PEM-encoded key for secure, mutually authenticated TLS communication"
 
-  cc.diego.nsync_url:
-    default: http://nsync.service.cf.internal:8787
-    description: "URL of the Diego nsync service"
-  cc.diego.stager_url:
-    default: http://stager.service.cf.internal:8888
-    description: "URL of the Diego stager service"
-  cc.diego.tps_url:
-    default: http://tps.service.cf.internal:1518
-    description: "URL of the Diego tps service"
   cc.diego.file_server_url:
     description: "URL of file server"
     default: http://file-server.service.cf.internal:8080
