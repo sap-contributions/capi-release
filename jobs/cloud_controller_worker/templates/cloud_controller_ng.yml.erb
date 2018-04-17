@@ -267,3 +267,6 @@ copilot:
   client_key_file: /var/vcap/jobs/cloud_controller_worker/config/certs/copilot.key
   client_chain_file: /var/vcap/jobs/cloud_controller_worker/config/certs/copilot.crt
 <% end %>
+
+system_domain: <%= p("system_domain") %>
+system_hostnames: <%= link("cloud_controller_internal").p("cc.system_hostnames") %>

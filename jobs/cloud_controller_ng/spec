@@ -83,6 +83,7 @@ provides:
   type: cloud_controller_internal
   properties:
   - cc.volume_services_enabled
+  - cc.system_hostnames
   - copilot.enabled
   - copilot.host
   - copilot.client_ca_file
