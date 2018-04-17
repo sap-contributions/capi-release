@@ -249,8 +249,6 @@ default_app_ssh_access: <%= p("cc.default_app_ssh_access") %>
 skip_cert_verify: <%= p("ssl.skip_cert_verify") %>
 
 diego:
-  temporary_cc_uploader_mtls: <%= p("cc.diego.temporary_cc_uploader_mtls") %>
-  temporary_droplet_download_mtls: <%= p("cc.diego.temporary_droplet_download_mtls") %>
   temporary_oci_buildpack_mode: <%= p("cc.diego.temporary_oci_buildpack_mode", nil) %>
   file_server_url: <%= p("cc.diego.file_server_url") %>
   cc_uploader_url: <%= p("cc.diego.cc_uploader_url") %>

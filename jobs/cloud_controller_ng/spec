@@ -843,12 +843,6 @@ properties:
     description: "stack to use for staging Docker applications"
     default: "cflinuxfs2"
 
-  cc.diego.temporary_cc_uploader_mtls:
-    description: "Temporary flag to ensure droplet upload callback endpoints require mTLS"
-    default: true
-  cc.diego.temporary_droplet_download_mtls:
-    description: "Temporary flag to enable mTLS droplet download to the bbs from cc"
-    default: true
   cc.diego.temporary_oci_buildpack_mode:
     description: "Temporary flag to enable OCI buildpack flow. Valid values: 'oci-phase-1'"
     default: ~
