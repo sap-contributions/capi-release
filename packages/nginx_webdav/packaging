@@ -1,9 +1,9 @@
 set -e -x
 
 echo "Extracting expat..."
-tar xvf expat/expat-2.2.0.tar.bz2
+tar xvf expat/expat-2.2.5.tar.bz2
 
-pushd expat-2.2.0
+pushd expat-2.2.5
     ./configure
 
     make

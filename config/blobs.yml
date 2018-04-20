@@ -2,10 +2,10 @@ debian_nfs_server/nfs-kernel-server_1%3a1.2.0-4ubuntu4.1_amd64.deb:
   size: 169618
   object_id: ba69b993-ec3f-47cf-9fb1-0fcb37212959
   sha: sha256:e3bd705d7bc4baabf04467b5ff143f5994c15db0df9fa6b6eea9067c98e66017
-expat/expat-2.2.0.tar.bz2:
-  size: 414352
-  object_id: 319a0cba-01a1-477c-74ad-c36e92b85cab
-  sha: sha256:d9e50ff2d19b3538bd2127902a89987474e1a4db8e43a66a4d1a712ab9a504ff
+expat/expat-2.2.5.tar.bz2:
+  size: 510868
+  object_id: bb1fb7d4-894a-4418-43a4-d00f4e950f73
+  sha: sha256:d9dc32efba7e74f788fcc4f212a43216fc37cf5f23f4c2339664d473353aedf6
 golang/go1.8.3.linux-amd64.tar.gz:
   size: 90029041
   object_id: 53346f1f-edfc-40d5-54b9-04126e05fdf3
