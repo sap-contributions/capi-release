@@ -1,6 +1,6 @@
 set -e -x
 
-VERSION=2.3.0
+VERSION=2.3.5
 
 tar xzf mariadb_connector_c/mariadb-connector-c-${VERSION}-src.tar.gz
 
