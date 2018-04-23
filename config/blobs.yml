@@ -14,10 +14,6 @@ mariadb_connector_c/mariadb-connector-c-2.3.5-src.tar.gz:
   size: 540018
   object_id: 27f389e6-85e6-47c3-4c60-256dd7d9874d
   sha: sha256:2f3bf4c326d74284debf7099f30cf3615f7978d1ec22b8c1083676688a76746f
-nginx/headers-more-nginx-module-0.32.tar.gz:
-  size: 28033
-  object_id: b14a356b-97f0-4b9a-b61d-bfff1f233e94
-  sha: sha256:c6d9dab8ea1fc997031007e2e8f47cced01417e203cd88d53a9fe9f6ae138720
 nginx/newrelic_nginx_agent-1.2.1.tar.gz:
   size: 5222
   object_id: c63358f6-574a-4e20-9d2b-7e1450368b6d
