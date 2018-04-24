@@ -4,4 +4,4 @@ files:
   - expat/expat-2.2.5.tar.bz2
   - nginx/nginx-1.13.12.tar.gz
   - nginx/pcre-8.40.tar.gz
-  - nginx/nginx-dav-ext-module-0.0.3.tar.gz
+  - nginx/nginx-dav-ext-module-0.1.0.tar.gz

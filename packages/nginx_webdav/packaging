@@ -18,7 +18,7 @@ echo "Extracting nginx..."
 tar xzvf nginx/nginx-1.13.12.tar.gz
 
 echo "Extracting webdav extensions"
-tar xzvf nginx/nginx-dav-ext-module-0.0.3.tar.gz
+tar xzvf nginx/nginx-dav-ext-module-0.1.0.tar.gz
 
 echo "Building nginx..."
 pushd nginx-1.13.12
@@ -30,7 +30,7 @@ pushd nginx-1.13.12
     --with-http_dav_module \
     --with-http_secure_link_module \
     --with-http_ssl_module \
-    --add-module=../nginx-dav-ext-module-0.0.3
+    --add-module=../nginx-dav-ext-module-0.1.0
 
   make
   make install
