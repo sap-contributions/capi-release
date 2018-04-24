@@ -27,7 +27,6 @@ login() {
 main() {
   get_cf_admin_password
   login
-  cf target -o org -s space
 }
 
 main
