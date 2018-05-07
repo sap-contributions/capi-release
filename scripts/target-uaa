@@ -17,6 +17,7 @@ get_uaa_admin_password() {
 login() {
   uaac target uaa.${BOSH_LITE_DOMAIN} --skip-ssl-validation
   uaac token client get admin -s $uaa_admin_password
+  echo "UAA password = ${uaa_admin_password}"
 }
 
 main() {
