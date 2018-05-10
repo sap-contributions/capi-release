@@ -199,6 +199,10 @@ properties:
   cc.jobs.droplet_upload.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
 
+  cc.temporary_disable_deployments:
+    description: "Do not allow the API client to create app deployments (temporary)"
+    default: true
+
   cc.directories.tmpdir:
     default: "/var/vcap/data/cloud_controller_ng/tmp"
     description: "The directory to use for temporary files"
