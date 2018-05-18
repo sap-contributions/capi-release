@@ -84,6 +84,7 @@ provides:
   properties:
   - cc.volume_services_enabled
   - cc.system_hostnames
+  - cc.uaa.client_timeout
   - copilot.enabled
   - copilot.host
   - copilot.client_ca_file
@@ -518,9 +519,13 @@ properties:
     default: 8443
   uaa.port:
     description: "The port used by UAA for non-ssl connections"
+  cc.uaa.client_timeout:
+    description: "The value, in seconds, used for all timeout values when communicating with UAA"
+    default: 60
   cc.uaa.internal_url:
     description: "The internal url used by UAA"
     default: "uaa.service.cf.internal"
+
   login.protocol:
     description: "http or https"
     default: "https"

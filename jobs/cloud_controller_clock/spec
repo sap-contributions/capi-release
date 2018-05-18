@@ -42,6 +42,9 @@ consumes:
 - name: credhub
   type: credhub
   optional: true
+- name: cloud_controller_internal
+  type: cloud_controller_internal
+  optional: true
 
 properties:
   bpm.enabled:

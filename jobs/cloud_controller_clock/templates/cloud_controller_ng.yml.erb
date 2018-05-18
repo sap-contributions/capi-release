@@ -119,6 +119,9 @@ db: &db
 uaa:
   internal_url: <%= "https://#{p("cc.uaa.internal_url")}:#{p("uaa.ssl.port")}" %>
   ca_file: /var/vcap/jobs/cloud_controller_clock/config/certs/uaa_ca.crt
+  <% if_link("cloud_controller_internal") do |cc_internal| %>
+  client_timeout: <%= cc_internal.p("cc.uaa.client_timeout")%>
+  <% end %>
 
 # App staging parameters
 staging:

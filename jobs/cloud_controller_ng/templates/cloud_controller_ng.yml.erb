@@ -146,6 +146,7 @@ uaa:
   url: <%= uaa_url %>
   internal_url: <%= "https://#{p("cc.uaa.internal_url")}:#{p("uaa.ssl.port")}" %>
   resource_id: <%= p("cc.uaa_resource_id") %>
+  client_timeout: <%= p("cc.uaa.client_timeout")%>
   ca_file: /var/vcap/jobs/cloud_controller_ng/config/certs/uaa_ca.crt
   <% if_p("uaa.cc.token_secret") do |token_secret| %>
   symmetric_secret: "<%= token_secret %>"
