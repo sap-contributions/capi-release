@@ -30,9 +30,10 @@ http {
   uwsgi_temp_path /var/vcap/data/blobstore/tmp/uwsgi_temp;
   scgi_temp_path /var/vcap/data/blobstore/tmp/scgi_temp;
 
-  sendfile    on;
-  tcp_nopush  on;
-  tcp_nodelay on;
+  sendfile            on;
+  sendfile_max_chunk  1M;  # Make sure not to block on fast clients reading large files
+  tcp_nopush          on;
+  tcp_nodelay         on;
 
   keepalive_timeout 75 20;
 
