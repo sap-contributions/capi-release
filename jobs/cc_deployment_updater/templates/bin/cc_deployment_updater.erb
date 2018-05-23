@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+source /var/vcap/jobs/cc_deployment_updater/bin/ruby_version.sh
+cd /var/vcap/packages/cloud_controller_ng/cloud_controller_ng
+exec bundle exec rake deployment_updater:start
