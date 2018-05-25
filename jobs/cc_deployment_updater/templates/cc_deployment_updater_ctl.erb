@@ -25,7 +25,7 @@ case $1 in
 start)
   setup_environment
 
-  pid_guard "$PIDFILE" "Cloud controller route syncer"
+  pid_guard "$PIDFILE" "Cloud controller deployment updater"
 
   echo $$ > "$PIDFILE"
 

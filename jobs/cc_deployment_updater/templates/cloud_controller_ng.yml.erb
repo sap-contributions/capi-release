@@ -51,5 +51,29 @@ copilot:
   client_chain_file: /var/vcap/jobs/cc_deployment_updater/config/certs/copilot.crt
 <% end %>
 
+diego:
+  temporary_oci_buildpack_mode: <%= p("cc.diego.temporary_oci_buildpack_mode", nil) %>
+  file_server_url: <%= p("cc.diego.file_server_url") %>
+  cc_uploader_url: <%= p("cc.diego.cc_uploader_url") %>
+  use_privileged_containers_for_running: <%= p("cc.diego.use_privileged_containers_for_running") %>
+  use_privileged_containers_for_staging: <%= p("cc.diego.use_privileged_containers_for_staging") %>
+  lifecycle_bundles: <%= p("cc.diego.lifecycle_bundles").to_json %>
+  bbs:
+    url: <%= p("cc.diego.bbs.url") %>
+    key_file: /var/vcap/jobs/cc_deployment_updater/config/certs/mutual_tls.key
+    cert_file: /var/vcap/jobs/cc_deployment_updater/config/certs/mutual_tls.crt
+    ca_file: /var/vcap/jobs/cc_deployment_updater/config/certs/mutual_tls_ca.crt
+  pid_limit: <%= p("cc.diego.pid_limit") %>
+
+default_app_memory: <%= p("cc.default_app_memory") %>
+default_app_disk_in_mb: <%= p("cc.default_app_disk_in_mb") %>
+maximum_app_disk_in_mb: <%= p("cc.maximum_app_disk_in_mb") %>
+instance_file_descriptor_limit: <%= p("cc.instance_file_descriptor_limit") %>
+
 deployment_updater:
   update_frequency_in_seconds: <%= p("deployment_updater.update_frequency_in_seconds") %>
+
+#TODO DELETEME
+loggregator:
+  router: <%= p("metron_endpoint.host") %>:<%= p("metron_endpoint.port") %>
+  internal_url: <%= p("cc.loggregator.internal_url") %>
