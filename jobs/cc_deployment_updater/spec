@@ -148,7 +148,7 @@ properties:
 
   deployment_updater.update_frequency_in_seconds:
     description: "How often to update deployments by rolling instances"
-    default: 30
+    default: 5
 
   cc.default_app_memory:
     default: 1024
