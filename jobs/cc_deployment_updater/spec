@@ -162,14 +162,3 @@ properties:
   cc.instance_file_descriptor_limit:
     description: "The file descriptors made available to each app instance"
     default: 16384
-
-#TODO delete this block once we figure out instances_reporter class creating loggregator client
-  cc.loggregator.internal_url:
-    description: "Internal url used to communicate with traffic_controller"
-    default: "http://loggregator-trafficcontroller.service.cf.internal:8081"
-  metron_endpoint.host:
-    description: "The host used to emit messages to the Metron agent"
-    default: "127.0.0.1"
-  metron_endpoint.port:
-    description: "The port used to emit messages to the Metron agent"
-    default: 3457
