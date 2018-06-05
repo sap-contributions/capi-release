@@ -46,7 +46,7 @@ ruby-2.4/ruby-2.4.2.tar.gz:
   size: 14187859
   object_id: 8eec75f8-97c6-4a39-6d1c-2e00c99d3c6d
   sha: sha256:93b9e75e00b262bc4def6b26b7ae8717efc252c47154abb7392e54357e6c8c9c
-ruby-2.4/rubygems-2.6.13.tgz:
-  size: 768906
-  object_id: ede35968-6337-4647-63ea-60e94a9eeeb2
-  sha: sha256:d041502ae77e8d49e0a436483fb91f9ad6cc1489e49e0735e7c4a7cf10e728c9
+ruby-2.4/rubygems-2.6.14.tgz:
+  size: 769418
+  object_id: 3a901e7d-7e2d-4ff8-7c8b-829543b62a7e
+  sha: sha256:406a45d258707f52241843e9c7902bbdcf00e7edc3e88cdb79c46659b47851ec
