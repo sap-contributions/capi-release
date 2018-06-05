@@ -209,6 +209,7 @@ http {
     location ~ /v3/packages/.*/upload {
       if ($arg_bits_path) { return 422; }
 
+      upload_pass_form_field "^resources$";
       include public_upload.conf;
     }
 
