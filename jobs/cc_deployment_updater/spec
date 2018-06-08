@@ -43,6 +43,9 @@ properties:
     description: "Experimental feature flag: Enable Bosh Process Manager"
     default: false
 
+  system_domain:
+    description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
+
   ccdb.databases:
     description: "Contains the name of the database on the database server"
   ccdb.roles:
@@ -106,6 +109,12 @@ properties:
   cc.thresholds.api.restart_if_above_mb:
     description: "The cc will restart if memory remains above this threshold for 3 monit cycles"
     default: 3750
+
+  uaa.clients.cc_routing.secret:
+    description: "Used for fetching routing information from the Routing API"
+  routing_api.enabled:
+    description: "Whether to expose the routing_endpoint listed at /v2/info and /. Enable this after deploying the Routing API"
+    default: false
 
   cc.diego.bbs.url:
     description: "URL of the BBS Server"

@@ -35,6 +35,15 @@ db: &db
 
 db_encryption_key: <%= p("cc.db_encryption_key") %>
 
+<% system_domain = p("system_domain") %>
+
+<% if p("routing_api.enabled") %>
+routing_api:
+  url: <%= "https://api.#{system_domain}/routing" %>
+  routing_client_name: "cc_routing"
+  routing_client_secret: <%= p("uaa.clients.cc_routing.secret") %>
+<% end %>
+
 <% if_p("cc.database_encryption") do %>
 database_encryption:
   keys: <%= p("cc.database_encryption.keys", {}).to_json %>
