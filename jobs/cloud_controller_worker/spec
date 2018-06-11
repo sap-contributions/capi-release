@@ -73,6 +73,13 @@ properties:
   nfs_server.address:
     description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"
 
+  cc.opi.enabled:
+    description: "Enable the amazing eirini component"
+    default: false
+  cc.opi.url:
+    description: "Eirini Endpoint"
+    default: ""
+
   cc.external_port:
     description: "External Cloud Controller port"
     default: 9022

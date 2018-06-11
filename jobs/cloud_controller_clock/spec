@@ -58,6 +58,13 @@ properties:
   system_domain:
     description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
 
+  cc.opi.enabled:
+    description: "Enable the amazing eirini component"
+    default: false
+  cc.opi.url:
+    description: "Eirini Endpoint"
+    default: ""
+
   cc.external_port:
     description: "External Cloud Controller port"
     default: 9022

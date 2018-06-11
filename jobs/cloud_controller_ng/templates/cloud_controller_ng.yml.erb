@@ -420,6 +420,10 @@ diego:
   use_privileged_containers_for_running: <%= p("cc.diego.use_privileged_containers_for_running") %>
   use_privileged_containers_for_staging: <%= p("cc.diego.use_privileged_containers_for_staging") %>
 
+opi:
+  url: <%= p("cc.opi.url") %>
+  enabled: <%= p("cc.opi.enabled") %>
+
 perm:
   ca_cert_path: "/var/vcap/jobs/cloud_controller_ng/config/certs/perm_ca.crt"
   timeout_in_milliseconds: <%= p("perm.timeout_in_milliseconds") %>
