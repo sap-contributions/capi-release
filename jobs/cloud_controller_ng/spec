@@ -244,8 +244,8 @@ properties:
   nfs_server.address:
     description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"
   nfs_server.share_path:
-    description: "The location at which to mount the nfs share"
-    default: "/var/vcap/nfs"
+    description: "The location at which to mount the nfs share" # TODO? If BPM enabled, must be under `/var/vcap/data`
+    default: "/var/vcap/data/nfs/nfs_mount"
 
   request_timeout_in_seconds:
     description: "Timeout for requests in seconds."
