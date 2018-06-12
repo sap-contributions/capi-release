@@ -1,5 +1,13 @@
 function setup_local_blobstore() {
   <% if p("cc.packages.blobstore_type").downcase == "fog" && p("cc.packages.fog_connection.provider", "").downcase == "local" %>
+    if [[ "<%= p('cc.buildpacks.fog_connection.local_root') %>" != "<%= p('nfs_server.share_path') %>" ]] ; then
+      echo "Please change cc.buildpacks.fog_connection.local_root ("<%= p('cc.buildpacks.fog_connection.local_root') %>") to equal nfs_server.share_path ("<%= p('nfs_server.share_path') %>") for NFS blobstores";
+      echo "Details are in the release notes here: https://github.com/cloudfoundry/capi-release/releases/tag/1.61.0"
+      exit 1;
+    fi
+  <% end %>
+
+  <% if p("cc.packages.blobstore_type").downcase == "fog" && p("cc.packages.fog_connection.provider", "").downcase == "local" %>
   echo "Preparing local package directory"
   mkdir -p <%= p("cc.packages.fog_connection.local_root") %>
   chown vcap:vcap <%= p("cc.packages.fog_connection.local_root") %>
