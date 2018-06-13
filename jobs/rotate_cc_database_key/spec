@@ -8,12 +8,6 @@ templates:
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
   ruby_version.sh.erb: bin/ruby_version.sh
   db_ca.crt.erb: config/certs/db_ca.crt
-  mutual_tls_ca.crt.erb: config/certs/mutual_tls_ca.crt
-  mutual_tls.crt.erb: config/certs/mutual_tls.crt
-  mutual_tls.key.erb: config/certs/mutual_tls.key
-  copilot_ca.crt.erb: config/certs/copilot_ca.crt
-  copilot.crt.erb: config/certs/copilot.crt
-  copilot.key.erb: config/certs/copilot.key
 
 packages:
   - capi_utils
@@ -25,9 +19,6 @@ packages:
 consumes:
 - name: database
   type: database
-  optional: true
-- name: cloud_controller_to_copilot_conn
-  type: cloud_controller_to_copilot_conn
   optional: true
 - name: cloud_controller_internal
   type: cloud_controller_internal
@@ -86,69 +77,3 @@ properties:
   cc.db_logging_level:
     default: "debug2"
     description: "Level at which cc database operations will be logged if cc.log_db_queries is set to true."
-
-  cc.thresholds.api.alert_if_above_mb:
-    description: "The cc will alert if memory remains above this threshold for 3 monit cycles"
-    default: 3500
-  cc.thresholds.api.restart_if_consistently_above_mb:
-    description: "The cc will restart if memory remains above this threshold for 15 monit cycles"
-    default: 3500
-  cc.thresholds.api.restart_if_above_mb:
-    description: "The cc will restart if memory remains above this threshold for 3 monit cycles"
-    default: 3750
-
-  cc.diego.bbs.url:
-    description: "URL of the BBS Server"
-    default: https://bbs.service.cf.internal:8889
-
-  cc.mutual_tls.ca_cert:
-    description: "PEM-encoded CA certificate for secure, mutually authenticated TLS communication"
-  cc.mutual_tls.public_cert:
-    description: "PEM-encoded certificate for secure, mutually authenticated TLS communication"
-  cc.mutual_tls.private_key:
-    description: "PEM-encoded key for secure, mutually authenticated TLS communication"
-
-  cc.diego.file_server_url:
-    description: "URL of file server"
-    default: http://file-server.service.cf.internal:8080
-  cc.diego.cc_uploader_url:
-    description: "URL of cc uploader"
-    default: http://cc-uploader.service.cf.internal:9090
-  cc.diego.use_privileged_containers_for_running:
-    description: "Whether or not to use privileged containers for running buildpack apps and tasks."
-    default: false
-  cc.diego.use_privileged_containers_for_staging:
-    description: "Whether or not to use privileged containers for staging tasks."
-    default: false
-  cc.diego.lifecycle_bundles:
-    description: "List of lifecycle bundles arguments for different stacks"
-    default:
-      "buildpack/cflinuxfs2": "buildpack_app_lifecycle/buildpack_app_lifecycle.tgz"
-      "buildpack/cflinuxfs3": "buildpack_app_lifecycle/buildpack_app_lifecycle.tgz"
-      "buildpack/windows2012R2": "windows_app_lifecycle/windows_app_lifecycle.tgz"
-      "buildpack/windows2016": "buildpack_app_lifecycle/buildpack_app_lifecycle.tgz"
-      "docker": "docker_app_lifecycle/docker_app_lifecycle.tgz"
-
-  cc.diego.temporary_oci_buildpack_mode:
-    description: "Temporary flag to enable OCI buildpack flow. Valid values: 'oci-phase-1'"
-    default: ~
-  cc.diego.pid_limit:
-    description: "Maximum pid limit for containerized work running user-provided code"
-    default: 1024
-
-  deployment_updater.update_frequency_in_seconds:
-    description: "How often to update deployments by rolling instances"
-    default: 5
-
-  cc.default_app_memory:
-    default: 1024
-    description: "How much memory given to an app if not specified"
-  cc.default_app_disk_in_mb:
-    default: 1024
-    description: "The default disk space an app gets"
-  cc.maximum_app_disk_in_mb:
-    default: 2048
-    description: "The maximum amount of disk a user can request"
-  cc.instance_file_descriptor_limit:
-    description: "The file descriptors made available to each app instance"
-    default: 16384
