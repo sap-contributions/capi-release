@@ -90,6 +90,9 @@ provides:
   - copilot.client_ca_file
   - copilot.client_key_file
   - copilot.client_chain_file
+  - cc.db_encryption_key
+  - cc.database_encryption.keys
+  - cc.database_encryption.current_key_label
 
 consumes:
 - name: database
