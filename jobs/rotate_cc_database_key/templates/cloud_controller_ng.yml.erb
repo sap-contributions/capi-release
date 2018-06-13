@@ -1,11 +1,11 @@
 ---
-pid_filename: /var/vcap/sys/run/database_key_rotator/database_key_rotator.pid
+pid_filename: /var/vcap/sys/run/rotate_cc_database_key/rotate_cc_database_key.pid
 
 index: <%= spec.index %>
 name: <%= name %>
 
 logging:
-  file: /var/vcap/sys/log/database_key_rotator/database_key_rotator.log
+  file: /var/vcap/sys/log/rotate_cc_database_key/rotate_cc_database_key.log
   syslog: vcap.cloud_controller_ng
   level: "<%= p("cc.logging_level") %>"
   max_retries: <%= p("cc.logging_max_retries") %>
@@ -30,7 +30,7 @@ db: &db
   read_timeout: <%= p("ccdb.read_timeout") %>
   connection_validation_timeout: <%= p("ccdb.connection_validation_timeout") %>
 <% if_p('ccdb.ca_cert') do %>
-  ca_cert_path: '/var/vcap/jobs/database_key_rotator/config/certs/db_ca.crt'
+  ca_cert_path: '/var/vcap/jobs/rotate_cc_database_key/config/certs/db_ca.crt'
 <% end %>
 
 db_encryption_key: <%= p("cc.db_encryption_key") %>
@@ -46,9 +46,9 @@ copilot:
   enabled: <%= link("cloud_controller_internal").p("copilot.enabled") %>
   host: <%= link("cloud_controller_internal").p("copilot.host") %>
   port: <%= copilot_conn.p("listen_port_for_cloud_controller") %>
-  client_ca_file: /var/vcap/jobs/database_key_rotator/config/certs/copilot_ca.crt
-  client_key_file: /var/vcap/jobs/database_key_rotator/config/certs/copilot.key
-  client_chain_file: /var/vcap/jobs/database_key_rotator/config/certs/copilot.crt
+  client_ca_file: /var/vcap/jobs/rotate_cc_database_key/config/certs/copilot_ca.crt
+  client_key_file: /var/vcap/jobs/rotate_cc_database_key/config/certs/copilot.key
+  client_chain_file: /var/vcap/jobs/rotate_cc_database_key/config/certs/copilot.crt
 <% end %>
 
 diego:
@@ -60,9 +60,9 @@ diego:
   lifecycle_bundles: <%= p("cc.diego.lifecycle_bundles").to_json %>
   bbs:
     url: <%= p("cc.diego.bbs.url") %>
-    key_file: /var/vcap/jobs/database_key_rotator/config/certs/mutual_tls.key
-    cert_file: /var/vcap/jobs/database_key_rotator/config/certs/mutual_tls.crt
-    ca_file: /var/vcap/jobs/database_key_rotator/config/certs/mutual_tls_ca.crt
+    key_file: /var/vcap/jobs/rotate_cc_database_key/config/certs/mutual_tls.key
+    cert_file: /var/vcap/jobs/rotate_cc_database_key/config/certs/mutual_tls.crt
+    ca_file: /var/vcap/jobs/rotate_cc_database_key/config/certs/mutual_tls_ca.crt
   pid_limit: <%= p("cc.diego.pid_limit") %>
 
 default_app_memory: <%= p("cc.default_app_memory") %>

@@ -1,5 +1,5 @@
 ---
-name: database_key_rotator
+name: rotate_cc_database_key
 
 description: "The Cloud Controller database key rotator (experimental)"
 
