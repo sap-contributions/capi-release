@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+export CLOUD_CONTROLLER_NG_CONFIG=/var/vcap/jobs/database_key_rotator/config/cloud_controller_ng.yml
+source /var/vcap/jobs/database_key_rotator/bin/ruby_version.sh
+cd /var/vcap/packages/cloud_controller_ng/cloud_controller_ng
+exec bundle exec rake database_key_rotator:perform

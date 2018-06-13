@@ -1,0 +1,154 @@
+---
+name: database_key_rotator
+
+description: "The Cloud Controller database key rotator (experimental)"
+
+templates:
+  bin/run.erb: bin/run
+  cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
+  ruby_version.sh.erb: bin/ruby_version.sh
+  db_ca.crt.erb: config/certs/db_ca.crt
+  mutual_tls_ca.crt.erb: config/certs/mutual_tls_ca.crt
+  mutual_tls.crt.erb: config/certs/mutual_tls.crt
+  mutual_tls.key.erb: config/certs/mutual_tls.key
+  copilot_ca.crt.erb: config/certs/copilot_ca.crt
+  copilot.crt.erb: config/certs/copilot.crt
+  copilot.key.erb: config/certs/copilot.key
+
+packages:
+  - capi_utils
+  - cloud_controller_ng
+  - libpq
+  - mariadb_connector_c
+  - ruby-2.4
+
+consumes:
+- name: database
+  type: database
+  optional: true
+- name: cloud_controller_to_copilot_conn
+  type: cloud_controller_to_copilot_conn
+  optional: true
+- name: cloud_controller_internal
+  type: cloud_controller_internal
+
+properties:
+  ccdb.databases:
+    description: "Contains the name of the database on the database server"
+  ccdb.roles:
+    description: "Users to create on the database when seeding"
+  ccdb.db_scheme:
+    description: "The type of database being used. mysql or postgres"
+    default: postgres
+  ccdb.address:
+    description: "The address of the database server"
+  ccdb.port:
+    description: "The port of the database server"
+  ccdb.max_connections:
+    default: 25
+    description: "Maximum connections for Sequel"
+  ccdb.pool_timeout:
+    default: 10
+    description: "The timeout for Sequel pooled connections"
+  ccdb.ca_cert:
+    default: ~
+    description: "The ca cert to use when communicating with the database over SSL"
+  ccdb.ssl_verify_hostname:
+    default: true
+    description: "Verify that the database SSL certificate matches the host to which the connection is attempted"
+  ccdb.read_timeout:
+    default: 3600
+    description: "The read timeout in seconds for query responses, passed directly to the Sequel gem - see https://github.com/jeremyevans/sequel/blob/master/doc/opening_databases.rdoc for details"
+  ccdb.connection_validation_timeout:
+    default: 3600
+    description: "The period in seconds after which idle connections are validated, passed directly to the Sequel gem - see http://sequel.jeremyevans.net/rdoc-plugins/files/lib/sequel/extensions/connection_validator_rb.html for details.  Note that setting this to -1 results in an additional query whenever connections are checked out from the pool, which can have performance implications"
+
+  cc.db_encryption_key:
+    default: ""
+    description: "key for encrypting sensitive values in the CC database"
+
+  cc.database_encryption.keys:
+    default: {}
+    description: "label-key pairs for encrypting sensitive values in the CC database; labels must be < 256 characters long"
+  cc.database_encryption.current_key_label:
+    default: ""
+    description: "current key label for encrypting values in the CC database"
+
+  cc.logging_level:
+    default: "info"
+    description: "Log level for cc. Valid levels are listed here: https://github.com/cloudfoundry/steno#log-levels."
+  cc.logging_max_retries:
+    default: 1
+    description: "Passthru value for Steno logger"
+  cc.log_db_queries:
+    default: false
+    description: "Log database queries. WARNING: Setting this to true with cc.db_logging_level >= cc.logging_level will log all field values, including encrypted secrets."
+  cc.db_logging_level:
+    default: "debug2"
+    description: "Level at which cc database operations will be logged if cc.log_db_queries is set to true."
+
+  cc.thresholds.api.alert_if_above_mb:
+    description: "The cc will alert if memory remains above this threshold for 3 monit cycles"
+    default: 3500
+  cc.thresholds.api.restart_if_consistently_above_mb:
+    description: "The cc will restart if memory remains above this threshold for 15 monit cycles"
+    default: 3500
+  cc.thresholds.api.restart_if_above_mb:
+    description: "The cc will restart if memory remains above this threshold for 3 monit cycles"
+    default: 3750
+
+  cc.diego.bbs.url:
+    description: "URL of the BBS Server"
+    default: https://bbs.service.cf.internal:8889
+
+  cc.mutual_tls.ca_cert:
+    description: "PEM-encoded CA certificate for secure, mutually authenticated TLS communication"
+  cc.mutual_tls.public_cert:
+    description: "PEM-encoded certificate for secure, mutually authenticated TLS communication"
+  cc.mutual_tls.private_key:
+    description: "PEM-encoded key for secure, mutually authenticated TLS communication"
+
+  cc.diego.file_server_url:
+    description: "URL of file server"
+    default: http://file-server.service.cf.internal:8080
+  cc.diego.cc_uploader_url:
+    description: "URL of cc uploader"
+    default: http://cc-uploader.service.cf.internal:9090
+  cc.diego.use_privileged_containers_for_running:
+    description: "Whether or not to use privileged containers for running buildpack apps and tasks."
+    default: false
+  cc.diego.use_privileged_containers_for_staging:
+    description: "Whether or not to use privileged containers for staging tasks."
+    default: false
+  cc.diego.lifecycle_bundles:
+    description: "List of lifecycle bundles arguments for different stacks"
+    default:
+      "buildpack/cflinuxfs2": "buildpack_app_lifecycle/buildpack_app_lifecycle.tgz"
+      "buildpack/cflinuxfs3": "buildpack_app_lifecycle/buildpack_app_lifecycle.tgz"
+      "buildpack/windows2012R2": "windows_app_lifecycle/windows_app_lifecycle.tgz"
+      "buildpack/windows2016": "buildpack_app_lifecycle/buildpack_app_lifecycle.tgz"
+      "docker": "docker_app_lifecycle/docker_app_lifecycle.tgz"
+
+  cc.diego.temporary_oci_buildpack_mode:
+    description: "Temporary flag to enable OCI buildpack flow. Valid values: 'oci-phase-1'"
+    default: ~
+  cc.diego.pid_limit:
+    description: "Maximum pid limit for containerized work running user-provided code"
+    default: 1024
+
+  deployment_updater.update_frequency_in_seconds:
+    description: "How often to update deployments by rolling instances"
+    default: 5
+
+  cc.default_app_memory:
+    default: 1024
+    description: "How much memory given to an app if not specified"
+  cc.default_app_disk_in_mb:
+    default: 1024
+    description: "The default disk space an app gets"
+  cc.maximum_app_disk_in_mb:
+    default: 2048
+    description: "The maximum amount of disk a user can request"
+  cc.instance_file_descriptor_limit:
+    description: "The file descriptors made available to each app instance"
+    default: 16384
