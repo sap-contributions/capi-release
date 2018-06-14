@@ -73,11 +73,6 @@ provides:
   type: cloud_controller_db
   properties:
   - ccdb
-  - ccdb.connection_validation_timeout
-  - ccdb.max_connections
-  - ccdb.pool_timeout
-  - ccdb.read_timeout
-  - ccdb.ssl_verify_hostname
 - name: directories_to_backup
   type: directories_to_backup
   properties:
@@ -87,14 +82,6 @@ provides:
 - name: cloud_controller_internal
   type: cloud_controller_internal
   properties:
-  - cc.logging_level
-  - cc.logging_max_retries
-  - cc.db_logging_level
-  - cc.log_db_queries
-  - cc.db_encryption_key
-  - cc.database_encryption
-  - cc.database_encryption.keys
-  - cc.database_encryption.current_key_label
   - cc.volume_services_enabled
   - cc.system_hostnames
   - cc.uaa.client_timeout
@@ -103,6 +90,9 @@ provides:
   - copilot.client_ca_file
   - copilot.client_key_file
   - copilot.client_chain_file
+  - cc.db_encryption_key
+  - cc.database_encryption.keys
+  - cc.database_encryption.current_key_label
 
 consumes:
 - name: database

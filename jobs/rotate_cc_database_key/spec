@@ -17,12 +17,63 @@ packages:
   - ruby-2.4
 
 consumes:
-- name: cloud_controller_db
-  type: cloud_controller_db
 - name: database
   type: database
   optional: true
 - name: cloud_controller_internal
   type: cloud_controller_internal
 
-properties: {}
+properties:
+  ccdb.databases:
+    description: "Contains the name of the database on the database server"
+  ccdb.roles:
+    description: "Users to create on the database when seeding"
+  ccdb.db_scheme:
+    description: "The type of database being used. mysql or postgres"
+    default: postgres
+  ccdb.address:
+    description: "The address of the database server"
+  ccdb.port:
+    description: "The port of the database server"
+  ccdb.max_connections:
+    default: 25
+    description: "Maximum connections for Sequel"
+  ccdb.pool_timeout:
+    default: 10
+    description: "The timeout for Sequel pooled connections"
+  ccdb.ca_cert:
+    default: ~
+    description: "The ca cert to use when communicating with the database over SSL"
+  ccdb.ssl_verify_hostname:
+    default: true
+    description: "Verify that the database SSL certificate matches the host to which the connection is attempted"
+  ccdb.read_timeout:
+    default: 3600
+    description: "The read timeout in seconds for query responses, passed directly to the Sequel gem - see https://github.com/jeremyevans/sequel/blob/master/doc/opening_databases.rdoc for details"
+  ccdb.connection_validation_timeout:
+    default: 3600
+    description: "The period in seconds after which idle connections are validated, passed directly to the Sequel gem - see http://sequel.jeremyevans.net/rdoc-plugins/files/lib/sequel/extensions/connection_validator_rb.html for details.  Note that setting this to -1 results in an additional query whenever connections are checked out from the pool, which can have performance implications"
+
+  cc.db_encryption_key:
+    default: ""
+    description: "key for encrypting sensitive values in the CC database"
+
+  cc.database_encryption.keys:
+    default: {}
+    description: "label-key pairs for encrypting sensitive values in the CC database; labels must be < 256 characters long"
+  cc.database_encryption.current_key_label:
+    default: ""
+    description: "current key label for encrypting values in the CC database"
+
+  cc.logging_level:
+    default: "info"
+    description: "Log level for cc. Valid levels are listed here: https://github.com/cloudfoundry/steno#log-levels."
+  cc.logging_max_retries:
+    default: 1
+    description: "Passthru value for Steno logger"
+  cc.log_db_queries:
+    default: false
+    description: "Log database queries. WARNING: Setting this to true with cc.db_logging_level >= cc.logging_level will log all field values, including encrypted secrets."
+  cc.db_logging_level:
+    default: "debug2"
+    description: "Level at which cc database operations will be logged if cc.log_db_queries is set to true."
