@@ -35,7 +35,7 @@ db: &db
 
 db_encryption_key: <%= link("cloud_controller_internal").p("cc.db_encryption_key") %>
 
-<% if link("cloud_controller_internal").p("cc.database_encryption") %>
+<% link("cloud_controller_internal").if_p("cc.database_encryption") do %>
 database_encryption:
   keys: <%= link("cloud_controller_internal").p("cc.database_encryption.keys", {}).to_json %>
   current_key_label: <%= link("cloud_controller_internal").p("cc.database_encryption.current_key_label").inspect %>
