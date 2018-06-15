@@ -92,7 +92,6 @@ provides:
   - cc.db_logging_level
   - cc.log_db_queries
   - cc.db_encryption_key
-  - cc.database_encryption
   - cc.database_encryption.keys
   - cc.database_encryption.current_key_label
   - cc.volume_services_enabled
