@@ -25,6 +25,7 @@ templates:
   drain.sh.erb: bin/drain
   droplets_ca_cert.pem.erb: config/certs/droplets_ca_cert.pem
   local_blobstore_downloads.conf.erb: config/local_blobstore_downloads.conf
+  nginx_external_endpoints.conf.erb: config/nginx_external_endpoints.conf
   migrate_db.sh.erb: bin/migrate_db
   mime.types: config/mime.types
   mutual_tls.crt.erb: config/certs/mutual_tls.crt
