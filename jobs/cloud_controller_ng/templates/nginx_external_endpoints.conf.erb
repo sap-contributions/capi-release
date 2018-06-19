@@ -28,8 +28,6 @@ proxy_pass                  http://cloud_controller;
 <% end %>
 }
 
-include local_blobstore_downloads.conf;
-
 location ~ /v2/apps/[^/]+/bits {
 if ($arg_application_path) { return 422; }
 

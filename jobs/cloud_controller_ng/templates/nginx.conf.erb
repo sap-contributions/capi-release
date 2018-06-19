@@ -154,6 +154,7 @@ http {
       return 403 'HTTPS is required';
     }
 
+    include local_blobstore_downloads.conf;
     include nginx_external_endpoints.conf;
   }
 }
