@@ -7,6 +7,12 @@
     raise "Could not determine IP via network spec: #{networks}" unless network
     network.ip
   end
+
+  def yaml_escape(s)
+    ptn = %r([\&%\*,:<>@\[\]\\\`\{\|\}\"])
+    return s unless ptn.match(s)
+    return '"' + s.gsub(%r((#{ptn}))) { |m| "\\x#{'%x' % m.ord}" } + '"'
+  end
 %>
 ---
 #Actually NGX host and port
@@ -59,11 +65,11 @@ request_timeout_in_seconds: <%= p("request_timeout_in_seconds") %>
 
 bulk_api:
   auth_user: <%= p("cc.bulk_api_user") %>
-  auth_password: "<%= p("cc.bulk_api_password") %>"
+  auth_password: <%= yaml_escape(p("cc.bulk_api_password")) %>
 
 internal_api:
   auth_user: <%= p("cc.internal_api_user") %>
-  auth_password: "<%= p("cc.internal_api_password") %>"
+  auth_password: <%= yaml_escape(p("cc.internal_api_password")) %>
 
 nginx:
   use_nginx: true
@@ -123,6 +129,13 @@ doppler:
 
 db: &db
   database: "<%= p("ccdb.db_scheme") == "mysql" ? "mysql2" : p("ccdb.db_scheme") %>://<%= db_role["name"] %>:<%= URI.escape(db_role["password"]) %>@<%= database_address %>:<%= p("ccdb.port") %>/<%= db["name"] %>"
+  database_parts:
+    adapter: <%= p("ccdb.db_scheme") == "mysql" ? "mysql2" : p("ccdb.db_scheme") %>
+    host: <%= database_address %>
+    port: <%= p("ccdb.port") %>
+    user: <%= db_role["name"] %>
+    password: <%= yaml_escape(db_role["password"]) %>
+    database: <%= db["name"] %>
   max_connections: <%= p("ccdb.max_connections") %>
   pool_timeout: <%= p("ccdb.pool_timeout") %>
   log_level: "<%= p("cc.db_logging_level") %>"
@@ -178,7 +191,7 @@ staging:
   minimum_staging_file_descriptor_limit: <%= p("cc.staging_file_descriptor_limit") %>
   auth:
     user: <%= p("cc.staging_upload_user") %>
-    password: "<%= p("cc.staging_upload_password") %>"
+    password: <%= yaml_escape(p("cc.staging_upload_password")) %>
 
 default_health_check_timeout: <%= p("cc.default_health_check_timeout") %>
 maximum_health_check_timeout: <%= p("cc.maximum_health_check_timeout") %>
@@ -198,7 +211,7 @@ resource_pool:
     public_endpoint: <%= p("cc.resource_pool.webdav_config.public_endpoint") %>
     private_endpoint: <%= p("cc.resource_pool.webdav_config.private_endpoint") %>
     username: <%= p("cc.resource_pool.webdav_config.username") %>
-    password: <%= p("cc.resource_pool.webdav_config.password") %>
+    password: <%= yaml_escape(p("cc.resource_pool.webdav_config.password")) %>
     <% if p("cc.resource_pool.webdav_config.ca_cert") != "" && p("cc.resource_pool.webdav_config.ca_cert") != nil %>
     ca_cert_path: "/var/vcap/jobs/cloud_controller_ng/config/certs/resource_pool_ca_cert.pem"
     <% end %>
@@ -221,7 +234,7 @@ packages:
     public_endpoint: <%= p("cc.packages.webdav_config.public_endpoint") %>
     private_endpoint: <%= p("cc.packages.webdav_config.private_endpoint") %>
     username: <%= p("cc.packages.webdav_config.username") %>
-    password: <%= p("cc.packages.webdav_config.password") %>
+    password: <%= yaml_escape(p("cc.packages.webdav_config.password")) %>
     <% if p("cc.packages.webdav_config.ca_cert") != "" && p("cc.packages.webdav_config.ca_cert") != nil %>
     ca_cert_path: "/var/vcap/jobs/cloud_controller_ng/config/certs/packages_ca_cert.pem"
     <% end %>
@@ -244,7 +257,7 @@ droplets:
     public_endpoint: <%= p("cc.droplets.webdav_config.public_endpoint") %>
     private_endpoint: <%= p("cc.droplets.webdav_config.private_endpoint") %>
     username: <%= p("cc.droplets.webdav_config.username") %>
-    password: <%= p("cc.droplets.webdav_config.password") %>
+    password: <%= yaml_escape(p("cc.droplets.webdav_config.password")) %>
     <% if p("cc.droplets.webdav_config.ca_cert") != "" && p("cc.droplets.webdav_config.ca_cert") != nil %>
     ca_cert_path: "/var/vcap/jobs/cloud_controller_ng/config/certs/droplets_ca_cert.pem"
     <% end %>
@@ -266,7 +279,7 @@ buildpacks:
     public_endpoint: <%= p("cc.buildpacks.webdav_config.public_endpoint") %>
     private_endpoint: <%= p("cc.buildpacks.webdav_config.private_endpoint") %>
     username: <%= p("cc.buildpacks.webdav_config.username") %>
-    password: <%= p("cc.buildpacks.webdav_config.password") %>
+    password: <%= yaml_escape(p("cc.buildpacks.webdav_config.password")) %>
     <% if p("cc.buildpacks.webdav_config.ca_cert") != "" && p("cc.buildpacks.webdav_config.ca_cert") != nil %>
     ca_cert_path: "/var/vcap/jobs/cloud_controller_ng/config/certs/buildpacks_ca_cert.pem"
     <% end %>
@@ -344,7 +357,7 @@ bits_service:
   public_endpoint: <%= p("cc.bits_service.public_endpoint") %>
   private_endpoint: <%= p("cc.bits_service.private_endpoint") %>
   username: <%= p("cc.bits_service.username") %>
-  password: <%= p("cc.bits_service.password") %>
+  password: <%= yaml_escape(p("cc.bits_service.password")) %>
   <% if p("cc.bits_service.ca_cert") != "" && p("cc.bits_service.ca_cert") != nil %>
   ca_cert_path: /var/vcap/jobs/cloud_controller_ng/config/certs/bits_service_ca.crt
   <% end %>
