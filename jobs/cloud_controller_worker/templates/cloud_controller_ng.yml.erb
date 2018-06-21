@@ -8,10 +8,14 @@
     network.ip
   end
 
-  def yaml_escape(s)
-    ptn = %r([\&%\*,:<>@\[\]\\\`\{\|\}\"])
-    return s unless ptn.match(s)
-    return '"' + s.gsub(%r((#{ptn}))) { |m| "\\x#{'%x' % m.ord}" } + '"'
+  def yaml_escape(input_string)
+    chars_to_escape = /[:\\"\x00-\x1f\x7f]/
+    chars_needing_quotes = /[ !#'&%*,:>@\[\]\\`{|}]/
+    delimiter = (chars_needing_quotes.match(input_string) ||
+              chars_to_escape.match(input_string)) ? '"' : ''
+    fixed_string = input_string.gsub(/(#{chars_to_escape})/) { |m| "\\x#{'%x' % m.ord}" }
+
+    "#{delimiter}#{fixed_string}#{delimiter}"
   end
 %>
 ---
