@@ -31,9 +31,9 @@ templates:
   mutual_tls.crt.erb: config/certs/mutual_tls.crt
   mutual_tls.key.erb: config/certs/mutual_tls.key
   mutual_tls_ca.crt.erb: config/certs/mutual_tls_ca.crt
-  mutual_tls_gorouter.crt.erb: config/certs/mutual_tls_gorouter.crt
-  mutual_tls_gorouter.key.erb: config/certs/mutual_tls_gorouter.key
-  mutual_tls_gorouter_ca.crt.erb: config/certs/mutual_tls_gorouter_ca.crt
+  gorouter.crt.erb: config/certs/gorouter.crt
+  gorouter.key.erb: config/certs/gorouter.key
+  gorouter_ca.crt.erb: config/certs/gorouter_ca.crt
   newrelic.yml.erb: config/newrelic.yml
   newrelic_plugin.yml.erb: config/newrelic_plugin.yml
   nginx.conf.erb: config/nginx.conf
@@ -837,11 +837,11 @@ properties:
   cc.mutual_tls.private_key:
     description: "PEM-encoded key for secure, mutually authenticated TLS communication"
 
-  cc.cc_gorouter_tls.ca_cert:
+  cc.gorouter.ca_file:
     description: "PEM-encoded CA certificate for secure, mutually authenticated TLS communication with Gorouter"
-  cc.cc_gorouter_tls.public_cert:
+  cc.gorouter.chain_file:
     description: "PEM-encoded certificate for secure, mutually authenticated TLS communication with Gorouter"
-  cc.cc_gorouter_tls.private_key:
+  cc.gorouter.key_file:
     description: "PEM-encoded key for secure, mutually authenticated TLS communication with Gorouter"
 
   cc.diego.file_server_url:
