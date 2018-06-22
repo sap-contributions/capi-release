@@ -17,7 +17,16 @@ function setup_blobstore_directories {
   mkdir -p $store_tmp_dir
   mkdir -p $data_dir
   mkdir -p $data_tmp_dir
-  find $run_dir $log_dir $store_dir $store_tmp_dir $data_dir $data_tmp_dir $nginx_webdav_dir "${nginx_webdav_dir}/.." -not -user vcap -or -not -group vcap | xargs chown vcap:vcap
+
+  local dirs="$run_dir $log_dir $store_dir $store_tmp_dir $data_dir $data_tmp_dir $nginx_webdav_dir ${nginx_webdav_dir}/.."
+  local num_needing_chown=$(find $dirs -not -user vcap -or -not -group vcap | wc -l)
+
+  if [ $num_needing_chown -gt 0 ]; then
+    echo "chowning ${num_needing_chown} files to vcap:vcap"
+    find $dirs -not -user vcap -or -not -group vcap | xargs chown vcap:vcap
+  else
+    echo "no chowning needed, all relevant files are vcap:vcap already"
+  fi
 }
 
 setup_blobstore_directories
