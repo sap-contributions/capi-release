@@ -17,7 +17,7 @@ function setup_blobstore_directories {
   mkdir -p $store_tmp_dir
   mkdir -p $data_dir
   mkdir -p $data_tmp_dir
-  chown -R vcap:vcap $run_dir $log_dir $store_dir $store_tmp_dir $data_dir $data_tmp_dir $nginx_webdav_dir "${nginx_webdav_dir}/.."
+  find $run_dir $log_dir $store_dir $store_tmp_dir $data_dir $data_tmp_dir $nginx_webdav_dir "${nginx_webdav_dir}/.." -not -user vcap -or -not -group vcap | xargs chown vcap:vcap
 }
 
 setup_blobstore_directories
