@@ -31,9 +31,9 @@ templates:
   mutual_tls.crt.erb: config/certs/mutual_tls.crt
   mutual_tls.key.erb: config/certs/mutual_tls.key
   mutual_tls_ca.crt.erb: config/certs/mutual_tls_ca.crt
-  mutual_tls_gorouter.crt.erb: config/certs/mutual_tls_gorouter.crt
-  mutual_tls_gorouter.key.erb: config/certs/mutual_tls_gorouter.key
-  mutual_tls_gorouter_ca.crt.erb: config/certs/mutual_tls_gorouter_ca.crt
+  public_tls.crt.erb: config/certs/public_tls.crt
+  public_tls.key.erb: config/certs/public_tls.key
+  public_tls_ca.crt.erb: config/certs/public_tls_ca.crt
   newrelic.yml.erb: config/newrelic.yml
   newrelic_plugin.yml.erb: config/newrelic_plugin.yml
   nginx.conf.erb: config/nginx.conf
@@ -200,7 +200,7 @@ properties:
   cc.tls_port:
     description: "Port for internal TLS communication"
     default: 9023
-  cc.gorouter_tls_port:
+  cc.public_tls.port:
     description: "Port for TLS with gorouter"
     default: 9024
   cc.internal_service_hostname:
@@ -837,12 +837,12 @@ properties:
   cc.mutual_tls.private_key:
     description: "PEM-encoded key for secure, mutually authenticated TLS communication"
 
-  cc.cc_gorouter_tls.ca_cert:
-    description: "PEM-encoded CA certificate for secure, mutually authenticated TLS communication with Gorouter"
-  cc.cc_gorouter_tls.public_cert:
-    description: "PEM-encoded certificate for secure, mutually authenticated TLS communication with Gorouter"
-  cc.cc_gorouter_tls.private_key:
-    description: "PEM-encoded key for secure, mutually authenticated TLS communication with Gorouter"
+  cc.public_tls.ca_cert:
+    description: "PEM-encoded CA certificate for secure TLS communication over external endpoints"
+  cc.public_tls.certificate:
+    description: "PEM-encoded certificate for secure TLS communication over external endpoints"
+  cc.public_tls.private_key:
+    description: "PEM-encoded key for secure TLS communication over external endpoints"
 
   cc.diego.file_server_url:
     description: "URL of file server"
