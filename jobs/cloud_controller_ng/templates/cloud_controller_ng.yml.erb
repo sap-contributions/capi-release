@@ -1,5 +1,5 @@
 <%
-  require 'uri'
+  require 'cgi'
 
   def discover_external_ip
     networks = spec.networks.marshal_dump
@@ -132,7 +132,7 @@ doppler:
 %>
 
 db: &db
-  database: "<%= p("ccdb.db_scheme") == "mysql" ? "mysql2" : p("ccdb.db_scheme") %>://<%= db_role["name"] %>:<%= URI.escape(db_role["password"]) %>@<%= database_address %>:<%= p("ccdb.port") %>/<%= db["name"] %>"
+  database: "<%= p("ccdb.db_scheme") == "mysql" ? "mysql2" : p("ccdb.db_scheme") %>://<%= db_role["name"] %>:<%= CGI.escape(db_role["password"]) %>@<%= database_address %>:<%= p("ccdb.port") %>/<%= db["name"] %>"
   database_parts:
     adapter: <%= p("ccdb.db_scheme") == "mysql" ? "mysql2" : p("ccdb.db_scheme") %>
     host: <%= database_address %>
