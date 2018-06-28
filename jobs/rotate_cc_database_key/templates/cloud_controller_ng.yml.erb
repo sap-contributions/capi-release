@@ -21,7 +21,7 @@ logging:
   end
 %>
 db: &db
-  database: "<%= link("cloud_controller_db").p("ccdb.db_scheme") == "mysql" ? "mysql2" : link("cloud_controller_db").p("ccdb.db_scheme") %>://<%= db_role["name"] %>:<%= URI.escape(db_role["password"]) %>@<%= database_address %>:<%= link("cloud_controller_db").p("ccdb.port") %>/<%= db["name"] %>"
+  database: "<%= link("cloud_controller_db").p("ccdb.db_scheme") == "mysql" ? "mysql2" : link("cloud_controller_db").p("ccdb.db_scheme") %>://<%= db_role["name"] %>:<%= CGI.escape(db_role["password"]) %>@<%= database_address %>:<%= link("cloud_controller_db").p("ccdb.port") %>/<%= db["name"] %>"
   max_connections: <%= link("cloud_controller_db").p("ccdb.max_connections") %>
   pool_timeout: <%= link("cloud_controller_db").p("ccdb.pool_timeout") %>
   log_level: "<%= link("cloud_controller_internal").p("cc.db_logging_level") %>"
