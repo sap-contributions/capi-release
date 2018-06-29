@@ -128,7 +128,6 @@ http {
     }
 
     include local_blobstore_downloads.conf;
-    include nginx_external_endpoints.conf;
 
     # Pass altered request body to a backend
     location @cc_uploads {
@@ -167,6 +166,8 @@ http {
   }
   <% end %>
 
+  # This block handles public endpoints over non-TLS secured HTTP
+  # This is required for backwards compatibility during a rolling-deploy
   server {
   <% if p("cc.nginx.ip").empty? %>
     listen    <%= p("cc.external_port") %>;
@@ -180,10 +181,6 @@ http {
       proxy_send_timeout          <%= p("request_timeout_in_seconds") %>;
       proxy_read_timeout          <%= p("request_timeout_in_seconds") %>;
     <% end %>
-
-    location /internal/v4/ {
-      return 403 'HTTPS is required';
-    }
 
     include local_blobstore_downloads.conf;
     include nginx_external_endpoints.conf;
