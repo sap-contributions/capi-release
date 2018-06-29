@@ -1,3 +1,8 @@
+# Forbid access to internal endpoints
+location /internal/v4/ {
+  return 403 'Forbidden';
+}
+
 # proxy and log all CC traffic
 location / {
 <% if p("bpm.enabled") %>
