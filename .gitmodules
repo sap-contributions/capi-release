@@ -59,7 +59,7 @@
 [submodule "src/code.cloudfoundry.org/tps"]
 	path = src/code.cloudfoundry.org/tps
 	url = https://github.com/cloudfoundry/tps
-	branch = wip_remove_listener
+	branch = master
 [submodule "src/code.cloudfoundry.org/cc-uploader"]
 	path = src/code.cloudfoundry.org/cc-uploader
 	url = https://github.com/cloudfoundry/cc-uploader
