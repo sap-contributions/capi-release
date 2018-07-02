@@ -12,6 +12,7 @@ templates:
   pre-start.sh.erb: bin/pre-start
 
 packages:
+  - nfs-debs
   - capi_utils
 
 properties:

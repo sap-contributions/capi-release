@@ -14,6 +14,26 @@ mariadb_connector_c/mariadb-connector-c-2.3.5-src.tar.gz:
   size: 540018
   object_id: 27f389e6-85e6-47c3-4c60-256dd7d9874d
   sha: sha256:2f3bf4c326d74284debf7099f30cf3615f7978d1ec22b8c1083676688a76746f
+nfs-debs/keyutils_1.5.9-8ubuntu1_amd64.deb:
+  size: 47054
+  object_id: a7207ad8-8660-4e0d-72a1-7fdd605e131d
+  sha: sha256:782865f7688ecc2a168f6c51e8e63f44326d73144a9df35087fd1e55e30d23db
+nfs-debs/libevent-2.0-5_2.0.21-stable-2ubuntu0.16.04.1_amd64.deb:
+  size: 114014
+  object_id: 14622888-be2d-413e-4133-874bfe135968
+  sha: sha256:e1acdffde386a4da7de46166ffd199771a13498f5d4fc38d61b3fa0eba305572
+nfs-debs/libnfsidmap2_0.25-5_amd64.deb:
+  size: 32182
+  object_id: 08d519cb-e173-4652-406f-b0c23e694671
+  sha: sha256:ed00ae6b3efc4c28068e5f984d8c69942c68502593da945b89b0045e7fcef396
+nfs-debs/nfs-common_1%3a1.2.8-9ubuntu12.1_amd64.deb:
+  size: 184334
+  object_id: b6012af0-4414-4a53-7a80-8b143fe03ada
+  sha: sha256:91ee605b09bd024ed97338bed442285c5980810d9a94f23aa182255e1c16316b
+nfs-debs/rpcbind_0.2.3-0.2_amd64.deb:
+  size: 40252
+  object_id: 7f2f0cb1-6ca8-4524-44f7-30cf31a6d72e
+  sha: sha256:7c9d1aca35cd01ef0c9cbc90f93e993116e84de1967c429e1130a16281fd3a6e
 nginx/newrelic_nginx_agent-1.2.1.tar.gz:
   size: 5222
   object_id: c63358f6-574a-4e20-9d2b-7e1450368b6d
