@@ -2,10 +2,6 @@
 	path = src/github.com/bmizerany/pat
 	url = https://github.com/bmizerany/pat
 	branch = master
-[submodule "src/github.com/cloudfoundry-incubator/routing-info"]
-	path = src/github.com/cloudfoundry-incubator/routing-info
-	url = https://github.com/cloudfoundry-incubator/routing-info
-	branch = bbs-import-path
 [submodule "src/github.com/cloudfoundry/dropsonde"]
 	path = src/github.com/cloudfoundry/dropsonde
 	url = https://github.com/cloudfoundry/dropsonde
@@ -13,10 +9,6 @@
 [submodule "src/github.com/cloudfoundry/gosteno"]
 	path = src/github.com/cloudfoundry/gosteno
 	url = https://github.com/cloudfoundry/gosteno
-	branch = master
-[submodule "src/github.com/cloudfoundry/noaa"]
-	path = src/github.com/cloudfoundry/noaa
-	url = https://github.com/cloudfoundry/noaa
 	branch = master
 [submodule "src/github.com/cloudfoundry/sonde-go"]
 	path = src/github.com/cloudfoundry/sonde-go
@@ -29,10 +21,6 @@
 [submodule "src/github.com/golang/protobuf"]
 	path = src/github.com/golang/protobuf
 	url = https://github.com/golang/protobuf
-	branch = master
-[submodule "src/github.com/gorilla/websocket"]
-	path = src/github.com/gorilla/websocket
-	url = https://github.com/gorilla/websocket
 	branch = master
 [submodule "src/github.com/hashicorp/consul"]
 	path = src/github.com/hashicorp/consul
@@ -62,10 +50,6 @@
 	path = src/github.com/vito/go-sse
 	url = https://github.com/vito/go-sse
 	branch = master
-[submodule "src/golang.org/x/crypto"]
-	path = src/golang.org/x/crypto
-	url = https://go.googlesource.com/crypto
-	branch = master
 [submodule "src/github.com/cloudfoundry/blobstore_url_signer"]
 	path = src/github.com/cloudfoundry/blobstore_url_signer
 	url = https://github.com/cloudfoundry/blobstore_url_signer
@@ -75,14 +59,10 @@
 [submodule "src/code.cloudfoundry.org/tps"]
 	path = src/code.cloudfoundry.org/tps
 	url = https://github.com/cloudfoundry/tps
-	branch = master
+	branch = wip_remove_listener
 [submodule "src/code.cloudfoundry.org/cc-uploader"]
 	path = src/code.cloudfoundry.org/cc-uploader
 	url = https://github.com/cloudfoundry/cc-uploader
-	branch = master
-[submodule "src/code.cloudfoundry.org/dockerapplifecycle"]
-	path = src/code.cloudfoundry.org/dockerapplifecycle
-	url = https://github.com/cloudfoundry/dockerapplifecycle
 	branch = master
 [submodule "src/code.cloudfoundry.org/debugserver"]
 	path = src/code.cloudfoundry.org/debugserver
@@ -100,17 +80,9 @@
 	path = src/code.cloudfoundry.org/runtimeschema
 	url = https://github.com/cloudfoundry/runtimeschema
 	branch = master
-[submodule "src/code.cloudfoundry.org/buildpackapplifecycle"]
-	path = src/code.cloudfoundry.org/buildpackapplifecycle
-	url = https://github.com/cloudfoundry/buildpackapplifecycle
-	branch = master
 [submodule "src/code.cloudfoundry.org/cfhttp"]
 	path = src/code.cloudfoundry.org/cfhttp
 	url = https://github.com/cloudfoundry/cfhttp
-	branch = master
-[submodule "src/code.cloudfoundry.org/cflager"]
-	path = src/code.cloudfoundry.org/cflager
-	url = https://github.com/cloudfoundry/cflager
 	branch = master
 [submodule "src/code.cloudfoundry.org/clock"]
 	path = src/code.cloudfoundry.org/clock
@@ -139,24 +111,15 @@
 [submodule "src/gopkg.in/yaml.v2"]
 	path = src/gopkg.in/yaml.v2
 	url = https://github.com/go-yaml/yaml
-[submodule "src/code.cloudfoundry.org/executor"]
-	path = src/code.cloudfoundry.org/executor
-	url = https://github.com/cloudfoundry/executor
 [submodule "src/code.cloudfoundry.org/localip"]
 	path = src/code.cloudfoundry.org/localip
 	url = https://github.com/cloudfoundry/localip
-[submodule "src/code.cloudfoundry.org/rep"]
-	path = src/code.cloudfoundry.org/rep
-	url = https://github.com/cloudfoundry/rep
 [submodule "src/google.golang.org/genproto"]
 	path = src/google.golang.org/genproto
 	url = https://github.com/google/go-genproto
 [submodule "src/google.golang.org/grpc"]
 	path = src/google.golang.org/grpc
 	url = https://github.com/grpc/grpc-go
-[submodule "src/github.com/go-sql-driver/mysql"]
-	path = src/github.com/go-sql-driver/mysql
-	url = https://github.com/go-sql-driver/mysql
 [submodule "src/github.com/lib/pq"]
 	path = src/github.com/lib/pq
 	url = https://github.com/lib/pq
@@ -171,4 +134,4 @@
 	url = https://github.com/cloudfoundry-incubator/go-loggregator
 [submodule "src/code.cloudfoundry.org/diego-logging-client"]
 	path = src/code.cloudfoundry.org/diego-logging-client
-	url = https://github.com/cloudfoundry/diego-logging-client.git
+	url = https://github.com/cloudfoundry/diego-logging-client
