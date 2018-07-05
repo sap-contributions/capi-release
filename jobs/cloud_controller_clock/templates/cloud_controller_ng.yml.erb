@@ -111,7 +111,8 @@ loggregator:
   end
 %>
 db: &db
-  database:
+  database: "<%= p("ccdb.db_scheme") == "mysql" ? "mysql2" : p("ccdb.db_scheme") %>://<%= db_role["name"] %>:<%= CGI.escape(db_role["password"]) %>@<%= database_address %>:<%= p("ccdb.port") %>/<%= db["name"] %>"
+  database_parts:
     adapter: <%= p("ccdb.db_scheme") == "mysql" ? "mysql2" : p("ccdb.db_scheme") %>
     host: <%= database_address %>
     port: <%= p("ccdb.port") %>
