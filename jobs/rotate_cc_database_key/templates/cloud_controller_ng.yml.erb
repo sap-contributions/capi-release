@@ -21,7 +21,7 @@ logging:
   end
 %>
 db: &db
-  database:
+  database_parts:
     adapter: <%= p("ccdb.db_scheme") == "mysql" ? "mysql2" : p("ccdb.db_scheme") %>
     host: <%= database_address %>
     port: <%= p("ccdb.port") %>
