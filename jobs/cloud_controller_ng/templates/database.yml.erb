@@ -1,0 +1,7 @@
+database:
+  adapter: <%= p("ccdb.db_scheme") == "mysql" ? "mysql2" : p("ccdb.db_scheme") %>
+  host: <%= database_address %>
+  port: <%= p("ccdb.port") %>
+  user: <%= db_role["name"] %>
+  password: <%= yaml_escape(db_role["password"]) %>
+  database: <%= db["name"] %>
