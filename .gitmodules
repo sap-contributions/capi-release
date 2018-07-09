@@ -135,3 +135,7 @@
 [submodule "src/code.cloudfoundry.org/diego-logging-client"]
 	path = src/code.cloudfoundry.org/diego-logging-client
 	url = https://github.com/cloudfoundry/diego-logging-client
+[submodule "src/github.com/go-sql-driver/mysql"]
+	path = src/github.com/go-sql-driver/mysql
+	url = https://github.com/go-sql-driver/mysql
+	branch = master
