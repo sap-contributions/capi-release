@@ -1,0 +1,2 @@
+default: <%= link("cloud_controller_internal").p("cc.default_stack") %>
+stacks: <%= link("cloud_controller_internal").p("cc.stacks", []).to_yaml.gsub("---", "") %>

@@ -12,6 +12,7 @@ templates:
   drain.sh.erb: bin/drain
   ruby_version.sh.erb: bin/ruby_version.sh
   console.erb: bin/console
+  stacks.yml.erb: config/stacks.yml
   pre-start.sh.erb: bin/pre-start
   db_ca.crt.erb: config/certs/db_ca.crt
   mutual_tls_ca.crt.erb: config/certs/mutual_tls_ca.crt
@@ -20,6 +21,11 @@ templates:
   copilot_ca.crt.erb: config/certs/copilot_ca.crt
   copilot.crt.erb: config/certs/copilot.crt
   copilot.key.erb: config/certs/copilot.key
+  credhub_ca.crt.erb: config/certs/credhub_ca.crt
+  packages_ca_cert.pem.erb: config/certs/packages_ca_cert.pem
+  resource_pool_ca_cert.pem.erb: config/certs/resource_pool_ca_cert.pem
+  droplets_ca_cert.pem.erb: config/certs/droplets_ca_cert.pem
+  buildpacks_ca_cert.pem.erb: config/certs/buildpacks_ca_cert.pem
 
 packages:
   - capi_utils
@@ -31,6 +37,9 @@ packages:
 consumes:
 - name: database
   type: database
+  optional: true
+- name: credhub
+  type: credhub
   optional: true
 - name: cloud_controller_to_copilot_conn
   type: cloud_controller_to_copilot_conn

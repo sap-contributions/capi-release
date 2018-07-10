@@ -1,4 +1,5 @@
 ---
+
 pid_filename: /var/vcap/sys/run/cc_deployment_updater/cc_deployment_updater.pid
 
 index: <%= spec.index %>
@@ -9,6 +10,13 @@ logging:
   syslog: vcap.cloud_controller_ng
   level: "<%= p("cc.logging_level") %>"
   max_retries: <%= p("cc.logging_max_retries") %>
+
+external_port: <%= link("cloud_controller_internal").p("cc.external_port") %>
+tls_port: <%= link("cloud_controller_internal").p("cc.tls_port") %>
+internal_service_hostname: <%= link("cloud_controller_internal").p("cc.internal_service_hostname") %>
+
+external_protocol: <%= link("cloud_controller_internal").p("cc.external_protocol") %>
+external_domain: <%= link("cloud_controller_internal").p("cc.external_host") %>.<%= link("cloud_controller_internal").p("system_domain") %>
 
 <% db = p("ccdb.databases").find { |db| db["tag"] == "cc" } %>
 <% db_role = p("ccdb.roles").find { |role| role["tag"] == "admin" } %>
@@ -79,3 +87,122 @@ instance_file_descriptor_limit: <%= p("cc.instance_file_descriptor_limit") %>
 
 deployment_updater:
   update_frequency_in_seconds: <%= p("deployment_updater.update_frequency_in_seconds") %>
+
+staging:
+  timeout_in_seconds: <%= link("cloud_controller_internal").p("cc.staging_timeout_in_seconds") %>
+  auth:
+    user: <%= link("cloud_controller_internal").p("cc.staging_upload_user") %>
+    password: <%= yaml_escape(link("cloud_controller_internal").p("cc.staging_upload_password")) %>
+
+default_health_check_timeout: <%= link("cloud_controller_internal").p("cc.default_health_check_timeout") %>
+
+stacks_file: /var/vcap/jobs/cloud_controller_ng/config/stacks.yml
+
+resource_pool:
+  blobstore_type: <%= link("cloud_controller_internal").p("cc.resource_pool.blobstore_type") %>
+  webdav_config:
+    blobstore_timeout: <%= link("cloud_controller_internal").p("cc.resource_pool.webdav_config.blobstore_timeout") %>
+    public_endpoint: <%= link("cloud_controller_internal").p("cc.resource_pool.webdav_config.public_endpoint") %>
+    private_endpoint: <%= link("cloud_controller_internal").p("cc.resource_pool.webdav_config.private_endpoint") %>
+    username: <%= link("cloud_controller_internal").p("cc.resource_pool.webdav_config.username") %>
+    password: <%= yaml_escape(link("cloud_controller_internal").p("cc.resource_pool.webdav_config.password")) %>
+    <% if link("cloud_controller_internal").p("cc.resource_pool.webdav_config.ca_cert") != "" && link("cloud_controller_internal").p("cc.resource_pool.webdav_config.ca_cert") != nil %>
+    ca_cert_path: "/var/vcap/jobs/cc_deployment_updater/config/certs/resource_pool_ca_cert.pem"
+    <% end %>
+  minimum_size: <%= link("cloud_controller_internal").p("cc.resource_pool.minimum_size") %>
+  maximum_size: <%= link("cloud_controller_internal").p("cc.resource_pool.maximum_size") %>
+  resource_directory_key: <%= link("cloud_controller_internal").p("cc.resource_pool.resource_directory_key") %>
+  <% link("cloud_controller_internal").if_p("cc.resource_pool.cdn") do %>
+  cdn:
+    uri: <%= link("cloud_controller_internal").p("cc.resource_pool.cdn.uri") %>
+    key_pair_id: <%= link("cloud_controller_internal").p("cc.resource_pool.cdn.key_pair_id") %>
+    private_key: <%= link("cloud_controller_internal").p("cc.resource_pool.cdn.private_key").inspect %>
+  <% end %>
+  fog_connection: <%= link("cloud_controller_internal").p("cc.resource_pool.fog_connection", {}).to_json %>
+  fog_aws_storage_options: <%= link("cloud_controller_internal").p("cc.resource_pool.fog_aws_storage_options", {}).to_json %>
+
+packages:
+  blobstore_type: <%= link("cloud_controller_internal").p("cc.packages.blobstore_type") %>
+  webdav_config:
+    blobstore_timeout: <%= link("cloud_controller_internal").p("cc.packages.webdav_config.blobstore_timeout") %>
+    public_endpoint: <%= link("cloud_controller_internal").p("cc.packages.webdav_config.public_endpoint") %>
+    private_endpoint: <%= link("cloud_controller_internal").p("cc.packages.webdav_config.private_endpoint") %>
+    username: <%= link("cloud_controller_internal").p("cc.packages.webdav_config.username") %>
+    password: <%= yaml_escape(link("cloud_controller_internal").p("cc.packages.webdav_config.password")) %>
+    <% if link("cloud_controller_internal").p("cc.packages.webdav_config.ca_cert") != "" && link("cloud_controller_internal").p("cc.packages.webdav_config.ca_cert") != nil %>
+    ca_cert_path: "/var/vcap/jobs/cc_deployment_updater/config/certs/packages_ca_cert.pem"
+    <% end %>
+  app_package_directory_key: <%= link("cloud_controller_internal").p("cc.packages.app_package_directory_key") %>
+  max_package_size: <%= link("cloud_controller_internal").p("cc.packages.max_package_size") %>
+  <% link("cloud_controller_internal").if_p("cc.packages.cdn") do %>
+  cdn:
+    uri: <%= link("cloud_controller_internal").p("cc.packages.cdn.uri") %>
+    key_pair_id: <%= link("cloud_controller_internal").p("cc.packages.cdn.key_pair_id") %>
+    private_key: <%= link("cloud_controller_internal").p("cc.packages.cdn.private_key").inspect %>
+  <% end %>
+  fog_connection: <%= link("cloud_controller_internal").p("cc.packages.fog_connection", {}).to_json %>
+  fog_aws_storage_options: <%= link("cloud_controller_internal").p("cc.packages.fog_aws_storage_options", {}).to_json %>
+
+droplets:
+  blobstore_type: <%= link("cloud_controller_internal").p("cc.droplets.blobstore_type") %>
+  webdav_config:
+    blobstore_timeout: <%= link("cloud_controller_internal").p("cc.droplets.webdav_config.blobstore_timeout") %>
+    public_endpoint: <%= link("cloud_controller_internal").p("cc.droplets.webdav_config.public_endpoint") %>
+    private_endpoint: <%= link("cloud_controller_internal").p("cc.droplets.webdav_config.private_endpoint") %>
+    username: <%= link("cloud_controller_internal").p("cc.droplets.webdav_config.username") %>
+    password: <%= yaml_escape(link("cloud_controller_internal").p("cc.droplets.webdav_config.password")) %>
+    <% if link("cloud_controller_internal").p("cc.droplets.webdav_config.ca_cert") != "" && link("cloud_controller_internal").p("cc.droplets.webdav_config.ca_cert") != nil %>
+    ca_cert_path: "/var/vcap/jobs/cc_deployment_updater/config/certs/droplets_ca_cert.pem"
+    <% end %>
+  droplet_directory_key: <%= link("cloud_controller_internal").p("cc.droplets.droplet_directory_key") %>
+  <% link("cloud_controller_internal").if_p("cc.droplets.cdn") do %>
+  cdn:
+    uri: <%= link("cloud_controller_internal").p("cc.droplets.cdn.uri") %>
+    key_pair_id: <%= link("cloud_controller_internal").p("cc.droplets.cdn.key_pair_id") %>
+    private_key: <%= link("cloud_controller_internal").p("cc.droplets.cdn.private_key").inspect %>
+  <% end %>
+  fog_connection: <%= link("cloud_controller_internal").p("cc.droplets.fog_connection", {}).to_json %>
+  fog_aws_storage_options: <%= link("cloud_controller_internal").p("cc.droplets.fog_aws_storage_options", {}).to_json %>
+
+buildpacks:
+  blobstore_type: <%= link("cloud_controller_internal").p("cc.buildpacks.blobstore_type") %>
+  webdav_config:
+    blobstore_timeout: <%= link("cloud_controller_internal").p("cc.buildpacks.webdav_config.blobstore_timeout") %>
+    public_endpoint: <%= link("cloud_controller_internal").p("cc.buildpacks.webdav_config.public_endpoint") %>
+    private_endpoint: <%= link("cloud_controller_internal").p("cc.buildpacks.webdav_config.private_endpoint") %>
+    username: <%= link("cloud_controller_internal").p("cc.buildpacks.webdav_config.username") %>
+    password: <%= yaml_escape(link("cloud_controller_internal").p("cc.buildpacks.webdav_config.password")) %>
+    <% if link("cloud_controller_internal").p("cc.buildpacks.webdav_config.ca_cert") != "" && link("cloud_controller_internal").p("cc.buildpacks.webdav_config.ca_cert") != nil %>
+    ca_cert_path: "/var/vcap/jobs/cc_deployment_updater/config/certs/buildpacks_ca_cert.pem"
+    <% end %>
+  buildpack_directory_key: <%= link("cloud_controller_internal").p("cc.buildpacks.buildpack_directory_key") %>
+  <% link("cloud_controller_internal").if_p("cc.buildpacks.cdn") do %>
+  cdn:
+    uri: <%= link("cloud_controller_internal").p("cc.buildpacks.cdn.uri") %>
+    key_pair_id: <%= link("cloud_controller_internal").p("cc.buildpacks.cdn.key_pair_id") %>
+    private_key: <%= link("cloud_controller_internal").p("cc.buildpacks.cdn.private_key").inspect %>
+  <% end %>
+  fog_connection: <%= link("cloud_controller_internal").p("cc.buildpacks.fog_connection", {}).to_json %>
+  fog_aws_storage_options: <%= link("cloud_controller_internal").p("cc.buildpacks.fog_aws_storage_options", {}).to_json %>
+
+bits_service:
+  enabled: <%= link("cloud_controller_internal").p("cc.bits_service.enabled") %>
+  public_endpoint: <%= link("cloud_controller_internal").p("cc.bits_service.public_endpoint") %>
+  private_endpoint: <%= link("cloud_controller_internal").p("cc.bits_service.private_endpoint") %>
+  username: <%= link("cloud_controller_internal").p("cc.bits_service.username") %>
+  password: <%= yaml_escape(link("cloud_controller_internal").p("cc.bits_service.password")) %>
+
+skip_cert_verify: <%= link("cloud_controller_internal").p("ssl.skip_cert_verify") %>
+
+<% if_link("credhub") do |credhub| %>
+credhub_api:
+  internal_url: <%= "https://#{link("cloud_controller_internal").p("credhub_api.hostname")}:#{credhub.p("credhub.port")}" %>
+  ca_cert_path: "/var/vcap/jobs/cc_deployment_updater/config/certs/credhub_ca.crt"
+<% end %>
+
+<% if link("cloud_controller_internal").p("routing_api.enabled") %>
+routing_api:
+  url: <%= "https://api.#{link("cloud_controller_internal").p("system_domain")}/routing" %>
+  routing_client_name: "cc_routing"
+  routing_client_secret: <%= link("cloud_controller_internal").p("uaa.clients.cc_routing.secret") %>
+<% end %>

@@ -91,21 +91,99 @@ provides:
 - name: cloud_controller_internal
   type: cloud_controller_internal
   properties:
+  - cc.bits_service.ca_cert
+  - cc.bits_service.enabled
+  - cc.bits_service.password
+  - cc.bits_service.private_endpoint
+  - cc.bits_service.public_endpoint
+  - cc.bits_service.username
+  - cc.buildpacks.blobstore_type
+  - cc.buildpacks.buildpack_directory_key
+  - cc.buildpacks.cdn.key_pair_id
+  - cc.buildpacks.cdn.private_key
+  - cc.buildpacks.cdn.uri
+  - cc.buildpacks.fog_aws_storage_options
+  - cc.buildpacks.fog_connection
+  - cc.buildpacks.webdav_config.blobstore_timeout
+  - cc.buildpacks.webdav_config.ca_cert
+  - cc.buildpacks.webdav_config.password
+  - cc.buildpacks.webdav_config.private_endpoint
+  - cc.buildpacks.webdav_config.public_endpoint
+  - cc.buildpacks.webdav_config.username
+  - cc.database_encryption.current_key_label
+  - cc.database_encryption.keys
+  - cc.db_encryption_key
+  - cc.db_logging_level
+  - cc.default_health_check_timeout
+  - cc.default_stack
+  - cc.droplets.blobstore_type
+  - cc.droplets.cdn.key_pair_id
+  - cc.droplets.cdn.private_key
+  - cc.droplets.cdn.uri
+  - cc.droplets.droplet_directory_key
+  - cc.droplets.fog_aws_storage_options
+  - cc.droplets.fog_connection
+  - cc.droplets.webdav_config.blobstore_timeout
+  - cc.droplets.webdav_config.ca_cert
+  - cc.droplets.webdav_config.password
+  - cc.droplets.webdav_config.private_endpoint
+  - cc.droplets.webdav_config.public_endpoint
+  - cc.droplets.webdav_config.username
+  - cc.external_host
+  - cc.external_port
+  - cc.external_protocol
+  - cc.internal_service_hostname
+  - cc.log_db_queries
   - cc.logging_level
   - cc.logging_max_retries
-  - cc.db_logging_level
-  - cc.log_db_queries
-  - cc.db_encryption_key
-  - cc.database_encryption.keys
-  - cc.database_encryption.current_key_label
-  - cc.volume_services_enabled
+  - cc.packages.app_package_directory_key
+  - cc.packages.blobstore_type
+  - cc.packages.cdn.key_pair_id
+  - cc.packages.cdn.private_key
+  - cc.packages.cdn.uri
+  - cc.packages.fog_aws_storage_options
+  - cc.packages.fog_connection
+  - cc.packages.max_package_size
+  - cc.packages.webdav_config.blobstore_timeout
+  - cc.packages.webdav_config.ca_cert
+  - cc.packages.webdav_config.password
+  - cc.packages.webdav_config.private_endpoint
+  - cc.packages.webdav_config.public_endpoint
+  - cc.packages.webdav_config.username
+  - cc.resource_pool.blobstore_type
+  - cc.resource_pool.cdn.key_pair_id
+  - cc.resource_pool.cdn.private_key
+  - cc.resource_pool.cdn.uri
+  - cc.resource_pool.fog_aws_storage_options
+  - cc.resource_pool.fog_connection
+  - cc.resource_pool.maximum_size
+  - cc.resource_pool.minimum_size
+  - cc.resource_pool.resource_directory_key
+  - cc.resource_pool.webdav_config.blobstore_timeout
+  - cc.resource_pool.webdav_config.ca_cert
+  - cc.resource_pool.webdav_config.password
+  - cc.resource_pool.webdav_config.private_endpoint
+  - cc.resource_pool.webdav_config.public_endpoint
+  - cc.resource_pool.webdav_config.username
+  - cc.stacks
+  - cc.staging_timeout_in_seconds
+  - cc.staging_upload_password
+  - cc.staging_upload_user
   - cc.system_hostnames
+  - cc.tls_port
   - cc.uaa.client_timeout
+  - cc.volume_services_enabled
+  - copilot.client_ca_file
+  - copilot.client_chain_file
+  - copilot.client_key_file
   - copilot.enabled
   - copilot.host
-  - copilot.client_ca_file
-  - copilot.client_key_file
-  - copilot.client_chain_file
+  - credhub_api.ca_cert
+  - credhub_api.hostname
+  - routing_api.enabled
+  - ssl.skip_cert_verify
+  - system_domain
+  - uaa.clients.cc_routing.secret
 
 consumes:
 - name: database
