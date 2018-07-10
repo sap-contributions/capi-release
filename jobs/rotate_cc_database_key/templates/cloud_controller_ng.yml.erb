@@ -1,3 +1,16 @@
+<%
+  require 'cgi'
+
+  def yaml_escape(input_string)
+    chars_to_escape = /[:\\"\x00-\x1f\x7f]/
+    chars_needing_quotes = /[ !#'&%*,:>@\[\]\\`{|}]/
+    delimiter = (chars_needing_quotes.match(input_string) ||
+              chars_to_escape.match(input_string)) ? '"' : ''
+    fixed_string = input_string.gsub(/(#{chars_to_escape})/) { |m| "\\x#{'%x' % m.ord}" }
+
+    "#{delimiter}#{fixed_string}#{delimiter}"
+  end
+%>
 ---
 pid_filename: /var/vcap/sys/run/rotate_cc_database_key/rotate_cc_database_key.pid
 
@@ -23,9 +36,9 @@ logging:
 db: &db
   database: "<%= link("cloud_controller_db").p("ccdb.db_scheme") == "mysql" ? "mysql2" : link("cloud_controller_db").p("ccdb.db_scheme") %>://<%= db_role["name"] %>:<%= CGI.escape(db_role["password"]) %>@<%= database_address %>:<%= link("cloud_controller_db").p("ccdb.port") %>/<%= db["name"] %>"
   database_parts:
-    adapter: <%= p("ccdb.db_scheme") == "mysql" ? "mysql2" : p("ccdb.db_scheme") %>
+    adapter: <%= link("cloud_controller_db").p("ccdb.db_scheme") == "mysql" ? "mysql2" : link("cloud_controller_db").p("ccdb.db_scheme") %>
     host: <%= database_address %>
-    port: <%= p("ccdb.port") %>
+    port: <%= link("cloud_controller_db").p("ccdb.port") %>
     user: <%= db_role["name"] %>
     password: <%= yaml_escape(db_role["password"]) %>
     database: <%= db["name"] %>
