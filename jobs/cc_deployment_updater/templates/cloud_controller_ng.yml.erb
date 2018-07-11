@@ -200,6 +200,9 @@ credhub_api:
   ca_cert_path: "/var/vcap/jobs/cc_deployment_updater/config/certs/credhub_ca.crt"
 <% end %>
 
+credential_references:
+  interpolate_service_bindings: <%= link("cloud_controller_internal").p("cc.credential_references.interpolate_service_bindings") %>
+
 <% if link("cloud_controller_internal").p("routing_api.enabled") %>
 routing_api:
   url: <%= "https://api.#{link("cloud_controller_internal").p("system_domain")}/routing" %>
