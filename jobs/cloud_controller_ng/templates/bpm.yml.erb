@@ -8,6 +8,7 @@ cloud_controller_ng_config = {
   "additional_volumes" => [
     {
       "path" => "/var/vcap/data/nfs",
+      "mount_only" => true,
       "writable" => true
     }
   ],
@@ -51,7 +52,9 @@ nginx_config = {
   "ephemeral_disk" => true,
   "additional_volumes" => [
     {
-      "path" => "/var/vcap/data/nfs"
+      "path" => "/var/vcap/data/nfs",
+      "mount_only" => true,
+      "writable" => true
     }
   ]
 }
@@ -78,6 +81,7 @@ config = {
     "additional_volumes" => [
       {
         "path" => "/var/vcap/data/nfs",
+        "mount_only" => true,
         "writable" => true
       }
     ],

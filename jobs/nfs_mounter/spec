@@ -30,4 +30,4 @@ properties:
     default: "/var/lib/nfs/rpc_pipefs"
   nfs_server.share_path:
     description: "Location to mount the nfs share"
-    default: "/var/vcap/data/nfs/nfs_mount"
+    default: "/var/vcap/data/nfs"
