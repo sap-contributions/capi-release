@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 
-curl --retry 3 --retry-delay 1 --max-time 0.5 http://localhost:<%= p('cc.external_port') %>/v2/info
+curl \
+  --max-time 0.5 \
+  --retry 100000 \
+  --retry-delay 1 \
+  http://localhost:<%= p('cc.external_port') %>/v2/info
+
