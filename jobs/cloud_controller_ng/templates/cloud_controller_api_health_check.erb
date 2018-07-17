@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 curl \
-  --max-time 0.5 \
+  --max-time <%= p('cc.api_health_check_timeout_per_retry') %> \
   --retry 100000 \
   --retry-delay 1 \
   http://localhost:<%= p('cc.external_port') %>/v2/info

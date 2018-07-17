@@ -286,6 +286,17 @@ properties:
     description: "Internal hostname used to resolve the address of the Cloud Controller"
     default: "cloud-controller-ng.service.cf.internal"
 
+  cc.external_protocol:
+    default: "https"
+    description: "The protocol used to access the CC API from an external entity"
+  cc.external_host:
+    default: "api"
+    description: "Host part of the cloud_controller api URI, will be joined with value of 'domain'"
+
+  cc.api_health_check_timeout_per_retry:
+    default: 2
+    description: "Maximum health check timeout (in seconds) for each retry attempt in the Cloud Controller's route registration health check"
+
   cc.jobs.global.timeout_in_seconds:
     description: "The longest any job can take before it is cancelled unless overridden per job"
     default: 14400 # 4 hours
@@ -304,13 +315,6 @@ properties:
   cc.directories.diagnostics:
     default: "/var/vcap/data/cloud_controller_ng/diagnostics"
     description: "The directory where operator requested diagnostic files should be placed"
-
-  cc.external_protocol:
-    default: "https"
-    description: "The protocol used to access the CC API from an external entity"
-  cc.external_host:
-    default: "api"
-    description: "Host part of the cloud_controller api URI, will be joined with value of 'domain'"
 
   cc.bulk_api_user:
     default: "bulk_api"
