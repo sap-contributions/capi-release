@@ -1,5 +1,17 @@
 <%=
 
+def mount_nfs_volume!(config)
+  if_p('nfs_server.address') do
+    config['additional_volumes'] = [
+      {
+        "path" => "/var/vcap/data/nfs",
+        "mount_only" => true,
+        "writable" => true
+      }
+    ]
+  end
+end
+
 cloud_controller_ng_config = {
   "name" => "cloud_controller_ng",
   "executable" => "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng",
@@ -37,6 +49,7 @@ if properties.env
         cloud_controller_ng_config["env"]["no_proxy"] = "#{properties.env.no_proxy}"
     end
 end
+mount_nfs_volume!(cloud_controller_ng_config)
 
 nginx_config = {
   "name" => "nginx",
@@ -44,6 +57,7 @@ nginx_config = {
   "args" => ["-c", "/var/vcap/jobs/cloud_controller_ng/config/nginx.conf"],
   "ephemeral_disk" => true,
 }
+mount_nfs_volume!(nginx_config)
 
 nginx_newrelic_plugin_config = {
   "name" => "nginx_newrelic_plugin",
@@ -76,6 +90,7 @@ config = {
       "INDEX" => index
     }
   }
+  mount_nfs_volume!(local_worker_config)
 
   if !!properties.cc.newrelic.license_key
    local_worker_config["env"]["NEWRELIC_ENABLE"] = true

@@ -20,6 +20,16 @@ config = { "processes" => [] }
     }
   }
 
+  if_p('nfs_server.address') do
+    worker_config['additional_volumes'] = [
+      {
+        "path" => "/var/vcap/data/nfs",
+        "mount_only" => true,
+        "writable" => true
+      }
+    ]
+  end
+
   if !!properties.cc.newrelic.license_key
    worker_config["env"]["NEWRELIC_ENABLE"] = true
   end
