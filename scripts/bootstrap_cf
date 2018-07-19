@@ -16,7 +16,7 @@ create_and_target_space() {
 
 main() {
 
-  ${__dir}/target-cf
+  ${__dir}/target_cf
   create_and_target_org
   create_and_target_space
 }
