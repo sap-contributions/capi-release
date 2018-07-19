@@ -4,5 +4,5 @@ files:
 - nginx/nginx-1.13.12.tar.gz
 - nginx/pcre-8.42.tar.gz
 - nginx/nginx-upload-module-2.2-at-aba1e3f.tar.gz
-- capi-release/src/nginx/upload_module_put_support.patch
-- capi-release/src/nginx/upload_module_new_nginx_support.patch
+- nginx/upload_module_put_support.patch
+- nginx/upload_module_new_nginx_support.patch
