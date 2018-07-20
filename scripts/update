@@ -24,7 +24,7 @@ elif [ -f "$(dirname "$scripts_dir")/.git" ]; then
 fi
 
 if [ ! -z "$git_hooks_dir" ] ; then
-  "$scripts_dir"/install-git-hooks "$git_hooks_dir"
+  "$scripts_dir"/install_git_hooks "$git_hooks_dir"
 fi
 
 has_upstream && git pull
