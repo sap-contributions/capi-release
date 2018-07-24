@@ -1,6 +1,6 @@
 set -e -x
 
-cp -a capi-release/src/* ${BOSH_INSTALL_TARGET}
+cp -a * ${BOSH_INSTALL_TARGET}
 cd ${BOSH_INSTALL_TARGET}/cloud_controller_ng
 
 mariadb_dir=/var/vcap/packages/mariadb_connector_c
