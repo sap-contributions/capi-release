@@ -25,6 +25,9 @@ templates:
   drain.sh.erb: bin/drain
   droplets_ca_cert.pem.erb: config/certs/droplets_ca_cert.pem
   local_blobstore_downloads.conf.erb: config/local_blobstore_downloads.conf
+  logcache_tls.crt.erb: config/certs/logcache_tls.crt
+  logcache_tls.key.erb: config/certs/logcache_tls.key
+  logcache_tls_ca.crt.erb: config/certs/logcache_tls_ca.crt
   nginx_external_endpoints.conf.erb: config/nginx_external_endpoints.conf
   migrate_db.sh.erb: bin/migrate_db
   mime.types: config/mime.types
@@ -135,6 +138,9 @@ provides:
   - cc.external_port
   - cc.external_protocol
   - cc.internal_service_hostname
+  - cc.logcache_tls.certificate
+  - cc.logcache_tls.private_key
+  - cc.logcache_tls.ca_cert
   - cc.log_db_queries
   - cc.logging_level
   - cc.logging_max_retries
@@ -204,6 +210,9 @@ consumes:
   optional: true
 - name: cloud_controller_to_copilot_conn
   type: cloud_controller_to_copilot_conn
+  optional: true
+- name: log-cache
+  type: log-cache
   optional: true
 
 properties:
@@ -314,6 +323,10 @@ properties:
   cc.temporary_disable_deployments:
     description: "Do not allow the API client to create app deployments (temporary)"
     default: true
+
+  cc.temporary_use_logcache:
+    description: "Use logcache instead of Traffic Controller for retrieving container metrics"
+    default: false
 
   cc.directories.tmpdir:
     default: "/var/vcap/data/cloud_controller_ng/tmp"
@@ -969,6 +982,20 @@ properties:
   cc.diego.pid_limit:
     description: "Maximum pid limit for containerized work running user-provided code"
     default: 1024
+
+  cc.logcache.host:
+    description: "Hostname of the Logcache server"
+    default: doppler.service.cf.internal
+  cc.logcache.port:
+    description: "Port of the Logcache server"
+    default: 8080
+
+  cc.logcache_tls.private_key:
+    description: "Private key for signing download URIs"
+  cc.logcache_tls.certificate:
+    description: "PEM-encoded certificate..."
+  cc.logcache_tls.ca_cert:
+    description: "The certificate authority"
 
   cc.loggregator.internal_url:
     description: "Internal url used to communicate with traffic_controller"

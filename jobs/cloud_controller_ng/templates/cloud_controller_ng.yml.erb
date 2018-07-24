@@ -48,6 +48,7 @@ development_mode: <%= p("cc.development_mode") %>
 external_protocol: <%= p("cc.external_protocol") %>
 external_domain: <%= p("cc.external_host") %>.<%= p("system_domain") %>
 temporary_disable_deployments: <%= p("cc.temporary_disable_deployments") %>
+temporary_use_logcache: <%= p("cc.temporary_use_logcache") %>
 
 system_domain_organization: <%= p("system_domain_organization") %>
 system_domain: <%= p("system_domain") %>
@@ -124,6 +125,15 @@ logging:
   syslog: vcap.cloud_controller_ng
   level: "<%= p("cc.logging_level") %>"
   max_retries: <%= p("cc.logging_max_retries") %>
+
+logcache:
+  host: <%= p("cc.logcache.host") %>
+  port: <%= p("cc.logcache.port") %>
+
+logcache_tls:
+  key_file: /var/vcap/jobs/cloud_controller_ng/config/certs/logcache_tls.key
+  cert_file: /var/vcap/jobs/cloud_controller_ng/config/certs/logcache_tls.crt
+  ca_file: /var/vcap/jobs/cloud_controller_ng/config/certs/logcache_tls_ca.crt
 
 loggregator:
   router: <%= p("metron_endpoint.host") %>:<%= p("metron_endpoint.port") %>
