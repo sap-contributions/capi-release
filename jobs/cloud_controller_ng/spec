@@ -967,6 +967,10 @@ properties:
     description: "Maximum pid limit for containerized work running user-provided code"
     default: 1024
 
+  cc.logcache.internal_url:
+    description: "Internal url used to communicate with logcache"
+    default: "http://doppler.service.cf.internal:8080"
+
   cc.loggregator.internal_url:
     description: "Internal url used to communicate with traffic_controller"
     default: "http://loggregator-trafficcontroller.service.cf.internal:8081"
