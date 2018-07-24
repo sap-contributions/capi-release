@@ -1,10 +1,13 @@
 set -e
 
-export GOPATH=$PWD/capi-release
+mkdir -p ${BOSH_INSTALL_TARGET}/src
+cp -a . ${BOSH_INSTALL_TARGET}/src
+export GOPATH=$BOSH_INSTALL_TARGET
 
 export GOROOT=$(readlink -nf /var/vcap/packages/golang1.8)
 export PATH=$GOROOT/bin:$PATH
 go install code.cloudfoundry.org/tps/cmd/tps-listener
 go install code.cloudfoundry.org/tps/cmd/tps-watcher
 
-cp -a $PWD/capi-release/bin $BOSH_INSTALL_TARGET
+# clean up source artifacts
+rm -rf ${BOSH_INSTALL_TARGET}/src ${BOSH_INSTALL_TARGET}/pkg
