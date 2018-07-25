@@ -171,3 +171,10 @@ properties:
   cc.instance_file_descriptor_limit:
     description: "The file descriptors made available to each app instance"
     default: 16384
+
+  cc.locket.host:
+    default: "locket.service.cf.internal"
+    description: "Hostname of the Locket server"
+  cc.locket.port:
+    default: 8891
+    description: "Port of the Locket server"

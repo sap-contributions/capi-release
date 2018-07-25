@@ -87,6 +87,8 @@ instance_file_descriptor_limit: <%= p("cc.instance_file_descriptor_limit") %>
 
 deployment_updater:
   update_frequency_in_seconds: <%= p("deployment_updater.update_frequency_in_seconds") %>
+  lock_key: 'cc-deployment-updater'
+  lock_owner: <%= spec.id %>
 
 staging:
   timeout_in_seconds: <%= link("cloud_controller_internal").p("cc.staging_timeout_in_seconds") %>
@@ -209,3 +211,10 @@ routing_api:
   routing_client_name: "cc_routing"
   routing_client_secret: <%= link("cloud_controller_internal").p("uaa.clients.cc_routing.secret") %>
 <% end %>
+
+locket:
+  host: <%= p("cc.locket.host") %>
+  port: <%= p("cc.locket.port") %>
+  key_file: /var/vcap/jobs/cc_deployment_updater/config/certs/mutual_tls.key
+  cert_file: /var/vcap/jobs/cc_deployment_updater/config/certs/mutual_tls.crt
+  ca_file: /var/vcap/jobs/cc_deployment_updater/config/certs/mutual_tls_ca.crt
