@@ -17,6 +17,14 @@
 
     "#{delimiter}#{fixed_string}#{delimiter}"
   end
+
+  def validate_app_domains(app_domains)
+    app_domains.each do |app_domain|
+      if app_domain.is_a?(Hash) && app_domain['internal'] == true && app_domain.has_key?('router_group_name')
+        raise 'Error for app_domains: Router groups cannot be specified for internal domains.'
+      end
+    end
+  end
 %>
 ---
 #Actually NGX host and port
@@ -43,7 +51,11 @@ temporary_disable_deployments: <%= p("cc.temporary_disable_deployments") %>
 
 system_domain_organization: <%= p("system_domain_organization") %>
 system_domain: <%= p("system_domain") %>
-app_domains: <%= p("app_domains").to_json %>
+app_domains: <%=
+  app_domains = p("app_domains")
+  validate_app_domains(app_domains)
+  app_domains.to_json
+%>
 
 reserved_private_domains: <%= p("cc.reserved_private_domains", nil) %>
 

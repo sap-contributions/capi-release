@@ -218,11 +218,13 @@ properties:
     description: "An organization that will be created as part of the seeding process. When the system_domain is not shared with (in the list of) app_domains, this is required as the system_domain will be created as a PrivateDomain in this organization."
     default: "system"
   app_domains:
-    description: "Array of domains for user apps (example: 'user.app.space.foo', a user app called 'neat' will listen at 'http://neat.user.app.space.foo')"
+    description: "Array of domain hashes for user apps (example: 'user.app.space.foo', a user app called 'neat' will listen at 'http://neat.user.app.space.foo'). Domains specified as internal should be listed last to avoid interfering with default domain selection by old CLI versions."
     example:  |
       - name: example.com
       - name: tcp.example.com
         router_group_name: default-tcp
+      - name: example.internal
+        internal: true
 
   app_ssh.host_key_fingerprint:
     description: >-
