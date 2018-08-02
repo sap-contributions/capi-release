@@ -82,6 +82,7 @@ provides:
   - ccdb.pool_timeout
   - ccdb.read_timeout
   - ccdb.ssl_verify_hostname
+  - ccdb.ca_cert
 - name: directories_to_backup
   type: directories_to_backup
   properties:

@@ -11,12 +11,24 @@
     db_port = link('cloud_controller_db').p('ccdb.port')
     db_adapter = link('cloud_controller_db').p('ccdb.db_scheme')
 
-    JSON.pretty_generate(
+    bbr_config = {
       'username' => db_role['name'],
       'password' => db_role['password'],
       'host' => db_address,
       'port' => db_port,
       'database' => db['name'],
       'adapter' => db_adapter,
-    )
+    }
+
+    link('cloud_controller_db').if_p('ccdb.ca_cert') do
+      skip_host_verify = !link('cloud_controller_db').p('ccdb.ssl_verify_hostname')
+      bbr_config['tls'] = {
+        'skip_host_verify' => skip_host_verify,
+        'cert' => {
+          'ca' => link('cloud_controller_db').p('ccdb.ca_cert')
+        }
+      }
+    end
+
+    JSON.pretty_generate(bbr_config)
 %>
