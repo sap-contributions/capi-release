@@ -126,7 +126,13 @@ logging:
   max_retries: <%= p("cc.logging_max_retries") %>
 
 logcache:
-  internal_url: <%= p("cc.logcache.internal_url") %>
+  host: <%= p("cc.logcache.host") %>
+  port: <%= p("cc.logcache.port") %>
+
+logcache_tls:
+  key_file: /var/vcap/jobs/cloud_controller_ng/config/certs/logcache_tls.key
+  cert_file: /var/vcap/jobs/cloud_controller_ng/config/certs/logcache_tls.crt
+  ca_file: /var/vcap/jobs/cloud_controller_ng/config/certs/logcache_tls_ca.crt
 
 loggregator:
   router: <%= p("metron_endpoint.host") %>:<%= p("metron_endpoint.port") %>
