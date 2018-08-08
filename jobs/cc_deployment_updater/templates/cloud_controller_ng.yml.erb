@@ -218,3 +218,6 @@ locket:
   key_file: /var/vcap/jobs/cc_deployment_updater/config/certs/mutual_tls.key
   cert_file: /var/vcap/jobs/cc_deployment_updater/config/certs/mutual_tls.crt
   ca_file: /var/vcap/jobs/cc_deployment_updater/config/certs/mutual_tls_ca.crt
+
+statsd_host: <%= link("cloud_controller_internal").p("cc.statsd_host") %>
+statsd_port: <%= link("cloud_controller_internal").p("cc.statsd_port") %>

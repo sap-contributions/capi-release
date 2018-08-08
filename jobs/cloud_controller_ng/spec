@@ -171,6 +171,8 @@ provides:
   - cc.staging_timeout_in_seconds
   - cc.staging_upload_password
   - cc.staging_upload_user
+  - cc.statsd_host
+  - cc.statsd_port
   - cc.system_hostnames
   - cc.tls_port
   - cc.uaa.client_timeout
