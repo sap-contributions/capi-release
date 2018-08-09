@@ -2,7 +2,7 @@
 name: cc_uploader
 
 dependencies:
-  - golang1.9
+  - golang1.10
 
 files:
   - code.cloudfoundry.org/bbs/encryption/*.go # gosub
