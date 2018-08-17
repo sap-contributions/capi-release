@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+cd ~/go/src/github.com/cloudfoundry/cf-acceptance-tests
+
+export CONFIG=${PWD}/integration_config.json
+
+bin/test --nodes=4
