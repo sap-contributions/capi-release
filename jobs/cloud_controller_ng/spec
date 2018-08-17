@@ -138,9 +138,6 @@ provides:
   - cc.external_port
   - cc.external_protocol
   - cc.internal_service_hostname
-  - cc.logcache_tls.certificate
-  - cc.logcache_tls.private_key
-  - cc.logcache_tls.ca_cert
   - cc.log_db_queries
   - cc.logging_level
   - cc.logging_max_retries
@@ -991,11 +988,9 @@ properties:
     default: 8080
 
   cc.logcache_tls.private_key:
-    description: "Private key for signing download URIs"
+    description: "Private key for connecting to Log Cache via mTLS"
   cc.logcache_tls.certificate:
-    description: "PEM-encoded certificate..."
-  cc.logcache_tls.ca_cert:
-    description: "The certificate authority"
+    description: "PEM-encoded client certificate for connecting to Log Cache via mTLS"
 
   cc.loggregator.internal_url:
     description: "Internal url used to communicate with traffic_controller"
