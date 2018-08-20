@@ -991,6 +991,9 @@ properties:
     description: "Private key for connecting to Log Cache via mTLS"
   cc.logcache_tls.certificate:
     description: "PEM-encoded client certificate for connecting to Log Cache via mTLS"
+  cc.logcache_tls.subject_name:
+    description: "The host name the client will accept on the server certificate when communicating with Log Cache via mTLS"
+    default: "log_cache"
 
   cc.loggregator.internal_url:
     description: "Internal url used to communicate with traffic_controller"

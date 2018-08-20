@@ -134,6 +134,7 @@ logcache_tls:
   key_file: /var/vcap/jobs/cloud_controller_ng/config/certs/logcache_tls.key
   cert_file: /var/vcap/jobs/cloud_controller_ng/config/certs/logcache_tls.crt
   ca_file: /var/vcap/jobs/cloud_controller_ng/config/certs/logcache_tls_ca.crt
+  subject_name: <%= p("cc.logcache_tls.subject_name") %>
 
 loggregator:
   router: <%= p("metron_endpoint.host") %>:<%= p("metron_endpoint.port") %>
