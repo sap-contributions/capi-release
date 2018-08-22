@@ -92,6 +92,12 @@ provides:
   - cc.packages.app_package_directory_key
   - cc.droplets.droplet_directory_key
   - cc.buildpacks.buildpack_directory_key
+- name: cloud_controller_https_endpoint
+  type: cloud_controller_https_endpoint
+  properties:
+  - cc.internal_service_hostname
+  - cc.public_tls.port
+  - cc.public_tls.ca_cert
 - name: cloud_controller_internal
   type: cloud_controller_internal
   properties:
@@ -937,7 +943,9 @@ properties:
     description: "PEM-encoded key for secure, mutually authenticated TLS communication"
 
   cc.public_tls.ca_cert:
-    description: "PEM-encoded CA certificate for secure TLS communication over external endpoints"
+    description: "PEM-encoded CA certificate that was used to sign certificate for external enpoints.
+                  This CA certificate is not used by cloud controller to verify other certificates.
+                  It is exposed as a bosh link for components that communicate directly with the cloud controller."
   cc.public_tls.certificate:
     description: "PEM-encoded certificate for secure TLS communication over external endpoints"
   cc.public_tls.private_key:
