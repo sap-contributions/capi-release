@@ -18,10 +18,6 @@ This is the [bosh release](http://bosh.io/docs/release.html) for Cloud Foundry's
 
 For more details on the integration between Diego and Capi Release, see [Diego Design Notes](https://github.com/cloudfoundry/diego-design-notes).
 
-#### Deprecated:
-
-* [NFS Debian Server](https://github.com/cloudfoundry/capi-release/tree/develop/jobs/debian_nfs_server): An optional stand-alone blobstore for the Cloud Controller. Replaced by Webdav Blobstore.
-
 ## Configuring Release
 
 * [Deploying Cloud Foundry](https://docs.cloudfoundry.org/deploying/index.html)
