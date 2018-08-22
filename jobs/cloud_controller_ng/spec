@@ -98,6 +98,12 @@ provides:
   - cc.internal_service_hostname
   - cc.public_tls.port
   - cc.public_tls.ca_cert
+- name: cloud_controller_mtls_endpoint
+  type: cloud_controller_mtls_endpoint
+  properties:
+  - cc.internal_service_hostname
+  - cc.tls_port
+  - cc.mutual_tls.ca_cert
 - name: cloud_controller_internal
   type: cloud_controller_internal
   properties:
