@@ -32,5 +32,7 @@ if p("capi.tps.bbs.require_ssl")
 end
 
 config[:skip_consul_lock] = p("capi.tps.watcher.skip_consul_lock")
+
+config[:instance_id] = spec.id
 %>
 <%= config.to_json %>
