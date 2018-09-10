@@ -95,6 +95,12 @@ function seed_db {
   popd > /dev/null
 }
 
+function validate_encryption_keys {
+  pushd "${CC_PACKAGE_DIR}/cloud_controller_ng" > /dev/null
+    chpst -u vcap:vcap "${SCRIPT_DIR}/validate_encryption_keys"
+  popd > /dev/null
+}
+
 function start_bosh_dns_or_consul {
   if [ -f /var/vcap/jobs/bosh-dns/bin/is-system-resolver ]; then
     if (/var/vcap/jobs/bosh-dns/bin/is-system-resolver); then
@@ -124,6 +130,7 @@ function start_consul_agent {
 function main {
   start_bosh_dns_or_consul
   setup_directories
+  validate_encryption_keys
   <% if spec.bootstrap && p('cc.run_prestart_migrations') %>
   perform_migration
   seed_db

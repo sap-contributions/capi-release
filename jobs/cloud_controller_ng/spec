@@ -52,6 +52,7 @@ templates:
   setup_local_blobstore.sh.erb: bin/setup_local_blobstore.sh
   stacks.yml.erb: config/stacks.yml
   uaa_ca.crt.erb: config/certs/uaa_ca.crt
+  validate_encryption_keys.sh.erb: bin/validate_encryption_keys
   db_ca.crt.erb: config/certs/db_ca.crt
   credhub_ca.crt.erb: config/certs/credhub_ca.crt
   perm_ca.crt.erb: config/certs/perm_ca.crt
