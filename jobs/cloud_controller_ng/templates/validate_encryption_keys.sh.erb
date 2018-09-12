@@ -6,7 +6,7 @@ function validate_encryption_keys {
     bundle exec rake db:validate_encryption_keys
     result=$?
     if [[ $result -ne 0 ]]; then
-      echo "Encryption key from 'cc.db_encryption_key' is still in use, but no longer present in manifest."
+      # Rake task will output any error messages
       exit $result
     fi
 

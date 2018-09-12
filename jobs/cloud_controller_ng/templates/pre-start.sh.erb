@@ -130,13 +130,13 @@ function start_consul_agent {
 function main {
   start_bosh_dns_or_consul
   setup_directories
-  validate_encryption_keys
   <% if spec.bootstrap && p('cc.run_prestart_migrations') %>
   perform_migration
   seed_db
   <% else %>
   echo "Skipping DB migrations and seeds"
   <% end %>
+  validate_encryption_keys
 }
 
 main
