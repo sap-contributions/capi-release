@@ -164,6 +164,23 @@ module Bosh::Template::Test
           end
         end
       end
+
+      describe 'database_encryption block' do
+        context 'when the "current_encryption_key_label" is not found in the "keys" map' do
+          before do
+            merged_manifest_properties['cc']['database_encryption']['current_key_label'] = 'encryption_key_label_not_here_anymore'
+          end
+
+          it 'raises an error' do
+            expect do
+              YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+            end.to raise_error(
+              StandardError,
+              "Error for database_encryption: 'current_key_label' set to 'encryption_key_label_not_here_anymore', but not present in 'keys' map."
+            )
+          end
+        end
+      end
     end
   end
 end

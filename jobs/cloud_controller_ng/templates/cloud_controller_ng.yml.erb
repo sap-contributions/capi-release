@@ -25,6 +25,13 @@
       end
     end
   end
+
+  def validate_database_encryption(db_encryption)
+    current_key_label = db_encryption['current_key_label']
+    if db_encryption['keys'].none? { | label, _ | label == current_key_label }
+      raise "Error for database_encryption: 'current_key_label' set to '#{current_key_label}', but not present in 'keys' map."
+    end
+  end
 %>
 ---
 #Actually NGX host and port
@@ -322,7 +329,9 @@ buildpacks:
 
 db_encryption_key: <%= p("cc.db_encryption_key") %>
 
-<% if_p("cc.database_encryption") do %>
+<% if_p("cc.database_encryption") do
+    validate_database_encryption(p("cc.database_encryption"))
+ %>
 database_encryption:
   keys: <%= p("cc.database_encryption.keys", {}).to_json %>
   current_key_label: <%= p("cc.database_encryption.current_key_label").inspect %>
