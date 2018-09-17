@@ -329,9 +329,8 @@ buildpacks:
 
 db_encryption_key: <%= p("cc.db_encryption_key") %>
 
-<% if_p("cc.database_encryption") do
-    validate_database_encryption(p("cc.database_encryption"))
- %>
+<% if_p("cc.database_encryption") do %>
+  <% validate_database_encryption(p("cc.database_encryption")) unless p("cc.database_encryption.skip_validation") %>
 database_encryption:
   keys: <%= p("cc.database_encryption.keys", {}).to_json %>
   current_key_label: <%= p("cc.database_encryption.current_key_label").inspect %>

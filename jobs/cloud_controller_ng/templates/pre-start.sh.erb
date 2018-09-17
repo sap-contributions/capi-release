@@ -136,7 +136,12 @@ function main {
   <% else %>
   echo "Skipping DB migrations and seeds"
   <% end %>
+
+  <% if p('cc.database_encryption.skip_validation') %>
+  echo "Skipping DB encryption validation"
+  <% else %>
   validate_encryption_keys
+  <% end %>
 }
 
 main

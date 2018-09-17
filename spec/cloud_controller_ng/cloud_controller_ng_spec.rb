@@ -32,7 +32,8 @@ module Bosh::Template::Test
                   'username' => 'blobstore-user' } },
             'bulk_api_password' => '((cc_bulk_api_password))',
             'database_encryption' =>
-              { 'current_key_label' => 'encryption_key_0',
+              { 'skip_validation' => false,
+                'current_key_label' => 'encryption_key_0',
                 'keys' => { 'encryption_key_0' => '((cc_db_encryption_key))' } },
             'db_encryption_key' => '((cc_db_encryption_key))',
             'default_app_memory' => 256,
@@ -171,13 +172,27 @@ module Bosh::Template::Test
             merged_manifest_properties['cc']['database_encryption']['current_key_label'] = 'encryption_key_label_not_here_anymore'
           end
 
-          it 'raises an error' do
-            expect do
-              YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
-            end.to raise_error(
-              StandardError,
-              "Error for database_encryption: 'current_key_label' set to 'encryption_key_label_not_here_anymore', but not present in 'keys' map."
-            )
+          context 'when the skip validation property is false' do
+            it 'raises an error' do
+              expect do
+                YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+              end.to raise_error(
+                StandardError,
+                "Error for database_encryption: 'current_key_label' set to 'encryption_key_label_not_here_anymore', but not present in 'keys' map."
+              )
+            end
+          end
+
+          context 'when the skip validation property is true' do
+            before do
+              merged_manifest_properties['cc']['database_encryption']['skip_validation'] = true
+            end
+
+            it 'does not raise an error' do
+              expect do
+                YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+              end.to_not raise_error
+            end
           end
         end
       end

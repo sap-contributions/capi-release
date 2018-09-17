@@ -685,6 +685,9 @@ properties:
   cc.database_encryption.current_key_label:
     default: ""
     description: "current key label for encrypting values in the CC database"
+  cc.database_encryption.skip_validation:
+    default: false
+    description: "Skip validations of database encryption properties"
 
   cc.default_app_memory:
     default: 1024
