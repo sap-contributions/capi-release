@@ -167,6 +167,20 @@ module Bosh::Template::Test
       end
 
       describe 'database_encryption block' do
+        context 'when the database_encryption block is not present' do
+          before do
+            merged_manifest_properties['cc'].delete('database_encryption')
+          end
+
+          it 'does not raise an error' do
+            expect(merged_manifest_properties['cc']['database_encryption']).to be_nil
+
+            expect do
+              YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+            end.to_not raise_error
+          end
+        end
+
         context 'when the "current_encryption_key_label" is not found in the "keys" map' do
           before do
             merged_manifest_properties['cc']['database_encryption']['current_key_label'] = 'encryption_key_label_not_here_anymore'

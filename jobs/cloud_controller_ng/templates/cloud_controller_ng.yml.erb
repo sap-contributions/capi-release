@@ -26,9 +26,10 @@
     end
   end
 
-  def validate_database_encryption(db_encryption)
-    current_key_label = db_encryption['current_key_label']
-    if db_encryption['keys'].none? { | label, _ | label == current_key_label }
+  def validate_database_encryption(current_key_label, keys)
+    return if current_key_label.empty? && keys.empty?
+
+    if keys.none? { | label, _ | label == current_key_label }
       raise "Error for database_encryption: 'current_key_label' set to '#{current_key_label}', but not present in 'keys' map."
     end
   end
@@ -329,11 +330,14 @@ buildpacks:
 
 db_encryption_key: <%= p("cc.db_encryption_key") %>
 
-<% if_p("cc.database_encryption") do %>
-  <% validate_database_encryption(p("cc.database_encryption")) unless p("cc.database_encryption.skip_validation") %>
+<% if_p("cc.database_encryption") do | database_encryption |
+     current_key_label = database_encryption['current_key_label']
+     keys = database_encryption['keys']
+
+     validate_database_encryption(current_key_label, keys) unless database_encryption['skip_validation'] %>
 database_encryption:
-  keys: <%= p("cc.database_encryption.keys", {}).to_json %>
-  current_key_label: <%= p("cc.database_encryption.current_key_label").inspect %>
+  keys: <%= keys.to_json %>
+  current_key_label: <%= current_key_label.inspect %>
 <% end %>
 
 disable_custom_buildpacks: <%= p("cc.disable_custom_buildpacks") %>
