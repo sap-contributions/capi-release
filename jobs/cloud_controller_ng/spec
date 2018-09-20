@@ -328,7 +328,7 @@ properties:
 
   cc.temporary_disable_deployments:
     description: "Do not allow the API client to create app deployments (temporary)"
-    default: true
+    default: false
 
   cc.temporary_use_logcache:
     description: "Use logcache instead of Traffic Controller for retrieving container metrics"
