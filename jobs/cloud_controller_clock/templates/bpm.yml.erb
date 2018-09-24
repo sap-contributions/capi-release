@@ -2,8 +2,6 @@
 processes:
 - name: cloud_controller_clock
   executable: /var/vcap/jobs/cloud_controller_clock/bin/cloud_controller_clock
-  limits:
-    memory: <%= p("cc.thresholds.api.restart_if_above_mb") %>M
   env:
     BUNDLE_GEMFILE: /var/vcap/packages/cloud_controller_ng/cloud_controller_ng/Gemfile
     CLOUD_CONTROLLER_NG_CONFIG: /var/vcap/jobs/cloud_controller_clock/config/cloud_controller_ng.yml

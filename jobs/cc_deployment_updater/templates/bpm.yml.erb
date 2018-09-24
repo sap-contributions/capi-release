@@ -2,8 +2,6 @@
 processes:
 - name: cc_deployment_updater
   executable: /var/vcap/jobs/cc_deployment_updater/bin/cc_deployment_updater
-  limits:
-    memory: <%= p("cc.thresholds.api.restart_if_above_mb") %>M
   env:
     BUNDLE_GEMFILE: /var/vcap/packages/cloud_controller_ng/cloud_controller_ng/Gemfile
     CLOUD_CONTROLLER_NG_CONFIG: /var/vcap/jobs/cc_deployment_updater/config/cloud_controller_ng.yml

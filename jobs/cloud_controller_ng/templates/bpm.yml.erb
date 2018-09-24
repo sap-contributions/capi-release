@@ -15,7 +15,6 @@ end
 cloud_controller_ng_config = {
   "name" => "cloud_controller_ng",
   "executable" => "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng",
-  "limits" => {"memory" => "#{p("cc.thresholds.api.restart_if_above_mb")}M"},
   "ephemeral_disk" => true,
   "env" => {
     "BUNDLE_GEMFILE" => "/var/vcap/packages/cloud_controller_ng/cloud_controller_ng/Gemfile",
@@ -76,7 +75,6 @@ config = {
   local_worker_config = {
     "name" => "local_worker_#{index}",
     "executable" => "/var/vcap/jobs/cloud_controller_ng/bin/local_worker",
-    "limits" => {"memory" => "#{p("cc.thresholds.api.restart_if_above_mb")}M"},
     "ephemeral_disk" => true,
     "env" => {
       "BUNDLE_GEMFILE" => "/var/vcap/packages/cloud_controller_ng/cloud_controller_ng/Gemfile",
