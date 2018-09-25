@@ -93,6 +93,10 @@ properties:
     default: ""
     description: "current key label for encrypting values in the CC database"
 
+  cc.temporary_disable_deployments:
+    description: "Do not allow the API client to create app deployments (temporary)"
+    default: false
+
   cc.logging_level:
     default: "info"
     description: "Log level for cc. Valid levels are listed here: https://github.com/cloudfoundry/steno#log-levels."
