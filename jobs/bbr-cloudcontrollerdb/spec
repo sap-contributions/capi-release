@@ -20,3 +20,6 @@ properties:
   release_level_backup:
     default: true
     description: "Include cloud_controller DB in backup and restore operations"
+  bpm.enabled:
+    description: "Experimental feature flag: Enable Bosh Process Manager"
+    default: false
