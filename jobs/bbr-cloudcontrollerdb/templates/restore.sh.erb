@@ -1,13 +1,39 @@
 #!/usr/bin/env bash
-set -eo pipefail
 
-JOB_PATH="/var/vcap/jobs/bbr-cloudcontrollerdb"
-
-# Anything placed in the BBR_ARTIFACT_DIRECTORY by the backup script will be available to the restore script at restore time.
-# The BBR CLI is responsible for setting the BBR_ARTIFACT_DIRECTORY
-BBR_ARTIFACT_FILE_PATH="${BBR_ARTIFACT_DIRECTORY}/cloudcontroller-artifact-file"
-CONFIG_PATH="${JOB_PATH}/config/config.json"
+set -eu
 
 <% if p('release_level_backup') %>
-"/var/vcap/jobs/database-backup-restorer/bin/restore" --config "${CONFIG_PATH}" --artifact-file "${BBR_ARTIFACT_FILE_PATH}"
+restore() {
+  JOB_PATH="/var/vcap/jobs/bbr-cloudcontrollerdb"
+  SDK_PATH="/var/vcap/jobs/database-backup-restorer"
+
+  # Anything placed in the BBR_ARTIFACT_DIRECTORY by the backup script will be available to the restore script at restore time.
+  # The BBR CLI is responsible for setting the BBR_ARTIFACT_DIRECTORY
+  BBR_ARTIFACT_FILE_PATH="${BBR_ARTIFACT_DIRECTORY}/cloudcontroller-artifact-file"
+  CONFIG_PATH="${JOB_PATH}/config/config.json"
+
+  "${SDK_PATH}/bin/restore" --config "${CONFIG_PATH}" --artifact-file "${BBR_ARTIFACT_FILE_PATH}"
+}
+
+case ${1:-} in
+  run)
+    restore
+    ;;
+
+  *)
+
+    <% if p('bpm.enabled') %>
+      /var/vcap/jobs/bpm/bin/bpm run bbr-cloudcontrollerdb \
+        -p restore \
+        -v "${BBR_ARTIFACT_DIRECTORY%/}:writable" \
+        -e BBR_ARTIFACT_DIRECTORY="$BBR_ARTIFACT_DIRECTORY"
+    <% else %>
+      restore
+    <% end %>
+    ;;
+
+esac
+
+<% else %>
+echo "script deactivated due to release_level_backup being set to FALSE\n"
 <% end %>
