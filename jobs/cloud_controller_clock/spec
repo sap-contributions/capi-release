@@ -1,7 +1,7 @@
 ---
 name: cloud_controller_clock
 
-description: "The Cloud Controller clock periodically schedules Cloud Controller clean up tasks for app usage events, audit events, failed jobs, and more. Only single instance of this job is necessary."
+description: "The Cloud Controller Clock runs the Diego Sync job to keep the actual state of running processes in Diego in sync with Cloud Controller's desired state. Additionally, the Clock schedules periodic clean up jobs to prune app usage events, audit events, failed jobs, and more."
 
 templates:
   bpm.yml.erb: config/bpm.yml
