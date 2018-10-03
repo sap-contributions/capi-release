@@ -2,6 +2,7 @@
 name: nfs_mounter
 
 description: "The NFS Mounter sets up an NFS mount at a specific location. It can be used with the Cloud Controller to save assets to the NFS Server."
+# "The NFS Mounter does not use BPM. Having this job use bpm would be very difficult and provide little value."
 
 templates:
   handle_nfs_blobstore.sh.erb: bin/handle_nfs_blobstore.sh
