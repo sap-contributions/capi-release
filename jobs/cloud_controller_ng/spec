@@ -619,6 +619,9 @@ properties:
   cc.opi.url:
     description: "Eirini Endpoint"
     default: ""
+  cc.opi.cc_uploader_url:
+    description: "URL of cc uploader"
+    default: http://cc-uploader.service.cf.internal:9090
 
   ccdb.databases:
     description: "Contains the name of the database on the database server"
