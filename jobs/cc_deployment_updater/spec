@@ -49,8 +49,8 @@ consumes:
 
 properties:
   bpm.enabled:
-    description: "Experimental feature flag: Enable Bosh Process Manager"
-    default: false
+    description: "Enable Bosh Process Manager"
+    default: true
 
   ccdb.databases:
     description: "Contains the name of the database on the database server"

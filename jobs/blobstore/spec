@@ -31,7 +31,7 @@ consumes:
 properties:
   bpm.enabled:
     description: "Enable Bosh Process Manager"
-    default: false
+    default: true
 
   blobstore.internal_access_rules:
     description: >-

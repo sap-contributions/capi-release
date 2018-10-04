@@ -48,8 +48,8 @@ consumes:
 
 properties:
   bpm.enabled:
-    description: "Experimental feature flag: Enable Bosh Process Manager"
-    default: false
+    description: "Enable Bosh Process Manager"
+    default: true
 
   ssl.skip_cert_verify:
     description: "specifies that the job is allowed to skip ssl cert verification"
