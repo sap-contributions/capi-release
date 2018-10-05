@@ -1,9 +1,0 @@
-#!/bin/bash
-set -eu
-
-# create and upload a release
-pushd ~/workspace/capi-release
-  bosh sync-blobs
-  bosh create-release --force --name capi
-  bosh upload-release --rebase
-popd
