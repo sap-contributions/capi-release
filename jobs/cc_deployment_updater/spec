@@ -6,6 +6,10 @@ description: "The Cloud Controller deployment updater periodically updates app d
 templates:
   bpm.yml.erb: config/bpm.yml
   bin/cc_deployment_updater.erb: bin/cc_deployment_updater
+  pre-backup-lock.sh.erb: bin/bbr/pre-backup-lock
+  post-backup-unlock.sh.erb: bin/bbr/post-backup-unlock
+  pre-restore-lock.sh.erb: bin/bbr/pre-restore-lock
+  post-restore-unlock.sh.erb: bin/bbr/post-restore-unlock
 
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
   cc_deployment_updater_ctl.erb: bin/cc_deployment_updater_ctl

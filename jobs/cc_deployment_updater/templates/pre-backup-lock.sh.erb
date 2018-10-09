@@ -1,0 +1,12 @@
+#!/bin/bash
+set -eo pipefail
+
+source /var/vcap/packages/capi_utils/monit_utils.sh
+
+<% if link('cloud_controller_internal').p('release_level_backup') %>
+  monit_unmonitor_job cc_deployment_updater
+
+  drain_job cc_deployment_updater
+
+  monit_stop_job cc_deployment_updater
+<% end %>
