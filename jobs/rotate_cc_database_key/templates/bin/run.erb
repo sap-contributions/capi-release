@@ -1,6 +1,27 @@
 #!/usr/bin/env bash
 
-export CLOUD_CONTROLLER_NG_CONFIG=/var/vcap/jobs/rotate_cc_database_key/config/cloud_controller_ng.yml
-source /var/vcap/jobs/rotate_cc_database_key/bin/ruby_version.sh
-cd /var/vcap/packages/cloud_controller_ng/cloud_controller_ng
-exec bundle exec rake rotate_cc_database_key:perform
+set -eu
+
+rotate() {
+  export CLOUD_CONTROLLER_NG_CONFIG=/var/vcap/jobs/rotate_cc_database_key/config/cloud_controller_ng.yml
+  source /var/vcap/jobs/rotate_cc_database_key/bin/ruby_version.sh
+  cd /var/vcap/packages/cloud_controller_ng/cloud_controller_ng
+  exec bundle exec rake rotate_cc_database_key:perform
+}
+
+case ${1:-} in
+  run)
+    rotate
+    ;;
+
+  *)
+
+  <% if p('bpm.enabled') %>
+    /var/vcap/jobs/bpm/bin/bpm run rotate_cc_database_key \
+    -p rotate
+  <% else %>
+    rotate
+  <% end %>
+  ;;
+
+esac
