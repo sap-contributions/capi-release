@@ -1,3 +1,4 @@
+<% if spec.bootstrap %>
 <% if p("bpm.enabled") %>
 check process blobstore_nginx
   with pidfile /var/vcap/sys/run/bpm/blobstore/nginx.pid
@@ -24,4 +25,8 @@ check process blobstore_url_signer
   start program "/var/vcap/jobs/blobstore/bin/signer_ctl start"
   stop program "/var/vcap/jobs/blobstore/bin/signer_ctl stop"
   group vcap
+<% end %>
+<% else %>
+# This file intentionally left blank
+# Blobstore job is only run on the bootstrap instance
 <% end %>

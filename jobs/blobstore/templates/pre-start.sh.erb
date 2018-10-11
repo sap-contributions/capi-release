@@ -30,4 +30,8 @@ function setup_blobstore_directories {
   fi
 }
 
+<% if spec.bootstrap %>
 setup_blobstore_directories
+<% else %>
+echo "Blobstore job is only run on the bootstrap instance"
+<% end %>
