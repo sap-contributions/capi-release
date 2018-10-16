@@ -259,7 +259,7 @@ diego:
   pid_limit: <%= p("cc.diego.pid_limit") %>
 
 opi:
-  url: <%= p("cc.opi.url") %>
+  url: "<%= p("cc.opi.url") %>"
   enabled: <%= p("cc.opi.enabled") %>
 
 <% if p("routing_api.enabled") %>
