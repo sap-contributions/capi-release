@@ -186,3 +186,11 @@ properties:
   cc.locket.port:
     default: 8891
     description: "Port of the Locket server"
+
+  cc.opi.enabled:
+    description: "Enable the amazing eirini component"
+    default: false
+
+  cc.opi.url:
+    description: "Eirini Endpoint"
+    default: ""

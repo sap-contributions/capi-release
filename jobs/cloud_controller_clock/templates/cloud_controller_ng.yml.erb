@@ -281,6 +281,10 @@ diego:
     ca_file: /var/vcap/jobs/cloud_controller_clock/config/certs/mutual_tls_ca.crt
   pid_limit: <%= p("cc.diego.pid_limit") %>
 
+opi:
+  url: "<%= p("cc.opi.url") %>"
+  enabled: <%= p("cc.opi.enabled") %>
+
 <% if p("routing_api.enabled") %>
 routing_api:
   url: <%= "https://api.#{system_domain}/routing" %>

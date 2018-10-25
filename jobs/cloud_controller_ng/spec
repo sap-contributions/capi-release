@@ -602,6 +602,14 @@ properties:
     description: "Key pair name for signed download URIs"
     default: ""
 
+  cc.opi.enabled:
+    description: "Enable the amazing eirini component"
+    default: false
+
+  cc.opi.url:
+    description: "Eirini Endpoint"
+    default: ""
+
   ccdb.databases:
     description: "Contains the name of the database on the database server"
   ccdb.roles:
