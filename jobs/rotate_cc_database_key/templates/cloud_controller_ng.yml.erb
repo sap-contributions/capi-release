@@ -17,6 +17,8 @@ pid_filename: /var/vcap/sys/run/rotate_cc_database_key/rotate_cc_database_key.pi
 index: <%= spec.index %>
 name: <%= name %>
 
+default_app_ssh_access: <%= link("cloud_controller_internal").p("cc.default_app_ssh_access") %>
+
 logging:
   file: /var/vcap/sys/log/rotate_cc_database_key/rotate_cc_database_key.log
   syslog: vcap.cloud_controller_ng

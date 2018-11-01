@@ -130,6 +130,7 @@ provides:
   - cc.database_encryption.keys
   - cc.db_encryption_key
   - cc.db_logging_level
+  - cc.default_app_ssh_access
   - cc.default_health_check_timeout
   - cc.default_stack
   - cc.droplets.blobstore_type
