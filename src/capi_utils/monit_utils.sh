@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# wait_for_server_to_become_unavailable
+#
+# @param url
+# @param timeout
+#
+# Curls the given url every second.
+# If timeout seconds pass without the curl failing,
+# return 1.
+#
 function wait_for_server_to_become_unavailable() {
   local url=$1
   local timeout=$2
@@ -17,6 +26,15 @@ function wait_for_server_to_become_unavailable() {
   return 1
 }
 
+# wait_for_server_to_become_healthy
+#
+# @param url
+# @param timeout
+#
+# Curls the given url every second.
+# If timeout seconds pass without the curl succeeding,
+# return 1.
+#
 function wait_for_server_to_become_healthy() {
   local url=$1
   local timeout=$2
@@ -34,12 +52,25 @@ function wait_for_server_to_become_healthy() {
   return 1
 }
 
+# monit_unmonitor_job
+#
+# @param job_name
+#
+# Tells monit to unmonitor the given job,
+# then waits until the given job is reported unmonitored.
+#
 function monit_unmonitor_job() {
   local job_name="$1"
   sudo /var/vcap/bosh/bin/monit unmonitor "${job_name}"
   wait_unmonitor_job "${job_name}"
 }
 
+# wait_unmonitor_job
+#
+# @param job_name
+#
+# Waits until the given job is reported unmonitored.
+#
 function wait_unmonitor_job() {
   local job_name="$1"
 
@@ -55,11 +86,25 @@ function wait_unmonitor_job() {
   done
 }
 
+# drain_job
+#
+# @param job_name
+#
+# Calls the drain script of the given job
+#
 function drain_job() {
   local job_name="$1"
   sudo "/var/vcap/jobs/${job_name}/bin/drain"
 }
 
+# monit_start_job
+#
+# @param job_name
+#
+# Starts the given job via monit.
+# Will attempt to start the job 6 times
+# with an interval of 1 second.
+#
 function monit_start_job() {
   local job_name="$1"
   local timeout=6
