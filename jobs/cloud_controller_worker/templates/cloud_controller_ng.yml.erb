@@ -185,6 +185,8 @@ droplets:
   fog_aws_storage_options: <%= p("cc.droplets.fog_aws_storage_options", {}).to_json %>
 
 buildpacks:
+  max_retry_wait: <%= p('cc.buildpacks.download.max_retry_wait') %>
+  max_retries: <%= p('cc.buildpacks.download.max_retries') %>
   blobstore_type: <%= p("cc.buildpacks.blobstore_type") %>
   webdav_config:
     blobstore_timeout: <%= p("cc.buildpacks.webdav_config.blobstore_timeout") %>
