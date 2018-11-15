@@ -275,12 +275,6 @@ properties:
   cc.buildpacks.blobstore_type:
     description: "The type of blobstore backing to use. Valid values: ['fog', 'webdav']"
     default: "fog"
-  cc.buildpacks.download.max_retry_wait:
-    description: "The maximum time (in seconds) to wait before retrying a buildpack download; -1 means no max; 0 means never wait"
-    default: -1
-  cc.buildpacks.download.max_retries:
-    description: "The number of attempts to retry downloading a blobstore"
-    default: 3
   cc.buildpacks.fog_aws_storage_options:
     description: "Storage options passed to fog for aws blobstores. Valid keys: ['encryption']."
   cc.buildpacks.webdav_config.blobstore_timeout:

@@ -309,9 +309,6 @@ droplets:
 
 buildpacks:
   blobstore_type: <%= p("cc.buildpacks.blobstore_type") %>
-  max_retry_wait: <%= p('cc.buildpacks.download.max_retry_wait') %>
-  max_retries: <%= p('cc.buildpacks.download.max_retries') %>
-
   webdav_config:
     blobstore_timeout: <%= p("cc.buildpacks.webdav_config.blobstore_timeout") %>
     public_endpoint: <%= p("cc.buildpacks.webdav_config.public_endpoint") %>

@@ -117,8 +117,6 @@ provides:
   - cc.buildpacks.cdn.key_pair_id
   - cc.buildpacks.cdn.private_key
   - cc.buildpacks.cdn.uri
-  - cc.buildpacks.download.max_retry_wait
-  - cc.buildpacks.download.max_retries
   - cc.buildpacks.fog_aws_storage_options
   - cc.buildpacks.fog_connection
   - cc.buildpacks.webdav_config.blobstore_timeout
@@ -569,13 +567,6 @@ properties:
   cc.buildpacks.blobstore_type:
     description: "The type of blobstore backing to use. Valid values: ['fog', 'webdav']"
     default: "fog"
-  cc.buildpacks.download.max_retry_wait:
-    description: "The maximum time (in seconds) to wait before retrying a buildpack download; -1 means no max; 0 means never wait"
-    default: -1
-  cc.buildpacks.download.max_retries:
-    description: "The number of attempts to retry downloading a blobstore"
-    default: 3
-
   cc.buildpacks.fog_aws_storage_options:
     description: "Storage options passed to fog for aws blobstores. See http://docs.cloudfoundry.org/deploying/common/cc-blobstore-config.html#fog-aws-sse for example configuration."
     default: {}
