@@ -8,6 +8,7 @@ templates:
   pre-restore-lock.sh.erb: bin/bbr/pre-restore-lock
   post-restore-unlock.sh.erb: bin/bbr/post-restore-unlock
   drain.sh.erb: bin/drain
+  pre-start.erb: bin/pre-start
 
   tps_watcher_as_vcap.erb: bin/tps_watcher_as_vcap
   tps_watcher_ctl.erb: bin/tps_watcher_ctl
