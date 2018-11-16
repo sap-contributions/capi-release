@@ -28,3 +28,7 @@ For more details on the integration between Diego and Capi Release, see [Diego D
 
 * Read [Contribution Guidelines](https://github.com/cloudfoundry/capi-release/blob/develop/CONTRIBUTING.md)
 * Public [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/966314) project showing current team priorities
+
+## Testing
+
+* Run [CATS](https://github.com/cloudfoundry/cf-acceptance-tests)
