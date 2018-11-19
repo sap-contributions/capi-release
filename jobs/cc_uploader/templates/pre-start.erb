@@ -1,12 +1,5 @@
 #!/bin/bash -e
 
-if [ -f /var/vcap/jobs/bosh-dns/bin/is-system-resolver ]; then
-  if (/var/vcap/jobs/bosh-dns/bin/is-system-resolver); then
-    echo "waiting for bosh_dns"
-    /var/vcap/jobs/bosh-dns/bin/wait
-  fi
-fi
-
 <% if p("bpm.enabled") %>
 sysctl -e -w net.ipv4.tcp_fin_timeout=10
 sysctl -e -w net.ipv4.tcp_tw_reuse=1
