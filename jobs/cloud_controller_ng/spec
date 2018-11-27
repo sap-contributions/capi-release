@@ -951,13 +951,13 @@ properties:
     description: "URL of the BBS Server"
     default: https://bbs.service.cf.internal:8889
   cc.diego.bbs.connect_timeout:
-    description: "Connect timeout when talking to BBS Server"
+    description: "Connect timeout (in seconds) when talking to BBS Server"
     default: 10
   cc.diego.bbs.send_timeout:
-    description: "Send timeout when talking to BBS Server"
+    description: "Send timeout (in seconds) when talking to BBS Server"
     default: 10
   cc.diego.bbs.receive_timeout:
-    description: "Receive timeout when talking to BBS Server"
+    description: "Receive timeout (in seconds) when talking to BBS Server"
     default: 10
 
   cc.mutual_tls.ca_cert:
