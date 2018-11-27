@@ -1061,3 +1061,11 @@ properties:
     description: "PEM-encoded Client key for communication with CF Copilot"
   copilot.client_chain_file:
     description: "PEM-encoded Client cert chain for communication with CF Copilot"
+
+  cc.internal_route_vip_range:
+    default: "127.128.0.0/9"
+    description: "The ipv4 CIDR range of virtual IP addresses to be assigned to routes on internal domains.
+                  WARNING: Changing this range is not supported, and has undefined behaviors.
+                  It is recommended to leave this value as the default.
+                  If this range is changed, it is likely the routes on the internal service mesh domain
+                  will need to be recreated."
