@@ -153,6 +153,8 @@ provides:
   - cc.log_db_queries
   - cc.logging_level
   - cc.logging_max_retries
+  - cc.max_labels_per_resource
+  - cc.max_annotations_per_resource
   - cc.packages.app_package_directory_key
   - cc.packages.blobstore_type
   - cc.packages.cdn.key_pair_id
@@ -737,6 +739,13 @@ properties:
   cc.development_mode:
     default: false
     description: "Enable development features for monitoring and insight"
+
+  cc.max_annotations_per_resource:
+    description: "Maximum number of annotations allowed on any single resource. Too many annotations may degrade performance of annotation selectors."
+    default: 200
+  cc.max_labels_per_resource:
+    description: "Maximum number of labels allowed on any single resource. Too many labels may degrade performance of label selectors."
+    default: 50
 
   cc.newrelic.license_key:
     default: ~
