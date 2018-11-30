@@ -1,6 +1,8 @@
 ---
 name: blobstore_url_signer
+
 dependencies:
-- golang1.10
+  - golang-1.11-linux
+
 files:
   - github.com/cloudfoundry/blobstore_url_signer/**/*

@@ -1,12 +1,9 @@
-set -e
+#!/bin/bash
+set -eu
 
-mkdir -p ${BOSH_INSTALL_TARGET}/src
-cp -a . ${BOSH_INSTALL_TARGET}/src
-export GOPATH=$BOSH_INSTALL_TARGET
+mkdir ../src && cp -a * ../src/ && mv ../src ./src
+mkdir -p $BOSH_INSTALL_TARGET/bin
 
-export GOROOT=$(readlink -nf /var/vcap/packages/golang1.10)
-export PATH=$GOROOT/bin:$PATH
-go install github.com/cloudfoundry/blobstore_url_signer
+source /var/vcap/packages/golang-1.11-linux/bosh/compile.env
 
-# clean up source artifacts
-rm -rf ${BOSH_INSTALL_TARGET}/src ${BOSH_INSTALL_TARGET}/pkg
+go build -o "${BOSH_INSTALL_TARGET}/bin/blobstore_url_signer" github.com/cloudfoundry/blobstore_url_signer
