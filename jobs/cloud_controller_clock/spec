@@ -524,6 +524,9 @@ properties:
   cc.diego.temporary_oci_buildpack_mode:
     description: "Temporary flag to enable OCI buildpack flow. Valid values: 'oci-phase-1'"
     default: ~
+  cc.diego.enable_declarative_asset_downloads:
+    description: "Enable specifying task and app asset downloads as declarative resources"
+    default: false
   cc.diego.pid_limit:
     description: "Maximum pid limit for containerized work running user-provided code"
     default: 1024

@@ -432,6 +432,7 @@ diego:
   lifecycle_bundles: <%= p("cc.diego.lifecycle_bundles").to_json %>
   pid_limit: <%= p("cc.diego.pid_limit") %>
   temporary_oci_buildpack_mode: <%= p("cc.diego.temporary_oci_buildpack_mode", nil) %>
+  enable_declarative_asset_downloads: <%= p("cc.diego.enable_declarative_asset_downloads") %>
   use_privileged_containers_for_running: <%= p("cc.diego.use_privileged_containers_for_running") %>
   use_privileged_containers_for_staging: <%= p("cc.diego.use_privileged_containers_for_staging") %>
 

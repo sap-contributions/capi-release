@@ -271,6 +271,7 @@ skip_cert_verify: <%= p("ssl.skip_cert_verify") %>
 
 diego:
   temporary_oci_buildpack_mode: <%= p("cc.diego.temporary_oci_buildpack_mode", nil) %>
+  enable_declarative_asset_downloads: <%= p("cc.diego.enable_declarative_asset_downloads") %>
   file_server_url: <%= p("cc.diego.file_server_url") %>
   cc_uploader_url: <%= p("cc.diego.cc_uploader_url") %>
   use_privileged_containers_for_running: <%= p("cc.diego.use_privileged_containers_for_running") %>
