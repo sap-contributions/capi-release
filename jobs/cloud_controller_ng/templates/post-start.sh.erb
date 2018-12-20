@@ -14,6 +14,15 @@ source "${CC_JOB_DIR}/bin/ruby_version.sh"
 source /var/vcap/packages/capi_utils/syslog_utils.sh
 tee_output_to_sys_log "cloud_controller_ng.$(basename "$0")"
 
+function fix_bundler_home_permissions {
+  BUNDLER_DIR1=/tmp/bundler
+  BUNDLER_DIR2=/var/vcap/data/cloud_controller_ng/tmp/bundler
+  chpst -u vcap:vcap mkdir -p $BUNDLER_DIR1 $BUNDLER_DIR2
+  chown vcap:vcap -R $BUNDLER_DIR1 $BUNDLER_DIR2
+  chpst -u vcap:vcap chmod -R go-w $BUNDLER_DIR1 $BUNDLER_DIR2
+  chpst -u vcap:vcap chmod -R +t $BUNDLER_DIR1 $BUNDLER_DIR2
+}
+
 function install_buildpacks {
   <% if spec.bootstrap %>
   pushd "${CC_PACKAGE_DIR}/cloud_controller_ng" > /dev/null
@@ -31,6 +40,7 @@ function install_buildpacks {
 
 function main {
   install_buildpacks
+  fix_bundler_home_permissions
 }
 
 main

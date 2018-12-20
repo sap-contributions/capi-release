@@ -20,6 +20,7 @@ templates:
   ruby_version.sh.erb: bin/ruby_version.sh
   console.erb: bin/console
   blobstore_waiter.sh.erb: bin/blobstore_waiter.sh
+  post-start.sh.erb: bin/post-start
   pre-start.sh.erb: bin/pre-start
   buildpacks_ca_cert.pem.erb: config/certs/buildpacks_ca_cert.pem
   droplets_ca_cert.pem.erb: config/certs/droplets_ca_cert.pem

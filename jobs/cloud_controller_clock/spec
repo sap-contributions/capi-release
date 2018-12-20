@@ -18,6 +18,7 @@ templates:
   drain.sh.erb: bin/drain
   ruby_version.sh.erb: bin/ruby_version.sh
   console.erb: bin/console
+  post-start.sh.erb: bin/post-start
   pre-start.sh.erb: bin/pre-start
   mutual_tls_ca.crt.erb: config/certs/mutual_tls_ca.crt
   mutual_tls.crt.erb: config/certs/mutual_tls.crt

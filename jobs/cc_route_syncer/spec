@@ -12,6 +12,7 @@ templates:
   drain.sh.erb: bin/drain
   ruby_version.sh.erb: bin/ruby_version.sh
   console.erb: bin/console
+  post-start.sh.erb: bin/post-start
   pre-start.sh.erb: bin/pre-start
   db_ca.crt.erb: config/certs/db_ca.crt
   copilot_ca.crt.erb: config/certs/copilot_ca.crt
