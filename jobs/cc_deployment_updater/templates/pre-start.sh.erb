@@ -16,9 +16,8 @@ function setup_directories {
   chown -R vcap:vcap "$LOG_DIR"
 
   BUNDLER_DIR=/var/vcap/data/cc_deployment_updater/tmp/bundler
-  chpst -u vcap:vcap mkdir -p $BUNDLER_DIR
-  chpst -u vcap:vcap chmod -R go-w $BUNDLER_DIR
-  chpst -u vcap:vcap chmod -R +t $BUNDLER_DIR
+  chpst -u vcap:vcap bash -c "mkdir -p $BUNDLER_DIR"
+  chpst -u vcap:vcap bash -c "chmod -R go-w $BUNDLER_DIR"
 }
 
 function main {
