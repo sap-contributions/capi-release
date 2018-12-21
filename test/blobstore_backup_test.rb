@@ -45,6 +45,31 @@ class TestBackupTemplate < Test::Unit::TestCase
     end
   end
 
+  def test_backup_with_selected_folders
+    spec = {'directories_to_bbr_backup' => ['buildpacks']}
+    links = [blobstore_directories_link]
+    rendered_script_path = render_bosh_template_with_links('blobstore', 'bin/bbr/backup', links, spec)
+
+    Dir.mktmpdir do |artifact_dir|
+      Dir.mktmpdir do |data_dir|
+        FileUtils.mkdir_p([File.join(data_dir, "shared", "cc-packages"),
+                           File.join(data_dir, "shared", "cc-droplets", "buildpack_cache"),
+                           File.join(data_dir, "shared", "cc-buildpacks"),
+                           File.join(data_dir, "shared", "cc-resources")])
+
+        success = run_script_with_directories(rendered_script_path, data_dir, artifact_dir)
+        assert_true(success, "Backup script should succeed")
+        assert_true(Dir.exists?(File.join(artifact_dir, "shared", "cc-buildpacks")))
+
+        assert_false(Dir.exists?(File.join(artifact_dir, "shared", "cc-packages")))
+        assert_false(Dir.exists?(File.join(artifact_dir, "shared", "cc-droplets")))
+        assert_false(Dir.exists?(File.join(artifact_dir, "shared", "cc-resources")))
+        assert_false(Dir.exists?(File.join(artifact_dir, "shared", "cc-droplets", "buildpack_cache")),
+                     "buildpack cache should be ignored")
+      end
+    end
+  end
+
   def test_buildpack_cache_missing
     links = [blobstore_directories_link]
     rendered_script_path = render_bosh_template_with_links('blobstore', 'bin/bbr/backup', links)

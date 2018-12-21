@@ -58,6 +58,41 @@ class TestRestoreTemplate < Test::Unit::TestCase
     end
   end
 
+  def test_restore_with_selected_folders
+    spec = {'directories_to_bbr_backup' => ['buildpacks']}
+    links = [blobstore_directories_link]
+    rendered_script_path = render_bosh_template_with_links('blobstore', 'bin/bbr/restore', links, spec)
+
+    Dir.mktmpdir do |data_dir|
+      Dir.mktmpdir do |artifact_dir|
+        FileUtils.mkdir_p([File.join(artifact_dir, "shared", "cc-buildpacks", "a-buildpack"),
+
+                           File.join(data_dir, "shared", "random-folder"),
+                           File.join(data_dir, "shared", "cc-packages", "existing-package"),
+                           File.join(data_dir, "shared", "cc-buildpacks", "existing-buildpack"),
+                           File.join(data_dir, "shared", "cc-droplets", "existing-droplet"),
+                           File.join(data_dir, "shared", "cc-resources", "existing-resource")])
+
+        success = run_script_with_directories(rendered_script_path, data_dir, artifact_dir)
+        assert_true(success, "restore should be successful")
+
+        assert_true(Dir.exists?(File.join(data_dir, "shared", "random-folder")),
+                    "random directory not touched")
+        assert_true(Dir.exists?(File.join(data_dir, "shared", "cc-droplets", "existing-droplet")),
+                    "droplets directory not touched")
+        assert_true(Dir.exists?(File.join(data_dir, "shared", "cc-packages", "existing-package")),
+                    "packages directory not touched")
+        assert_true(Dir.exists?(File.join(data_dir, "shared", "cc-resources", "existing-resource")),
+                    "resources directory not touched")
+        assert_false(Dir.exists?(File.join(data_dir, "shared", "cc-buildpacks", "existing-resource")),
+                    "existing buildpacks should be removed")
+        assert_true(Dir.exists?(File.join(data_dir, "shared", "cc-buildpacks", "a-buildpack")),
+                    "artifact buildpacks are restored")
+      end
+    end
+  end
+
+
   def test_when_folders_are_missing
     links = [blobstore_directories_link]
     rendered_script_path = render_bosh_template_with_links('blobstore', 'bin/bbr/restore', links)

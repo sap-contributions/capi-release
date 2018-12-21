@@ -33,6 +33,16 @@ properties:
     description: "Enable Bosh Process Manager"
     default: true
 
+  directories_to_bbr_backup:
+    description: |
+      A list of directories, that can be droplets, buildpacks, packages, to backup
+      Example:
+        - "buildpacks"
+    default:
+    - "droplets"
+    - "buildpacks"
+    - "packages"
+
   blobstore.internal_access_rules:
     description: >-
       List of allow / deny rules for the blobstore internal server. Defaults

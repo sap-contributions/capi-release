@@ -19,12 +19,12 @@ def run_script_with_directories(script, data_dir, artifact_dir)
 end
 
 
-def render_bosh_template_with_links(job_name, template, links)
+def render_bosh_template_with_links(job_name, template, links, spec = {})
   release_path = File.join(File.dirname(__FILE__), '../')
   release = Bosh::Template::Test::ReleaseDir.new(release_path)
   job = release.job(job_name)
   template = job.template(template)
-  rendered_config = template.render({}, consumes: links)
+  rendered_config = template.render(spec, consumes: links)
 
   create_executable(rendered_config)
 end
