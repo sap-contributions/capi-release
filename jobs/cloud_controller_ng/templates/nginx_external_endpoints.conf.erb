@@ -61,6 +61,12 @@ upload_pass_form_field "^resources$";
 include public_upload.conf;
 }
 
+location ~ /v3/buildpacks/.*/upload {
+if ($arg_bits_path) { return 422; }
+
+include public_upload.conf;
+}
+
 
 location ~ /staging/(v3/)?(droplets|buildpack_cache)/.*/upload {
 # Allow download the droplets and buildpacks
