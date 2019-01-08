@@ -43,6 +43,9 @@ properties:
   capi.tps.log_level:
     description: "Log level"
     default: "info"
+  capi.tps.logging.format.timestamp:
+    description: "Format for timestamp in component logs. Valid values are 'unix-epoch' and 'rfc3339'."
+    default: "rfc3339"
   capi.tps.traffic_controller_url:
     description: URL of Traffic controller
     default: "ws://loggregator-trafficcontroller.service.cf.internal:8081"

@@ -57,6 +57,9 @@ properties:
   capi.cc_uploader.log_level:
     description: "Log level"
     default: "info"
+  capi.cc_uploader.logging.format.timestamp:
+    description: "Format for timestamp in component logs. Valid values are 'unix-epoch' and 'rfc3339'."
+    default: "rfc3339"
   capi.cc_uploader.dropsonde_port:
     description: "local metron agent's port"
     default: 3457
