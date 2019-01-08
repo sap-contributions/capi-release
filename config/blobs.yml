@@ -50,15 +50,3 @@ postgres/postgresql-9.6.8.tar.gz:
   size: 25580796
   object_id: 2840f9a9-8e64-4dca-59e2-dd53bb7bbc62
   sha: sha256:7a87d98cb34bbb14f10fa572730e61f75cebc438edf7af46ce4a553d994e9573
-ruby-2.4/bundler-1.16.4.gem:
-  size: 354304
-  object_id: 47e31563-d7be-42d7-4480-10e7382da4ef
-  sha: sha256:6d04e02370d3066af29c7ef254d43223c717631d9d0ec1b8da849f8036eef997
-ruby-2.4/ruby-2.4.2.tar.gz:
-  size: 14187859
-  object_id: 8eec75f8-97c6-4a39-6d1c-2e00c99d3c6d
-  sha: sha256:93b9e75e00b262bc4def6b26b7ae8717efc252c47154abb7392e54357e6c8c9c
-ruby-2.4/rubygems-2.6.14.tgz:
-  size: 769418
-  object_id: 3a901e7d-7e2d-4ff8-7c8b-829543b62a7e
-  sha: sha256:406a45d258707f52241843e9c7902bbdcf00e7edc3e88cdb79c46659b47851ec
