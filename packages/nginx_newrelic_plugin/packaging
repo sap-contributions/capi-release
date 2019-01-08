@@ -1,3 +1,6 @@
+# shellcheck disable=1090
+source "${BOSH_PACKAGES_DIR:-/var/vcap/packages}/ruby-2.4-r5/bosh/compile.env"
+
 echo "Installing nginx newrelic plugin"
 
 cp -a nginx/newrelic_nginx_agent/* ${BOSH_INSTALL_TARGET}
@@ -6,5 +9,5 @@ cp -a nginx/newrelic_nginx_agent/* ${BOSH_INSTALL_TARGET}
 echo "Installing newrelic plugin dependencies"
 
 pushd ${BOSH_INSTALL_TARGET}
-  /var/vcap/packages/ruby-2.4/bin/bundle install --local --deployment --without development test
+  bosh_bundle_local --deployment
 popd
