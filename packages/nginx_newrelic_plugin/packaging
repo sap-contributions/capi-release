@@ -5,7 +5,6 @@ echo "Installing nginx newrelic plugin"
 
 cp -a nginx/newrelic_nginx_agent/* ${BOSH_INSTALL_TARGET}
 
-
 echo "Installing newrelic plugin dependencies"
 
 pushd ${BOSH_INSTALL_TARGET}
