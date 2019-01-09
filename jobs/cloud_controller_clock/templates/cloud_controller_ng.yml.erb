@@ -277,6 +277,7 @@ diego:
   use_privileged_containers_for_running: <%= p("cc.diego.use_privileged_containers_for_running") %>
   use_privileged_containers_for_staging: <%= p("cc.diego.use_privileged_containers_for_staging") %>
   lifecycle_bundles: <%= p("cc.diego.lifecycle_bundles").to_json %>
+  droplet_destinations: <%= p("cc.diego.droplet_destinations").to_json %>
   bbs:
     url: <%= p("cc.diego.bbs.url") %>
     key_file: /var/vcap/jobs/cloud_controller_clock/config/certs/mutual_tls.key
