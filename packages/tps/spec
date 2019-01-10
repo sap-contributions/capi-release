@@ -2,7 +2,7 @@
 name: tps
 
 dependencies:
-  - golang-1.11-linux
+  - golang1.10
 
 files:
   - code.cloudfoundry.org/bbs/*.go # gosub

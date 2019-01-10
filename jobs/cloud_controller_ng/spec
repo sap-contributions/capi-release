@@ -153,8 +153,6 @@ provides:
   - cc.log_db_queries
   - cc.logging_level
   - cc.logging_max_retries
-  - cc.max_labels_per_resource
-  - cc.max_annotations_per_resource
   - cc.packages.app_package_directory_key
   - cc.packages.blobstore_type
   - cc.packages.cdn.key_pair_id
@@ -199,7 +197,6 @@ provides:
   - copilot.client_key_file
   - copilot.enabled
   - copilot.host
-  - copilot.temporary_istio_domains
   - credhub_api.ca_cert
   - credhub_api.hostname
   - release_level_backup
@@ -741,13 +738,6 @@ properties:
     default: false
     description: "Enable development features for monitoring and insight"
 
-  cc.max_annotations_per_resource:
-    description: "Maximum number of annotations allowed on any single resource. Too many annotations may degrade performance of annotation selectors."
-    default: 200
-  cc.max_labels_per_resource:
-    description: "Maximum number of labels allowed on any single resource. Too many labels may degrade performance of label selectors."
-    default: 50
-
   cc.newrelic.license_key:
     default: ~
     description: "The api key for NewRelic"
@@ -960,15 +950,6 @@ properties:
   cc.diego.bbs.url:
     description: "URL of the BBS Server"
     default: https://bbs.service.cf.internal:8889
-  cc.diego.bbs.connect_timeout:
-    description: "Connect timeout (in seconds) when talking to BBS Server"
-    default: 10
-  cc.diego.bbs.send_timeout:
-    description: "Send timeout (in seconds) when talking to BBS Server"
-    default: 10
-  cc.diego.bbs.receive_timeout:
-    description: "Receive timeout (in seconds) when talking to BBS Server"
-    default: 10
 
   cc.mutual_tls.ca_cert:
     description: "PEM-encoded CA certificate for secure, mutually authenticated TLS communication"
@@ -1059,14 +1040,6 @@ properties:
     description: "Controls whether CredHub credentials are automatically interpolated in VCAP_SERVICES"
     default: true
 
-  cc.internal_route_vip_range:
-    default: "127.128.0.0/9"
-    description: "The ipv4 CIDR range of virtual IP addresses to be assigned to routes on internal domains.
-                  WARNING: Changing this range is not supported, and has undefined behaviors.
-                  It is recommended to leave this value as the default.
-                  If this range is changed, it is likely the routes on the internal service mesh domain
-                  will need to be recreated."
-
   copilot.enabled:
     description: "Enable communication with CF Copilot. Must be enabled when using Envoy for ingress routing."
     default: false
@@ -1079,6 +1052,3 @@ properties:
     description: "PEM-encoded Client key for communication with CF Copilot"
   copilot.client_chain_file:
     description: "PEM-encoded Client cert chain for communication with CF Copilot"
-  copilot.temporary_istio_domains:
-    description: "Array of domains (strings) to be used for routes propagated to the Envoy/Istio routing tier. These routes will not be propagated to Gorouter."
-    default: []

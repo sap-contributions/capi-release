@@ -2,6 +2,10 @@ expat/expat-2.2.5.tar.bz2:
   size: 510868
   object_id: bb1fb7d4-894a-4418-43a4-d00f4e950f73
   sha: sha256:d9dc32efba7e74f788fcc4f212a43216fc37cf5f23f4c2339664d473353aedf6
+golang/go1.10.3.linux-amd64.tar.gz:
+  size: 132489256
+  object_id: 2f1377a1-ff0c-4bdd-487a-49e554b3c32c
+  sha: sha256:fa1b0e45d3b647c252f51f5e1204aba049cde4af177ef9f2181f43004f901035
 mariadb_connector_c/mariadb-connector-c-2.3.5-src.tar.gz:
   size: 540018
   object_id: 27f389e6-85e6-47c3-4c60-256dd7d9874d

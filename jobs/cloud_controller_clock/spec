@@ -86,13 +86,6 @@ properties:
     description: "The longest the diego sync job can take before another is enqueued"
     default: 600
 
-  cc.max_retained_deployments_per_app:
-    description: "The number of inactive deployments to keep for each app"
-    default: 100
-  cc.max_retained_builds_per_app:
-    description: "The number of inactive builds to keep for each app"
-    default: 100
-
   cc.app_usage_events.cutoff_age_in_days:
     description: "How old an app usage event should stay in cloud controller database before being cleaned up"
     default: 31
@@ -482,15 +475,6 @@ properties:
   cc.diego.bbs.url:
     description: "URL of the BBS Server"
     default: https://bbs.service.cf.internal:8889
-  cc.diego.bbs.connect_timeout:
-    description: "Connect timeout (in seconds) when talking to BBS Server"
-    default: 10
-  cc.diego.bbs.send_timeout:
-    description: "Send timeout (in seconds) when talking to BBS Server"
-    default: 10
-  cc.diego.bbs.receive_timeout:
-    description: "Receive timeout (in seconds) when talking to BBS Server"
-    default: 10
 
   cc.mutual_tls.ca_cert:
     description: "PEM-encoded CA certificate for secure, mutually authenticated TLS communication"

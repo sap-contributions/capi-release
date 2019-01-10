@@ -1,10 +1,12 @@
-#!/bin/bash
-set -eu
+set -e
 
-mkdir ../src && cp -a * ../src/ && mv ../src ./src
-mkdir -p $BOSH_INSTALL_TARGET/bin
+mkdir -p ${BOSH_INSTALL_TARGET}/src
+cp -a . ${BOSH_INSTALL_TARGET}/src
+export GOPATH=$BOSH_INSTALL_TARGET
 
-source /var/vcap/packages/golang-1.11-linux/bosh/compile.env
+export GOROOT=$(readlink -nf /var/vcap/packages/golang1.10)
+export PATH=$GOROOT/bin:$PATH
+go install code.cloudfoundry.org/tps/cmd/tps-watcher
 
-go build -o "${BOSH_INSTALL_TARGET}/bin/tps-watcher" code.cloudfoundry.org/tps/cmd/tps-watcher
-
+# clean up source artifacts
+rm -rf ${BOSH_INSTALL_TARGET}/src ${BOSH_INSTALL_TARGET}/pkg

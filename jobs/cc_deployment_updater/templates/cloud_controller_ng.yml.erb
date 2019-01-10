@@ -61,7 +61,6 @@ copilot:
   enabled: <%= link("cloud_controller_internal").p("copilot.enabled") %>
   host: <%= link("cloud_controller_internal").p("copilot.host") %>
   port: <%= copilot_conn.p("listen_port_for_cloud_controller") %>
-  temporary_istio_domains: <%= link("cloud_controller_internal").p("copilot.temporary_istio_domains") %>
   client_ca_file: /var/vcap/jobs/cc_deployment_updater/config/certs/copilot_ca.crt
   client_key_file: /var/vcap/jobs/cc_deployment_updater/config/certs/copilot.key
   client_chain_file: /var/vcap/jobs/cc_deployment_updater/config/certs/copilot.crt
@@ -79,9 +78,6 @@ diego:
     key_file: /var/vcap/jobs/cc_deployment_updater/config/certs/mutual_tls.key
     cert_file: /var/vcap/jobs/cc_deployment_updater/config/certs/mutual_tls.crt
     ca_file: /var/vcap/jobs/cc_deployment_updater/config/certs/mutual_tls_ca.crt
-    connect_timeout: <%= p("cc.diego.bbs.connect_timeout") %>
-    send_timeout: <%= p("cc.diego.bbs.send_timeout") %>
-    receive_timeout: <%= p("cc.diego.bbs.receive_timeout") %>
   pid_limit: <%= p("cc.diego.pid_limit") %>
 
 default_app_memory: <%= p("cc.default_app_memory") %>
@@ -229,6 +225,3 @@ locket:
 
 statsd_host: <%= link("cloud_controller_internal").p("cc.statsd_host") %>
 statsd_port: <%= link("cloud_controller_internal").p("cc.statsd_port") %>
-
-max_labels_per_resource: <%= link("cloud_controller_internal").p("cc.max_labels_per_resource") %>
-max_annotations_per_resource: <%= link("cloud_controller_internal").p("cc.max_annotations_per_resource") %>
