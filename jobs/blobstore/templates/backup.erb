@@ -6,15 +6,15 @@ BOSH_DATA_DIRECTORY=${BOSH_DATA_DIRECTORY:-/var/vcap/store}
 
 <%
   dir_mapping = {
-    "droplets" => "cc.droplets.droplet_directory_key", 
-    "buildpacks" => "cc.buildpacks.buildpack_directory_key", 
+    "droplets" => "cc.droplets.droplet_directory_key",
+    "buildpacks" => "cc.buildpacks.buildpack_directory_key",
     "packages" => "cc.packages.app_package_directory_key"
   }
-  cc_ng_directory_keys = link('directories_to_backup')
+  cc_ng_directory_keys = link('blobstore_directories')
 %>
 <% if p('release_level_backup') %>
     mkdir -p $BBR_ARTIFACT_DIRECTORY/shared
-  <% p('directories_to_bbr_backup').each do |directory| %>
+  <% p('directories_to_backup').each do |directory| %>
     <% key = cc_ng_directory_keys.p(dir_mapping[directory]) %>
       if [ -d $BOSH_DATA_DIRECTORY/shared/<%= key %> ]; then
         cp --recursive --link $BOSH_DATA_DIRECTORY/shared/<%= key %> $BBR_ARTIFACT_DIRECTORY/shared

@@ -85,8 +85,8 @@ provides:
   - ccdb.read_timeout
   - ccdb.ssl_verify_hostname
   - ccdb.ca_cert
-- name: directories_to_backup
-  type: directories_to_backup
+- name: blobstore_directories
+  type: blobstore_directories
   properties:
   - cc.packages.app_package_directory_key
   - cc.droplets.droplet_directory_key

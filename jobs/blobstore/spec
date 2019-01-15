@@ -24,8 +24,8 @@ packages:
 - capi_utils
 
 consumes:
-- name: directories_to_backup
-  type: directories_to_backup
+- name: blobstore_directories
+  type: blobstore_directories
   optional: true
 
 properties:
@@ -33,14 +33,13 @@ properties:
     description: "Enable Bosh Process Manager"
     default: true
 
-  directories_to_bbr_backup:
+  directories_to_backup:
     description: |
-      A list of directories, that can be droplets, buildpacks, packages, to backup
-      Example:
-        - "buildpacks"
+      The list of directories to backup using BBR. Valid values are: buildpacks, droplets, packages.
+      Remove directories that you do not want to backup.
     default:
-    - "droplets"
     - "buildpacks"
+    - "droplets"
     - "packages"
 
   blobstore.internal_access_rules:

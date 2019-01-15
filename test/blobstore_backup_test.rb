@@ -9,7 +9,7 @@ class TestBackupTemplate < Test::Unit::TestCase
 
   def blobstore_directories_link
     Link.new(
-        name: 'directories_to_backup',
+        name: 'blobstore_directories',
         instances: [LinkInstance.new(address: 'api_instance')],
         properties: {
             "cc" => {
@@ -21,7 +21,7 @@ class TestBackupTemplate < Test::Unit::TestCase
     )
   end
 
-  def test_backup_with_all_folders
+  def test_backup_with_all_directories
     links = [blobstore_directories_link]
     rendered_script_path = render_bosh_template_with_links('blobstore', 'bin/bbr/backup', links)
 
@@ -45,8 +45,8 @@ class TestBackupTemplate < Test::Unit::TestCase
     end
   end
 
-  def test_backup_with_selected_folders
-    spec = {'directories_to_bbr_backup' => ['buildpacks']}
+  def test_backup_with_selected_directories
+    spec = {'directories_to_backup' => ['buildpacks']}
     links = [blobstore_directories_link]
     rendered_script_path = render_bosh_template_with_links('blobstore', 'bin/bbr/backup', links, spec)
 
@@ -114,7 +114,7 @@ class TestBackupTemplate < Test::Unit::TestCase
     end
   end
 
-  def test_backup_with_missing_folders
+  def test_backup_with_missing_directories
     links = [blobstore_directories_link]
     rendered_script_path = render_bosh_template_with_links('blobstore', 'bin/bbr/backup', links)
 
