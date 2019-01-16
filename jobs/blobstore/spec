@@ -26,7 +26,6 @@ packages:
 consumes:
 - name: blobstore_directories
   type: blobstore_directories
-  optional: true
 
 properties:
   bpm.enabled:
