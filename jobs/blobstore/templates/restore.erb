@@ -15,12 +15,12 @@ BLOBSTORE_OWNER_GROUP=${BLOBSTORE_OWNER_GROUP:-vcap}
     "buildpacks" => "cc.buildpacks.buildpack_directory_key",
     "packages" => "cc.packages.app_package_directory_key"
   }
-  cc_ng_directory_keys = link('blobstore_directories')
+  blobstore_directories = link('blobstore_directories')
 %>
 
 <% if p('release_level_backup') %>
   <% p('directories_to_backup').each do |directory| %>
-    <% key = cc_ng_directory_keys.p(dir_mapping[directory]) %>
+    <% key = blobstore_directories.p(dir_mapping[directory]) %>
       rm --recursive --force ${BLOBS_DIRECTORY}/<%= key %>
       if [ -d $BACKUP_DIRECTORY/<%= key %>  ]; then
         cp --recursive --link $BACKUP_DIRECTORY/<%= key %> $BLOBS_DIRECTORY
