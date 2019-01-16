@@ -30,3 +30,10 @@ properties:
   bpm.enabled:
     description: "Enable Bosh Process Manager"
     default: true
+
+  cc.logging_level:
+    description: "If provided, overrides cc.logging_level from cloud_controller_internal link"
+  cc.log_db_queries:
+    description: "If provided, overrides cc.log_db_queries from cloud_controller_internal link"
+  cc.db_logging_level:
+    description: "If provided, overrides cc.db_logging_level from cloud_controller_internal link"

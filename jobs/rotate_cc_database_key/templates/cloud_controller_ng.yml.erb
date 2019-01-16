@@ -22,7 +22,7 @@ default_app_ssh_access: <%= link("cloud_controller_internal").p("cc.default_app_
 logging:
   file: /var/vcap/sys/log/rotate_cc_database_key/rotate_cc_database_key.log
   syslog: vcap.cloud_controller_ng
-  level: "<%= link("cloud_controller_internal").p("cc.logging_level") %>"
+  level: "<%= p("cc.logging_level", link("cloud_controller_internal").p("cc.logging_level")) %>"
   max_retries: <%= link("cloud_controller_internal").p("cc.logging_max_retries") %>
 
 <% db = link("cloud_controller_db").p("ccdb.databases").find { |db| db["tag"] == "cc" } %>
@@ -46,8 +46,8 @@ db: &db
     database: <%= db["name"] %>
   max_connections: <%= link("cloud_controller_db").p("ccdb.max_connections") %>
   pool_timeout: <%= link("cloud_controller_db").p("ccdb.pool_timeout") %>
-  log_level: "<%= link("cloud_controller_internal").p("cc.db_logging_level") %>"
-  log_db_queries: <%= link("cloud_controller_internal").p("cc.log_db_queries") %>
+  log_level: "<%= p("cc.db_logging_level", link("cloud_controller_internal").p("cc.db_logging_level")) %>"
+  log_db_queries: <%= p("cc.log_db_queries", link("cloud_controller_internal").p("cc.log_db_queries")) %>
   ssl_verify_hostname: <%= link("cloud_controller_db").p("ccdb.ssl_verify_hostname") %>
   read_timeout: <%= link("cloud_controller_db").p("ccdb.read_timeout") %>
   connection_validation_timeout: <%= link("cloud_controller_db").p("ccdb.connection_validation_timeout") %>
