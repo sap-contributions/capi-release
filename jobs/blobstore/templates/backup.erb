@@ -5,17 +5,19 @@ set -ex
 BOSH_DATA_DIRECTORY=${BOSH_DATA_DIRECTORY:-/var/vcap/store}
 
 <%
-  dir_mapping = {
-    "droplets" => "cc.droplets.droplet_directory_key",
-    "buildpacks" => "cc.buildpacks.buildpack_directory_key",
-    "packages" => "cc.packages.app_package_directory_key"
-  }
   blobstore_directories = link('blobstore_directories')
+  dir_to_key = {
+    "droplets" => blobstore_directories.p("cc.droplets.droplet_directory_key"),
+    "buildpacks" => blobstore_directories.p("cc.buildpacks.buildpack_directory_key"),
+    "packages" => blobstore_directories.p("cc.packages.app_package_directory_key")
+  }
 %>
+
 <% if p('release_level_backup') %>
-    mkdir -p $BBR_ARTIFACT_DIRECTORY/shared
+  mkdir -p $BBR_ARTIFACT_DIRECTORY/shared
+
   <% p('directories_to_backup').each do |directory| %>
-    <% key = blobstore_directories.p(dir_mapping[directory]) %>
+    <% key = dir_to_key.fetch(directory) { raise "Unknown directory_to_backup: '#{directory}'" } %>
       if [ -d $BOSH_DATA_DIRECTORY/shared/<%= key %> ]; then
         cp --recursive --link $BOSH_DATA_DIRECTORY/shared/<%= key %> $BBR_ARTIFACT_DIRECTORY/shared
       fi

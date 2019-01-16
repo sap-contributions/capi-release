@@ -10,17 +10,17 @@ BLOBSTORE_OWNER=${BLOBSTORE_OWNER:-vcap}
 BLOBSTORE_OWNER_GROUP=${BLOBSTORE_OWNER_GROUP:-vcap}
 
 <%
-  dir_mapping = {
-    "droplets" => "cc.droplets.droplet_directory_key",
-    "buildpacks" => "cc.buildpacks.buildpack_directory_key",
-    "packages" => "cc.packages.app_package_directory_key"
-  }
   blobstore_directories = link('blobstore_directories')
+  dir_to_key = {
+    "droplets" => blobstore_directories.p("cc.droplets.droplet_directory_key"),
+    "buildpacks" => blobstore_directories.p("cc.buildpacks.buildpack_directory_key"),
+    "packages" => blobstore_directories.p("cc.packages.app_package_directory_key")
+  }
 %>
 
 <% if p('release_level_backup') %>
   <% p('directories_to_backup').each do |directory| %>
-    <% key = blobstore_directories.p(dir_mapping[directory]) %>
+    <% key = dir_to_key.fetch(directory) { raise "Unknown directory_to_backup: '#{directory}'" } %>
       rm --recursive --force ${BLOBS_DIRECTORY}/<%= key %>
       if [ -d $BACKUP_DIRECTORY/<%= key %>  ]; then
         cp --recursive --link $BACKUP_DIRECTORY/<%= key %> $BLOBS_DIRECTORY

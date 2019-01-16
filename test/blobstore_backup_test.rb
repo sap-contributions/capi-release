@@ -134,6 +134,15 @@ class TestBackupTemplate < Test::Unit::TestCase
     end
   end
 
+  def test_backup_with_unknown_directories
+    links = [blobstore_directories_link]
+    spec = {'directories_to_backup' => ['not_a_real_directory']}
+
+    assert_raise(RuntimeError, "Unknown directory_to_backup: 'not_a_real_directory'") do
+      render_bosh_template_with_links('blobstore', 'bin/bbr/backup', links, spec)
+    end
+  end
+
   def test_backup_with_missing_links
     links = []
 
