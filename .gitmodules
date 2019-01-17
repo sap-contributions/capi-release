@@ -142,3 +142,6 @@
 [submodule "src/code.cloudfoundry.org/go-diodes"]
 	path = src/code.cloudfoundry.org/go-diodes
 	url = https://github.com/cloudfoundry/go-diodes
+[submodule "src/golang.org/x/sys"]
+	path = src/golang.org/x/sys
+	url = https://go.googlesource.com/sys
