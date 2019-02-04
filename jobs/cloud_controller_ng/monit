@@ -116,3 +116,4 @@ check process nginx_newrelic_plugin
   group vcap
 <% end %>
 <% end %>
+
