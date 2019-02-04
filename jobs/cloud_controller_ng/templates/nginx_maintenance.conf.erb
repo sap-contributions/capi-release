@@ -1,0 +1,92 @@
+# Used to return a maintenance message during BBR backups
+daemon off;
+
+pid       /var/vcap/data/cloud_controller_ng/nginx_maintenance.pid;
+
+error_log /var/vcap/sys/log/cloud_controller_ng/nginx-maintenance-error.log <%= p("cc.nginx_error_log_level") %>;
+error_log syslog:server=127.0.0.1,severity=error,tag=vcap_nginx_error <%= p("cc.nginx_error_log_level") %>;
+
+worker_processes auto;
+
+events {
+  worker_connections  8192;
+  use epoll;
+}
+
+http {
+  include       mime.types;
+  default_type  text/html;
+  server_tokens off;
+
+  client_body_temp_path /var/vcap/data/cloud_controller_ng/tmp/client_body_temp;
+  proxy_temp_path       /var/vcap/data/cloud_controller_ng/tmp/proxy_temp;
+  fastcgi_temp_path     /var/vcap/data/cloud_controller_ng/tmp/fastcgi_temp;
+  uwsgi_temp_path       /var/vcap/data/cloud_controller_ng/tmp/uwsgi_temp;
+  scgi_temp_path        /var/vcap/data/cloud_controller_ng/tmp/scgi_temp;
+
+  log_format main  '<%= p("cc.nginx_access_log_format").chomp %>';
+  access_log  /var/vcap/sys/log/cloud_controller_ng/nginx-maintenence-access.log main;
+  access_log  syslog:server=127.0.0.1,severity=info,tag=vcap_nginx_access main;
+
+  # This block ensures the endpoints it serves are handled by mutual TLS.
+  # Refer to the 'return 403' statement in the http block to see how we secure those endpoints.
+  server {
+    listen <%= p("cc.tls_port") %> ssl;
+    include nginx_server_mtls.conf;
+
+    server_name  _;
+    server_name_in_redirect off;
+
+    location / {
+      return 503 "API down for maintenance";
+    }
+
+    ## healthcheck bypass here
+    location /v2/info {
+      return 200 "API down for maintenance";
+    }
+  }
+
+# This block handles public endpoints over TLS
+<% if_p("cc.public_tls.ca_cert") do %>
+  server {
+    listen <%= p("cc.public_tls.port") %> ssl;
+
+    include nginx_server_public_tls.conf;
+
+    server_name  _;
+    server_name_in_redirect off;
+
+    location / {
+      return 503 "API down for maintenance";
+    }
+
+    ## healthcheck bypass here
+    location /v2/info {
+      return 200 "API down for maintenance";
+    }
+  }
+<% end %>
+
+  # This block handles public endpoints over non-TLS secured HTTP
+  # This is required for backwards compatibility during a rolling-deploy
+  server {
+    <% if p("cc.nginx.ip").empty? %>
+      listen    <%= p("cc.external_port") %>;
+    <% else %>
+      listen    <%= p("cc.nginx.ip") %>:<%= p("cc.external_port") %>;
+    <% end %>
+
+    server_name  _;
+    server_name_in_redirect off;
+
+    location / {
+      return 503 "API down for maintenance";
+    }
+
+    ## healthcheck bypass here
+    location /v2/info {
+      return 200 "API down for maintenance";
+    }
+  }
+}

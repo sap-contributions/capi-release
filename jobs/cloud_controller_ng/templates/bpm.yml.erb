@@ -63,11 +63,19 @@ nginx_newrelic_plugin_config = {
   "executable" => "/var/vcap/jobs/cloud_controller_ng/bin/nginx_newrelic_plugin",
 }
 
+nginx_maintenance_config = {
+  "name" => "nginx_maintenance",
+  "executable" => "/var/vcap/packages/nginx/sbin/nginx",
+  "args" => ["-c", "/var/vcap/jobs/cloud_controller_ng/config/nginx_maintenance.conf"],
+  "ephemeral_disk" => true,
+}
+
 config = {
   "processes" => [
     cloud_controller_ng_config,
     nginx_config,
     nginx_newrelic_plugin_config,
+    nginx_maintenance_config,
   ]
 }
 

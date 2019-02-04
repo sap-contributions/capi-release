@@ -31,6 +31,8 @@ templates:
   nginx_external_endpoints.conf.erb: config/nginx_external_endpoints.conf
   migrate_db.sh.erb: bin/migrate_db
   mime.types: config/mime.types
+  nginx_server_mtls.conf: config/nginx_server_mtls.conf
+  nginx_server_public_tls.conf: config/nginx_server_public_tls.conf
   mutual_tls.crt.erb: config/certs/mutual_tls.crt
   mutual_tls.key.erb: config/certs/mutual_tls.key
   mutual_tls_ca.crt.erb: config/certs/mutual_tls_ca.crt
@@ -39,6 +41,7 @@ templates:
   newrelic.yml.erb: config/newrelic.yml
   newrelic_plugin.yml.erb: config/newrelic_plugin.yml
   nginx.conf.erb: config/nginx.conf
+  nginx_maintenance.conf.erb: config/nginx_maintenance.conf
   nginx_ctl.erb: bin/nginx_ctl
   nginx_newrelic_plugin_ctl.erb: bin/nginx_newrelic_plugin_ctl
   packages_ca_cert.pem.erb: config/certs/packages_ca_cert.pem
