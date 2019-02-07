@@ -7,9 +7,9 @@ require 'erb'
 class TestBackupTemplate < Test::Unit::TestCase
   include Bosh::Template::Test
 
-  def blobstore_directories_link
+  def directories_to_backup_link
     Link.new(
-        name: 'blobstore_directories',
+        name: 'directories_to_backup',
         instances: [LinkInstance.new(address: 'api_instance')],
         properties: {
             "cc" => {
@@ -22,7 +22,7 @@ class TestBackupTemplate < Test::Unit::TestCase
   end
 
   def test_backup_with_all_directories
-    links = [blobstore_directories_link]
+    links = [directories_to_backup_link]
     rendered_script_path = render_bosh_template_with_links('blobstore', 'bin/bbr/backup', links)
 
     Dir.mktmpdir do |artifact_dir|
@@ -46,8 +46,8 @@ class TestBackupTemplate < Test::Unit::TestCase
   end
 
   def test_backup_with_selected_directories
-    spec = {'directories_to_backup' => ['buildpacks']}
-    links = [blobstore_directories_link]
+    spec = {'select_directories_to_backup' => ['buildpacks']}
+    links = [directories_to_backup_link]
     rendered_script_path = render_bosh_template_with_links('blobstore', 'bin/bbr/backup', links, spec)
 
     Dir.mktmpdir do |artifact_dir|
@@ -71,7 +71,7 @@ class TestBackupTemplate < Test::Unit::TestCase
   end
 
   def test_buildpack_cache_missing
-    links = [blobstore_directories_link]
+    links = [directories_to_backup_link]
     rendered_script_path = render_bosh_template_with_links('blobstore', 'bin/bbr/backup', links)
 
     Dir.mktmpdir do |artifact_dir|
@@ -87,7 +87,7 @@ class TestBackupTemplate < Test::Unit::TestCase
   end
 
   def test_it_hardlinks_the_files
-    links = [blobstore_directories_link]
+    links = [directories_to_backup_link]
     rendered_script_path = render_bosh_template_with_links('blobstore', 'bin/bbr/backup', links)
 
     Dir.mktmpdir do |artifact_dir|
@@ -115,7 +115,7 @@ class TestBackupTemplate < Test::Unit::TestCase
   end
 
   def test_backup_with_missing_directories
-    links = [blobstore_directories_link]
+    links = [directories_to_backup_link]
     rendered_script_path = render_bosh_template_with_links('blobstore', 'bin/bbr/backup', links)
 
     Dir.mktmpdir do |artifact_dir|
@@ -135,8 +135,8 @@ class TestBackupTemplate < Test::Unit::TestCase
   end
 
   def test_backup_with_unknown_directories
-    links = [blobstore_directories_link]
-    spec = {'directories_to_backup' => ['not_a_real_directory']}
+    links = [directories_to_backup_link]
+    spec = {'select_directories_to_backup' => ['not_a_real_directory']}
 
     assert_raise(RuntimeError, "Unknown directory_to_backup: 'not_a_real_directory'") do
       render_bosh_template_with_links('blobstore', 'bin/bbr/backup', links, spec)

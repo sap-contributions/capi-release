@@ -24,15 +24,15 @@ packages:
 - capi_utils
 
 consumes:
-- name: blobstore_directories
-  type: blobstore_directories
+- name: directories_to_backup
+  type: directories_to_backup
 
 properties:
   bpm.enabled:
     description: "Enable Bosh Process Manager"
     default: true
 
-  directories_to_backup:
+  select_directories_to_backup:
     description: |
       The list of directories to backup using BBR. Valid values are: buildpacks, droplets, packages.
       Remove directories that you do not want to backup.
