@@ -224,3 +224,6 @@ Style/WordArray:
 
 Style/ZeroLengthPredicate:
   Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
