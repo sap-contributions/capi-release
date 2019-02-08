@@ -45,6 +45,7 @@ templates:
   nginx_ctl.erb: bin/nginx_ctl
   nginx_newrelic_plugin_ctl.erb: bin/nginx_newrelic_plugin_ctl
   packages_ca_cert.pem.erb: config/certs/packages_ca_cert.pem
+  perform_blobstore_benchmarks.erb: bin/perform_blobstore_benchmarks
   post-start.sh.erb: bin/post-start
   pre-start.sh.erb: bin/pre-start
   public_upload.conf.erb: config/public_upload.conf
