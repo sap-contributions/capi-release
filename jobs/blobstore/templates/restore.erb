@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
-
-BOSH_DATA_DIRECTORY=${BOSH_DATA_DIRECTORY:-/var/vcap/store}
-BACKUP_DIRECTORY="$BBR_ARTIFACT_DIRECTORY"/shared
-BLOBS_DIRECTORY="$BOSH_DATA_DIRECTORY"/shared
-
-BLOBSTORE_OWNER=${BLOBSTORE_OWNER:-vcap}
-BLOBSTORE_OWNER_GROUP=${BLOBSTORE_OWNER_GROUP:-vcap}
+set -eux
 
 <%
   dirs = link('directories_to_backup')
@@ -20,11 +13,12 @@ BLOBSTORE_OWNER_GROUP=${BLOBSTORE_OWNER_GROUP:-vcap}
 
 <% if p('release_level_backup') %>
   <% p('select_directories_to_backup').each do |directory| %>
-    <% key = dir_to_key.fetch(directory) { raise "Unknown directory_to_backup: '#{directory}'" } %>
-      rm --recursive --force ${BLOBS_DIRECTORY}/<%= key %>
-      if [ -d $BACKUP_DIRECTORY/<%= key %>  ]; then
-        cp --recursive --link $BACKUP_DIRECTORY/<%= key %> $BLOBS_DIRECTORY
+    <% key = dir_to_key.fetch(directory) { raise "Unknown directory in select_directories_to_backup: '#{directory}'" } %>
+      rm --recursive --force /var/vcap/store/shared/<%= key %>
+      if [ -d $BBR_ARTIFACT_DIRECTORY/shared/<%= key %>  ]; then
+        cp --recursive --link $BBR_ARTIFACT_DIRECTORY/shared/<%= key %> /var/vcap/store/shared
       fi
   <% end %>
-  chown --recursive $BLOBSTORE_OWNER:$BLOBSTORE_OWNER_GROUP ${BLOBS_DIRECTORY}
+
+  chown --recursive vcap:vcap /var/vcap/store/shared
 <% end %>
