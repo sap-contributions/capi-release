@@ -16,7 +16,7 @@ templates:
   blobstore.key.erb:    ssl/blobstore.key
   pre-start.sh.erb:     bin/pre-start
   backup.erb:           bin/bbr/backup
-  restore.erb:              bin/bbr/restore
+  restore.erb:          bin/bbr/restore
 
 packages:
 - nginx_webdav
