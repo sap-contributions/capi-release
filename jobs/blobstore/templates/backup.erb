@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
-
-BOSH_DATA_DIRECTORY=${BOSH_DATA_DIRECTORY:-/var/vcap/store}
+set -eux
 
 <%
   dirs = link('directories_to_backup')
@@ -17,9 +15,9 @@ BOSH_DATA_DIRECTORY=${BOSH_DATA_DIRECTORY:-/var/vcap/store}
   mkdir -p $BBR_ARTIFACT_DIRECTORY/shared
 
   <% p('select_directories_to_backup').each do |directory| %>
-    <% key = dir_to_key.fetch(directory) { raise "Unknown directory_to_backup: '#{directory}'" } %>
-      if [ -d $BOSH_DATA_DIRECTORY/shared/<%= key %> ]; then
-        cp --recursive --link $BOSH_DATA_DIRECTORY/shared/<%= key %> $BBR_ARTIFACT_DIRECTORY/shared
+    <% key = dir_to_key.fetch(directory) { raise "Unknown directory in select_directories_to_backup: '#{directory}'" } %>
+      if [ -d /var/vcap/store/shared/<%= key %> ]; then
+        cp --recursive --link /var/vcap/store/shared/<%= key %> $BBR_ARTIFACT_DIRECTORY/shared
       fi
 
     <% if directory.eql? "droplets" %>
