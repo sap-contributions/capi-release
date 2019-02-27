@@ -135,6 +135,7 @@ provides:
   - cc.buildpacks.webdav_config.username
   - cc.credential_references.interpolate_service_bindings
   - cc.database_encryption.current_key_label
+  - cc.database_encryption.experimental_pbkdf2_hmac_iterations
   - cc.database_encryption.keys
   - cc.db_encryption_key
   - cc.db_logging_level
@@ -707,6 +708,9 @@ properties:
   cc.database_encryption.current_key_label:
     default: ""
     description: "current key label for encrypting values in the CC database"
+  cc.database_encryption.experimental_pbkdf2_hmac_iterations:
+      default: 2048
+      description: "Number of pbkdf2 hmac iterations (experimental)"
   cc.database_encryption.skip_validation:
     default: false
     description: "Skip validations of database encryption properties"

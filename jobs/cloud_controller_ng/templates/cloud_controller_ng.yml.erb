@@ -338,6 +338,7 @@ db_encryption_key: <%= p("cc.db_encryption_key") %>
 database_encryption:
   keys: <%= keys.to_json %>
   current_key_label: <%= current_key_label.inspect %>
+  pbkdf2_hmac_iterations: <%= database_encryption['experimental_pbkdf2_hmac_iterations'] %>
 <% end %>
 
 disable_custom_buildpacks: <%= p("cc.disable_custom_buildpacks") %>

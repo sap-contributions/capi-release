@@ -252,6 +252,7 @@ db_encryption_key: <%= p("cc.db_encryption_key") %>
 database_encryption:
   keys: <%= p("cc.database_encryption.keys", {}).to_json %>
   current_key_label: <%= p("cc.database_encryption.current_key_label").inspect %>
+  pbkdf2_hmac_iterations: <%= link("cloud_controller_internal").p("cc.database_encryption.experimental_pbkdf2_hmac_iterations") %>
 <% end %>
 
 <% if_p("uaa.clients.cc_service_broker_client.secret") do %>
