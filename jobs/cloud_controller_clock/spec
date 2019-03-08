@@ -93,6 +93,9 @@ properties:
   cc.max_retained_builds_per_app:
     description: "The number of inactive builds to keep for each app"
     default: 100
+  cc.max_retained_revisions_per_app:
+    description: "The number of associated revisions to keep for each app"
+    default: 100
 
   cc.app_usage_events.cutoff_age_in_days:
     description: "How old an app usage event should stay in cloud controller database before being cleaned up"
