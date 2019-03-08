@@ -37,12 +37,20 @@ function wait_for_server_to_become_unavailable() {
 #
 function wait_for_server_to_become_healthy() {
   local url=$1
-  local timeout=$2
+  local timeout=${2:-180}
+  local threshold=${3:-10}
+  local consecutive_success_count=0
+
   for _ in $(seq "${timeout}"); do
     set +e
     curl -k -f --connect-timeout 1 "${url}" > /dev/null 2>&1
     if [ $? -eq 0 ]; then
-      return 0
+      let consecutive_success_count="${consecutive_success_count}"+1
+      if [ "${consecutive_success_count}" -ge "${threshold}" ]; then
+        return 0
+      fi
+    else
+      let consecutive_success_count=0
     fi
     set -e
     sleep 1
