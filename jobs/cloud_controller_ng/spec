@@ -620,12 +620,17 @@ properties:
     default: ""
 
   cc.opi.enabled:
-    description: "Enable the amazing eirini component"
+    description: "Set to true to enable running apps on Kubernetes, using Eirini"
     default: false
-
+  cc.opi.opi_staging:
+    description: "Set to true to enable staging apps on Kubernetes, using Eirini"
+    default: false
   cc.opi.url:
-    description: "Eirini Endpoint"
+    description: "URL of the Eirini server"
     default: ""
+  cc.opi.cc_uploader_url:
+    description: "URL of cc uploader (not used if BOSH link 'cc_uploader' is present)"
+    default: http://cc-uploader.service.cf.internal:9090
 
   ccdb.databases:
     description: "Contains the name of the database on the database server"
