@@ -60,16 +60,16 @@ properties:
     description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
 
   cc.opi.enabled:
-    description: "Enable the amazing eirini component"
+    description: "Set to true to enable running apps on Kubernetes, using Eirini"
     default: false
   cc.opi.opi_staging:
-    description: "Enable the amazing eirini staging"
+    description: "Set to true to enable staging apps on Kubernetes, using Eirini"
     default: false
   cc.opi.url:
-    description: "Eirini Endpoint"
+    description: "URL of the Eirini server"
     default: ""
   cc.opi.cc_uploader_url:
-    description: "URL of cc uploader"
+    description: "URL of cc uploader (not used if BOSH link 'cc_uploader' is present)"
     default: http://cc-uploader.service.cf.internal:9090
 
   cc.external_port:
