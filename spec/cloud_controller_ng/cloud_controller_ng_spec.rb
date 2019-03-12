@@ -5,7 +5,6 @@ require 'bosh/template/test'
 require 'yaml'
 require 'json'
 
-# rubocop:disable Metrics/BlockLength
 module Bosh::Template::Test
   describe 'cloud_controller_ng job template rendering' do
     let(:release_path) { File.join(File.dirname(__FILE__), '../..') }
@@ -198,13 +197,13 @@ module Bosh::Template::Test
         describe 'when a range is specified in manifest properties' do
           it 'validates they are valid CIDRs' do
             merged_manifest_properties['cc']['internal_route_vip_range'] = '10.16.255.0/777'
-            expect{ YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+            expect { YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
             }.to raise_error(StandardError, 'invalid cc.internal_route_vip_range: 10.16.255.0/777')
           end
 
           it 'does not allow ipv6 addresses' do
             merged_manifest_properties['cc']['internal_route_vip_range'] = '2001:0db8:85a3:0000:0000:8a2e:0370:7334/21'
-            expect{ YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+            expect { YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
             }.to raise_error(StandardError, 'invalid cc.internal_route_vip_range: 2001:0db8:85a3:0000:0000:8a2e:0370:7334/21')
           end
 
@@ -263,4 +262,3 @@ module Bosh::Template::Test
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

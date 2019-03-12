@@ -16,7 +16,7 @@ templates:
   blobstore.key.erb:    ssl/blobstore.key
   pre-start.sh.erb:     bin/pre-start
   backup.erb:           bin/bbr/backup
-  restore.erb:              bin/bbr/restore
+  restore.erb:          bin/bbr/restore
 
 packages:
 - nginx_webdav
@@ -26,12 +26,20 @@ packages:
 consumes:
 - name: directories_to_backup
   type: directories_to_backup
-  optional: true
 
 properties:
   bpm.enabled:
     description: "Enable Bosh Process Manager"
     default: true
+
+  select_directories_to_backup:
+    description: |
+      The list of directories to backup using BBR. Valid values are: buildpacks, droplets, packages.
+      Remove directories that you do not want to backup.
+    default:
+    - "buildpacks"
+    - "droplets"
+    - "packages"
 
   blobstore.internal_access_rules:
     description: >-

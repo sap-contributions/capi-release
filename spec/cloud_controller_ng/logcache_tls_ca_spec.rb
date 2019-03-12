@@ -5,7 +5,6 @@ require 'bosh/template/test'
 require 'yaml'
 require 'json'
 
-# rubocop:disable Metrics/BlockLength
 module Bosh::Template::Test
   describe 'cloud_controller_ng job template rendering' do
     let(:release_path) { File.join(File.dirname(__FILE__), '../..') }
@@ -37,4 +36,3 @@ module Bosh::Template::Test
     end
   end
 end
-# rubocop:enable Metrics/BlockLength
