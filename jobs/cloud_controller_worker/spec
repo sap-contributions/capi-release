@@ -83,9 +83,6 @@ properties:
   cc.opi.url:
     description: "URL of the Eirini server"
     default: ""
-  cc.opi.cc_uploader_url:
-    description: "URL of cc uploader (not used if BOSH link 'cc_uploader' is present)"
-    default: http://cc-uploader.service.cf.internal:9090
 
   cc.external_port:
     description: "External Cloud Controller port"
