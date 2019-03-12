@@ -410,10 +410,13 @@ rate_limiter:
 
 <%
 cc_uploader_url = nil
+opi_cc_uploader_url = nil
 if_link("cc_uploader") do |cc_uploader|
   cc_uploader_url = "https://#{cc_uploader.p("internal_hostname")}:#{cc_uploader.p("https_port")}"
+  opi_cc_uploader_url = cc_uploader_url.dup
 end.else do
   cc_uploader_url = p("cc.diego.cc_uploader_https_url")
+  opi_cc_uploader_url = p("cc.opi.cc_uploader_https_url")
 end
 %>
 
@@ -442,7 +445,7 @@ opi:
   url: "<%= p("cc.opi.url") %>"
   opi_staging: <%= p("cc.opi.opi_staging") %>
   enabled: <%= p("cc.opi.enabled") %>
-  cc_uploader_url: "<%= p("cc.opi.cc_uploader_url") %>"
+  cc_uploader_url: "<%= opi_cc_uploader_url %>"
 
 perm:
   enabled: false
