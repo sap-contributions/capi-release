@@ -8,7 +8,7 @@ source /var/vcap/packages/capi_utils/monit_utils.sh
   wait_for_server_to_become_unavailable <%= "localhost:#{p("cc.external_port")}/v2/info" %> 60
 
   monit_start_job cloud_controller_ng
-  wait_for_server_to_become_healthy <%= "#{p("cc.external_protocol")}://#{p("cc.external_host")}.#{p("system_domain")}/" %> 180
+  wait_for_server_to_become_healthy <%= "#{p("cc.external_protocol")}://#{p("cc.external_host")}.#{p("system_domain")}/" %> 180 10
 
   <% (1..(p("cc.jobs.local.number_of_workers"))).each do |index| %>
   monit_start_job cloud_controller_worker_local_<%= index %>
