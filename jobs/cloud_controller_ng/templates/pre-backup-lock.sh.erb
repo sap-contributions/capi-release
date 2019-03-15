@@ -1,9 +1,12 @@
 #!/bin/bash
-set -eo pipefail
+set -exo pipefail
 
 source /var/vcap/packages/capi_utils/monit_utils.sh
+source /var/vcap/packages/capi_utils/syslog_utils.sh
 
 <% if p('release_level_backup') %>
+  tee_output_to_sys_log "cloud_controller_ng.$(basename "$0")"
+
   touch /var/vcap/data/cloud_controller_ng/tmp/proxy_temp/bbr_maintenance
 
   <% (1..(p("cc.jobs.local.number_of_workers"))).each do |index| %>

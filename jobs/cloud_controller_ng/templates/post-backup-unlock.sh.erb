@@ -1,9 +1,12 @@
 #!/bin/bash
-set -eo pipefail
+set -exo pipefail
 
 source /var/vcap/packages/capi_utils/monit_utils.sh
+source /var/vcap/packages/capi_utils/syslog_utils.sh
 
 <% if p('release_level_backup') %>
+  tee_output_to_sys_log "cloud_controller_ng.$(basename "$0")"
+
   /var/vcap/jobs/bpm/bin/bpm stop cloud_controller_ng -p nginx_maintenance
   wait_for_server_to_become_unavailable <%= "localhost:#{p("cc.external_port")}/v2/info" %> 60
 
