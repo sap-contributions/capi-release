@@ -38,7 +38,7 @@ function wait_for_server_to_become_unavailable() {
 function wait_for_server_to_become_healthy() {
   local url=$1
   local timeout=${2:-180}
-  local threshold=${3:-1}
+  local threshold=${3:-10}
   local consecutive_success_count=0
 
   for _ in $(seq "${timeout}"); do
