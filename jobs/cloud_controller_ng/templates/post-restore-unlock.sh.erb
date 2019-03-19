@@ -5,7 +5,8 @@ source /var/vcap/packages/capi_utils/monit_utils.sh
 
 <% if p('release_level_backup') %>
   monit_start_job cloud_controller_ng
-  wait_for_server_to_become_healthy <%= "#{p("cc.external_protocol")}://#{p("cc.external_host")}.#{p("system_domain")}/" %> 60
+  wait_for_server_to_become_healthy <%= "localhost:#{p("cc.external_port")}/v2/info" %> 60
+  sleep 30
 
   <% (1..(p("cc.jobs.local.number_of_workers"))).each do |index| %>
   monit_start_job cloud_controller_worker_local_<%= index %>
