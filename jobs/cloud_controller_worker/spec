@@ -138,14 +138,14 @@ properties:
 
   cc.stacks:
     default:
-      - name: "cflinuxfs2"
-        description: "Cloud Foundry Linux-based filesystem"
+      - name: "cflinuxfs3"
+        description: "Cloud Foundry Linux-based filesystem (Ubuntu 18.04)"
     description: |
       List of hashes describing stacks intended for developers to choose from when pushing apps.
       A stack is a prebuilt root file system (rootfs) that supports a specific operating system.
       Note: removing items in this list will not remove the records in the Cloud Controller's database.
   cc.default_stack:
-    default: "cflinuxfs2"
+    default: "cflinuxfs3"
     description: "The default stack name to use if no custom stack is specified by an app."
 
   cc.staging_upload_user:
