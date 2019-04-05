@@ -34,6 +34,9 @@ nginx/nginx-1.13.12.tar.gz:
   size: 1016311
   object_id: e2d8ca95-56af-44c6-541d-f5bc2ccfc50b
   sha: sha256:fb92f5602cdb8d3ab1ad47dbeca151b185d62eedb67d347bbe9d79c1438c85de
+nginx/nginx-1.14.2.tar.gz:
+  size: 1015384
+  sha: sha256:002d9f6154e331886a2dd4e6065863c9c1cf8291ae97a1255308572c02be9797
 nginx/nginx-dav-ext-module-0.1.0.tar.gz:
   size: 6614
   object_id: 1385f13e-3fd6-409d-4799-5852737b08f0
@@ -42,6 +45,9 @@ nginx/nginx-upload-module-2.2-at-aba1e3f.tar.gz:
   size: 28302
   object_id: 33cedfd9-941a-406f-4780-55000e75aca6
   sha: sha256:62f3621ef7f9c0c46d01fd51e8de014319b96eb84578791cfeecd7f70995fa1e
+nginx/nginx-upload-module-2.3.0.tar.gz:
+  size: 40139
+  sha: sha256:c86e318addb9c88d70fdbd58ff1f6ef6f404a93070f6db8017a1f880c97946c4
 nginx/pcre-8.42.tar.gz:
   size: 2081413
   object_id: e464286d-99cc-4dd8-74c5-daab11a68340
