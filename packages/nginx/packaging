@@ -4,23 +4,23 @@ echo "Extracting pcre..."
 tar xzvf nginx/pcre-8.42.tar.gz
 
 echo "Extracting nginx_upload module..."
-tar xzvf nginx/nginx-upload-module-2.2-at-aba1e3f.tar.gz
+tar xzvf nginx/nginx-upload-module-2.3.0.tar.gz
 
 echo "Patching upload module"
-pushd vkholodkov-nginx-upload-module-aba1e3f
-  patch < ../nginx/upload_module_new_nginx_support.patch
+pushd nginx-upload-module-2.3.0
+  #patch < ../nginx/upload_module_new_nginx_support.patch
   patch < ../nginx/upload_module_put_support.patch
 popd
 
 echo "Extracting nginx..."
-tar xzvf nginx/nginx-1.13.12.tar.gz
+tar xzvf nginx/nginx-1.14.2.tar.gz
 
 echo "Building nginx..."
-pushd nginx-1.13.12
+pushd nginx-1.14.2
   ./configure \
     --prefix=${BOSH_INSTALL_TARGET} \
     --with-pcre=../pcre-8.42 \
-    --add-module=../vkholodkov-nginx-upload-module-aba1e3f \
+    --add-module=../nginx-upload-module-2.3.0 \
     --with-http_stub_status_module \
     --with-http_ssl_module
 
