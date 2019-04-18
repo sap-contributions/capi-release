@@ -525,7 +525,6 @@ properties:
   cc.diego.lifecycle_bundles:
     description: "List of lifecycle bundles arguments for different stacks"
     default:
-      "buildpack/cflinuxfs2": "buildpack_app_lifecycle/buildpack_app_lifecycle.tgz"
       "buildpack/cflinuxfs3": "buildpack_app_lifecycle/buildpack_app_lifecycle.tgz"
       "buildpack/windows": "buildpack_app_lifecycle/buildpack_app_lifecycle.tgz"
       "buildpack/windows2012R2": "windows_app_lifecycle/windows_app_lifecycle.tgz"
@@ -534,7 +533,6 @@ properties:
   cc.diego.droplet_destinations:
     description: "List of destination directories for different stacks"
     default:
-      "cflinuxfs2": "/home/vcap"
       "cflinuxfs3": "/home/vcap"
       "windows": "/Users/vcap"
       "windows2012R2": "/"
