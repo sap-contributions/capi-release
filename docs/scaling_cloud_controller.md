@@ -1,3 +1,13 @@
+# Notice
+
+These docs are now a part of the official Cloud Foundry documentation and can be viewed at the link below:
+
+[Information for Operators: Scaling Cloud Controller](https://docs.cloudfoundry.org/running/managing-cf/scaling-cloud-controller.html)
+
+Since this doc has been linked externally, going to keep it around here for a while, but any updates should be made [here](https://github.com/cloudfoundry/docs-running-cf/blob/master/managing-cf/scaling-cloud-controller.html.md.erb).
+
+---
+
 # Scaling Cloud Controller
 The purpose of this document is to provide operators with guidance on knowing how and when to scale the jobs within capi-release. It is broken down by BOSH job (e.g. `cloud_controller_ng`) and highlights some of the key metrics, heuristics, and logs we have found helpful. These lists are not exhaustive by any means, but should serve as a good place to start.
 
