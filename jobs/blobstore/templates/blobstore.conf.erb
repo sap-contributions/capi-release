@@ -1,8 +1,10 @@
+<% unless p('temporary_disable_non_tls_endpoints')  %>
 # Default server
 server {
   listen      <%= p("blobstore.port") %>;
   return 404;
 }
+<% end  %>
 
 upstream blob_url_signer {
 <% if p("bpm.enabled") %>
@@ -97,6 +99,7 @@ server {
   }
 }
 
+<% unless p('temporary_disable_non_tls_endpoints')  %>
 # Public server
 server {
   listen      <%= p('blobstore.port') %>;
@@ -149,3 +152,4 @@ server {
     alias /var/vcap/store/shared/;
   }
 }
+<% end %>

@@ -30,5 +30,7 @@
   if_p("capi.cc_uploader.cc.job_polling_interval_in_seconds") do |interval|
     config[:job_polling_interval_in_seconds] = "#{interval}s"
   end
+
+  config[:disable_non_tls] = !!p('temporary_disable_non_tls_endpoints')
 %>
 <%= config.to_json %>
