@@ -1,0 +1,182 @@
+name: capi
+version: 1.80.0
+commit_hash: 1223ee2
+uncommitted_changes: false
+jobs:
+- name: bbr-cloudcontrollerdb
+  version: ddfefc7787e33dd26ee2aff0aeff9d1d1eb435bcde8972bdcde6cecb80360521
+  fingerprint: ddfefc7787e33dd26ee2aff0aeff9d1d1eb435bcde8972bdcde6cecb80360521
+  sha1: sha256:44469e2e6b78bef2ada85ae438e8a3b1c81607c90499a00e900eff259202e130
+  packages: []
+- name: blobstore
+  version: afe9d925ca018f507006854876df17e260b65369a52e5a6365be7a8030470aca
+  fingerprint: afe9d925ca018f507006854876df17e260b65369a52e5a6365be7a8030470aca
+  sha1: sha256:5b80855120a73c045260596c62f569d00ba5823dafd5b3cad03dba61053c9f2b
+  packages:
+  - nginx_webdav
+  - blobstore_url_signer
+  - capi_utils
+- name: cc_deployment_updater
+  version: 6ca5cc48fabde2baed474e5362618bcf2f912fa4d6108d6211fc2b62d2bf0976
+  fingerprint: 6ca5cc48fabde2baed474e5362618bcf2f912fa4d6108d6211fc2b62d2bf0976
+  sha1: sha256:9e32dbc5eea6ecfc97ebe42d358e5f90f2392b146933635f8ffeedef0ea88880
+  packages:
+  - capi_utils
+  - cloud_controller_ng
+  - libpq
+  - mariadb_connector_c
+  - ruby-2.4-r5
+- name: cc_route_syncer
+  version: fd68568cf2d90554dd1096e5b8022ccc36b6fa01d03ee675c59e3bff63247290
+  fingerprint: fd68568cf2d90554dd1096e5b8022ccc36b6fa01d03ee675c59e3bff63247290
+  sha1: sha256:dc9e6a450fc0fa7ce70b555306b5ca9233cd76de0548381591e0d383d5cb6837
+  packages:
+  - capi_utils
+  - cloud_controller_ng
+  - libpq
+  - mariadb_connector_c
+  - ruby-2.4-r5
+- name: cc_uploader
+  version: d6aef19f1811fec3115be44546d1550a6f8aa150780da45db5804ebbb8935ffa
+  fingerprint: d6aef19f1811fec3115be44546d1550a6f8aa150780da45db5804ebbb8935ffa
+  sha1: sha256:e28f544399a51e7189be16f6b9f2fb349014b6a349ed34ef9338d3f10232689c
+  packages:
+  - capi_utils
+  - cc_uploader
+- name: cloud_controller_clock
+  version: cc033522fdecb9513ec87f45ab870abc56ed92789a829c3bb90b735044a32208
+  fingerprint: cc033522fdecb9513ec87f45ab870abc56ed92789a829c3bb90b735044a32208
+  sha1: sha256:5d0f868833592e51eefbbfb6b4d40c0b1485593e7933a803c9d6b03f1915c98c
+  packages:
+  - capi_utils
+  - cloud_controller_ng
+  - nginx
+  - nginx_newrelic_plugin
+  - libpq
+  - mariadb_connector_c
+  - ruby-2.4-r5
+- name: cloud_controller_ng
+  version: 68db5ca5994c997b4e1a76d07af9086f0a719e78d30c77c47e5f4cfdce7f199a
+  fingerprint: 68db5ca5994c997b4e1a76d07af9086f0a719e78d30c77c47e5f4cfdce7f199a
+  sha1: sha256:1516a215df1a97b5783f296f80337b7d9cdf6d41dc696a015a1478e565fcb4d2
+  packages:
+  - capi_utils
+  - cloud_controller_ng
+  - nginx
+  - nginx_newrelic_plugin
+  - libpq
+  - mariadb_connector_c
+  - ruby-2.4-r5
+- name: cloud_controller_worker
+  version: 03b8e7f99a4abdc61b163f3f18829b117473f1acc0b8f2baa50186d9498fce92
+  fingerprint: 03b8e7f99a4abdc61b163f3f18829b117473f1acc0b8f2baa50186d9498fce92
+  sha1: sha256:09ba0a9a3dae1e4b500e04a302833f744bd834611aa3e46a34d5212ec4cda193
+  packages:
+  - capi_utils
+  - cloud_controller_ng
+  - nginx
+  - nginx_newrelic_plugin
+  - libpq
+  - mariadb_connector_c
+  - ruby-2.4-r5
+- name: nfs_mounter
+  version: 9d54f587b6409f21810216f7e553e502ef7b3c28390b147a885e326620e6a086
+  fingerprint: 9d54f587b6409f21810216f7e553e502ef7b3c28390b147a885e326620e6a086
+  sha1: sha256:52763974196f4cece72f5f0d43c5b5090aab6b39dafe4f4dafc1250cc5866dfe
+  packages:
+  - nfs-debs
+  - capi_utils
+- name: rotate_cc_database_key
+  version: 21c2f0abc41cca1f7abc29a1b939915ca37e3698eb0322ed8194be675198ce70
+  fingerprint: 21c2f0abc41cca1f7abc29a1b939915ca37e3698eb0322ed8194be675198ce70
+  sha1: sha256:7728fb180bc96c976fb68365f26c3b7640fcb894e4eeccb82bf708bf04691860
+  packages:
+  - capi_utils
+  - cloud_controller_ng
+  - libpq
+  - mariadb_connector_c
+  - ruby-2.4-r5
+- name: tps
+  version: 4ef7f8857325d0811bc80458eb52617b54e15783bd1d7fffe9445ae614864d76
+  fingerprint: 4ef7f8857325d0811bc80458eb52617b54e15783bd1d7fffe9445ae614864d76
+  sha1: sha256:a4e244a16d1484e6151ddcf9fd33bde17748f433a214416c0f27dfc2b7368f3f
+  packages:
+  - capi_utils
+  - tps
+packages:
+- name: blobstore_url_signer
+  version: 0700c8351c66f55e8a7497c4e6e9ff0e42bc64d00dc06a9d4a42f90587934a3b
+  fingerprint: 0700c8351c66f55e8a7497c4e6e9ff0e42bc64d00dc06a9d4a42f90587934a3b
+  sha1: sha256:36af545877553f5f52f9f973d86c0bda292a88615ec1c9faae7cb87148a29dd6
+  dependencies:
+  - golang-1.12-linux
+- name: capi_utils
+  version: 27e5290dc5920a78d0e0d155c93c2c56392b87e3083c2430d0429c1a94b0c40a
+  fingerprint: 27e5290dc5920a78d0e0d155c93c2c56392b87e3083c2430d0429c1a94b0c40a
+  sha1: sha256:726321cf583628cfcb280c47b9bda55afbba20082ab19f9a15f0b40173ee6a69
+  dependencies: []
+- name: cc_uploader
+  version: 4d20492fc9b03928ae015a8851995fce212e35af743d25f38166bf31bd64c34a
+  fingerprint: 4d20492fc9b03928ae015a8851995fce212e35af743d25f38166bf31bd64c34a
+  sha1: sha256:cb46344e72a4654d1ad41e8d5c0ae3f920dba8c4b074549460c5051569351c4c
+  dependencies:
+  - golang-1.12-linux
+- name: cloud_controller_ng
+  version: 69022f3012f660ceab955481117e97c2975e9b6951aef2832a597968ec66f72a
+  fingerprint: 69022f3012f660ceab955481117e97c2975e9b6951aef2832a597968ec66f72a
+  sha1: sha256:d7b9e80f122f77f0adec511264c6d1e6493ab41a9e37f218ecdef66f8014d94c
+  dependencies:
+  - libpq
+  - mariadb_connector_c
+  - ruby-2.4-r5
+- name: golang-1.12-linux
+  version: 32203fe45461c70db67ec220b3ae645c057bd2dc7d3206450197230b721ec416
+  fingerprint: 32203fe45461c70db67ec220b3ae645c057bd2dc7d3206450197230b721ec416
+  sha1: sha256:0bb8674673d929e54b1924e9b36920b5ff27c62af0c41d1d9d94cdc6e22335e6
+  dependencies: []
+- name: libpq
+  version: 211d57d6b1cb796a123433fb736bec6b09fd7a322667c9b9010b970ff78d9bce
+  fingerprint: 211d57d6b1cb796a123433fb736bec6b09fd7a322667c9b9010b970ff78d9bce
+  sha1: sha256:cffb1f18dd29645a6bb4824a2d8e3806f1d27d9c895f83c70daa519ca20ba1d4
+  dependencies: []
+- name: mariadb_connector_c
+  version: 214543bbb1d7499acdbdb44a7323430a635a77fa004f4fd4dbaf4e544291b072
+  fingerprint: 214543bbb1d7499acdbdb44a7323430a635a77fa004f4fd4dbaf4e544291b072
+  sha1: sha256:8dda622d2c0052fcdd6e8eb7cc09de744095270d5eff4e61a88f72541ef0586d
+  dependencies: []
+- name: nfs-debs
+  version: f89315135046369328a63309e936b6577df59876f5e372032e255cfc2f2e3959
+  fingerprint: f89315135046369328a63309e936b6577df59876f5e372032e255cfc2f2e3959
+  sha1: sha256:bd19a95bd692f4c37a75789892c0676731ce8a82dff11d7ae1f3ec2bf285184f
+  dependencies: []
+- name: nginx
+  version: ac549ecb093729554a5b575bde7182034edd80ecd3694d42184fa7243face8b4
+  fingerprint: ac549ecb093729554a5b575bde7182034edd80ecd3694d42184fa7243face8b4
+  sha1: sha256:3998a2a84f1bf644e2e313b4bbbeba22dbb5753cd9cc32b3f526705b5d1e2dc7
+  dependencies: []
+- name: nginx_newrelic_plugin
+  version: 741cf98651407761135e5433ca28f1431b60319c94bb5b0d74502c79f251fd67
+  fingerprint: 741cf98651407761135e5433ca28f1431b60319c94bb5b0d74502c79f251fd67
+  sha1: sha256:5db3aac35b4c334a5edfe57732343b6e825c7da3d154241079f1a84fc4509332
+  dependencies:
+  - ruby-2.4-r5
+- name: nginx_webdav
+  version: 52b5222cecc9501f07ea2f63aae7fd6cf369ee3e42a672da515e3cbedab96c9c
+  fingerprint: 52b5222cecc9501f07ea2f63aae7fd6cf369ee3e42a672da515e3cbedab96c9c
+  sha1: sha256:5b30df29cbfa38c6b654a598ad0d37e34c1236dcaba199699a0cd1966cb0ca77
+  dependencies: []
+- name: ruby-2.4-r5
+  version: 726cbb2214e138b576700db6a30698edb2b994e2
+  fingerprint: 726cbb2214e138b576700db6a30698edb2b994e2
+  sha1: 6addce325a193d9f2c326dbd926ab42dc023f132
+  dependencies: []
+- name: tps
+  version: fc6013a1251625bce64b577351cb28168c7fec14d50d5f6d6091bdb3cee52cea
+  fingerprint: fc6013a1251625bce64b577351cb28168c7fec14d50d5f6d6091bdb3cee52cea
+  sha1: sha256:8b153cbe083bc32b531e95533bb5fb10f285b9cda9aba9950654b898a4f9f232
+  dependencies:
+  - golang-1.12-linux
+license:
+  version: 47b97af07f8e50aee188250f38ed8b2fa9a7d4c9a0202982654c45c714550409
+  fingerprint: 47b97af07f8e50aee188250f38ed8b2fa9a7d4c9a0202982654c45c714550409
+  sha1: sha256:980318ef43a8e90c31feb053096e3fb92e7b53f6b45acf438701280b232ff6f6
