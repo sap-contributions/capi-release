@@ -257,6 +257,47 @@ module Bosh::Template::Test
               end.to_not raise_error
             end
           end
+
+        end
+
+        context 'when the database_encryption.keys block is an array' do
+          before do
+            merged_manifest_properties['cc']['database_encryption']['keys'] = [
+              {
+                'encryption_key' => 'blah',
+                'label'          => 'encryption_key_0'
+              },
+              {
+                'encryption_key' => 'other_key',
+                'label'          => 'encryption_key_1'
+              }
+            ]
+          end
+
+          it 'converts the array into the expected format (hash)' do
+            template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+            expect(template_hash['database_encryption']['keys']).to eq({
+              'encryption_key_0' => 'blah',
+              'encryption_key_1' => 'other_key'
+            })
+          end
+        end
+
+        context 'when the database_encryption.keys block is a hash' do
+          before do
+            merged_manifest_properties['cc']['database_encryption']['keys'] = {
+              'encryption_key_0' => 'blah',
+              'encryption_key_1' => 'other_key'
+            }
+          end
+
+          it 'converts the array into the expected format (hash)' do
+            template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+            expect(template_hash['database_encryption']['keys']).to eq({
+              'encryption_key_0' => 'blah',
+              'encryption_key_1' => 'other_key'
+            })
+          end
         end
       end
     end

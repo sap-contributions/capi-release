@@ -336,7 +336,12 @@ db_encryption_key: <%= p("cc.db_encryption_key") %>
 <% if_p("cc.database_encryption") do | database_encryption |
      current_key_label = database_encryption['current_key_label']
      keys = database_encryption['keys']
-
+     if keys.is_a? Array
+       keys = keys.reduce({}) do |result, key_hash|
+         result[key_hash['label']] = key_hash['encryption_key']
+         result
+       end
+     end
      validate_database_encryption(current_key_label, keys) unless database_encryption['skip_validation'] %>
 database_encryption:
   keys: <%= keys.to_json %>
