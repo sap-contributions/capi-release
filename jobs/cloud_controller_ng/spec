@@ -142,6 +142,7 @@ provides:
   - cc.default_app_ssh_access
   - cc.default_health_check_timeout
   - cc.default_stack
+  - cc.disable_private_domain_cross_space_context_path_route_sharing
   - cc.droplets.blobstore_type
   - cc.droplets.cdn.key_pair_id
   - cc.droplets.cdn.private_key
@@ -934,6 +935,10 @@ properties:
   cc.reserved_private_domains:
     description: "File location of a list of reserved private domains (for file format, see https://publicsuffix.org/)"
     default: ~
+
+  cc.disable_private_domain_cross_space_context_path_route_sharing:
+    description: "Disallow route collisions over shared private domains when created in different spaces"
+    default: false
 
   cc.core_file_pattern:
     description: "Filename template for core dump files. Use an empty string if you don't want core files saved."
