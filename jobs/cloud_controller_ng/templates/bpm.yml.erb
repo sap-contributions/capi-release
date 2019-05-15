@@ -70,12 +70,18 @@ nginx_maintenance_config = {
   "ephemeral_disk" => true,
 }
 
+ccng_monit_http_healthcheck_config = {
+  "name" => "ccng_monit_http_healthcheck",
+  "executable" => "/var/vcap/jobs/cloud_controller_ng/bin/ccng_monit_http_healthcheck",
+ }
+
 config = {
   "processes" => [
     cloud_controller_ng_config,
     nginx_config,
     nginx_newrelic_plugin_config,
     nginx_maintenance_config,
+    ccng_monit_http_healthcheck_config,
   ]
 }
 
