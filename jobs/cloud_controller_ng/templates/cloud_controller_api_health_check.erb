@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# this script is ran by the route-registrar
-
 curl \
   --max-time <%= p('cc.api_health_check_timeout_per_retry') %> \
   --retry-max-time <%= p('cc.api_health_check_total_timeout') %> \
