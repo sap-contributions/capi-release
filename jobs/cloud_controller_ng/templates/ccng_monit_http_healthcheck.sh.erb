@@ -22,7 +22,6 @@
 
 RUN_DIR=/var/vcap/sys/run/cloud_controller_ng
 PIDFILE="${RUN_DIR}/ccng_monit_http_healthcheck.pid"
-CC_PIDFILE="${RUN_DIR}/cloud_controller_ng.pid"
 
 HOST=<%= p('cc.nginx.ip').empty? ? discover_external_ip : p('cc.nginx.ip') %>
 PORT=<%= p("cc.external_port") %>
@@ -33,15 +32,16 @@ pid_guard "${PIDFILE}" "Cloud Controller HTTP Healthcheck"
 
 echo $$ > "${PIDFILE}"
 
-# wait until cloud_controller_ng process is at least running
-while ! pid_is_running < ${CC_PIDFILE}; do
-  sleep 1;
+# block until an initial curl succeeds
+until curl -sS http://${HOST}:${PORT}/v2/info; do
+  sleep 1
 done
 
 # if we fail to curl it 5 times in a row across 50 seconds, die so monit will restart us
 while true; do
   set -e
   curl \
+    -sS \
     --max-time <%= p('cc.api_health_check_timeout_per_retry') %> \
     --retry 5 \
     --retry-delay 10 \

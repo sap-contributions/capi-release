@@ -14,8 +14,8 @@ check process cloud_controller_ng
 
 check process ccng_monit_http_healthcheck
     with pidfile /var/vcap/sys/run/bpm/cloud_controller_ng/ccng_monit_http_healthcheck.pid
-    start program "/var/vcap/jobs/bpm/bin/bpm start ccng_monit_http_healthcheck"
-    stop program "/var/vcap/jobs/bpm/bin/bpm stop ccng_monit_http_healthcheck"
+    start program "/var/vcap/jobs/bpm/bin/bpm start cloud_controller_ng -p ccng_monit_http_healthcheck"
+    stop program "/var/vcap/jobs/bpm/bin/bpm stop cloud_controller_ng -p ccng_monit_http_healthcheck"
     group vcap
 
 <% (1..(p("cc.jobs.local.number_of_workers"))).each do |index| %>
