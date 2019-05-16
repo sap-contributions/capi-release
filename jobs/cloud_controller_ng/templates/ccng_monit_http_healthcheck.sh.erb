@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 <%
   def discover_external_ip
     networks = spec.networks.marshal_dump
@@ -33,17 +35,18 @@ pid_guard "${PIDFILE}" "Cloud Controller HTTP Healthcheck"
 echo $$ > "${PIDFILE}"
 
 # block until an initial curl succeeds
-until curl -sS http://${HOST}:${PORT}/v2/info; do
+until curl -sS http://${HOST}:${PORT}/v2/info > /dev/null; do
   sleep 1
 done
 
 # if we fail to curl it 5 times in a row across 50 seconds, die so monit will restart us
+set -e
 while true; do
-  set -e
   curl \
-    -sS \
+    -s -S \
     --max-time <%= p('cc.api_health_check_timeout_per_retry') %> \
     --retry 5 \
     --retry-delay 10 \
-    http://${HOST}:${PORT}/v2/info
+    http://${HOST}:${PORT}/v2/info > /dev/null
+  sleep 10
 done
