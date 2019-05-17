@@ -7,6 +7,8 @@ cp -a nginx/newrelic_nginx_agent/* ${BOSH_INSTALL_TARGET}
 
 echo "Installing newrelic plugin dependencies"
 
+# Forcing an update to get BOSH to recompile this package
+
 pushd ${BOSH_INSTALL_TARGET}
   bosh_bundle_local --deployment
 popd
