@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-
-set -x
-
+set -e
 <%
   def discover_external_ip
     networks = spec.networks.marshal_dump
@@ -22,31 +20,27 @@ set -x
   end
 %>
 
-RUN_DIR=/var/vcap/sys/run/cloud_controller_ng
-PIDFILE="${RUN_DIR}/ccng_monit_http_healthcheck.pid"
+HOST="<%= p('cc.nginx.ip').empty? ? discover_external_ip : p('cc.nginx.ip') %>"
+PORT="<%= p("cc.external_port") %>"
+URL="http://${HOST}:${PORT}/v2/info"
 
-HOST=<%= p('cc.nginx.ip').empty? ? discover_external_ip : p('cc.nginx.ip') %>
-PORT=<%= p("cc.external_port") %>
+source /var/vcap/packages/capi_utils/monit_utils.sh
 
-source /var/vcap/packages/capi_utils/pid_utils.sh
+echo "Waiting for Cloud Controller to initially become healthy"
 
-pid_guard "${PIDFILE}" "Cloud Controller HTTP Healthcheck"
+wait_for_server_to_become_healthy "${URL}" "<%= p("cc.api_post_start_healthcheck_timeout_in_seconds") %>"
 
-echo $$ > "${PIDFILE}"
-
-# block until an initial curl succeeds
-until curl -sS http://${HOST}:${PORT}/v2/info > /dev/null; do
-  sleep 1
-done
+echo "Cloud Controller passed its initial http healthcheck"
 
 # if we fail to curl it 5 times in a row across 50 seconds, die so monit will restart us
 set -e
 while true; do
   curl \
-    -s -S \
+    -sS \
     --max-time <%= p('cc.api_health_check_timeout_per_retry') %> \
     --retry 5 \
     --retry-delay 10 \
-    http://${HOST}:${PORT}/v2/info > /dev/null
+    -A "ccng_monit_http_healthcheck" \
+    "${URL}" > /dev/null
   sleep 10
 done
