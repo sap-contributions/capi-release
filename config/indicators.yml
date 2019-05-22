@@ -1,0 +1,48 @@
+---
+apiVersion: v0
+
+product:
+  name: CAPI
+  version: 1.81.0
+
+metadata:
+  deployment: cf
+
+indicators:
+  - name: cc:vitals:cpu_load_avg
+    promql: vitals_cpu_load_avg{deployment="$deployment",source_id="cc"}
+    documentation:
+      title: CPU Load Average
+      description: CPU Load Average on CC-hosting VMs
+      recommendedResponse: |
+        1. Horizontally scale CC's host VMs
+        1. See if other procesess on those VMs are using a lot of CPU.
+
+  - name: cc:requests:outstanding
+    promql: requests_outstanding{deployment="$deployment",source_id="cc"}
+    documentation:
+      title: Requests Outstanding Per Cloud Controller
+      description: The number of requests in flight on each cloud controller
+
+  - name: cc:job_queue_length
+    promql: job_queue_length_total{deployment="$deployment",source_id="cc"}
+    documentation:
+      title: Job Queue Length
+      description: The number of requests in flight on each cloud controller
+
+  - name: cc:job_queue_growth
+    presentation:
+      chart_type: status
+      currentValue: true
+      frequency: 1h
+    promql: rate(job_queue_length_total{deployment="$deployment",source_id="cc"}[$step])
+    documentation:
+      title: Job Queue Length Growth
+      description: How quickly the CC's job queue is growing
+
+  - name: cc:diego_sync:duration
+    promql: cc_diego_sync_duration{deployment="$deployment",source_id="cc"}
+    documentation:
+      title: Diego sync duration
+      description: |
+        How long it takes for cloud_controller_clock to make sure Diego has all the LRPs that it should.
