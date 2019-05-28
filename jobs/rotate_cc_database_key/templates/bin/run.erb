@@ -15,13 +15,7 @@ case ${1:-} in
     ;;
 
   *)
-
-  <% if p('bpm.enabled') %>
-    /var/vcap/jobs/bpm/bin/bpm run rotate_cc_database_key \
-    -p rotate
-  <% else %>
-    rotate
-  <% end %>
+    /var/vcap/jobs/bpm/bin/bpm run rotate_cc_database_key -p rotate
   ;;
 
 esac

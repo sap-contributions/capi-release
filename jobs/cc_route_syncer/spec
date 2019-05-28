@@ -37,10 +37,6 @@ consumes:
   type: cloud_controller_internal
 
 properties:
-  bpm.enabled:
-    description: "Enable Bosh Process Manager"
-    default: true
-
   ccdb.databases:
     description: "Contains the name of the database on the database server"
   ccdb.roles:

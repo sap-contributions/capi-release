@@ -21,15 +21,10 @@ case ${1:-} in
     ;;
 
   *)
-
-    <% if p('bpm.enabled') %>
-      /var/vcap/jobs/bpm/bin/bpm run bbr-cloudcontrollerdb \
-        -p restore \
-        -v "${BBR_ARTIFACT_DIRECTORY%/}:writable" \
-        -e BBR_ARTIFACT_DIRECTORY="$BBR_ARTIFACT_DIRECTORY"
-    <% else %>
-      restore
-    <% end %>
+    /var/vcap/jobs/bpm/bin/bpm run bbr-cloudcontrollerdb \
+      -p restore \
+      -v "${BBR_ARTIFACT_DIRECTORY%/}:writable" \
+      -e BBR_ARTIFACT_DIRECTORY="$BBR_ARTIFACT_DIRECTORY"
     ;;
 
 esac
