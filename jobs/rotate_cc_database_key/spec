@@ -27,10 +27,6 @@ consumes:
   type: cloud_controller_internal
 
 properties:
-  bpm.enabled:
-    description: "Enable Bosh Process Manager"
-    default: true
-
   cc.logging_level:
     description: "If provided, overrides cc.logging_level from cloud_controller_internal link"
   cc.log_db_queries:

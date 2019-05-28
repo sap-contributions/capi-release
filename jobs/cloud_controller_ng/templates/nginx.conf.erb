@@ -1,12 +1,7 @@
-<% if p("bpm.enabled") %>
 daemon off;
 
 pid       /var/vcap/data/cloud_controller_ng/nginx.pid;
 error_log /var/vcap/sys/log/cloud_controller_ng/nginx-error.log <%= p("cc.nginx_error_log_level") %>;
-<% else %>
-pid       /var/vcap/sys/run/nginx_cc/nginx.pid;
-error_log <%= p("cc.nginx_error_log_destination") %> <%= p("cc.nginx_error_log_level") %>;
-<% end %>
 error_log syslog:server=127.0.0.1,severity=error,tag=vcap_nginx_error <%= p("cc.nginx_error_log_level") %>;
 
 worker_processes auto;
@@ -57,11 +52,7 @@ http {
   scgi_temp_path        /var/vcap/data/cloud_controller_ng/tmp/scgi_temp;
 
   upstream cloud_controller {
-    <% if p("bpm.enabled") %>
     server unix:/var/vcap/data/cloud_controller_ng/cloud_controller.sock;
-    <% else %>
-    server unix:/var/vcap/sys/run/cloud_controller_ng/cloud_controller.sock;
-    <% end %>
   }
 
   # This block ensures the endpoints it serves are handled by mutual TLS.

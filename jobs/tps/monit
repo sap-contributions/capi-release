@@ -1,14 +1,5 @@
-<% if p("bpm.enabled") %>
 check process tps_watcher
   with pidfile /var/vcap/sys/run/bpm/tps/watcher.pid
   start program "/var/vcap/jobs/bpm/bin/bpm start tps -p watcher"
   stop program "/var/vcap/jobs/bpm/bin/bpm stop tps -p watcher"
   group vcap
-<% else %>
-
-check process tps_watcher
-  with pidfile /var/vcap/sys/run/tps/tps_watcher.pid
-  start program "/var/vcap/jobs/tps/bin/tps_watcher_ctl start"
-  stop program "/var/vcap/jobs/tps/bin/tps_watcher_ctl stop"
-  group vcap
-<% end %>
