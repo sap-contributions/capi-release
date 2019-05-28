@@ -5,12 +5,7 @@ location /internal/v4/ {
 
 # proxy and log all CC traffic
 location / {
-  <% if p("bpm.enabled") %>
-    access_log  /var/vcap/sys/log/cloud_controller_ng/nginx-access.log main;
-  <% else %>
-    access_log                  <%= p("cc.nginx_access_log_destination") %>  main;
-  <% end %>
-
+  access_log  /var/vcap/sys/log/cloud_controller_ng/nginx-access.log main;
   access_log                  syslog:server=127.0.0.1,severity=info,tag=vcap_nginx_access main;
   proxy_buffering             off;
   proxy_set_header            Host $host;

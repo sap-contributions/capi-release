@@ -29,10 +29,6 @@ provides:
     - https_port
 
 properties:
-  bpm.enabled:
-    description: "Enable Bosh Process Manager"
-    default: true
-
   internal_hostname:
     description: "Hostname by which clients will communicate with the cc uploader"
     default: cc-uploader.service.cf.internal

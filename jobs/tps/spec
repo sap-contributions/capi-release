@@ -24,10 +24,6 @@ packages:
   - tps
 
 properties:
-  bpm.enabled:
-    description: "Enable Bosh Process Manager"
-    default: true
-
   diego.ssl.skip_cert_verify:
     description: "when connecting over https, ignore bad ssl certificates"
     default: false
