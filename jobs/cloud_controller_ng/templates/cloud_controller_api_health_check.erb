@@ -2,10 +2,20 @@
 
 # this script is ran by the route-registrar
 
+<% if p('temporary_disable_non_tls_endpoints')  %>
+PORT=<%= p("cc.public_tls.port") %>
+PROTOCOL="https"
+<% else  %>
+PORT=<%= p("cc.external_port") %>
+PROTOCOL="http"
+<% end  %>
+URL="${PROTOCOL}://localhost:${PORT}/v2/info"
+
 curl \
   --max-time <%= p('cc.api_health_check_timeout_per_retry') %> \
   --retry-max-time <%= p('cc.api_health_check_total_timeout') %> \
   --retry 100000 \
   --retry-delay 1 \
-  http://localhost:<%= p('cc.external_port') %>/v2/info
+  -k \
+  "${URL}"
 
