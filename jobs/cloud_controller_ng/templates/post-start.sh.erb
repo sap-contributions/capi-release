@@ -67,6 +67,13 @@ function main {
 
 main
 
-wait_for_server_to_become_healthy "http://<%= discover_external_ip %>:<%= p("cc.external_port") %>/v2/info" "<%= p("cc.api_post_start_healthcheck_timeout_in_seconds") %>"
+<% if p('temporary_disable_non_tls_endpoints')  %>
+PORT=<%= p("cc.public_tls.port") %>
+PROTOCOL="https"
+<% else  %>
+PORT=<%= p("cc.external_port") %>
+PROTOCOL="http"
+<% end  %>
+wait_for_server_to_become_healthy "${PROTOCOL}://<%= discover_external_ip %>:${PORT}/v2/info" "<%= p("cc.api_post_start_healthcheck_timeout_in_seconds") %>"
 
 exit 0
