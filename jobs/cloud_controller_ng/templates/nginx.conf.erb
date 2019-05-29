@@ -130,7 +130,7 @@ http {
   }
   <% end %>
 
-<% unless p('temporary_disable_non_tls_endpoints')  %>
+  <% unless p('temporary_disable_non_tls_endpoints')  %>
   # This block handles public endpoints over non-TLS secured HTTP
   # This is required for backwards compatibility during a rolling-deploy
   server {
@@ -150,5 +150,5 @@ http {
     include local_blobstore_downloads.conf;
     include nginx_external_endpoints.conf;
   }
+  <% end %>
 }
-<% end %>
