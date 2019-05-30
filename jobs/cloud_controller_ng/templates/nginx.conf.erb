@@ -113,7 +113,6 @@ http {
   }
 
   # This block handles public endpoints over TLS
-  <% if_p("cc.public_tls.ca_cert") do %>
   server {
   listen <%= p("cc.public_tls.port") %> ssl;
   include nginx_server_public_tls.conf;
@@ -128,7 +127,6 @@ http {
   include local_blobstore_downloads.conf;
   include nginx_external_endpoints.conf;
   }
-  <% end %>
 
   <% unless p('temporary_disable_non_tls_endpoints')  %>
   # This block handles public endpoints over non-TLS secured HTTP

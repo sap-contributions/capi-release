@@ -48,7 +48,6 @@ http {
   }
 
 # This block handles public endpoints over TLS
-<% if_p("cc.public_tls.ca_cert") do %>
   server {
     listen <%= p("cc.public_tls.port") %> ssl;
 
@@ -66,7 +65,6 @@ http {
       return 200 "API down for maintenance";
     }
   }
-<% end %>
 
   # This block handles public endpoints over non-TLS secured HTTP
   # This is required for backwards compatibility during a rolling-deploy
