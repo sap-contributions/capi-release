@@ -7,14 +7,15 @@ source /var/vcap/packages/capi_utils/syslog_utils.sh
 <% if p('release_level_backup') %>
   tee_output_to_sys_log "cloud_controller_ng.$(basename "$0")"
 
-  /var/vcap/jobs/bpm/bin/bpm stop cloud_controller_ng -p nginx_maintenance
-  wait_for_server_to_become_unavailable <%= "localhost:#{p("cc.external_port")}/v2/info" %> 60
+  if /var/vcap/jobs/bpm/bin/bpm list | grep nginx_maintenance | awk '{ if ($3=="stopped") exit 1 }';
+  then
+    /var/vcap/jobs/bpm/bin/bpm stop cloud_controller_ng -p nginx_maintenance
+    wait_for_server_to_become_unavailable <%= "localhost:#{p("cc.external_port")}/v2/info" %> 60
+  fi
 
   monit_start_job cloud_controller_ng
   wait_for_server_to_become_healthy <%= "localhost:#{p("cc.external_port")}/v2/info" %> 60
   sleep 30
-
-  rm /var/vcap/data/cloud_controller_ng/tmp/proxy_temp/bbr_maintenance
 
   <% (1..(p("cc.jobs.local.number_of_workers"))).each do |index| %>
   monit_start_job cloud_controller_worker_local_<%= index %>
