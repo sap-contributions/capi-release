@@ -10,6 +10,8 @@ source /var/vcap/packages/capi_utils/syslog_utils.sh
   <% (1..(p("cc.jobs.local.number_of_workers"))).each do |index| %>
   monit_unmonitor_job cloud_controller_worker_local_<%= index %>
   <% end %>
+
+  monit_unmonitor_job ccng_monit_http_healthcheck
   monit_unmonitor_job cloud_controller_ng
 
   drain_job cloud_controller_ng
@@ -18,6 +20,7 @@ source /var/vcap/packages/capi_utils/syslog_utils.sh
   monit_stop_job cloud_controller_worker_local_<%= index %>
   <% end %>
 
+  monit_stop_job ccng_monit_http_healthcheck
   monit_stop_job cloud_controller_ng
   wait_for_server_to_become_unavailable <%= "localhost:#{p("cc.external_port")}/" %> 60
 

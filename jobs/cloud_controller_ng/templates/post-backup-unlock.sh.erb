@@ -7,7 +7,7 @@ source /var/vcap/packages/capi_utils/syslog_utils.sh
 <% if p('release_level_backup') %>
   tee_output_to_sys_log "cloud_controller_ng.$(basename "$0")"
 
-  if /var/vcap/jobs/bpm/bin/bpm list | grep nginx_maintenance | awk '{ if ($3=="stopped") exit 1 }';
+  if /var/vcap/jobs/bpm/bin/bpm list |  grep nginx_maintenance | awk '{ print "nginx_maintenance is:", $3; if ($3=="stopped") {exit 1} }';
   then
     /var/vcap/jobs/bpm/bin/bpm stop cloud_controller_ng -p nginx_maintenance
     wait_for_server_to_become_unavailable <%= "localhost:#{p("cc.external_port")}/v2/info" %> 60
