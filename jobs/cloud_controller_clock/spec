@@ -27,6 +27,10 @@ templates:
   db_ca.crt.erb: config/certs/db_ca.crt
   credhub_ca.crt.erb: config/certs/credhub_ca.crt
 
+  opi_tls.crt.erb: config/certs/opi_tls.crt
+  opi_tls.key.erb: config/certs/opi_tls.key
+  opi_tls_ca.crt.erb: config/certs/opi_tls_ca.crt
+
 packages:
   - capi_utils
   - cloud_controller_ng
@@ -64,6 +68,12 @@ properties:
   cc.opi.url:
     description: "URL of the Eirini server"
     default: ""
+  cc.opi.client_cert:
+    description: "Client certificate for connecting to the OPI server"
+  cc.opi.client_key:
+    description: "Client key for connecting to the OPI server"
+  cc.opi.ca_cert:
+    description: "The ca cert of the OPI server"
 
   cc.external_port:
     description: "External Cloud Controller port"
