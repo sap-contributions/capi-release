@@ -59,22 +59,6 @@ properties:
   system_domain:
     description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
 
-  cc.opi.enabled:
-    description: "Set to true to enable running apps on Kubernetes, using Eirini"
-    default: false
-  cc.opi.opi_staging:
-    description: "Set to true to enable staging apps on Kubernetes, using Eirini"
-    default: false
-  cc.opi.url:
-    description: "URL of the Eirini server"
-    default: ""
-  cc.opi.client_cert:
-    description: "Client certificate for connecting to the OPI server"
-  cc.opi.client_key:
-    description: "Client key for connecting to the OPI server"
-  cc.opi.ca_cert:
-    description: "The ca cert of the OPI server"
-
   cc.external_port:
     description: "External Cloud Controller port"
     default: 9022

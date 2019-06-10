@@ -265,10 +265,10 @@ diego:
   pid_limit: <%= p("cc.diego.pid_limit") %>
 
 opi:
-  url: "<%= p("cc.opi.url") %>"
-  opi_staging: <%= p("cc.opi.opi_staging") %>
-  enabled: <%= p("cc.opi.enabled") %>
-<% if_p("cc.opi.client_cert", "cc.opi.client_key", "cc.opi.ca_cert") do %>
+  url: "<%= link("cloud_controller_internal").p("cc.opi.url") %>"
+  opi_staging: <%= link("cloud_controller_internal").p("cc.opi.opi_staging") %>
+  enabled: <%= link("cloud_controller_internal").p("cc.opi.enabled") %>
+<% link("cloud_controller_internal").if_p("cc.opi.client_cert", "cc.opi.client_key", "cc.opi.ca_cert") do %>
   ca_file: /var/vcap/jobs/cloud_controller_worker/config/certs/opi_tls_ca.crt
   client_cert_file: /var/vcap/jobs/cloud_controller_worker/config/certs/opi_tls.crt
   client_key_file: /var/vcap/jobs/cloud_controller_worker/config/certs/opi_tls.key
