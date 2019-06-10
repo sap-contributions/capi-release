@@ -169,6 +169,12 @@ provides:
   - cc.logging_max_retries
   - cc.max_labels_per_resource
   - cc.max_annotations_per_resource
+  - cc.opi.ca_cert
+  - cc.opi.client_cert
+  - cc.opi.client_key
+  - cc.opi.enabled
+  - cc.opi.opi_staging
+  - cc.opi.url
   - cc.packages.app_package_directory_key
   - cc.packages.blobstore_type
   - cc.packages.cdn.key_pair_id
