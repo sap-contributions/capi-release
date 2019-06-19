@@ -3,7 +3,7 @@
 # this script is ran by the route-registrar
 
 PORT=<%= p("cc.public_tls.port") %>
-URL="https://localhost:${PORT}/v2/info"
+URL="https://localhost:${PORT}/healthz"
 
 curl \
   --max-time <%= p('cc.api_health_check_timeout_per_retry') %> \

@@ -42,7 +42,7 @@ http {
     }
 
     ## healthcheck bypass here
-    location /v2/info {
+    location /healthz {
       return 200 "API down for maintenance";
     }
   }
@@ -61,7 +61,7 @@ http {
     }
 
     ## healthcheck bypass here
-    location /v2/info {
+    location /healthz {
       return 200 "API down for maintenance";
     }
   }
@@ -83,7 +83,7 @@ http {
     }
 
     ## healthcheck bypass here
-    location /v2/info {
+    location /healthz {
       return 200 "API down for maintenance";
     }
   }

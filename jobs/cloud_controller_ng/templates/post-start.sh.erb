@@ -68,6 +68,6 @@ function main {
 main
 
 PORT=<%= p("cc.public_tls.port") %>
-wait_for_server_to_become_healthy "https://<%= discover_external_ip %>:${PORT}/v2/info" "<%= p("cc.api_post_start_healthcheck_timeout_in_seconds") %>"
+wait_for_server_to_become_healthy "https://<%= discover_external_ip %>:${PORT}/healthz" "<%= p("cc.api_post_start_healthcheck_timeout_in_seconds") %>"
 
 exit 0

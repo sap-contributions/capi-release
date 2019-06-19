@@ -26,6 +26,6 @@ source /var/vcap/packages/capi_utils/syslog_utils.sh
   wait_for_server_to_become_unavailable <%= "localhost:#{p("cc.external_port")}/" %> 60
 
   /var/vcap/jobs/bpm/bin/bpm start cloud_controller_ng -p nginx_maintenance
-  wait_for_server_to_become_healthy <%= "localhost:#{p("cc.external_port")}/v2/info" %> 60
-  wait_for_server_to_become_healthy <%= "#{p("cc.external_protocol")}://#{p("cc.external_host")}.#{p("system_domain")}/v2/info" %> 60
+  wait_for_server_to_become_healthy <%= "localhost:#{p("cc.external_port")}/healthz" %> 60
+  wait_for_server_to_become_healthy <%= "#{p("cc.external_protocol")}://#{p("cc.external_host")}.#{p("system_domain")}/healthz" %> 60
 <% end %>

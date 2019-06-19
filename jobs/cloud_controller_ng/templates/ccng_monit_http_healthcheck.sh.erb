@@ -28,7 +28,7 @@ function log_failure {
 HOST=<%= p('cc.nginx.ip').empty? ? discover_external_ip : p('cc.nginx.ip') %>
 PORT=<%= p("cc.public_tls.port") %>
 PROTOCOL="https"
-URL="https://${HOST}:${PORT}/v2/info"
+URL="https://${HOST}:${PORT}/healthz"
 
 source /var/vcap/packages/capi_utils/monit_utils.sh
 
