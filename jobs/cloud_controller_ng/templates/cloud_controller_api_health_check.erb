@@ -5,6 +5,7 @@
 PORT=<%= p("cc.public_tls.port") %>
 URL="https://localhost:${PORT}/healthz"
 
+echo $(date --rfc-3339=ns) "cloud_controller_ng_health_check: route-registrar about to curl $URL"
 curl \
   --max-time <%= p('cc.api_health_check_timeout_per_retry') %> \
   --retry-max-time <%= p('cc.api_health_check_total_timeout') %> \
@@ -12,4 +13,9 @@ curl \
   --retry-delay 1 \
   -k \
   "${URL}"
+status=$?
+if [[ $status > 0 ]] ; then
+  echo $(date --rfc-3339=ns) "Failed to hit ${URL}"
+  exit $status
+fi
 
