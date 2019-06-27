@@ -30,6 +30,7 @@ module Bosh::Template::Test
           'db_logging_level' => 'bar2',
           'db_encryption_key' => 'bar3',
           'database_encryption' => {
+            'experimental_pbkdf2_hmac_iterations' => 123,
             'skip_validation' => false,
             'current_key_label' => 'encryption_key_0',
             'keys' => { 'encryption_key_0' => '((cc_db_encryption_key))' }

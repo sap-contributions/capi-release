@@ -8,6 +8,14 @@
 
     "#{delimiter}#{fixed_string}#{delimiter}"
   end
+
+  def extract_active_encryption_key_label(keys)
+    active_keys = keys.select { |key| key['active'] }
+    if active_keys.length == 1
+      return active_keys.first['label']
+    end
+    raise "Error for database_encryption: #{active_keys.length} were marked active. Only one key may be active"
+  end
 %>
 
 
@@ -55,10 +63,21 @@ db: &db
 
 db_encryption_key: <%= p("cc.db_encryption_key") %>
 
-<% if_p("cc.database_encryption") do %>
+<% if_p("cc.database_encryption") do | database_encryption |
+     current_key_label = database_encryption['current_key_label']
+     keys = database_encryption['keys']
+     if keys.is_a? Array
+       current_key_label = extract_active_encryption_key_label(keys)
+       keys = keys.reduce({}) do |result, key_hash|
+         result[key_hash['label']] = key_hash['encryption_key']
+         result
+       end
+   end
+%>
+
 database_encryption:
-  keys: <%= p("cc.database_encryption.keys", {}).to_json %>
-  current_key_label: <%= p("cc.database_encryption.current_key_label").inspect %>
+  keys: <%= keys.to_json %>
+  current_key_label: <%= current_key_label.inspect %>
   pbkdf2_hmac_iterations: <%= link("cloud_controller_internal").p("cc.database_encryption.experimental_pbkdf2_hmac_iterations") %>
 <% end %>
 
