@@ -33,14 +33,6 @@
       raise "Error for database_encryption: 'current_key_label' set to '#{current_key_label}', but not present in 'keys' map."
     end
   end
-
-  def extract_active_encryption_key_label(keys)
-    active_keys = keys.select { |key| key['active'] }
-    if active_keys.length == 1
-      return active_keys.first['label']
-    end
-    raise "Error for database_encryption: #{active_keys.length} were marked active. Only one key may be active"
-  end
 %>
 ---
 #Actually NGX host and port
@@ -337,16 +329,8 @@ db_encryption_key: <%= p("cc.db_encryption_key") %>
 <% if_p("cc.database_encryption") do | database_encryption |
      current_key_label = database_encryption['current_key_label']
      keys = database_encryption['keys']
-     if keys.is_a? Array
-       current_key_label = extract_active_encryption_key_label(keys)
-       keys = keys.reduce({}) do |result, key_hash|
-         result[key_hash['label']] = key_hash['encryption_key']
-         result
-       end
-     end
-     validate_database_encryption(current_key_label, keys) unless database_encryption['skip_validation']
-%>
 
+     validate_database_encryption(current_key_label, keys) unless database_encryption['skip_validation'] %>
 database_encryption:
   keys: <%= keys.to_json %>
   current_key_label: <%= current_key_label.inspect %>
@@ -358,6 +342,7 @@ disable_custom_buildpacks: <%= p("cc.disable_custom_buildpacks") %>
 broker_client_timeout_seconds: <%= p("cc.broker_client_timeout_seconds") %>
 broker_client_default_async_poll_interval_seconds: <%= p('cc.broker_client_default_async_poll_interval_seconds') %>
 broker_client_max_async_poll_duration_minutes: <%= p('cc.broker_client_max_async_poll_duration_minutes') %>
+
 renderer:
   max_results_per_page: <%= p("cc.renderer.max_results_per_page") %>
   default_results_per_page: <%= p("cc.renderer.default_results_per_page") %>
