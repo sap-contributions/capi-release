@@ -10,6 +10,22 @@
 
     "#{delimiter}#{fixed_string}#{delimiter}"
   end
+
+  def validate_database_encryption(current_key_label, keys)
+    return if current_key_label.empty? && keys.empty?
+
+    if keys.none? { | label, _ | label == current_key_label }
+      raise "Error for database_encryption: 'current_key_label' set to '#{current_key_label}', but not present in 'keys' map."
+    end
+  end
+
+  def extract_active_encryption_key_label(keys)
+    active_keys = keys.select { |key| key['active'] }
+    if active_keys.length == 1
+      return active_keys.first['label']
+    end
+    raise "Error for database_encryption: #{active_keys.length} were marked active. Only one key may be active"
+  end
 %>
 ---
 pid_filename: /var/vcap/sys/run/rotate_cc_database_key/rotate_cc_database_key.pid
@@ -55,11 +71,31 @@ db: &db
   ca_cert_path: '/var/vcap/jobs/rotate_cc_database_key/config/certs/db_ca.crt'
 <% end %>
 
+
 db_encryption_key: <%= link("cloud_controller_internal").p("cc.db_encryption_key") %>
 
-<% link("cloud_controller_internal").if_p("cc.database_encryption") do %>
+<% link("cloud_controller_internal").if_p("cc.database_encryption") do | database_encryption |
+   current_key_label = database_encryption['current_key_label']
+   keys = database_encryption['keys']
+   if keys.is_a? Array
+     current_key_label = extract_active_encryption_key_label(keys)
+     keys = keys.reduce({}) do |result, key_hash|
+       result[key_hash['label']] = key_hash['encryption_key']
+       result
+     end
+   end
+   validate_database_encryption(current_key_label, keys) unless database_encryption['skip_validation']
+%>
 database_encryption:
+<<<<<<< HEAD
   keys: <%= link("cloud_controller_internal").p("cc.database_encryption.keys", {}).to_json %>
   current_key_label: <%= link("cloud_controller_internal").p("cc.database_encryption.current_key_label").inspect %>
   pbkdf2_hmac_iterations: <%= link("cloud_controller_internal").p("cc.database_encryption.experimental_pbkdf2_hmac_iterations") %>
+||||||| parent of 29283b1... Change templating to allow consumption of array encryption key
+  keys: <%= link("cloud_controller_internal").p("cc.database_encryption.keys", {}).to_json %>
+  current_key_label: <%= link("cloud_controller_internal").p("cc.database_encryption.current_key_label").inspect %>
+=======
+  keys: <%= keys.to_json %>
+  current_key_label: <%= current_key_label.inspect %>
+>>>>>>> 29283b1... Change templating to allow consumption of array encryption key
 <% end %>
