@@ -87,15 +87,7 @@ db_encryption_key: <%= link("cloud_controller_internal").p("cc.db_encryption_key
    validate_database_encryption(current_key_label, keys) unless database_encryption['skip_validation']
 %>
 database_encryption:
-<<<<<<< HEAD
-  keys: <%= link("cloud_controller_internal").p("cc.database_encryption.keys", {}).to_json %>
-  current_key_label: <%= link("cloud_controller_internal").p("cc.database_encryption.current_key_label").inspect %>
   pbkdf2_hmac_iterations: <%= link("cloud_controller_internal").p("cc.database_encryption.experimental_pbkdf2_hmac_iterations") %>
-||||||| parent of 29283b1... Change templating to allow consumption of array encryption key
-  keys: <%= link("cloud_controller_internal").p("cc.database_encryption.keys", {}).to_json %>
-  current_key_label: <%= link("cloud_controller_internal").p("cc.database_encryption.current_key_label").inspect %>
-=======
   keys: <%= keys.to_json %>
   current_key_label: <%= current_key_label.inspect %>
->>>>>>> 29283b1... Change templating to allow consumption of array encryption key
 <% end %>
