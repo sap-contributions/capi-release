@@ -50,6 +50,9 @@ consumes:
 - name: cloud_controller_internal
   type: cloud_controller_internal
   optional: true
+- name: file_server
+  type: file_server
+  optional: true
 
 properties:
   ssl.skip_cert_verify:
