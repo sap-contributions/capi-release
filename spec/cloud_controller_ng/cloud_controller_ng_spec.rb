@@ -324,6 +324,33 @@ module Bosh::Template::Test
             })
           end
         end
+
+        context 'when the database_encryption.keys block is an empty array' do
+          before do
+            merged_manifest_properties['cc']['database_encryption']['keys'] = []
+          end
+
+          context 'when the database_encryption.current_key_label is set' do
+            it 'converts the array to an empty hash' do
+              template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+              expect(template_hash['database_encryption']['keys']).to eq({})
+              expect(template_hash['database_encryption']['current_key_label']).to be_empty
+            end
+          end
+
+          context 'when the database_encryption.current_key_label is NOT set' do
+            before do
+              merged_manifest_properties['cc']['database_encryption'].delete('current_key_label')
+            end
+
+            it 'converts the array to an empty hash' do
+              template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+              expect(template_hash['database_encryption']['keys']).to eq({})
+              expect(template_hash['database_encryption']['current_key_label']).to be_empty
+            end
+          end
+        end
+
       end
     end
   end

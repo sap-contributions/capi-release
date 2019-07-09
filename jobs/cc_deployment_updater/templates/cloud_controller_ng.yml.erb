@@ -10,6 +10,7 @@
   end
 
   def extract_active_encryption_key_label(keys)
+    return '' if keys.empty?
     active_keys = keys.select { |key| key['active'] }
     if active_keys.length == 1
       return active_keys.first['label']
@@ -71,15 +72,16 @@ db: &db
 db_encryption_key: <%= p("cc.db_encryption_key") %>
 
 <% if_p("cc.database_encryption") do | database_encryption |
-     current_key_label = database_encryption['current_key_label']
-     keys = database_encryption['keys']
-     if keys.is_a? Array
-       current_key_label = extract_active_encryption_key_label(keys)
-       keys = keys.reduce({}) do |result, key_hash|
-         result[key_hash['label']] = key_hash['encryption_key']
-         result
-       end
-     end
+    keys = database_encryption['keys']
+    if keys.is_a?(Array)
+      current_key_label = extract_active_encryption_key_label(keys)
+      keys = keys.reduce({}) do |result, key_hash|
+       result[key_hash['label']] = key_hash['encryption_key']
+       result
+      end
+    elsif keys.is_a?(Hash)
+      current_key_label = database_encryption['current_key_label']
+    end
 %>
 
 database_encryption:
