@@ -51,6 +51,9 @@ consumes:
   optional: true
 - name: cloud_controller_internal
   type: cloud_controller_internal
+- name: file_server
+  type: file_server
+  optional: true
 
 properties:
   ccdb.databases:

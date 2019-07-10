@@ -429,6 +429,13 @@ if_link("cc_uploader") do |cc_uploader|
 end.else do
   cc_uploader_url = p("cc.diego.cc_uploader_https_url")
 end
+
+file_server_url = p("cc.diego.file_server_url")
+if_link("file_server") do |file_server|
+  if file_server.p("https_server_enabled")
+    file_server_url = file_server.p("https_url")
+  end
+end
 %>
 
 diego:
@@ -442,7 +449,7 @@ diego:
     receive_timeout: <%= p("cc.diego.bbs.receive_timeout") %>
   cc_uploader_url: <%= cc_uploader_url %>
   docker_staging_stack: <%= p("cc.diego.docker_staging_stack") %>
-  file_server_url: <%= p("cc.diego.file_server_url") %>
+  file_server_url: <%= file_server_url %>
   insecure_docker_registry_list: <%= p("cc.diego.insecure_docker_registry_list") %>
   lifecycle_bundles: <%= p("cc.diego.lifecycle_bundles").to_json %>
   droplet_destinations: <%= p("cc.diego.droplet_destinations").to_json %>

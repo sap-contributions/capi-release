@@ -29,6 +29,10 @@ module Bosh::Template::Test
                   'private_endpoint' => 'https://blobstore.service.cf.internal:4443',
                   'public_endpoint' => 'https://blobstore.brook-sentry.capi.land',
                   'username' => 'blobstore-user' } },
+            'diego' =>
+            {
+              'file_server_url' => "http://somewhere",
+            },
             'bulk_api_password' => '((cc_bulk_api_password))',
             'database_encryption' =>
               { 'skip_validation' => false,
@@ -351,6 +355,35 @@ module Bosh::Template::Test
           end
         end
 
+      end
+
+      context 'when the file_server link is present' do
+        let(:links) { [db_link,file_server_link] }
+
+        context 'and https_server_enabled is true' do
+          let(:file_server_link) { Link.new(name: 'file_server', properties: { 'https_server_enabled' => true, 'https_url' => 'https://somewhere-else' }) }
+
+          it 'uses the value of the link' do
+            template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+            expect(template_hash['diego']['file_server_url']).to eq('https://somewhere-else')
+          end
+        end
+
+        context 'and https_server_enabled is false' do
+          let(:file_server_link) { Link.new(name: 'file_server', properties: { 'https_server_enabled' => false, 'https_url' => 'https://somewhere-else' }) }
+
+          it 'uses the value of the property' do
+            template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+            expect(template_hash['diego']['file_server_url']).to eq('http://somewhere')
+          end
+        end
+      end
+
+      context 'when the file_server link is not present' do
+        it 'uses the value of the property' do
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+          expect(template_hash['diego']['file_server_url']).to eq('http://somewhere')
+        end
       end
     end
   end

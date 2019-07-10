@@ -101,10 +101,19 @@ copilot:
   client_chain_file: /var/vcap/jobs/cc_deployment_updater/config/certs/copilot.crt
 <% end %>
 
+<%
+file_server_url = p("cc.diego.file_server_url")
+if_link("file_server") do |file_server|
+  if file_server.p("https_server_enabled")
+    file_server_url = file_server.p("https_url")
+  end
+end
+%>
+
 diego:
   temporary_oci_buildpack_mode: <%= p("cc.diego.temporary_oci_buildpack_mode", nil) %>
   enable_declarative_asset_downloads: <%= p("cc.diego.enable_declarative_asset_downloads") %>
-  file_server_url: <%= p("cc.diego.file_server_url") %>
+  file_server_url: <%= file_server_url %>
   cc_uploader_url: <%= p("cc.diego.cc_uploader_url") %>
   use_privileged_containers_for_running: <%= p("cc.diego.use_privileged_containers_for_running") %>
   use_privileged_containers_for_staging: <%= p("cc.diego.use_privileged_containers_for_staging") %>

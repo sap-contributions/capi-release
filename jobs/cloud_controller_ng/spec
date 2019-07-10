@@ -245,6 +245,9 @@ consumes:
 - name: log-cache
   type: log-cache
   optional: true
+- name: file_server
+  type: file_server
+  optional: true
 
 properties:
   ssl.skip_cert_verify:
