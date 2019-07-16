@@ -10,6 +10,7 @@ module Bosh::Template::Test
     let(:release_path) { File.join(File.dirname(__FILE__), '../..') }
     let(:release) { ReleaseDir.new(release_path) }
     let(:job) { release.job('cc_route_syncer') }
+    let(:temporary_internal_domains) { [] }
     let(:merged_manifest_properties) do
       {
         'ccdb' =>
@@ -30,7 +31,12 @@ module Bosh::Template::Test
         'cc' =>
           {'database_encryption' =>
            {'experimental_pbkdf2_hmac_iterations' => 'wow'}
-          }
+          },
+        'copilot' => {
+            'enabled' => true,
+            'host' => 'neopets.com',
+            'temporary_istio_domains' => temporary_internal_domains
+        }
       }
     end
     let(:internal_link) do
@@ -42,7 +48,16 @@ module Bosh::Template::Test
                properties: {'cc' => {'internal_route_vip_range' => '127.128.0.0/9'}})
     end
 
-    let(:links) { [db_link, internal_link, cc_networking_link] }
+    let(:copilot_link) do
+      Link.new(
+          name: 'cloud_controller_to_copilot_conn',
+          properties: {
+              'listen_port_for_cloud_controller' => 12345
+          }
+      )
+    end
+
+    let(:links) { [db_link, internal_link, cc_networking_link, copilot_link] }
 
     describe 'config/cloud_controller_ng.yml' do
       let(:template) { job.template('config/cloud_controller_ng.yml') }
@@ -76,6 +91,29 @@ module Bosh::Template::Test
             cc_networking_link.properties['cc']['internal_route_vip_range'] = '10.16.255.0/24'
             rendered_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
             expect(rendered_hash['internal_route_vip_range']).to eq('10.16.255.0/24')
+          end
+        end
+      end
+
+      describe 'temporary_istio_domains' do
+        context 'when an entry is an array of domains' do
+          let(:temporary_internal_domains) do
+            [
+                'brook-sentry.capi.land',
+                [
+                    'mesh.apps.internal',
+                    'mesh.apps.other.internal'
+                ]
+            ]
+          end
+
+          it 'flattens the array of domains' do
+            template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+            expect(template_hash['copilot']['temporary_istio_domains']).to eq([
+                                                                                  'brook-sentry.capi.land',
+                                                                                  'mesh.apps.internal',
+                                                                                  'mesh.apps.other.internal'
+                                                                              ])
           end
         end
       end

@@ -477,7 +477,7 @@ copilot:
   enabled: <%= p("copilot.enabled") %>
   host: <%= p("copilot.host") %>
   port: <%= copilot_conn.p("listen_port_for_cloud_controller") %>
-  temporary_istio_domains: <%= p("copilot.temporary_istio_domains") %>
+  temporary_istio_domains: <%= p("copilot.temporary_istio_domains").flatten %>
   client_ca_file: /var/vcap/jobs/cloud_controller_ng/config/certs/copilot_ca.crt
   client_key_file: /var/vcap/jobs/cloud_controller_ng/config/certs/copilot.key
   client_chain_file: /var/vcap/jobs/cloud_controller_ng/config/certs/copilot.crt
