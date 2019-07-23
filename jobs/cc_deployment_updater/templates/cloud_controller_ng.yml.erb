@@ -146,6 +146,7 @@ staging:
     password: <%= yaml_escape(link("cloud_controller_internal").p("cc.staging_upload_password")) %>
 
 default_health_check_timeout: <%= link("cloud_controller_internal").p("cc.default_health_check_timeout") %>
+maximum_health_check_timeout: <%= link("cloud_controller_internal").p("cc.maximum_health_check_timeout") %>
 
 stacks_file: /var/vcap/jobs/cloud_controller_ng/config/stacks.yml
 
