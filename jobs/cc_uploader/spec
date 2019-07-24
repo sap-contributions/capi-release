@@ -63,9 +63,6 @@ properties:
   capi.cc_uploader.dropsonde_port:
     description: "local metron agent's port"
     default: 3457
-  capi.cc_uploader.consul_agent_port:
-    description: "local consul agent's port"
-    default: 8500
   capi.cc_uploader.cc.ca_cert:
     description: "PEM-encoded CA certificate"
   capi.cc_uploader.cc.client_cert:

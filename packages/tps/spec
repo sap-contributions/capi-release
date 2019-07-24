@@ -29,7 +29,6 @@ files:
   - code.cloudfoundry.org/locket/models/*.go # gosub
   - code.cloudfoundry.org/runtimeschema/cc_messages/*.go # gosub
   - code.cloudfoundry.org/tlsconfig/*.go # gosub
-  - code.cloudfoundry.org/tps/*.go # gosub
   - code.cloudfoundry.org/tps/cc_client/*.go # gosub
   - code.cloudfoundry.org/tps/cmd/tps-watcher/*.go # gosub
   - code.cloudfoundry.org/tps/config/*.go # gosub

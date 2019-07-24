@@ -14,7 +14,6 @@
 
   config[:listen_addr] = "#{p("capi.cc_uploader.bind_addr")}:#{p("http_port")}"
   config[:debug_server_config] = { debug_address: "#{p("capi.cc_uploader.debug_bind_addr")}:#{p("capi.cc_uploader.debug_port")}" }
-  config[:consul_cluster] = "http://127.0.0.1:#{p("capi.cc_uploader.consul_agent_port")}"
 
   config[:cc_ca_cert] = "#{conf_dir}/certs/cc/ca.crt"
   config[:cc_client_cert] = "#{conf_dir}/certs/cc/client.crt"

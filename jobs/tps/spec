@@ -30,9 +30,6 @@ properties:
   capi.tps.dropsonde_port:
     description: "local metron agent's port"
     default: 3457
-  capi.tps.consul_agent_port:
-    description: "local consul agent's port"
-    default: 8500
   capi.tps.max_in_flight_requests:
     description: "Maximum number of requests to handle at once."
     default: 200
@@ -82,9 +79,6 @@ properties:
   capi.tps.watcher.locket.api_location:
     description: "Hostname and port of the Locket server"
     default: ""
-  capi.tps.watcher.skip_consul_lock:
-    description: "Determines whether to skip obtaining a lock from Consul"
-    default: false
 
   release_level_backup:
     default: true
