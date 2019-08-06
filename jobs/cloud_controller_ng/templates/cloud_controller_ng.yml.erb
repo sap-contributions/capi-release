@@ -136,6 +136,8 @@ logging:
   level: "<%= p("cc.logging_level") %>"
   max_retries: <%= p("cc.logging_max_retries") %>
 
+telemetry_log_path: /var/vcap/sys/log/cloud_controller_ng/telemetry.log
+
 logcache:
   host: <%= p("cc.logcache.host") %>
   port: <%= p("cc.logcache.port") %>
