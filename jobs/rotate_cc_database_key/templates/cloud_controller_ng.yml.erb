@@ -53,8 +53,7 @@ logging:
   end
 %>
 db: &db
-  database: "<%= link("cloud_controller_db").p("ccdb.db_scheme") == "mysql" ? "mysql2" : link("cloud_controller_db").p("ccdb.db_scheme") %>://<%= db_role["name"] %>:<%= CGI.escape(db_role["password"]) %>@<%= database_address %>:<%= link("cloud_controller_db").p("ccdb.port") %>/<%= db["name"] %>"
-  database_parts:
+  database:
     adapter: <%= link("cloud_controller_db").p("ccdb.db_scheme") == "mysql" ? "mysql2" : link("cloud_controller_db").p("ccdb.db_scheme") %>
     host: <%= database_address %>
     port: <%= link("cloud_controller_db").p("ccdb.port") %>
