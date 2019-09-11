@@ -155,6 +155,9 @@ loggregator:
 log_stream:
   url: https://log-stream.<%= p("system_domain") %>
 
+log_cache:
+  url: https://log-cache.<%= p("system_domain") %>
+
 doppler:
   url: ws<%= "s" if p("doppler.use_ssl") %>://doppler.<%= p("system_domain") %>:<%= p("doppler.port") %>
 
