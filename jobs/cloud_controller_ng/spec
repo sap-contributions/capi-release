@@ -1128,6 +1128,9 @@ properties:
   copilot.host:
     description: "The FQDN to reach CF Copilot"
     default: copilot.service.cf.internal
+  copilot.port:
+    description: "The port that CF Copilot is listening on"
+    default: 8080
   copilot.client_ca_file:
     description: "PEM-encoded CA cert used to sign CF Copilot's server cert"
   copilot.client_key_file:
