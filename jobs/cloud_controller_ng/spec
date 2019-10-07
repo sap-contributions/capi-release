@@ -214,6 +214,7 @@ provides:
   - cc.system_hostnames
   - cc.tls_port
   - cc.uaa.client_timeout
+  - cc.internal_route_vip_range
   - cc.volume_services_enabled
   - copilot.client_ca_file
   - copilot.client_chain_file
