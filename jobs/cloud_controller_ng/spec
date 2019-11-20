@@ -1148,13 +1148,9 @@ properties:
 
   cc.kubernetes.host_url:
     description: "Kubernetes master API URL"
-    default: ""
   cc.kubernetes.service_account.name:
     description: "The Kubernetes service account name"
-    default: ""
   cc.kubernetes.service_account.token:
     description: "The Kubernetes service account token"
-    default: ""
   cc.kubernetes.ca:
     description: "The CA cert for connecting to the master"
-    default: ""
