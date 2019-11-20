@@ -501,3 +501,14 @@ max_annotations_per_resource: <%= p("cc.max_annotations_per_resource") %>
 internal_route_vip_range: <%= internal_vip_range %>
 
 threadpool_size: <%= p("cc.experimental.thin_server.thread_pool_size") %>
+
+<% if_p("cc.kubernetes.host_url") do %>
+kubernetes:
+  host_url: <%= p("cc.kubernetes.host_url") %>
+
+  service_account:
+    name: <%= p("cc.kubernetes.service_account.name") %>
+    token: <%= p("cc.kubernetes.service_account.token") %>
+
+  ca_file: /var/vcap/jobs/cloud_controller_ng/config/certs/kubernetes_ca.crt
+<% end %>

@@ -29,6 +29,7 @@ templates:
   logcache_tls.crt.erb: config/certs/logcache_tls.crt
   logcache_tls.key.erb: config/certs/logcache_tls.key
   logcache_tls_ca.crt.erb: config/certs/logcache_tls_ca.crt
+  kubernetes_ca.crt.erb: config/certs/kubernetes_ca.crt
   nginx_external_endpoints.conf.erb: config/nginx_external_endpoints.conf
   migrate_db.sh.erb: bin/migrate_db
   mime.types: config/mime.types
@@ -1144,3 +1145,12 @@ properties:
   cc.experimental.thin_server.thread_pool_size:
     description: "How many threads a single cloud controller instance's thin server will attempt to use. Alter at your own peril."
     default: 20 # inherited from default in Thin/EventMachine
+
+  cc.kubernetes.host_url:
+    description: "Kubernetes master API URL"
+  cc.kubernetes.service_account.name:
+    description: "The Kubernetes service account name"
+  cc.kubernetes.service_account.token:
+    description: "The Kubernetes service account token"
+  cc.kubernetes.ca:
+    description: "The CA cert for connecting to the master"
