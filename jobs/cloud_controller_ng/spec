@@ -226,6 +226,7 @@ provides:
   - credhub_api.ca_cert
   - credhub_api.hostname
   - release_level_backup
+  - router.route_services_secret
   - routing_api.enabled
   - ssl.skip_cert_verify
   - system_domain
