@@ -46,7 +46,7 @@ nginx/pcre-8.42.tar.gz:
   size: 2081413
   object_id: e464286d-99cc-4dd8-74c5-daab11a68340
   sha: sha256:69acbc2fbdefb955d42a4c606dfde800c2885711d2979e356c0636efde9ec3b5
-postgres/postgresql-9.6.8.tar.gz:
-  size: 25580796
-  object_id: 2840f9a9-8e64-4dca-59e2-dd53bb7bbc62
-  sha: sha256:7a87d98cb34bbb14f10fa572730e61f75cebc438edf7af46ce4a553d994e9573
+postgres/postgresql-11.5.tar.gz:
+  size: 25940612
+  object_id: 45bf0737-2bdf-4a54-5665-24715d014876
+  sha: sha256:f639af0f8c3f1e470e41c8108cbdaea5836b2738cadd422135aa2a0febc8ae78
