@@ -239,7 +239,6 @@ consumes:
 - name: cc_uploader
   type: cc_uploader
   optional: true
-  optional: true
 - name: credhub
   type: credhub
   optional: true
