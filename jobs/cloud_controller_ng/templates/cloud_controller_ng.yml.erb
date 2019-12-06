@@ -511,4 +511,11 @@ kubernetes:
     token: <%= p("cc.kubernetes.service_account.token") %>
 
   ca_file: /var/vcap/jobs/cloud_controller_ng/config/certs/kubernetes_ca.crt
+
+  <% if_p("cc.kubernetes.kpack.builder_namespace") do %>
+  kpack:
+    builder_namespace: <%= p("cc.kubernetes.kpack.builder_namespace") %>
+    registry_service_account_name: <%= p("cc.kubernetes.kpack.registry_service_account_name") %>
+    registry_tag_base: <%= p("cc.kubernetes.kpack.registry_tag_base") %>
+  <% end %>
 <% end %>
