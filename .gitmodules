@@ -147,4 +147,7 @@
 	url = https://go.googlesource.com/sys
 [submodule "src/code.cloudfoundry.org/tlsconfig"]
 	path = src/code.cloudfoundry.org/tlsconfig
-	url = https://github.com/cloudfoundry/tlsconfig.git
+	url = https://github.com/cloudfoundry/tlsconfig
+[submodule "src/github.com/pkg/errors"]
+	path = src/github.com/pkg/errors
+	url = https://github.com/pkg/errors
