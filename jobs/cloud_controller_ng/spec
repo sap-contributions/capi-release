@@ -1154,3 +1154,9 @@ properties:
     description: "The Kubernetes service account token"
   cc.kubernetes.ca:
     description: "The CA cert for connecting to the master"
+  cc.kubernetes.kpack.builder_namespace:
+    description: "The namespace where kpack images and builds will be created"
+  cc.kubernetes.kpack.registry_service_account_name:
+    description: "The name of the kubernetes ServiceAccount that has the credentials to upload to the registry"
+  cc.kubernetes.kpack.registry_tag_base:
+    description: "The first part of the registry tag where built images will be uploaded"
