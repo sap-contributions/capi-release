@@ -207,6 +207,9 @@ uaa:
   <% if_p("uaa.cc.token_secret") do |token_secret| %>
   symmetric_secret: "<%= token_secret %>"
   <% end %>
+  <% if_p("uaa.cc.token_secret2") do |token_secret2| %>
+  symmetric_secret2: "<%= token_secret2 %>"
+  <% end %>
 
 <% if p("routing_api.enabled") %>
 routing_api:
