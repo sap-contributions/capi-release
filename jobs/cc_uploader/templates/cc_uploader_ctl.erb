@@ -22,7 +22,7 @@ case $1 in
     echo $$ > $PIDFILE
 
     if running_in_container; then
-        echo "Not setting /proc/sys/net/ipv4 parameters, since I'm running inside a linux container"
+        echo "Not setting /proc/sys/net/ipv4 parameters, since I'm running inside a Linux container"
     else
         # TCP_FIN_TIMEOUT
         # This setting determines the time that must elapse before TCP/IP can release a closed connection and reuse

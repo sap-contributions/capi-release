@@ -375,7 +375,7 @@ properties:
   uaa.port:
     description: "The port used by UAA for non-ssl connections"
   cc.uaa.internal_url:
-    description: "The internal url used by UAA"
+    description: "The internal URL used by UAA"
     default: "uaa.service.cf.internal"
 
   metron_endpoint.host:
@@ -457,10 +457,10 @@ properties:
     description: "Enable integration of the bits-service incubator (experimental)"
     default: false
   cc.bits_service.public_endpoint:
-    description: "Public url for the bits-service service"
+    description: "Public URL for the bits-service service"
     default: ""
   cc.bits_service.private_endpoint:
-    description: "Private url for the bits-service service"
+    description: "Private URL for the bits-service service"
     default: ""
   cc.bits_service.username:
     description: "Username for the bits-service"

@@ -109,14 +109,14 @@ function validate_encryption_keys {
 function start_bosh_dns_or_consul {
   if [ -f /var/vcap/jobs/bosh-dns/bin/is-system-resolver ]; then
     if (/var/vcap/jobs/bosh-dns/bin/is-system-resolver); then
-      echo "waiting for bosh_dns"
+      echo "Waiting for bosh_dns"
       /var/vcap/jobs/bosh-dns/bin/wait
     else
-      echo "bosh dns is not resolver, using consul"
+      echo "Bosh DNS is not resolver, using Consul"
       start_consul_agent
     fi
   else
-    echo "bosh dns is-system-resolver script not present, using consul"
+    echo "Bosh DNS is-system-resolver script not present, using Consul"
     start_consul_agent
   fi
 }

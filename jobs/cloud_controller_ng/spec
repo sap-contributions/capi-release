@@ -319,7 +319,7 @@ properties:
     description: "Custom attribute keys and values for /v2/info endpoint"
 
   cc.nginx.ip:
-    description: "IP for nginx"
+    description: "IP address for nginx"
     default: ""
   cc.external_port:
     description: "External Cloud Controller port"
@@ -339,7 +339,7 @@ properties:
     description: "The protocol used to access the CC API from an external entity"
   cc.external_host:
     default: "api"
-    description: "Host part of the cloud_controller api URI, will be joined with value of 'domain'"
+    description: "Host part of the cloud_controller API URI, will be joined with value of 'domain'"
 
   cc.api_post_start_healthcheck_timeout_in_seconds:
     default: 60
@@ -701,7 +701,7 @@ properties:
     description: "The value, in seconds, used for all timeout values when communicating with UAA"
     default: 60
   cc.uaa.internal_url:
-    description: "The internal url used by UAA"
+    description: "The internal URL used by UAA"
     default: "uaa.service.cf.internal"
 
   login.protocol:
@@ -795,7 +795,7 @@ properties:
 
   cc.newrelic.license_key:
     default: ~
-    description: "The api key for NewRelic"
+    description: "The API key for NewRelic"
   cc.newrelic.environment_name:
     default: "development"
     description: "The environment name used by NewRelic"
@@ -869,10 +869,10 @@ properties:
     default: 3750
 
   dea_next.staging_memory_limit_mb:
-    description: "Memory limit in mb for staging tasks"
+    description: "Memory limit in MB for staging tasks"
     default: 1024
   dea_next.staging_disk_limit_mb:
-    description: "Disk limit in mb for staging tasks"
+    description: "Disk limit in MB for staging tasks"
     default: 4096
   cc.staging_file_descriptor_limit:
     description: "File descriptor limit for staging tasks"
@@ -978,10 +978,10 @@ properties:
     description: "Enable integration of the bits-service incubator (experimental)"
     default: false
   cc.bits_service.public_endpoint:
-    description: "Public url for the bits-service service"
+    description: "Public URL for the bits-service service"
     default: ""
   cc.bits_service.private_endpoint:
-    description: "Private url for the bits-service service"
+    description: "Private URL for the bits-service service"
     default: ""
   cc.bits_service.username:
     description: "Username for the bits-service"
@@ -1003,7 +1003,7 @@ properties:
     description: "The number of requests an unauthenticated client is allowed to make over the configured interval"
     default: 100
   cc.rate_limiter.reset_interval_in_minutes:
-    description: "The interval in minutes, after which, a user's available api requests will be reset"
+    description: "The interval in minutes after which a user's available API requests will be reset"
     default: 60
 
   cc.diego.bbs.url:
@@ -1099,7 +1099,7 @@ properties:
     default: "log_cache"
 
   cc.loggregator.internal_url:
-    description: "Internal url used to communicate with traffic_controller"
+    description: "Internal URL used to communicate with traffic_controller"
     default: "http://loggregator-trafficcontroller.service.cf.internal:8081"
 
   credhub_api.hostname:
@@ -1120,7 +1120,7 @@ properties:
 
   cc.internal_route_vip_range:
     default: "127.128.0.0/9"
-    description: "The ipv4 CIDR range of virtual IP addresses to be assigned to routes on internal domains.
+    description: "The IPv4 CIDR range of virtual IP addresses to be assigned to routes on internal domains.
                   WARNING: Changing this range is not supported, and has undefined behaviors.
                   It is recommended to leave this value as the default.
                   If this range is changed, it is likely the routes on the internal service mesh domain
@@ -1153,7 +1153,7 @@ properties:
   cc.kubernetes.service_account.token:
     description: "The Kubernetes service account token"
   cc.kubernetes.ca:
-    description: "The CA cert for connecting to the master"
+    description: "The CA certificate for connecting to the master"
   cc.kubernetes.kpack.builder_namespace:
     description: "The namespace where kpack images and builds will be created"
   cc.kubernetes.kpack.registry_service_account_name:

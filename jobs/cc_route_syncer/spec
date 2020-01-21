@@ -71,18 +71,18 @@ properties:
 
   cc.db_encryption_key:
     default: ""
-    description: "key for encrypting sensitive values in the CC database"
+    description: "Key for encrypting sensitive values in the CC database"
 
   cc.database_encryption.keys:
     default: {}
-    description: "label-key pairs for encrypting sensitive values in the CC database; labels must be < 256 characters long"
+    description: "Label-key pairs for encrypting sensitive values in the CC database; labels must be < 256 characters long"
   cc.database_encryption.current_key_label:
     default: ""
-    description: "current key label for encrypting values in the CC database"
+    description: "Current key label for encrypting values in the CC database"
 
   cc.logging_level:
     default: "info"
-    description: "Log level for cc. Valid levels are listed here: https://github.com/cloudfoundry/steno#log-levels."
+    description: "Log level for CC. Valid levels are listed here: https://github.com/cloudfoundry/steno#log-levels."
   cc.logging_max_retries:
     default: 1
     description: "Passthru value for Steno logger"
@@ -91,19 +91,19 @@ properties:
     description: "Log database queries. WARNING: Setting this to true with cc.db_logging_level >= cc.logging_level will log all field values, including encrypted secrets."
   cc.db_logging_level:
     default: "debug2"
-    description: "Level at which cc database operations will be logged if cc.log_db_queries is set to true."
+    description: "Level at which CC database operations will be logged if cc.log_db_queries is set to true."
 
   cc.thresholds.api.alert_if_above_mb:
-    description: "The cc will alert if memory remains above this threshold for 3 monit cycles"
+    description: "The CC will alert if memory remains above this threshold for 3 monit cycles"
     default: 3500
   cc.thresholds.api.restart_if_consistently_above_mb:
-    description: "The cc will restart if memory remains above this threshold for 15 monit cycles"
+    description: "The CC will restart if memory remains above this threshold for 15 monit cycles"
     default: 3500
   cc.thresholds.api.restart_if_above_mb:
-    description: "The cc will restart if memory remains above this threshold for 3 monit cycles"
+    description: "The CC will restart if memory remains above this threshold for 3 monit cycles"
     default: 3750
   cc.internal_route_vip_range:
-    description: "The ipv4 CIDR range of virtual IP addresses to be assigned to routes on internal domains."
+    description: "The IPv4 CIDR range of virtual IP addresses to be assigned to routes on internal domains."
 
   copilot.sync_frequency_in_seconds:
     description: "How often to synchronize CC routes with Copilot"

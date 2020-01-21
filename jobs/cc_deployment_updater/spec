@@ -75,7 +75,7 @@ properties:
     description: "The timeout for Sequel pooled connections"
   ccdb.ca_cert:
     default: ~
-    description: "The ca cert to use when communicating with the database over SSL"
+    description: "The CA certificate to use when communicating with the database over SSL"
   ccdb.ssl_verify_hostname:
     default: true
     description: "Verify that the database SSL certificate matches the host to which the connection is attempted"
@@ -103,7 +103,7 @@ properties:
 
   cc.logging_level:
     default: "info"
-    description: "Log level for cc. Valid levels are listed here: https://github.com/cloudfoundry/steno#log-levels."
+    description: "Log level for CC. Valid levels are listed here: https://github.com/cloudfoundry/steno#log-levels."
   cc.logging_max_retries:
     default: 1
     description: "Passthru value for Steno logger"
@@ -115,13 +115,13 @@ properties:
     description: "Level at which cc database operations will be logged if cc.log_db_queries is set to true."
 
   cc.thresholds.api.alert_if_above_mb:
-    description: "The cc will alert if memory remains above this threshold for 3 monit cycles"
+    description: "The CC will alert if memory remains above this threshold for 3 monit cycles"
     default: 3500
   cc.thresholds.api.restart_if_consistently_above_mb:
-    description: "The cc will restart if memory remains above this threshold for 15 monit cycles"
+    description: "The CC will restart if memory remains above this threshold for 15 monit cycles"
     default: 3500
   cc.thresholds.api.restart_if_above_mb:
-    description: "The cc will restart if memory remains above this threshold for 3 monit cycles"
+    description: "The CC will restart if memory remains above this threshold for 3 monit cycles"
     default: 3750
 
   cc.diego.bbs.url:
