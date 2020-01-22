@@ -167,7 +167,7 @@ properties:
     description: "The basic auth password that CC uses to connect to the admin endpoint on webdav"
     default: ""
   cc.resource_pool.webdav_config.ca_cert:
-    description: "The ca cert to use when communicating with webdav"
+    description: "The CA certificate to use when communicating with webdav"
     default: ""
   cc.resource_pool.minimum_size:
     description: "Minimum size of a resource to add to the pool"
@@ -211,7 +211,7 @@ properties:
     description: "The basic auth password that CC uses to connect to the admin endpoint on webdav"
     default: ""
   cc.packages.webdav_config.ca_cert:
-    description: "The ca cert to use when communicating with webdav"
+    description: "The CA certificate to use when communicating with webdav"
     default: ""
   cc.packages.app_package_directory_key:
     description: "Directory (bucket) used store app packages.  It does not have be pre-created."
@@ -252,7 +252,7 @@ properties:
     description: "The basic auth password that CC uses to connect to the admin endpoint on webdav"
     default: ""
   cc.droplets.webdav_config.ca_cert:
-    description: "The ca cert to use when communicating with webdav"
+    description: "The CA certificate to use when communicating with webdav"
     default: ""
   cc.droplets.droplet_directory_key:
     description: "Directory (bucket) used store droplets.  It does not have be pre-created."
@@ -290,7 +290,7 @@ properties:
     description: "The basic auth password that CC uses to connect to the admin endpoint on webdav"
     default: ""
   cc.buildpacks.webdav_config.ca_cert:
-    description: "The ca cert to use when communicating with webdav"
+    description: "The CA certificate to use when communicating with webdav"
     default: ""
   cc.buildpacks.buildpack_directory_key:
     description: "Directory (bucket) used store buildpacks.  It does not have be pre-created."
@@ -326,7 +326,7 @@ properties:
     description: "The timeout for Sequel pooled connections"
   ccdb.ca_cert:
     default: ~
-    description: "The ca cert to use when communicating with the database over SSL"
+    description: "The CA certificate to use when communicating with the database over SSL"
   ccdb.ssl_verify_hostname:
     default: true
     description: "Verify that the database SSL certificate matches the host to which the connection is attempted"
@@ -371,7 +371,7 @@ properties:
   uaa.port:
     description: "The port used by UAA for non-ssl connections"
   cc.uaa.internal_url:
-    description: "The internal url used by UAA"
+    description: "The internal URL used by UAA"
     default: "uaa.service.cf.internal"
   uaa.ca_cert:
     description: "The certificate authority being used by UAA"
@@ -443,13 +443,13 @@ properties:
     default: 16384
 
   cc.thresholds.worker.alert_if_above_mb:
-    description: "The cc will alert if memory remains above this threshold for 3 monit cycles"
+    description: "The CC will alert if memory remains above this threshold for 3 monit cycles"
     default: 384
   cc.thresholds.worker.restart_if_consistently_above_mb:
-    description: "The cc will restart if memory remains above this threshold for 15 monit cycles"
+    description: "The CC will restart if memory remains above this threshold for 15 monit cycles"
     default: 384
   cc.thresholds.worker.restart_if_above_mb:
-    description: "The cc will restart if memory remains above this threshold for 3 monit cycles"
+    description: "The CC will restart if memory remains above this threshold for 3 monit cycles"
     default: 512
 
   cc.disable_custom_buildpacks:
@@ -468,10 +468,10 @@ properties:
     description: "Enable integration of the bits-service incubator (experimental)"
     default: false
   cc.bits_service.public_endpoint:
-    description: "Public url for the bits-service service"
+    description: "Public URL for the bits-service service"
     default: ""
   cc.bits_service.private_endpoint:
-    description: "Private url for the bits-service service"
+    description: "Private URL for the bits-service service"
     default: ""
   cc.bits_service.username:
     description: "Username for the bits-service"
@@ -480,7 +480,7 @@ properties:
     description: "Password for the bits-service"
     default: ""
   cc.bits_service.ca_cert:
-    description: "The ca cert to use when communicating with bits-service endpoints"
+    description: "The CA certificate to use when communicating with bits-service endpoints"
     default: ""
 
   cc.diego.bbs.url:
@@ -537,19 +537,19 @@ properties:
     description: "Enable specifying task and app asset downloads as declarative resources"
     default: false
   cc.diego.pid_limit:
-    description: "Maximum pid limit for containerized work running user-provided code"
+    description: "Maximum PID limit for containerized work running user-provided code"
     default: 1024
 
   cc.internal_route_vip_range:
     default: "127.128.0.0/9"
-    description: "The ipv4 CIDR range of virtual IP addresses to be assigned to routes on internal domains.
+    description: "The IPv4 CIDR range of virtual IP addresses to be assigned to routes on internal domains.
                   WARNING: Changing this range is not supported, and has undefined behaviors.
                   It is recommended to leave this value as the default.
                   If this range is changed, it is likely the routes on the internal service mesh domain
                   will need to be recreated."
 
   cc.loggregator.internal_url:
-    description: "Internal url used to communicate with traffic_controller"
+    description: "Internal URL used to communicate with traffic_controller"
     default: "http://loggregator-trafficcontroller.service.cf.internal:8081"
 
   cc.perform_blob_cleanup:

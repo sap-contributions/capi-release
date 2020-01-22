@@ -4,7 +4,7 @@
   def discover_external_ip
     networks = spec.networks.marshal_dump
     network = networks.values.detect(&:default) || networks.values.first
-    raise "Could not determine IP via network spec: #{networks}" unless network
+    raise "Could not determine IP address via network spec: #{networks}" unless network
     network.ip
   end
 

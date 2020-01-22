@@ -37,7 +37,7 @@ function wait_for_blobstore {
 
     NFS_SHARE=/var/vcap/data/nfs
 
-    echo "Checking for nfs to be mounted"
+    echo "Checking for NFS to be mounted"
 
     nfs_check_attempts=0
     while [[ ! -f $NFS_SHARE/shared/.nfs_test ]]; do
@@ -45,12 +45,12 @@ function wait_for_blobstore {
       nfs_check_attempts=$((nfs_check_attempts+1))
 
       if [[ $nfs_check_attempts -eq $max_attempts ]]; then
-        echo "Failed to find nfs mount"
+        echo "Failed to find NFS mount"
         exit 1
       fi
     done
 
-    echo "nfs is mounted"
+    echo "NFS is mounted"
 
     <% elsif p('cc.buildpacks.blobstore_type') == 'webdav' %>
 
