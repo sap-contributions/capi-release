@@ -687,7 +687,9 @@ properties:
     description: "The period in seconds after which idle connections are validated, passed directly to the Sequel gem - see http://sequel.jeremyevans.net/rdoc-plugins/files/lib/sequel/extensions/connection_validator_rb.html for details.  Note that setting this to -1 results in an additional query whenever connections are checked out from the pool, which can have performance implications"
 
   uaa.cc.token_secret:
-    description: "Symmetric secret used to decode uaa tokens. Used for testing."
+    description: "Symmetric secret used to decode uaa tokens."
+  uaa.cc.token_secret2:
+    description: "Second Symmetric secret used to decode uaa tokens. Used for secret rotation."
   uaa.url:
     description: "URL of the UAA server"
   uaa.ca_cert:
