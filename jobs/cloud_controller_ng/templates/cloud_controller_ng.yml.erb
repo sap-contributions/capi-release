@@ -141,6 +141,7 @@ telemetry_log_path: /var/vcap/sys/log/cloud_controller_ng/telemetry.log
 logcache:
   host: <%= p("cc.logcache.host") %>
   port: <%= p("cc.logcache.port") %>
+  temporary_ignore_server_unavailable_errors: false
 
 logcache_tls:
   key_file: /var/vcap/jobs/cloud_controller_ng/config/certs/logcache_tls.key
