@@ -90,6 +90,10 @@ properties:
     default: ""
     description: "key for encrypting sensitive values in the CC database"
 
+  ccdb.max_migration_duration_in_minutes:
+    description: "the maximum time migrations should be allowed to run before job startup should error"
+    default: 20160
+
   cc.database_encryption.keys:
     default: {}
     description: "label-key pairs for encrypting sensitive values in the CC database; labels must be < 256 characters long"

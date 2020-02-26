@@ -685,6 +685,9 @@ properties:
   ccdb.connection_validation_timeout:
     default: 3600
     description: "The period in seconds after which idle connections are validated, passed directly to the Sequel gem - see http://sequel.jeremyevans.net/rdoc-plugins/files/lib/sequel/extensions/connection_validator_rb.html for details.  Note that setting this to -1 results in an additional query whenever connections are checked out from the pool, which can have performance implications"
+  ccdb.max_migration_duration_in_minutes:
+    description: "the maximum time migrations should be allowed to run before job startup should error"
+    default: 20160
 
   uaa.cc.token_secret:
     description: "Symmetric secret used to decode uaa tokens."
