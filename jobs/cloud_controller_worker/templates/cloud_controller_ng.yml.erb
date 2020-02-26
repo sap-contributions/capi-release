@@ -86,6 +86,7 @@ loggregator:
     database_address = link('database').instances[0].address
   end
 %>
+max_migration_duration_in_minutes: <%= p("cc.max_migration_duration_in_minutes") %>
 db: &db
   database:
     adapter: <%= p("ccdb.db_scheme") == "mysql" ? "mysql2" : p("ccdb.db_scheme") %>

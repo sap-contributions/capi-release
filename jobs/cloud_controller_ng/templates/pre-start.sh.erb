@@ -138,14 +138,13 @@ function main {
   <% if spec.bootstrap && p('cc.run_prestart_migrations') %>
   perform_migration
   seed_db
+    <% if p('cc.database_encryption.skip_validation') %>
+    echo "Skipping DB encryption validation"
+    <% else %>
+    validate_encryption_keys
+    <% end %>
   <% else %>
   echo "Skipping DB migrations and seeds"
-  <% end %>
-
-  <% if p('cc.database_encryption.skip_validation') %>
-  echo "Skipping DB encryption validation"
-  <% else %>
-  validate_encryption_keys
   <% end %>
 }
 

@@ -359,7 +359,9 @@ properties:
   ccdb.connection_validation_timeout:
     default: 3600
     description: "The period in seconds after which idle connections are validated, passed directly to the Sequel gem - see http://sequel.jeremyevans.net/rdoc-plugins/files/lib/sequel/extensions/connection_validator_rb.html for details.  Note that setting this to -1 results in an additional query whenever connections are checked out from the pool, which can have performance implications"
-
+  cc.max_migration_duration_in_minutes:
+    description: "the maximum time migrations should be allowed to run before job startup should error"
+    default: 20160
   cc.allow_app_ssh_access:
     default: true
     description: "Allow users to change the value of the app-level allow_ssh attribute"
