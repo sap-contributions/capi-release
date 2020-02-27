@@ -75,6 +75,10 @@ properties:
     default: ""
     description: "Key for encrypting sensitive values in the CC database"
 
+  cc.readiness_port:
+    default: 9193
+    description: "This port will be opened when the job is ready for a deployment to move on"
+
   cc.database_encryption.keys:
     default: {}
     description: "Label-key pairs for encrypting sensitive values in the CC database; labels must be < 256 characters long"

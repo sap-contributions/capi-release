@@ -25,6 +25,7 @@ pid_filename: /var/vcap/sys/run/cc_route_syncer/cc_route_syncer.pid
 
 index: <%= spec.index %>
 name: <%= name %>
+readiness_port: <%= p("cc.readiness_port") %>
 
 logging:
   file: /var/vcap/sys/log/cc_route_syncer/cc_route_syncer.log
