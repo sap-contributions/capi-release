@@ -34,7 +34,7 @@ logging:
 
 external_port: <%= link("cloud_controller_internal").p("cc.external_port") %>
 tls_port: <%= link("cloud_controller_internal").p("cc.tls_port") %>
-readiness_port: <%= p("deployment_updater.readiness_port") %>
+readiness_port: <%= p("cc.readiness_port") %>
 
 internal_service_hostname: <%= link("cloud_controller_internal").p("cc.internal_service_hostname") %>
 
