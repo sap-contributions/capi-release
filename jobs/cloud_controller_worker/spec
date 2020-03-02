@@ -86,7 +86,7 @@ properties:
   cc.internal_service_hostname:
     description: "Internal hostname used to resolve the address of the Cloud Controller"
     default: "cloud-controller-ng.service.cf.internal"
-  cc.readiness_port:
+  cc.readiness_ports.cloud_controller_worker:
     default: 9190
     description: "This port will be opened when the job is ready for a deployment to move on"
 
