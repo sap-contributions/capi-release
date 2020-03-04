@@ -32,7 +32,8 @@
 local_route: <%= discover_external_ip %>
 external_port: <%= p("cc.external_port") %>
 tls_port: <%= p("cc.tls_port") %>
-readiness_ports.cloud_controller_worker: <%= p("cc.readiness_ports.cloud_controller_worker") %>
+readiness_ports:
+  cloud_controller_worker: <%= p("cc.readiness_ports.cloud_controller_worker") %>
 internal_service_hostname: <%= p("cc.internal_service_hostname") %>
 
 newrelic_enabled: <%= !!properties.cc.newrelic.license_key %>
