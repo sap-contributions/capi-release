@@ -139,6 +139,7 @@ provides:
   - cc.buildpacks.webdav_config.public_endpoint
   - cc.buildpacks.webdav_config.username
   - cc.credential_references.interpolate_service_bindings
+  - cc.custom_metric_tag_prefix_list
   - cc.database_encryption.current_key_label
   - cc.database_encryption.experimental_pbkdf2_hmac_iterations
   - cc.database_encryption.keys
@@ -804,6 +805,10 @@ properties:
   cc.max_labels_per_resource:
     description: "Maximum number of labels allowed on any single resource. Too many labels may degrade performance of label selectors."
     default: 50
+
+  cc.custom_metric_tag_prefix_list:
+    description: "Allows users to apply custom metric tags to their apps by adding labels with the given key prefixes. The following key names are ignored: deployment, index, ip, job"
+    default: ["metric.tag.cloudfoundry.org"]
 
   cc.newrelic.license_key:
     default: ~
