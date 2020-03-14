@@ -36,6 +36,9 @@ external_port: <%= link("cloud_controller_internal").p("cc.external_port") %>
 tls_port: <%= link("cloud_controller_internal").p("cc.tls_port") %>
 internal_service_hostname: <%= link("cloud_controller_internal").p("cc.internal_service_hostname") %>
 
+readiness_port:
+  deployment_updater: <%= p("cc.readiness_port.deployment_updater") %>
+
 external_protocol: <%= link("cloud_controller_internal").p("cc.external_protocol") %>
 external_domain: <%= link("cloud_controller_internal").p("cc.external_host") %>.<%= link("cloud_controller_internal").p("system_domain") %>
 

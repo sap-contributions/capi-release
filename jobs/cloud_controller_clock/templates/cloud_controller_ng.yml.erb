@@ -34,6 +34,9 @@ external_port: <%= p("cc.external_port") %>
 tls_port: <%= p("cc.tls_port") %>
 internal_service_hostname: <%= p("cc.internal_service_hostname") %>
 
+readiness_port:
+  clock: <%= p("cc.readiness_port.clock") %>
+
 pid_filename: /var/vcap/sys/run/cloud_controller_clock/cloud_controller_clock.pid
 newrelic_enabled: false
 development_mode: false
