@@ -35,7 +35,7 @@ tls_port: <%= p("cc.tls_port") %>
 internal_service_hostname: <%= p("cc.internal_service_hostname") %>
 
 readiness_port:
-  cloud_controller_worker: <%= p("cc.cloud_controller_worker") %>
+  cloud_controller_worker: <%= p("cc.readiness_port.cloud_controller_worker") %>
 
 newrelic_enabled: <%= !!properties.cc.newrelic.license_key %>
 development_mode: <%= p("cc.development_mode") %>
