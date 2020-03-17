@@ -12,3 +12,8 @@ function fix_bundler_home_permissions {
 }
 
 fix_bundler_home_permissions
+
+while ! nc -z localhost <%= p("cc.readiness_port.cloud_controller_worker") %>
+do
+  sleep 1
+done
