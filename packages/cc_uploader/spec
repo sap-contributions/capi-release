@@ -2,7 +2,7 @@
 name: cc_uploader
 
 dependencies:
-  - golang-1.12-linux
+  - golang-1-linux
 
 files:
   - code.cloudfoundry.org/bbs/encryption/*.go # gosub
