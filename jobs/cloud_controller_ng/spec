@@ -413,6 +413,9 @@ properties:
   cc.logging_max_retries:
     default: 1
     description: "Passthru value for Steno logger"
+  cc.logging_anonymize_ips:
+      default: false
+      description: "Anonymizes IPs in request logs"
   cc.log_db_queries:
     default: false
     description: "Log database queries. WARNING: Setting this to true with cc.db_logging_level >= cc.logging_level will log all field values, including encrypted secrets."
