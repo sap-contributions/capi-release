@@ -68,7 +68,11 @@ nginx:
 index: <%= spec.index %>
 name: <%= name %>
 volume_services_enabled: <%= link("cloud_controller_internal").p("cc.volume_services_enabled") %>
-route_services_enabled: <%= ! link("cloud_controller_internal").p("router.route_services_secret").empty? %>
+<% link("cloud_controller_internal").if_p("router.route_services_secret") do %>
+route_services_enabled: <%= !link("cloud_controller_internal").p("router.route_services_secret").empty? %>
+<% end.else do %>
+route_services_enabled: false
+<% end %>
 
 logging:
   file: /var/vcap/sys/log/cloud_controller_worker/cloud_controller_worker.log
