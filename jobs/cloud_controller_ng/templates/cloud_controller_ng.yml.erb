@@ -136,6 +136,8 @@ logging:
   level: "<%= p("cc.logging_level") %>"
   max_retries: <%= p("cc.logging_max_retries") %>
   anonymize_ips: <%= p("cc.logging_anonymize_ips") %>
+  format:
+    timestamp: <%= p("cc.logging.format.timestamp") %>
 
 telemetry_log_path: /var/vcap/sys/log/cloud_controller_ng/telemetry.log
 

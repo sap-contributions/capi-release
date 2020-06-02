@@ -31,6 +31,8 @@ logging:
   syslog: vcap.cloud_controller_ng
   level: "<%= p("cc.logging_level") %>"
   max_retries: <%= p("cc.logging_max_retries") %>
+  format:
+    timestamp: <%= link("cloud_controller_internal").p("cc.logging.format.timestamp") %>
 
 <% db = p("ccdb.databases").find { |db| db["tag"] == "cc" } %>
 <% db_role = p("ccdb.roles").find { |role| role["tag"] == "admin" } %>

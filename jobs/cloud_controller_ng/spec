@@ -166,6 +166,7 @@ provides:
   - cc.external_protocol
   - cc.internal_service_hostname
   - cc.log_db_queries
+  - cc.logging.format.timestamp
   - cc.logging_level
   - cc.logging_max_retries
   - cc.max_labels_per_resource
@@ -416,6 +417,9 @@ properties:
   cc.logging_anonymize_ips:
       default: false
       description: "Anonymizes IPs in request logs"
+  cc.logging.format.timestamp:
+      default: "rfc3339"
+      description: "Timestamp format for logs. Valid values are 'rfc3339' (for human-readable timestamp format) and 'deprecated' (for old timestamp format)"
   cc.log_db_queries:
     default: false
     description: "Log database queries. WARNING: Setting this to true with cc.db_logging_level >= cc.logging_level will log all field values, including encrypted secrets."

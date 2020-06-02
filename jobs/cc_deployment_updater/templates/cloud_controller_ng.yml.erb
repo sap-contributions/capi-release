@@ -31,6 +31,8 @@ logging:
   syslog: vcap.cloud_controller_ng
   level: "<%= p("cc.logging_level") %>"
   max_retries: <%= p("cc.logging_max_retries") %>
+  format:
+    timestamp: <%= link("cloud_controller_internal").p("cc.logging.format.timestamp") %>
 
 external_port: <%= link("cloud_controller_internal").p("cc.external_port") %>
 tls_port: <%= link("cloud_controller_internal").p("cc.tls_port") %>
