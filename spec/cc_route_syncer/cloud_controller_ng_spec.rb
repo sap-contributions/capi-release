@@ -28,10 +28,10 @@ module Bosh::Template::Test
 
     let(:internal_properties) do
       {
-        'cc' =>
-          {'database_encryption' =>
-           {'experimental_pbkdf2_hmac_iterations' => 'wow'}
-          },
+        'cc' => {
+          'database_encryption' => {'experimental_pbkdf2_hmac_iterations' => 'wow'},
+          'logging' => {'format' => {'timestamp' => 'rfc3339'}},
+        },
         'copilot' => {
             'enabled' => true,
             'host' => 'neopets.com',

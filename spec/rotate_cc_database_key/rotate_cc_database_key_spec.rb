@@ -27,6 +27,7 @@ module Bosh::Template::Test
           'default_app_ssh_access' => 'something',
           'logging_level' => 'other thing',
           'log_db_queries' => 'balsdkj',
+          'logging' => {'format' => {'timestamp' => 'rfc3339'}},
           'db_logging_level' => 'bar2',
           'db_encryption_key' => 'bar3',
           'database_encryption' => {
@@ -34,7 +35,7 @@ module Bosh::Template::Test
             'skip_validation' => false,
             'current_key_label' => 'encryption_key_0',
             'keys' => { 'encryption_key_0' => '((cc_db_encryption_key))' }
-          }
+          },
         }
       }
     end
