@@ -80,7 +80,7 @@ module Bosh::Template::Test
           'max_labels_per_resource' => true,
           'max_annotations_per_resource' => 'yus',
           'disable_private_domain_cross_space_context_path_route_sharing' => false,
-
+          'custom_metric_tag_prefix_list' => ['heck.yes.example.com'],
         }
       }
     end
