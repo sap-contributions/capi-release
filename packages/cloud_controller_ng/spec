@@ -8,7 +8,7 @@ dependencies:
 files:
 - cloud_controller_ng/{.ruby-version,Rakefile,Gemfile,Gemfile.lock}
 - cloud_controller_ng/{db,lib,bin,app,middleware}/**/*
-- cloud_controller_ng/vendor/errors/**/*.yml
+- cloud_controller_ng/errors/**/*.yml
 - cloud_controller_ng/config/initializers/**/*
 - cloud_controller_ng/config/environments/**/*
 - cloud_controller_ng/config/application.rb
