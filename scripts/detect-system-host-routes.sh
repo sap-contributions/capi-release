@@ -4,7 +4,7 @@ set -e
 
 api_url=$(cf api | head -n 1 | awk '{ print $3; }')
 system_domain="${api_url#https://api.}"
-system_hostnames=("api" "proxy" "uaa" "login" "blobstore" "log-cache" "doppler" "log-stream" "credhub")
+system_hostnames=("api" "proxy" "uaa" "login" "blobstore" "log-cache" "doppler" "log-stream" "credhub" "ssh")
 detect_invalid_private_domains=()
 for hostname in "${system_hostnames[@]}"; do
   system_component_domain="${hostname}.${system_domain}"
