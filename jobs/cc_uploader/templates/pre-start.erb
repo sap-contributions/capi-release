@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+source /var/vcap/packages/capi_utils/container_utils.sh
+
 if [ -f /var/vcap/jobs/bosh-dns/bin/is-system-resolver ]; then
   if (/var/vcap/jobs/bosh-dns/bin/is-system-resolver); then
     echo "waiting for bosh_dns"
@@ -7,5 +9,9 @@ if [ -f /var/vcap/jobs/bosh-dns/bin/is-system-resolver ]; then
   fi
 fi
 
-sysctl -e -w net.ipv4.tcp_fin_timeout=10
-sysctl -e -w net.ipv4.tcp_tw_reuse=1
+if running_in_container; then
+    echo "Not setting /proc/sys/net/ipv4 parameters, since I'm running inside a linux container"
+else
+    sysctl -e -w net.ipv4.tcp_fin_timeout=10
+    sysctl -e -w net.ipv4.tcp_tw_reuse=1
+fi
