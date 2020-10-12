@@ -113,9 +113,6 @@ properties:
   cc.logging_level:
     default: "info"
     description: "Log level for cc. Valid levels are listed here: https://github.com/cloudfoundry/steno#log-levels."
-  cc.logging_fog_requests:
-    default: false
-    description: "Log fog requests and responses."
   cc.logging_max_retries:
     default: 1
     description: "Passthru value for Steno logger"
@@ -125,6 +122,9 @@ properties:
   cc.db_logging_level:
     default: "debug2"
     description: "Level at which cc database operations will be logged if cc.log_db_queries is set to true."
+  cc.log_fog_requests:
+    default: false
+    description: "Log fog requests and responses."
 
   cc.staging_timeout_in_seconds:
     default: 900

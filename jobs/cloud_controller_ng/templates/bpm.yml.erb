@@ -34,7 +34,7 @@ if !!properties.cc.newrelic.license_key || p("cc.development_mode")
     cloud_controller_ng_config["env"]["NEWRELIC_ENABLE"] = true
 end
 
-if p("cc.logging_fog_requests")
+if p("cc.log_fog_requests")
     cloud_controller_ng_config["env"]["DEBUG"] = true
     cloud_controller_ng_config["env"]["EXCON_DEBUG"] = true
     cloud_controller_ng_config["env"]["ALIYUN_OSS_SDK_LOG_LEVEL"] = "debug"
@@ -114,7 +114,7 @@ config = {
    local_worker_config["env"]["NEWRELIC_ENABLE"] = true
   end
 
-  if p("cc.logging_fog_requests")
+  if p("cc.log_fog_requests")
    local_worker_config["env"]["DEBUG"] = true
    local_worker_config["env"]["EXCON_DEBUG"] = true
    local_worker_config["env"]["ALIYUN_OSS_SDK_LOG_LEVEL"] = "debug"
