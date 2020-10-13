@@ -33,7 +33,6 @@ module Bosh::Template::Test
             {
               'file_server_url' => "http://somewhere",
             },
-            'bulk_api_password' => '((cc_bulk_api_password))',
             'database_encryption' =>
               { 'skip_validation' => false,
                 'current_key_label' => 'encryption_key_0',
