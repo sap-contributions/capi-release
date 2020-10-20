@@ -12,6 +12,22 @@ def mount_nfs_volume!(config)
   end
 end
 
+def enable_fog_debugging!(config)
+    if p("cc.log_fog_requests")
+        case p("cc.packages.fog_connection.provider", "").downcase
+        when "azurerm"
+          config["env"]["FOG_DEBUG"] = true
+        when  "aliyun"
+          config["env"]["ALIYUN_OSS_SDK_LOG_LEVEL"] = "debug"
+          config["env"]["FOG_DEBUG"] = true
+          config["env"]["DEBUG"] = true
+        else
+          config["env"]["DEBUG"] = true
+          config["env"]["FOG_DEBUG"] = true
+        end
+    end
+end
+
 cloud_controller_ng_config = {
   "name" => "cloud_controller_ng",
   "executable" => "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng",
@@ -34,11 +50,7 @@ if !!properties.cc.newrelic.license_key || p("cc.development_mode")
     cloud_controller_ng_config["env"]["NEWRELIC_ENABLE"] = true
 end
 
-if p("cc.log_fog_requests")
-    cloud_controller_ng_config["env"]["DEBUG"] = true
-    cloud_controller_ng_config["env"]["EXCON_DEBUG"] = true
-    cloud_controller_ng_config["env"]["ALIYUN_OSS_SDK_LOG_LEVEL"] = "debug"
-end
+enable_fog_debugging!(cloud_controller_ng_config)
 
 if properties.env
     if properties.env.http_proxy
@@ -114,11 +126,7 @@ config = {
    local_worker_config["env"]["NEWRELIC_ENABLE"] = true
   end
 
-  if p("cc.log_fog_requests")
-   local_worker_config["env"]["DEBUG"] = true
-   local_worker_config["env"]["EXCON_DEBUG"] = true
-   local_worker_config["env"]["ALIYUN_OSS_SDK_LOG_LEVEL"] = "debug"
-  end
+  enable_fog_debugging!(local_worker_config)
 
   config["processes"] << local_worker_config
 end
