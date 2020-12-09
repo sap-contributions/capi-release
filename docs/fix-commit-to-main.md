@@ -1,4 +1,4 @@
-## Fixing accidental commits to `master`
+## Fixing accidental commits to `main`
 
 ### Basic Workflow
 
@@ -13,11 +13,11 @@ Date:   Thu Sep 11 12:08:41 2014 -0700
     commit to fix
 ```
 
-#### 1. Revert the accidental commit to `master`
+#### 1. Revert the accidental commit to `main`
 
 ```
 $ git revert 504bb330f2
-[master 36418aa] Revert "commit to fix"
+[main 36418aa] Revert "commit to fix"
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 bad-file
 
@@ -38,20 +38,20 @@ Date:   Thu Sep 11 12:08:41 2014 -0700
 
 ```
 
-#### 2. Merge `master` to `develop` so that `develop` stays ahead of `master`
+#### 2. Merge `main` to `develop` so that `develop` stays ahead of `main`
 
-This is normally done automatically by the [`merge-capi-release-master`](https://capi.ci.cf-app.com/teams/main/pipelines/capi/jobs/merge-capi-release-master/) CI job, but you'll want to do it manually so that you don't need to involve the ship-it pipes.
+This is normally done automatically by the [`merge-capi-release-main`](https://capi.ci.cf-app.com/teams/main/pipelines/capi/jobs/merge-capi-release-main/) CI job, but you'll want to do it manually so that you don't need to involve the ship-it pipes.
 
 ```
 $ git checkout develop
-$ git merge master
+$ git merge main
 ```
 
 #### 3. (OPTIONAL): On `develop`, revert the revert commit if you want to keep the original changes
 
 If the commits were entirely accidental and should be thrown away, you can skip this step. Be aware it's not always entirely obvious if you still want the changes, especially if develop made more changes to same thing since the accidental commit occurred. Consider carefully.
 
-If the commits were intentional, but you meant to put them on `develop` instead of `master`, do the following:
+If the commits were intentional, but you meant to put them on `develop` instead of `main`, do the following:
 
 ```
 $ git revert 36418aa5530b95
@@ -73,7 +73,7 @@ Merge: aec4251 36418aa
 Author: CF MEGA BOT <cf-mega@pivotal.io>
 Date:   Thu Sep 11 12:10:52 2014 -0700
 
-    Merge remote-tracking branch 'master-repo/master' into HEAD
+    Merge remote-tracking branch 'main-repo/main' into HEAD
 
 commit 36418aa5530b958a5aebbb68a3981aaf5f3f8ea8
 Author: Matthew Sykes and Zach Robinson <pair+matthew+zrobinson@pivotallabs.com>
