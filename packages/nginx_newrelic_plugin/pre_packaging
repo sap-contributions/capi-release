@@ -5,9 +5,12 @@ pushd ${BUILD_DIR}/nginx
 popd
 
 # Forcing an update to get BOSH to recompile this package
-
+gem install bundler:2.2.4
 pushd ${BUILD_DIR}/nginx/newrelic_nginx_agent
-	BUNDLE_WITHOUT=development:test bundle package --all --no-install --path ./vendor/cache
+  bundle config set cache_all true
+  bundle config --local path ./vendor/cache
+
+  bundle package --no-install
 
 	rm -rf ./vendor/cache/ruby
 	rm -rf ./vendor/cache/vendor
