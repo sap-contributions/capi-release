@@ -4,3 +4,4 @@ dependencies:
 - ruby-2.7.2-r0.41.0
 files:
 - nginx/newrelic_nginx_agent-1.2.1.tar.gz
+- bundler/bundler-2.1.4.gem
