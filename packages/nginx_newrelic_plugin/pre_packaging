@@ -7,12 +7,15 @@ popd
 # Forcing an update to get BOSH to recompile this package
 
 pushd ${BUILD_DIR}/nginx/newrelic_nginx_agent
-  bundle config set cache_all true
+  bundle config --local specific_platform true
   bundle config --local path ./vendor/cache
-
-  bundle package --no-install
+  bundle config set cache_all true
+  bundle package --all-platforms --no-install
 
 	rm -rf ./vendor/cache/ruby
 	rm -rf ./vendor/cache/vendor
 	bundle config --delete NO_INSTALL
+
+  rm -rf .bundle/
 popd
+
