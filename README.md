@@ -4,7 +4,7 @@
 
 This is the [bosh release](http://bosh.io/docs/release.html) for Cloud Foundry's [Cloud Controller API](https://github.com/cloudfoundry/cloud_controller_ng). 
 
-**CI**: [CAPI Concourse Pipelines](https://capi.ci.cf-app.com)
+**CI**: [CAPI Concourse Pipelines](https://ci.cake.capi.land/)
 
 ## Components
 
