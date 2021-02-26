@@ -5,5 +5,6 @@ mkdir ../src && cp -a * ../src/ && mv ../src ./src
 mkdir -p $BOSH_INSTALL_TARGET/bin
 
 source /var/vcap/packages/golang-1-linux/bosh/compile.env
+export GO111MODULE="off"
 
 go build -o "${BOSH_INSTALL_TARGET}/bin/blobstore_url_signer" github.com/cloudfoundry/blobstore_url_signer
