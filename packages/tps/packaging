@@ -7,7 +7,7 @@ mkdir -p $BOSH_INSTALL_TARGET/bin
 source /var/vcap/packages/golang-1-linux/bosh/compile.env
 ls
 pwd
-pushd "code.cloudfoundry.org/tps"
+pushd "code.cloudfoundry.org/tps/src"
 ls
 pwd
 go build -o "$BOSH_INSTALL_TARGET/bin/tps-watcher" code.cloudfoundry.org/tps/cmd/tps-watcher
