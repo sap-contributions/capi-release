@@ -1,0 +1,6 @@
+set -ex
+
+pushd ${BUILD_DIR}/code.cloudfoundry.org/cc-uploader/
+  go mod vendor
+popd
+

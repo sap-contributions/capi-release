@@ -9,6 +9,8 @@ files:
   - code.cloudfoundry.org/bbs/format/*.go # gosub
   - code.cloudfoundry.org/bbs/models/*.go # gosub
   - code.cloudfoundry.org/cc-uploader/*.go # gosub
+  - code.cloudfoundry.org/cc-uploader/go.mod # gosub
+  - code.cloudfoundry.org/cc-uploader/go.sum # gosub
   - code.cloudfoundry.org/cc-uploader/ccclient/*.go # gosub
   - code.cloudfoundry.org/cc-uploader/cmd/cc-uploader/*.go # gosub
   - code.cloudfoundry.org/cc-uploader/config/*.go # gosub
@@ -49,3 +51,12 @@ files:
   - github.com/tedsuo/ifrit/http_server/*.go # gosub
   - github.com/tedsuo/ifrit/sigmon/*.go # gosub
   - github.com/tedsuo/rata/*.go # gosub
+
+excluded_files:
+  - code.cloudfoundry.org/cc-uploader/*test.go # gosub
+  - code.cloudfoundry.org/cc-uploader/ccclient/*test.go # gosub
+  - code.cloudfoundry.org/cc-uploader/cmd/cc-uploader/*test.go # gosub
+  - code.cloudfoundry.org/cc-uploader/config/*test.go # gosub
+  - code.cloudfoundry.org/cc-uploader/handlers/*test.go # gosub
+  - code.cloudfoundry.org/cc-uploader/handlers/upload_build_artifacts/*test.go # gosub
+  - code.cloudfoundry.org/cc-uploader/handlers/upload_droplet/*test.go # gosub

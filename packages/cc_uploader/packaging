@@ -7,4 +7,6 @@ mkdir -p $BOSH_INSTALL_TARGET/bin
 source /var/vcap/packages/golang-1-linux/bosh/compile.env
 export GO111MODULE="off"
 
-go build -o "${BOSH_INSTALL_TARGET}/bin/cc-uploader" code.cloudfoundry.org/cc-uploader/cmd/cc-uploader
+pushd code.cloudfoundry.org/cc-uploader
+  go build -mod=vendor -o "${BOSH_INSTALL_TARGET}/bin/cc-uploader" cmd/cc-uploader
+popd
