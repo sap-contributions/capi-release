@@ -1,4 +1,7 @@
+#!/bin/bash
 set -ex
+
+source /var/vcap/packages/golang-1-linux/bosh/compile.env
 
 pushd ${BUILD_DIR}/code.cloudfoundry.org/cc-uploader/
   go mod vendor
