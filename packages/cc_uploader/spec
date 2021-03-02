@@ -17,6 +17,7 @@ files:
   - code.cloudfoundry.org/cc-uploader/handlers/*.go # gosub
   - code.cloudfoundry.org/cc-uploader/handlers/upload_build_artifacts/*.go # gosub
   - code.cloudfoundry.org/cc-uploader/handlers/upload_droplet/*.go # gosub
+  - code.cloudfoundry.org/cc-uploader/vendor/**/*
   - code.cloudfoundry.org/cfhttp/*.go # gosub
   - code.cloudfoundry.org/cfhttp/unix_transport/*.go # gosub
   - code.cloudfoundry.org/debugserver/*.go # gosub
