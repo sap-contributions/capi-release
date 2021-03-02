@@ -880,8 +880,11 @@ properties:
     description: "The cc will alert if memory remains above this threshold for 3 monit cycles"
     default: 3500
   cc.thresholds.api.restart_if_consistently_above_mb:
-    description: "The cc will restart if memory remains above this threshold for 15 monit cycles"
+    description: "The cc will restart if memory remains above this threshold for n monit cycles"
     default: 3500
+  cc.thresholds.api.restart_if_consistently_above_mb_cycles:
+    description: "Monit cycles for 'restart_if_consistently_above_mb'. Default is 15 cycles"
+    default: 15
   cc.thresholds.api.restart_if_above_mb:
     description: "The cc will restart if memory remains above this threshold for 3 monit cycles"
     default: 3750
