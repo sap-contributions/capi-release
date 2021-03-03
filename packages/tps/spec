@@ -29,10 +29,13 @@ files:
   - code.cloudfoundry.org/locket/models/*.go # gosub
   - code.cloudfoundry.org/runtimeschema/cc_messages/*.go # gosub
   - code.cloudfoundry.org/tlsconfig/*.go # gosub
+  - code.cloudfoundry.org/tps/go.mod
+  - code.cloudfoundry.org/tps/go.sum
   - code.cloudfoundry.org/tps/cc_client/*.go # gosub
   - code.cloudfoundry.org/tps/cmd/tps-watcher/*.go # gosub
   - code.cloudfoundry.org/tps/config/*.go # gosub
   - code.cloudfoundry.org/tps/watcher/*.go # gosub
+  - code.cloudfoundry.org/tps/vendor/**/*
   - code.cloudfoundry.org/urljoiner/*.go # gosub
   - code.cloudfoundry.org/workpool/*.go # gosub
   - github.com/bmizerany/pat/*.go # gosub
