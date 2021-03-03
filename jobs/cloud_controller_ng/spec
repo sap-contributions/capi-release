@@ -16,7 +16,7 @@ templates:
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
   blobstore_waiter.sh.erb: bin/blobstore_waiter.sh
   buildpacks_ca_cert.pem.erb: config/certs/buildpacks_ca_cert.pem
-  cc-drain.rb: bin/cc-drain
+  cc-drain.rb.erb: bin/cc-drain
   cloud_controller_api_ctl.erb: bin/cloud_controller_ng_ctl
   cloud_controller_api_health_check.erb: bin/cloud_controller_ng_health_check
   cloud_controller_api_worker_ctl.erb: bin/cloud_controller_worker_ctl
@@ -55,7 +55,7 @@ templates:
   pre-start.sh.erb: bin/pre-start
   public_upload.conf.erb: config/public_upload.conf
   resource_pool_ca_cert.pem.erb: config/certs/resource_pool_ca_cert.pem
-  restart_drain.rb: bin/restart_drain
+  restart_drain.rb.erb: bin/restart_drain
   ruby_version.sh.erb: bin/ruby_version.sh
   seed_db.sh.erb: bin/seed_db
   setup_local_blobstore.sh.erb: bin/setup_local_blobstore.sh
@@ -864,6 +864,10 @@ properties:
         limit: 10r/s
         burst: 100
 
+  cc.nginx_drain_timeout:
+    description: "Timeout for nginx graceful shutdown in seconds. Default is 30"
+    default: 30
+
   cc.server_keepalive_timeout:
     description: "Configure keep alive timeout for connections to cloud controller. This is a temporary field used for testing."
     default: 75
@@ -876,8 +880,11 @@ properties:
     description: "The cc will alert if memory remains above this threshold for 3 monit cycles"
     default: 3500
   cc.thresholds.api.restart_if_consistently_above_mb:
-    description: "The cc will restart if memory remains above this threshold for 15 monit cycles"
+    description: "The cc will restart if memory remains above this threshold for n monit cycles"
     default: 3500
+  cc.thresholds.api.restart_if_consistently_above_mb_cycles:
+    description: "Monit cycles for 'restart_if_consistently_above_mb'. Default is 15 cycles"
+    default: 15
   cc.thresholds.api.restart_if_above_mb:
     description: "The cc will restart if memory remains above this threshold for 3 monit cycles"
     default: 3750
