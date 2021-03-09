@@ -22,6 +22,7 @@ pushd nginx-1.18.0
     --with-pcre=../pcre-8.42 \
     --add-module=../nginx-upload-module-2.3.0 \
     --with-http_stub_status_module \
+    --with-http_v2_module \
     --with-http_ssl_module
 
   make

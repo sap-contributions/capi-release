@@ -114,7 +114,7 @@ http {
 
   # This block handles public endpoints over TLS
   server {
-  listen <%= p("cc.public_tls.port") %> ssl;
+  listen <%= p("cc.public_tls.port") %> ssl http2;
   include nginx_server_public_tls.conf;
 
   server_name  _;
