@@ -10,8 +10,8 @@ module Bosh::Template::Test
     let(:release) { ReleaseDir.new(release_path) }
     let(:job) { release.job('cloud_controller_ng') }
 
-    describe 'bin/restart_drain' do
-      let(:template) { job.template('bin/restart_drain') }
+    describe 'bin/shutdown_drain' do
+      let(:template) { job.template('bin/shutdown_drain') }
 
       it 'renders the default value' do
         rendered_file = template.render(consumes: { } )
@@ -26,20 +26,5 @@ module Bosh::Template::Test
       end
     end
 
-    describe 'bin/cc-drain' do
-      let(:template) { job.template('bin/cc-drain') }
-
-      it 'renders the default value' do
-        rendered_file = template.render(consumes: { } )
-        expect(rendered_file).to include("@drain.shutdown_nginx('/var/vcap/sys/run/nginx_cc/nginx.pid', 30)")
-      end
-
-      context 'when nginx timeout is provided' do
-        it 'renders the provided value' do
-          rendered_file = template.render({'cc' => {'nginx_drain_timeout' => 60 }}, consumes: { } )
-          expect(rendered_file).to include("@drain.shutdown_nginx('/var/vcap/sys/run/nginx_cc/nginx.pid', 60)")
-        end
-      end
-    end
   end
 end

@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+PIDFILE="/var/vcap/sys/run/cloud_controller_ng/restart_drain.pid"
+
+# As this script might run longer than a monit cycle (10s) and thus might be
+# triggered several times, it must be ensured that it runs only once.
+[[ -s "$PIDFILE" ]] && exit
+
+function on_exit {
+    # Enable monitoring of nginx_cc. This also enables monitoring for
+    # cloud_controller_ng and ccng_monit_http_healthcheck.
+    /var/vcap/bosh/bin/monit monitor nginx_cc
+    rm -f $PIDFILE
+}
+
+trap on_exit EXIT
+echo "$BASHPID" > "$PIDFILE"
+
+LOGFILE="/var/vcap/sys/log/cloud_controller_ng/drain/restart_drain.log"
+echo "$(date) - pid: $BASHPID - Monit triggered shutdown drain" >> "$LOGFILE"
+
+# The health check fails as soon as nginx stops accepting new requests. It must
+# be unmonitored to not interfere with the graceful shutdown. This also
+# unmonitors cloud_controller_ng and nginx_cc.
+/var/vcap/bosh/bin/monit unmonitor ccng_monit_http_healthcheck
+
+/var/vcap/jobs/cloud_controller_ng/bin/shutdown_drain 1>&2
