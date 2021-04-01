@@ -21,6 +21,8 @@ http {
   access_log  /var/vcap/sys/log/cloud_controller_ng/nginx-access.log main;
   access_log  syslog:server=127.0.0.1,severity=info,tag=vcap_nginx_access main;
 
+  proxy_hide_header X-USER-GUID;  #user guid header should not be forwarded to client
+
   sendfile             on;  #enable use of sendfile()
   sendfile_max_chunk   1M;  #make sure not to block on fast clients reading large files
   tcp_nopush           on;
