@@ -840,6 +840,9 @@ properties:
     default: >
       $host - [$time_local] "$request" $status $bytes_sent "$http_referer" "$http_user_agent"
       $proxy_add_x_forwarded_for vcap_request_id:$upstream_http_x_vcap_request_id response_time:$upstream_response_time
+  cc.nginx_access_log_escaping:
+    description: "The characters escaping used for logging variables: [default | json]"
+    default: default
   cc.nginx_error_log_destination:
     description: "The nginx error log destination. This can be used to route error logs to a file, syslog, or a memory buffer."
     default: "/var/vcap/sys/log/nginx_cc/nginx.error.log"
