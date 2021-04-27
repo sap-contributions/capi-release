@@ -375,6 +375,10 @@ properties:
     description: "Enable V2 endpoints"
     default: true
 
+  cc.temporary_enable_space_application_supporter_role:
+    description: "Enables the space application supporter role. This flag will start false, eventually default to true in the future and then be removed."
+    default: false
+
   cc.directories.tmpdir:
     default: "/var/vcap/data/cloud_controller_ng/tmp"
     description: "The directory to use for temporary files"
