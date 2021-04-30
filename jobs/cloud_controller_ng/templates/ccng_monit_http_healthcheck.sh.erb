@@ -34,13 +34,15 @@ echo $(date --rfc-3339=ns) 'Will restart CC over on repeated failures'
 
 trap log_failure EXIT
 
-# if we fail to curl it 5 times in a row across 50 seconds, die so monit will restart us
+# If we fail to curl the healthz endpoint 5 times (can be changed with cc.ccng_monit_http_healthcheck_retries) with
+# a delay of 10 seconds between each retry, exit in order to trigger a restart of cloud controller through monit.
+# Each curl has an individual timout of 2 seconds (can be changed with cc.ccng_monit_http_healthcheck_timeout_per_retry).
 while true; do
   set +e
   curl \
     -sS \
-    --max-time <%= p('cc.api_health_check_timeout_per_retry') %> \
-    --retry 5 \
+    --max-time <%= p('cc.ccng_monit_http_healthcheck_timeout_per_retry') %> \
+    --retry <%= p('cc.ccng_monit_http_healthcheck_retries') %> \
     --retry-delay 10 \
     -A "ccng_monit_http_healthcheck" \
     -k \
