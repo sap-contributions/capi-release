@@ -30,28 +30,24 @@ PORT=<%= p("cc.public_tls.port") %>
 PROTOCOL="https"
 URL="https://${HOST}:${PORT}/healthz"
 
-source /var/vcap/packages/capi_utils/monit_utils.sh
-
-echo $(date --rfc-3339=ns) 'Waiting for Cloud Controller to initially become healthy at'
-
-wait_for_server_to_become_healthy "${URL}" "<%= p("cc.api_post_start_healthcheck_timeout_in_seconds") %>"
-
-echo $(date --rfc-3339=ns) 'Initial check passed, will now restart CC over on repeated failures'
+echo $(date --rfc-3339=ns) 'Will restart CC over on repeated failures'
 
 trap log_failure EXIT
 
 # if we fail to curl it 5 times in a row across 50 seconds, die so monit will restart us
-set -e
 while true; do
-  if ! curl \
+  set +e
+  curl \
     -sS \
     --max-time <%= p('cc.api_health_check_timeout_per_retry') %> \
     --retry 5 \
     --retry-delay 10 \
     -A "ccng_monit_http_healthcheck" \
     -k \
-    "${URL}" > /dev/null ; then
-    status=$?
+    "${URL}" > /dev/null
+  status=$?
+  set -e
+  if [[ $status > 0 ]] ; then
     echo $(date --rfc-3339=ns) "ccng_monit_http_healthcheck failed to curl <${URL}>: exit code $status"
     exit $status
   fi
