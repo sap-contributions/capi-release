@@ -355,6 +355,14 @@ properties:
     default: 6
     description: "Maximum health check timeout (in seconds). Health checks will be retried until this time limit is reached. This should be less than or equal to your route_registrar.routes.api.health_check.timeout"
 
+  cc.ccng_monit_http_healthcheck_retries:
+    default: 5
+    description: "Number of retries performed by the ccng_monit_http_healthcheck process"
+
+  cc.ccng_monit_http_healthcheck_timeout_per_retry:
+    default: 2
+    description: "Timeout (in seconds) for each HTTP request sent by the ccng_monit_http_healthcheck process"
+
   cc.jobs.global.timeout_in_seconds:
     description: "The longest any job can take before it is cancelled unless overridden per job"
     default: 14400 # 4 hours

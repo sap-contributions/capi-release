@@ -7,9 +7,9 @@ PIDFILE="/var/vcap/sys/run/cloud_controller_ng/restart_drain.pid"
 [[ -s "$PIDFILE" ]] && exit
 
 function on_exit {
-    # Enable monitoring of nginx_cc. This also enables monitoring for
-    # cloud_controller_ng and ccng_monit_http_healthcheck.
-    /var/vcap/bosh/bin/monit monitor nginx_cc
+    # Re-enable monitoring of ccng_monit_http_healthcheck. This also enables
+    # monitoring of nginx_cc and cloud_controller_ng.
+    /var/vcap/bosh/bin/monit monitor ccng_monit_http_healthcheck
     rm -f $PIDFILE
 }
 
@@ -19,9 +19,9 @@ echo "$BASHPID" > "$PIDFILE"
 LOGFILE="/var/vcap/sys/log/cloud_controller_ng/drain/restart_drain.log"
 echo "$(date) - pid: $BASHPID - Monit triggered shutdown drain" >> "$LOGFILE"
 
-# The health check fails as soon as nginx stops accepting new requests. It must
-# be unmonitored to not interfere with the graceful shutdown. This also
-# unmonitors cloud_controller_ng and nginx_cc.
-/var/vcap/bosh/bin/monit unmonitor ccng_monit_http_healthcheck
+# Unmonitor cloud_controller_ng. This also unmonitors nginx_cc and
+# ccng_monit_http_healthcheck. Monit should not interfere with the graceful
+# shutdown.
+/var/vcap/bosh/bin/monit unmonitor cloud_controller_ng
 
 /var/vcap/jobs/cloud_controller_ng/bin/shutdown_drain 1>&2
