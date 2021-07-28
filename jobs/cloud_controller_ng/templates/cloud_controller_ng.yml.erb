@@ -184,6 +184,9 @@ db: &db
   pool_timeout: <%= p("ccdb.pool_timeout") %>
   log_level: "<%= p("cc.db_logging_level") %>"
   log_db_queries: <%= p("cc.log_db_queries") %>
+<% if_p("cc.query_size_log_threshold") do %>
+  query_size_log_threshold: <%= p("cc.query_size_log_threshold") %>
+<% end %>
   ssl_verify_hostname: <%= p("ccdb.ssl_verify_hostname") %>
   read_timeout: <%= p("ccdb.read_timeout") %>
   connection_validation_timeout: <%= p("ccdb.connection_validation_timeout") %>
