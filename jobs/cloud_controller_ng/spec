@@ -910,6 +910,9 @@ properties:
   cc.thresholds.api.restart_if_above_mb:
     description: "The cc will restart if memory remains above this threshold for 3 monit cycles"
     default: 3750
+  cc.thresholds.api.restart_if_monit_connection_test_consistently_fails_cycles:
+    description: "Number of monit cycles until a failing unixsocket test triggers a restart. Default is 60 cycles (i.e. 10 minutes)"
+    default: 60
 
   dea_next.staging_memory_limit_mb:
     description: "Memory limit in MB for staging tasks"

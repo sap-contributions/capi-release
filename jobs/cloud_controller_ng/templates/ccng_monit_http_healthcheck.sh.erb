@@ -40,6 +40,7 @@ trap log_failure EXIT
 while true; do
   set +e
   curl \
+    --fail \
     -sS \
     --max-time <%= p('cc.ccng_monit_http_healthcheck_timeout_per_retry') %> \
     --retry <%= p('cc.ccng_monit_http_healthcheck_retries') %> \
