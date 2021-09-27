@@ -437,6 +437,7 @@ rate_limiter:
   general_limit: <%= p("cc.rate_limiter.general_limit") %>
   unauthenticated_limit: <%= p("cc.rate_limiter.unauthenticated_limit") %>
   reset_interval_in_minutes: <%= p("cc.rate_limiter.reset_interval_in_minutes") %>
+  update_db_every_n_requests: <%= p("cc.rate_limiter.update_db_every_n_requests") %>
 
 <%
 cc_uploader_url = nil

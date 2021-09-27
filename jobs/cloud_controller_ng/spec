@@ -1047,6 +1047,10 @@ properties:
   cc.rate_limiter.reset_interval_in_minutes:
     description: "The interval in minutes after which a user's available API requests will be reset"
     default: 60
+  cc.rate_limiter.update_db_every_n_requests:
+    description: "The number of requests per user and API node after which the database counter will be updated.
+                  Until this threshold is reached, requests are counted in-memory."
+    default: 1
 
   cc.diego.bbs.url:
     description: "URL of the BBS Server"
