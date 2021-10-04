@@ -52,6 +52,17 @@ function wait_for_server_to_become_healthy() {
   return 1
 }
 
+# monit_monitor_job
+#
+# @param job_name
+#
+# Tells monit to monitor the given job.
+#
+function monit_monitor_job() {
+  local job_name="$1"
+  sudo /var/vcap/bosh/bin/monit monitor "${job_name}"
+}
+
 # monit_unmonitor_job
 #
 # @param job_name
