@@ -253,6 +253,9 @@ consumes:
 - name: file_server
   type: file_server
   optional: true
+- name: cloud_controller
+  type: cloud_controller
+  optional: true
 
 properties:
   ssl.skip_cert_verify:

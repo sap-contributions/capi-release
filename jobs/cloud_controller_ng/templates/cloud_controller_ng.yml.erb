@@ -432,10 +432,13 @@ bits_service:
   ca_cert_path: /var/vcap/jobs/cloud_controller_ng/config/certs/bits_service_ca.crt
   <% end %>
 
+<% instances = p("cc.rate_limiter.enabled") ? link("cloud_controller").instances.length : 1 %>
 rate_limiter:
   enabled: <%= p("cc.rate_limiter.enabled") %>
-  general_limit: <%= p("cc.rate_limiter.general_limit") %>
-  unauthenticated_limit: <%= p("cc.rate_limiter.unauthenticated_limit") %>
+  global_general_limit: <%= p("cc.rate_limiter.general_limit") %>
+  per_process_general_limit: <%= (p("cc.rate_limiter.general_limit").to_f/instances).ceil %>
+  global_unauthenticated_limit: <%= p("cc.rate_limiter.unauthenticated_limit") %>
+  per_process_unauthenticated_limit: <%= (p("cc.rate_limiter.unauthenticated_limit").to_f/instances).ceil %>
   reset_interval_in_minutes: <%= p("cc.rate_limiter.reset_interval_in_minutes") %>
 
 <%
