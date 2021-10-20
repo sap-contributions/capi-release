@@ -75,6 +75,7 @@ module Bosh::Template::Test
                     'private_endpoint' => 'https://blobstore.service.cf.internal:4443',
                     'public_endpoint' => 'https://blobstore.brook-sentry.capi.land',
                     'username' => 'blobstore-user' } },
+            'rate_limiter' => {},
             'resource_pool' =>
               { 'blobstore_type' => 'webdav',
                 'webdav_config' =>
@@ -388,6 +389,57 @@ module Bosh::Template::Test
           end
         end
 
+      end
+
+      context 'when rate limiting is enabled' do
+        let(:self_link) do
+          Link.new(name: 'cloud_controller', instances: [LinkInstance.new(address: '0.capi.service.internal')])
+        end
+
+        before do
+          merged_manifest_properties['cc']['rate_limiter'] = {
+            'enabled' => true,
+            'general_limit' => 1000,
+            'unauthenticated_limit' => 100,
+          }
+        end
+
+        it 'enables rate limiting' do
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
+          expect(template_hash['rate_limiter']['enabled']).to be(true)
+        end
+
+        it 'uses the global limits' do
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
+          expect(template_hash['rate_limiter']['global_general_limit']).to eq(1000)
+          expect(template_hash['rate_limiter']['global_unauthenticated_limit']).to eq(100)
+        end
+
+        it 'uses the global limits as per_process limits for single instance of CC' do
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
+          expect(template_hash['rate_limiter']['per_process_general_limit']).to eq(1000)
+          expect(template_hash['rate_limiter']['per_process_unauthenticated_limit']).to eq(100)
+        end
+
+        it 'uses the calculates the per_process limits based on number of instances from self link' do
+          self_link = Link.new(
+            name: 'cloud_controller',
+            instances: (1..4).map do |i| LinkInstance.new(address: "#{i}.capi.service.internal") end
+          )
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
+          expect(template_hash['rate_limiter']['per_process_general_limit']).to eq(250)
+          expect(template_hash['rate_limiter']['per_process_unauthenticated_limit']).to eq(25)
+        end
+
+        it 'rounds per_process limits up when calculation results in fractions' do
+          self_link = Link.new(
+            name: 'cloud_controller',
+            instances: (1..3).map do |i| LinkInstance.new(address: "#{i}.capi.service.internal") end
+          )
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
+          expect(template_hash['rate_limiter']['per_process_general_limit']).to eq(334)
+          expect(template_hash['rate_limiter']['per_process_unauthenticated_limit']).to eq(34)
+        end
       end
 
       context 'when db connection expiration configuration is present' do
