@@ -1171,6 +1171,10 @@ properties:
                   If this range is changed, it is likely the routes on the internal service mesh domain
                   will need to be recreated."
 
+  cc.log_audit_events:
+    default: false
+    description: "Log audit events"
+
   copilot.enabled:
     description: "Enable communication with CF Copilot. Must be enabled when using Envoy for ingress routing."
     default: false
@@ -1205,3 +1209,4 @@ properties:
     description: "The name of the kubernetes ServiceAccount that has the credentials to upload to the registry"
   cc.kubernetes.kpack.registry_tag_base:
     description: "The first part of the registry tag where built images will be uploaded"
+

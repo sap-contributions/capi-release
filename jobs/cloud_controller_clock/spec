@@ -148,6 +148,9 @@ properties:
   cc.db_logging_level:
     default: "debug2"
     description: "Level at which cc database operations will be logged if cc.log_db_queries is set to true."
+  cc.log_audit_events:
+    default: false
+    description: "Log audit events"
 
   cc.staging_timeout_in_seconds:
     default: 900

@@ -114,6 +114,8 @@ logging:
   format:
     timestamp: <%= link("cloud_controller_internal").p("cc.logging.format.timestamp") %>
 
+log_audit_events: <%= p("cc.log_audit_events") %>
+
 loggregator:
   router: <%= p("metron_endpoint.host") %>:<%= p("metron_endpoint.port") %>
 
