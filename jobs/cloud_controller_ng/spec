@@ -346,6 +346,10 @@ properties:
     default: "api"
     description: "Host part of the cloud_controller API URI, will be joined with value of 'domain'"
 
+  cc.number_of_api_processes:
+    description: "Number of cloud_controller api processes"
+    default: 1
+
   cc.api_post_start_healthcheck_timeout_in_seconds:
     default: 60
     description: "Maximum time (in seconds) for cloud_controller_ng to report healthy"

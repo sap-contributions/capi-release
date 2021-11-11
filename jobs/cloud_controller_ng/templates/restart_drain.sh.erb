@@ -10,7 +10,7 @@ PIDFILE="/var/vcap/sys/run/cloud_controller_ng/restart_drain.pid"
 
 function on_exit {
     # Re-enable monitoring of ccng_monit_http_healthcheck. This also enables
-    # monitoring of nginx_cc and cloud_controller_ng.
+    # monitoring of nginx_cc and cloud_controller_ng_*.
     monit_monitor_job ccng_monit_http_healthcheck
     rm -f $PIDFILE
 }
@@ -21,9 +21,11 @@ echo "$BASHPID" > "$PIDFILE"
 LOGFILE="/var/vcap/sys/log/cloud_controller_ng/drain/restart_drain.log"
 echo "$(date) - pid: $BASHPID - Monit triggered shutdown drain" >> "$LOGFILE"
 
-# Unmonitor cloud_controller_ng. This also unmonitors nginx_cc and
-# ccng_monit_http_healthcheck. Monit should not interfere with the graceful
+# Unmonitor all cloud_controller_ng_* processes. This also unmonitors nginx_cc
+# and ccng_monit_http_healthcheck. Monit should not interfere with the graceful
 # shutdown.
-monit_unmonitor_job cloud_controller_ng
+<% (1..(p("cc.number_of_api_processes"))).each do |index| %>
+monit_unmonitor_job cloud_controller_ng_<%= index %>
+<% end %>
 
 /var/vcap/jobs/cloud_controller_ng/bin/shutdown_drain 1>&2

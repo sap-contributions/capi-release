@@ -50,7 +50,9 @@ http {
   scgi_temp_path        /var/vcap/data/cloud_controller_ng/tmp/scgi_temp;
 
   upstream cloud_controller {
-    server unix:/var/vcap/data/cloud_controller_ng/cloud_controller.sock;
+    <% (1..(p("cc.number_of_api_processes"))).each do |index| %>
+    server unix:/var/vcap/data/cloud_controller_ng/cloud_controller_<%= index %>.sock;
+    <% end %>
   }
 
   # This block ensures the endpoints it serves are handled by mutual TLS.

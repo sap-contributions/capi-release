@@ -1,11 +1,13 @@
-check process cloud_controller_ng
-  with pidfile /var/vcap/sys/run/bpm/cloud_controller_ng/cloud_controller_ng.pid
-  start program "/var/vcap/jobs/bpm/bin/bpm start cloud_controller_ng"
-  stop program "/var/vcap/jobs/bpm/bin/bpm stop cloud_controller_ng"
+<% (1..(p("cc.number_of_api_processes"))).each do |index| %>
+check process cloud_controller_ng_<%= index %>
+  with pidfile /var/vcap/sys/run/bpm/cloud_controller_ng/cloud_controller_ng_<%= index %>.pid
+  start program "/var/vcap/jobs/bpm/bin/bpm start cloud_controller_ng -p cloud_controller_ng_<%= index %>"
+  stop program "/var/vcap/jobs/bpm/bin/bpm stop cloud_controller_ng -p cloud_controller_ng_<%= index %>"
   group vcap
   if totalmem > <%= p("cc.thresholds.api.alert_if_above_mb") %> Mb for 3 cycles then alert
   if totalmem > <%= p("cc.thresholds.api.restart_if_consistently_above_mb") %> Mb for <%= p("cc.thresholds.api.restart_if_consistently_above_mb_cycles") %> cycles then exec "/var/vcap/jobs/cloud_controller_ng/bin/restart_drain"
   if totalmem > <%= p("cc.thresholds.api.restart_if_above_mb") %> Mb for 3 cycles then exec "/var/vcap/jobs/cloud_controller_ng/bin/restart_drain"
+<% end %>
 
 check process ccng_monit_http_healthcheck
   with pidfile /var/vcap/sys/run/bpm/cloud_controller_ng/ccng_monit_http_healthcheck.pid
@@ -30,9 +32,11 @@ check process nginx_cc
   with pidfile /var/vcap/sys/run/bpm/cloud_controller_ng/nginx.pid
   start program "/var/vcap/jobs/bpm/bin/bpm start cloud_controller_ng -p nginx"
   stop program "/var/vcap/jobs/bpm/bin/bpm stop cloud_controller_ng -p nginx"
-  if failed unixsocket /var/vcap/data/cloud_controller_ng/cloud_controller.sock then restart
+  <% (1..(p("cc.number_of_api_processes"))).each do |index| %>
+  if failed unixsocket /var/vcap/data/cloud_controller_ng/cloud_controller_<%= index %>.sock then restart
+  <% end %>
   if <%= p("cc.thresholds.api.restart_if_monit_connection_test_consistently_fails_cycles") %> restarts within <%= p("cc.thresholds.api.restart_if_monit_connection_test_consistently_fails_cycles") %> cycles then exec "/var/vcap/jobs/cloud_controller_ng/bin/restart_drain"
-  depends on cloud_controller_ng
+  depends on cloud_controller_ng_1 <% (2..(p("cc.number_of_api_processes"))).each do |index| %>, cloud_controller_ng_<%= index %> <% end %>
   group vcap
 
 <% if_p("cc.newrelic.license_key") do %>

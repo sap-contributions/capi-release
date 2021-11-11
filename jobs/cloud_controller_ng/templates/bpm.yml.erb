@@ -13,60 +13,20 @@ def mount_nfs_volume!(config)
 end
 
 def enable_fog_debugging!(config)
-    if p("cc.log_fog_requests")
-        case p("cc.packages.fog_connection.provider", "").downcase
-        when "azurerm"
-          config["env"]["FOG_DEBUG"] = true
-        when  "aliyun"
-          config["env"]["ALIYUN_OSS_SDK_LOG_LEVEL"] = "debug"
-          config["env"]["FOG_DEBUG"] = true
-          config["env"]["DEBUG"] = true
-        else
-          config["env"]["DEBUG"] = true
-          config["env"]["FOG_DEBUG"] = true
-        end
+  if p("cc.log_fog_requests")
+    case p("cc.packages.fog_connection.provider", "").downcase
+    when "azurerm"
+      config["env"]["FOG_DEBUG"] = true
+    when  "aliyun"
+      config["env"]["ALIYUN_OSS_SDK_LOG_LEVEL"] = "debug"
+      config["env"]["FOG_DEBUG"] = true
+      config["env"]["DEBUG"] = true
+    else
+      config["env"]["DEBUG"] = true
+      config["env"]["FOG_DEBUG"] = true
     end
+  end
 end
-
-cloud_controller_ng_config = {
-  "name" => "cloud_controller_ng",
-  "executable" => "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng",
-  "ephemeral_disk" => true,
-  "env" => {
-    "BUNDLE_GEMFILE" => "/var/vcap/packages/cloud_controller_ng/cloud_controller_ng/Gemfile",
-    "CLOUD_CONTROLLER_NG_CONFIG" => "/var/vcap/jobs/cloud_controller_ng/config/cloud_controller_ng.yml",
-    "C_INCLUDE_PATH" => "/var/vcap/packages/libpq/include",
-    "DYNO" => "#{spec.job.name}-#{spec.index}",
-    "HOME" => "/home/vcap",
-    "LANG" => "en_US.UTF-8",
-    "LIBRARY_PATH" => "/var/vcap/packages/libpq/lib",
-    "NEW_RELIC_ENV" => "#{p("cc.newrelic.environment_name")}",
-    "NRCONFIG" => "/var/vcap/jobs/cloud_controller_ng/config/newrelic.yml",
-    "RAILS_ENV" => "production",
-  }
-}
-
-if !!properties.cc.newrelic.license_key || p("cc.development_mode")
-    cloud_controller_ng_config["env"]["NEWRELIC_ENABLE"] = true
-end
-
-enable_fog_debugging!(cloud_controller_ng_config)
-
-if properties.env
-    if properties.env.http_proxy
-        cloud_controller_ng_config["env"]["HTTP_PROXY"] = "#{properties.env.http_proxy}"
-        cloud_controller_ng_config["env"]["http_proxy"] = "#{properties.env.http_proxy}"
-    end
-    if properties.env.https_proxy
-        cloud_controller_ng_config["env"]["HTTPS_PROXY"] = "#{properties.env.https_proxy}"
-        cloud_controller_ng_config["env"]["https_proxy"] = "#{properties.env.https_proxy}"
-    end
-    if properties.env.no_proxy
-        cloud_controller_ng_config["env"]["NO_PROXY"] = "#{properties.env.no_proxy}"
-        cloud_controller_ng_config["env"]["no_proxy"] = "#{properties.env.no_proxy}"
-    end
-end
-mount_nfs_volume!(cloud_controller_ng_config)
 
 nginx_config = {
   "name" => "nginx",
@@ -95,13 +55,57 @@ ccng_monit_http_healthcheck_config = {
 
 config = {
   "processes" => [
-    cloud_controller_ng_config,
     nginx_config,
     nginx_newrelic_plugin_config,
     nginx_maintenance_config,
     ccng_monit_http_healthcheck_config,
   ]
 }
+
+(1..(p("cc.number_of_api_processes"))).each do |index|
+  cloud_controller_ng_config = {
+    "name" => "cloud_controller_ng_#{index}",
+    "executable" => "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng",
+    "ephemeral_disk" => true,
+    "env" => {
+      "BUNDLE_GEMFILE" => "/var/vcap/packages/cloud_controller_ng/cloud_controller_ng/Gemfile",
+      "CLOUD_CONTROLLER_NG_CONFIG" => "/var/vcap/jobs/cloud_controller_ng/config/cloud_controller_ng.yml",
+      "C_INCLUDE_PATH" => "/var/vcap/packages/libpq/include",
+      "DYNO" => "#{spec.job.name}-#{spec.index}",
+      "HOME" => "/home/vcap",
+      "LANG" => "en_US.UTF-8",
+      "LIBRARY_PATH" => "/var/vcap/packages/libpq/lib",
+      "NEW_RELIC_ENV" => "#{p("cc.newrelic.environment_name")}",
+      "NRCONFIG" => "/var/vcap/jobs/cloud_controller_ng/config/newrelic.yml",
+      "RAILS_ENV" => "production",
+      "CC_INDEX" => index
+    }
+  }
+
+  if !!properties.cc.newrelic.license_key || p("cc.development_mode")
+    cloud_controller_ng_config["env"]["NEWRELIC_ENABLE"] = true
+  end
+
+  enable_fog_debugging!(cloud_controller_ng_config)
+
+  if properties.env
+    if properties.env.http_proxy
+      cloud_controller_ng_config["env"]["HTTP_PROXY"] = "#{properties.env.http_proxy}"
+      cloud_controller_ng_config["env"]["http_proxy"] = "#{properties.env.http_proxy}"
+    end
+    if properties.env.https_proxy
+      cloud_controller_ng_config["env"]["HTTPS_PROXY"] = "#{properties.env.https_proxy}"
+      cloud_controller_ng_config["env"]["https_proxy"] = "#{properties.env.https_proxy}"
+    end
+    if properties.env.no_proxy
+      cloud_controller_ng_config["env"]["NO_PROXY"] = "#{properties.env.no_proxy}"
+      cloud_controller_ng_config["env"]["no_proxy"] = "#{properties.env.no_proxy}"
+    end
+  end
+  mount_nfs_volume!(cloud_controller_ng_config)
+
+  config["processes"] << cloud_controller_ng_config
+end
 
 (1..(p("cc.jobs.local.number_of_workers"))).each do |index|
   local_worker_config = {
