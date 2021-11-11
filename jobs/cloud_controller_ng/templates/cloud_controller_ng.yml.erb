@@ -520,6 +520,8 @@ internal_route_vip_range: <%= internal_vip_range %>
 
 threadpool_size: <%= p("cc.experimental.thin_server.thread_pool_size") %>
 
+use_optimized_json_encoder: <%= p("cc.experimental.use_optimized_json_encoder") %>
+
 <% if_p("cc.kubernetes.host_url") do %>
 kubernetes:
   host_url: <%= p("cc.kubernetes.host_url") %>

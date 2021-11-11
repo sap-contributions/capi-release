@@ -1199,6 +1199,10 @@ properties:
     description: "How many threads a single cloud controller instance's thin server will attempt to use. Alter at your own peril."
     default: 20 # inherited from default in Thin/EventMachine
 
+  cc.experimental.use_optimized_json_encoder:
+    description: "Switch to a different Ruby JSON encoder, i.e. Oj (https://github.com/ohler55/oj)."
+    default: false
+
   cc.kubernetes.host_url:
     description: "Kubernetes master API URL"
   cc.kubernetes.service_account.name:
