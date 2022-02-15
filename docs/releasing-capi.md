@@ -7,7 +7,7 @@
   - Unpause & run the `ship-it` job (in the `ship-it` group)
   - Wait for the pipeline to complete.
   - Pause the `ship-it` job.
-3. Create the release notes
+3. Create the release notes.
 Currently, we have to manually create the release notes.
 
   - Make sure your local copy of the repo is up to date: `cd` into `capi-release` and `git pull`
@@ -18,6 +18,7 @@ Currently, we have to manually create the release notes.
   - The `ship-it` pipeline should have created a draft Github release.
   - Paste in the release notes into the relevant sections in the release draft.
   - Add any Highlights to the top of the release notes.
+  - Put dependency bumps in a separate section.
   - Publish the release.
 5. Follow up
   - Tell folks you shipped it.
