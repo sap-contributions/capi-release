@@ -480,6 +480,10 @@ properties:
     default: 10080
     description: "The max duration the CC will fetch service instance state from a service broker. Default is 1 week"
 
+  cc.broker_client_async_poll_exponential_backoff_rate:
+    default: 1.0
+    description: "Exponential backoff for service related polling jobs. Default is 1.0, which means there is no exponential backoff."
+
   cc.bits_service.enabled:
     description: "Enable integration of the bits-service incubator (experimental)"
     default: false
