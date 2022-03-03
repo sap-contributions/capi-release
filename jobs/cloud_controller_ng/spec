@@ -373,6 +373,8 @@ properties:
     description: "The longest this job can take before it is cancelled"
   cc.jobs.droplet_upload.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
+  cc.jobs.priorities:
+    description: "List of hashes containing delayed jobs 'display_name' and its desired priority. This will overwrite the default priority of ccng"
 
   cc.temporary_disable_deployments:
     description: "Do not allow the API client to create app deployments (temporary)"

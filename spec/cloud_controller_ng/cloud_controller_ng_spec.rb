@@ -391,6 +391,27 @@ module Bosh::Template::Test
 
       end
 
+      describe 'job priorities' do
+        it 'does not include priorities by default' do
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+          expect(template_hash['jobs']).not_to include('priorities')
+        end
+
+        context 'when specified' do
+          it 'correctly renders priorities' do
+            merged_manifest_properties['cc']['jobs'] = {
+              'priorities' => {
+                'super.important.job' => -10,
+                'not-so-important-job' => 10
+              }
+            }
+            template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+            expect(template_hash['jobs']['priorities']['super.important.job']).to eq(-10)
+            expect(template_hash['jobs']['priorities']['not-so-important-job']).to eq(10)
+          end
+        end
+      end
+
       context 'when rate limiting is enabled' do
         let(:self_link) do
           Link.new(name: 'cloud_controller', instances: [LinkInstance.new(address: '0.capi.service.internal')])
