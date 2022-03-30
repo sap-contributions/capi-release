@@ -1017,6 +1017,10 @@ properties:
     description: "Enable logging of all requests made to the Cloud Controller in CEF format."
     default: false
 
+  cc.telemetry_logging_enabled:
+    description: "Enable telemetry logging."
+    default: true
+
   cc.volume_services_enabled:
     description: "Enable binding to services that provide volume_mount information."
     default: false
