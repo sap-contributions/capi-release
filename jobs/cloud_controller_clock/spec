@@ -12,7 +12,6 @@ templates:
   post-restore-unlock.sh.erb: bin/bbr/post-restore-unlock
 
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
-  cloud_controller_clock_ctl.erb: bin/cloud_controller_clock_ctl
   newrelic.yml.erb: config/newrelic.yml
   stacks.yml.erb: config/stacks.yml
   drain.sh.erb: bin/drain

@@ -8,7 +8,6 @@ templates:
   bin/cc_route_syncer.erb: bin/cc_route_syncer
 
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
-  cc_route_syncer_ctl.erb: bin/cc_route_syncer_ctl
   drain.sh.erb: bin/drain
   ruby_version.sh.erb: bin/ruby_version.sh
   console.erb: bin/console

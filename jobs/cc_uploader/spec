@@ -4,7 +4,6 @@ name: cc_uploader
 templates:
   bpm.yml.erb: config/bpm.yml
 
-  cc_uploader_ctl.erb: bin/cc_uploader_ctl
   cc_uploader_as_vcap.erb: bin/cc_uploader_as_vcap
   cc_uploader_config.json.erb: config/cc_uploader_config.json
   cc_ca.crt.erb: config/certs/cc/ca.crt
