@@ -12,7 +12,6 @@ templates:
   post-restore-unlock.sh.erb: bin/bbr/post-restore-unlock
 
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
-  cc_deployment_updater_ctl.erb: bin/cc_deployment_updater_ctl
   drain.sh.erb: bin/drain
   ruby_version.sh.erb: bin/ruby_version.sh
   console.erb: bin/console
