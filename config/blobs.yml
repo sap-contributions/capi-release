@@ -42,10 +42,10 @@ nginx/nginx-upload-module-2.3.0.tar.gz:
   size: 40139
   object_id: 2f8f59a7-8e90-4bf5-67d8-1637924ab331
   sha: sha256:c86e318addb9c88d70fdbd58ff1f6ef6f404a93070f6db8017a1f880c97946c4
-nginx/pcre-8.42.tar.gz:
-  size: 2081413
-  object_id: e464286d-99cc-4dd8-74c5-daab11a68340
-  sha: sha256:69acbc2fbdefb955d42a4c606dfde800c2885711d2979e356c0636efde9ec3b5
+nginx/pcre-8.45.tar.gz:
+  size: 2096552
+  object_id: a90f9f20-e23b-4755-59c7-101197325dab
+  sha: sha256:4e6ce03e0336e8b4a3d6c2b70b1c5e18590a5673a98186da90d4f33c23defc09
 postgres/postgresql-11.11.tar.gz:
   size: 26251769
   object_id: 7532ecb6-39e6-4517-58b4-48a944934364
