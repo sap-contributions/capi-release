@@ -37,7 +37,7 @@ packages:
   - cloud_controller_ng
   - libpq
   - mariadb_connector_c
-  - ruby-2.7.2-r0.41.0
+  - ruby-2.7.5-r0.80.0
 
 consumes:
 - name: database
