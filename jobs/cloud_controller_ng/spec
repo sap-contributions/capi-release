@@ -16,9 +16,7 @@ templates:
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
   blobstore_waiter.sh.erb: bin/blobstore_waiter.sh
   buildpacks_ca_cert.pem.erb: config/certs/buildpacks_ca_cert.pem
-  cloud_controller_api_ctl.erb: bin/cloud_controller_ng_ctl
   cloud_controller_api_health_check.erb: bin/cloud_controller_ng_health_check
-  cloud_controller_api_worker_ctl.erb: bin/cloud_controller_worker_ctl
   ccng_monit_http_healthcheck.sh.erb: bin/ccng_monit_http_healthcheck
   console.erb: bin/console
   dns_health_check.erb: bin/dns_health_check
@@ -43,8 +41,6 @@ templates:
   newrelic_plugin.yml.erb: config/newrelic_plugin.yml
   nginx.conf.erb: config/nginx.conf
   nginx_maintenance.conf.erb: config/nginx_maintenance.conf
-  nginx_ctl.erb: bin/nginx_ctl
-  nginx_newrelic_plugin_ctl.erb: bin/nginx_newrelic_plugin_ctl
   opi_tls.crt.erb: config/certs/opi_tls.crt
   opi_tls.key.erb: config/certs/opi_tls.key
   opi_tls_ca.crt.erb: config/certs/opi_tls_ca.crt
@@ -350,6 +346,10 @@ properties:
     default: 60
     description: "Maximum time (in seconds) for cloud_controller_ng to report healthy"
 
+  cc.post_bbr_healthcheck_timeout_in_seconds:
+    default: 60
+    description: "Maximum time (in seconds) for cloud_controller_ng to report healthy in backup and restore unlock"
+
   cc.api_health_check_timeout_per_retry:
     default: 2
     description: "Maximum health check timeout (in seconds) for each retry attempt in the Cloud Controller's route registration health check"
@@ -373,6 +373,8 @@ properties:
     description: "The longest this job can take before it is cancelled"
   cc.jobs.droplet_upload.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
+  cc.jobs.priorities:
+    description: "List of hashes containing delayed jobs 'display_name' and its desired priority. This will overwrite the default priority of ccng"
 
   cc.temporary_disable_deployments:
     description: "Do not allow the API client to create app deployments (temporary)"
@@ -1014,6 +1016,10 @@ properties:
   cc.security_event_logging.enabled:
     description: "Enable logging of all requests made to the Cloud Controller in CEF format."
     default: false
+
+  cc.telemetry_logging_enabled:
+    description: "Enable telemetry logging."
+    default: true
 
   cc.volume_services_enabled:
     description: "Enable binding to services that provide volume_mount information."

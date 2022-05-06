@@ -12,7 +12,6 @@ templates:
   post-restore-unlock.sh.erb: bin/bbr/post-restore-unlock
 
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
-  cloud_controller_clock_ctl.erb: bin/cloud_controller_clock_ctl
   newrelic.yml.erb: config/newrelic.yml
   stacks.yml.erb: config/stacks.yml
   drain.sh.erb: bin/drain
@@ -86,6 +85,8 @@ properties:
   cc.jobs.diego_sync.timeout_in_seconds:
     description: "The longest the diego sync job can take before another is enqueued"
     default: 600
+  cc.jobs.priorities:
+    description: "List of hashes containing delayed jobs 'display_name' and its desired priority. This will overwrite the default priority of ccng"
 
   cc.max_retained_deployments_per_app:
     description: "The number of inactive deployments to keep for each app"

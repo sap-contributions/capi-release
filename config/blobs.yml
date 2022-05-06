@@ -10,10 +10,22 @@ nfs-debs/keyutils_1.5.9-8ubuntu1_amd64.deb:
   size: 47054
   object_id: a7207ad8-8660-4e0d-72a1-7fdd605e131d
   sha: sha256:782865f7688ecc2a168f6c51e8e63f44326d73144a9df35087fd1e55e30d23db
+nfs-debs/keyutils_1.5.9-9.2ubuntu2_amd64.deb:
+  size: 47896
+  object_id: 7ec8f95e-80a7-47f5-61aa-39170aefa1f7
+  sha: sha256:223a7160b6e2680d2b1f43abb067e0ccc08906bb2c5448ad4b3065f38309bbb5
 nfs-debs/libevent-2.0-5_2.0.21-stable-2ubuntu0.16.04.1_amd64.deb:
   size: 114014
   object_id: 14622888-be2d-413e-4133-874bfe135968
   sha: sha256:e1acdffde386a4da7de46166ffd199771a13498f5d4fc38d61b3fa0eba305572
+nfs-debs/libevent-2.1-6_2.1.8-stable-4build1_amd64.deb:
+  size: 133328
+  object_id: 79b7896d-e0e9-44df-485a-82dd91b57321
+  sha: sha256:76bc94b3bb4356673c61dd2a4a7b06f40de21dab051aa4b31282aa9d7798b383
+nfs-debs/libnfsidmap2_0.25-5.1_amd64.deb:
+  size: 27180
+  object_id: b72f3c09-f9ea-48bb-45ef-fd3c3de32348
+  sha: sha256:ae6eaf479efa010b313b4e0cf18812e3ca6eb50b6392b7b52e854d6acafe866b
 nfs-debs/libnfsidmap2_0.25-5_amd64.deb:
   size: 32182
   object_id: 08d519cb-e173-4652-406f-b0c23e694671
@@ -22,10 +34,18 @@ nfs-debs/nfs-common_1%3a1.2.8-9ubuntu12.1_amd64.deb:
   size: 184334
   object_id: b6012af0-4414-4a53-7a80-8b143fe03ada
   sha: sha256:91ee605b09bd024ed97338bed442285c5980810d9a94f23aa182255e1c16316b
+nfs-debs/nfs-common_1.3.4-2.1ubuntu5.3_amd64.deb:
+  size: 205520
+  object_id: 4383380e-5ab5-4b88-7262-a02025370122
+  sha: sha256:ecf4d9601d210d86d423457dd18a7d3af406ed34a273fb22ade431764fc66d67
 nfs-debs/rpcbind_0.2.3-0.2_amd64.deb:
   size: 40252
   object_id: 7f2f0cb1-6ca8-4524-44f7-30cf31a6d72e
   sha: sha256:7c9d1aca35cd01ef0c9cbc90f93e993116e84de1967c429e1130a16281fd3a6e
+nfs-debs/rpcbind_0.2.3-0.6ubuntu0.18.04.4_amd64.deb:
+  size: 42124
+  object_id: 3d7b5940-a1b8-4780-7c73-14c74163f202
+  sha: sha256:ad1e5849523af0dba54a1f7e7f54d11f1a7a0131ce5de858a5ff37e61c27b35d
 nginx/newrelic_nginx_agent-1.2.1.tar.gz:
   size: 5222
   object_id: c63358f6-574a-4e20-9d2b-7e1450368b6d
@@ -42,10 +62,10 @@ nginx/nginx-upload-module-2.3.0.tar.gz:
   size: 40139
   object_id: 2f8f59a7-8e90-4bf5-67d8-1637924ab331
   sha: sha256:c86e318addb9c88d70fdbd58ff1f6ef6f404a93070f6db8017a1f880c97946c4
-nginx/pcre-8.42.tar.gz:
-  size: 2081413
-  object_id: e464286d-99cc-4dd8-74c5-daab11a68340
-  sha: sha256:69acbc2fbdefb955d42a4c606dfde800c2885711d2979e356c0636efde9ec3b5
+nginx/pcre-8.45.tar.gz:
+  size: 2096552
+  object_id: a90f9f20-e23b-4755-59c7-101197325dab
+  sha: sha256:4e6ce03e0336e8b4a3d6c2b70b1c5e18590a5673a98186da90d4f33c23defc09
 postgres/postgresql-11.11.tar.gz:
   size: 26251769
   object_id: 7532ecb6-39e6-4517-58b4-48a944934364

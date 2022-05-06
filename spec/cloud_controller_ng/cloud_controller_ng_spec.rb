@@ -201,7 +201,6 @@ module Bosh::Template::Test
         end
       end
 
-
       describe 'temporary_istio_domains' do
         context 'when an entry is an array of domains' do
           before do
@@ -389,6 +388,45 @@ module Bosh::Template::Test
           end
         end
 
+      end
+
+      describe 'job priorities' do
+        it 'does not include priorities by default' do
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+          expect(template_hash['jobs']).not_to include('priorities')
+        end
+
+        context 'when specified' do
+          it 'correctly renders priorities' do
+            merged_manifest_properties['cc']['jobs'] = {
+              'priorities' => {
+                'super.important.job' => -10,
+                'not-so-important-job' => 10
+              }
+            }
+            template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+            expect(template_hash['jobs']['priorities']['super.important.job']).to eq(-10)
+            expect(template_hash['jobs']['priorities']['not-so-important-job']).to eq(10)
+          end
+        end
+      end
+
+      describe 'telemetry logging' do
+        it 'configures the default telemetry_log_path' do
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+          expect(template_hash['telemetry_log_path']).to eq('/var/vcap/sys/log/cloud_controller_ng/telemetry.log')
+        end
+
+        context 'when disabled' do
+          before do
+            merged_manifest_properties['cc']['telemetry_logging_enabled'] = false
+          end
+
+          it 'omits the telemetry_log_path' do
+            template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+            expect(template_hash['telemetry_log_path']).to be_nil
+          end
+        end
       end
 
       context 'when rate limiting is enabled' do

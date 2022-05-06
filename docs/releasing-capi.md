@@ -2,11 +2,14 @@
 1. Make sure we're ready to release:
   - Are there any outstanding bugs or issues that need to be pulled in before we can release?
   - Are all the blobstore fanout tests green?
+  - Ensure that API versions have been bumped after releasing the previous version ([v3 API version](https://github.com/cloudfoundry/cloud_controller_ng/blob/main/config/version), [v2 API version](https://github.com/cloudfoundry/cloud_controller_ng/blob/main/config/version_v2), [v2 API version in docs](https://github.com/cloudfoundry/cloud_controller_ng/blob/main/docs/v2/info/get_info.html)).
 2. Ship it in CI:
   - Log in to [CAPI CI](https://ci.cake.capi.land/teams/main/pipelines/capi?group=ship-it)
+  - Pause the `bump-capi-release` job (in the `capi-release` group)
   - Unpause & run the `ship-it` job (in the `ship-it` group)
   - Wait for the pipeline to complete.
   - Pause the `ship-it` job.
+  - Unpause the `bump-capi-release` job.
 3. Create the release notes.
 Currently, we have to manually create the release notes.
 

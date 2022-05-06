@@ -85,6 +85,9 @@ jobs:
   droplet_upload:
     timeout_in_seconds: <%= timeout %>
   <% end %>
+  <% if_p("cc.jobs.priorities") do |priorities| %>
+  priorities: <%= priorities.to_json %>
+  <% end %>
 
 default_app_memory: <%= p("cc.default_app_memory") %>
 default_app_disk_in_mb: <%= p("cc.default_app_disk_in_mb") %>
@@ -135,7 +138,9 @@ logging:
   format:
     timestamp: <%= p("cc.logging.format.timestamp") %>
 
+<% if p("cc.telemetry_logging_enabled") %>
 telemetry_log_path: /var/vcap/sys/log/cloud_controller_ng/telemetry.log
+<% end %>
 
 logcache:
   host: <%= p("cc.logcache.host") %>

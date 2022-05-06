@@ -16,7 +16,7 @@ install_if_missing ()
     fi
 }
 
-codename=$(lsb_release -c | grep xenial | awk '{print $2}')
+codename=$(lsb_release -cs)
 if [ "$codename" == "xenial" ]; then
     echo "Installing NFS packages"
     (
@@ -26,5 +26,15 @@ if [ "$codename" == "xenial" ]; then
     install_if_missing libevent-2.0-5 /var/vcap/packages/nfs-debs/libevent-2.0-5_2.0.21-stable-2ubuntu0.16.04.1_amd64.deb
     install_if_missing libnfsidmap2 /var/vcap/packages/nfs-debs/libnfsidmap2_0.25-5_amd64.deb
     install_if_missing nfs-common /var/vcap/packages/nfs-debs/nfs-common_1%3a1.2.8-9ubuntu12.1_amd64.deb
+    ) 200>/var/vcap/data/dpkg.lock
+elif [ "$codename" == "bionic" ]; then
+    echo "Installing NFS packages"
+    (
+    flock -x 200
+    install_if_missing rpcbind /var/vcap/packages/nfs-debs/rpcbind_0.2.3-0.6ubuntu0.18.04.4_amd64.deb
+    install_if_missing keyutils /var/vcap/packages/nfs-debs/keyutils_1.5.9-9.2ubuntu2_amd64.deb
+    install_if_missing libevent-2.1-6 /var/vcap/packages/nfs-debs/libevent-2.1-6_2.1.8-stable-4build1_amd64.deb
+    install_if_missing libnfsidmap2 /var/vcap/packages/nfs-debs/libnfsidmap2_0.25-5.1_amd64.deb
+    install_if_missing nfs-common /var/vcap/packages/nfs-debs/nfs-common_1.3.4-2.1ubuntu5.3_amd64.deb
     ) 200>/var/vcap/data/dpkg.lock
 fi
