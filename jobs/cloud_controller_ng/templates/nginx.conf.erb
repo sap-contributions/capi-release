@@ -30,15 +30,8 @@ http {
 
   keepalive_timeout    <%= p("cc.server_keepalive_timeout") %> 20;
 
-  <% if_p("cc.nginx_rate_limit_general") do %>
-  limit_req_zone $http_authorization zone=all:10m rate=<%=p("cc.nginx_rate_limit_general")['limit'] %>;
-  <% end %>
+  limit_req_zone $http_authorization zone=all:10m rate=10r/s;
 
-  <% if_p("cc.nginx_rate_limit_zones") do %>
-    <% p("cc.nginx_rate_limit_zones").each do |zone| %>
-  limit_req_zone $http_authorization zone=<%= zone['name'] %>:10m rate=<%= zone['limit'] %>;
-    <% end %>
-  <% end %>
   limit_req_status 429;
 
   client_max_body_size <%= p("cc.client_max_body_size") %>; #already enforced upstream/but doesn't hurt.

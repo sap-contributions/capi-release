@@ -15,18 +15,7 @@ location / {
   proxy_connect_timeout       10;
   proxy_pass                  http://cloud_controller;
 
-  <% if_p("cc.nginx_rate_limit_general") do %>
-    limit_req zone=all burst=<%= p("cc.nginx_rate_limit_general")['burst'] %> nodelay;
-  <% end %>
-
-  <% if_p("cc.nginx_rate_limit_zones") do %>
-    <% p("cc.nginx_rate_limit_zones").each do |zone| %>
-    location <%= zone['location'] %> {
-      limit_req zone=<%= zone['name'] %> burst=<%= zone['burst'] %> nodelay;
-      proxy_pass                  http://cloud_controller;
-    }
-    <% end %>
-  <% end %>
+  limit_req zone=all burst=10 nodelay;
 }
 
 <% if !p("cc.temporary_enable_v2") %>
