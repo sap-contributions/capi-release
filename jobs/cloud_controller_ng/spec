@@ -7,6 +7,7 @@ templates:
   bin/cloud_controller_ng.erb: bin/cloud_controller_ng
   bin/local_worker.erb: bin/local_worker
   bin/nginx_newrelic_plugin.erb: bin/nginx_newrelic_plugin
+  bin/dns/healthy.sh.erb: bin/dns/healthy
   bpm.yml.erb: config/bpm.yml
   pre-backup-lock.sh.erb: bin/bbr/pre-backup-lock
   post-backup-unlock.sh.erb: bin/bbr/post-backup-unlock
