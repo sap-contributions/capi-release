@@ -440,14 +440,19 @@ bits_service:
   ca_cert_path: /var/vcap/jobs/cloud_controller_ng/config/certs/bits_service_ca.crt
   <% end %>
 
-<% instances = p("cc.rate_limiter.enabled") ? link("cloud_controller").instances.length : 1 %>
+<% instances = p("cc.rate_limiter.existing.enabled") ? link("cloud_controller").instances.length : 1 %>
 rate_limiter:
-  enabled: <%= p("cc.rate_limiter.enabled") %>
-  global_general_limit: <%= p("cc.rate_limiter.general_limit") %>
-  per_process_general_limit: <%= (p("cc.rate_limiter.general_limit").to_f/instances).ceil %>
-  global_unauthenticated_limit: <%= p("cc.rate_limiter.unauthenticated_limit") %>
-  per_process_unauthenticated_limit: <%= (p("cc.rate_limiter.unauthenticated_limit").to_f/instances).ceil %>
-  reset_interval_in_minutes: <%= p("cc.rate_limiter.reset_interval_in_minutes") %>
+  enabled: <%= p("cc.rate_limiter.existing.enabled") %>
+  global_general_limit: <%= p("cc.rate_limiter.existing.general_limit") %>
+  per_process_general_limit: <%= (p("cc.rate_limiter.existing.general_limit").to_f/instances).ceil %>
+  global_unauthenticated_limit: <%= p("cc.rate_limiter.existing.unauthenticated_limit") %>
+  per_process_unauthenticated_limit: <%= (p("cc.rate_limiter.existing.unauthenticated_limit").to_f/instances).ceil %>
+  reset_interval_in_minutes: <%= p("cc.rate_limiter.existing.reset_interval_in_minutes") %>
+
+concurrency_rate_limiter:
+  enabled: <%= p("cc.rate_limiter.concurrency.enabled") %>
+  goes_first: <%= p("cc.rate_limiter.concurrency.goes_first") %>
+  concurrency_rate_limit_per_cc_instance: <%= p("cc.rate_limiter.concurrency.concurrency_rate_limit_per_cc_instance") %>
 
 max_concurrent_service_broker_requests: <%= p("cc.max_concurrent_service_broker_requests") %>
 

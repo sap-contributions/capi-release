@@ -1052,18 +1052,28 @@ properties:
     description: "The ca cert to use when communicating with bits-service endpoints"
     default: ""
 
-  cc.rate_limiter.enabled:
+  cc.rate_limiter.existing.enabled:
     description: "Enable rate limiting for UAA-authenticated endpoints per user or client"
     default: false
-  cc.rate_limiter.general_limit:
+  cc.rate_limiter.existing.general_limit:
     description: "The number of requests a user or client is allowed to make for all endpoints that do not have a custom limit over the configured interval"
     default: 2000
-  cc.rate_limiter.unauthenticated_limit:
+  cc.rate_limiter.existing.unauthenticated_limit:
     description: "The number of requests an unauthenticated client is allowed to make over the configured interval"
     default: 100
-  cc.rate_limiter.reset_interval_in_minutes:
+  cc.rate_limiter.existing.reset_interval_in_minutes:
     description: "The interval in minutes after which a user's available API requests will be reset"
     default: 60
+
+  cc.rate_limiter.concurrency.enabled:
+    description: "Limit the number of concurrent requests a single API instance will process for each authenticated user"
+    default: false
+  cc.rate_limiter.concurrency.goes_first:
+    description: "If set to true and both the concurrency rate limiter and the regular rate limiter are enabled, the concurrency limiter deals with requests first"
+    default: false
+  cc.rate_limiter.concurrency.concurrency_rate_limit_per_cc_instance:
+    description: "Maximum number of concurrent requests to all endpoints per user"
+    default: 5
 
   cc.max_concurrent_service_broker_requests:
     description: "Maximum number of concurrent requests to service brokers per user. Set to 0 to not limit concurrent requests"

@@ -429,13 +429,13 @@ module Bosh::Template::Test
         end
       end
 
-      context 'when rate limiting is enabled' do
+      context 'when existing rate limiter is enabled' do
         let(:self_link) do
           Link.new(name: 'cloud_controller', instances: [LinkInstance.new(address: '0.capi.service.internal')])
         end
 
         before do
-          merged_manifest_properties['cc']['rate_limiter'] = {
+          merged_manifest_properties['cc']['rate_limiter']['existing'] = {
             'enabled' => true,
             'general_limit' => 1000,
             'unauthenticated_limit' => 100,
@@ -477,6 +477,35 @@ module Bosh::Template::Test
           template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
           expect(template_hash['rate_limiter']['per_process_general_limit']).to eq(334)
           expect(template_hash['rate_limiter']['per_process_unauthenticated_limit']).to eq(34)
+        end
+      end
+
+      context 'when concurrency rate limiter is enabled and is set to go first' do
+        let(:self_link) do
+          Link.new(name: 'cloud_controller', instances: [LinkInstance.new(address: '0.capi.service.internal')])
+        end
+
+        before do
+          merged_manifest_properties['cc']['rate_limiter']['concurrency'] = {
+            'enabled' => true,
+            'goes_first' => true,
+            'concurrency_rate_limit_per_cc_instance' => 10,
+          }
+        end
+
+        it 'enables concurrency rate limiting' do
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
+          expect(template_hash['concurrency_rate_limiter']['enabled']).to be(true)
+        end
+
+        it 'uses the concurrency limit' do
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
+          expect(template_hash['concurrency_rate_limiter']['concurrency_rate_limit_per_cc_instance']).to eq(10)
+        end
+
+        it 'goes first' do
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
+          expect(template_hash['concurrency_rate_limiter']['goes_first']).to be(true)
         end
       end
 
