@@ -27,5 +27,4 @@ Currently, we have to manually create the release notes.
   - Tell folks you shipped it.
       - Announce in #capi
       - Any specific teams/people who were waiting on the release
-  - Close any open Github issues that were resolved by the release.
   - If there were any changes to the V2 docs, push the V2 docs app via [CI](https://ci.cake.capi.land/teams/main/pipelines/capi/jobs/update-and-push-docs-v2)
