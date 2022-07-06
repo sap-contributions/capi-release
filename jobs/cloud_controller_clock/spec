@@ -467,6 +467,10 @@ properties:
     description: "The file descriptors made available to each app instance"
     default: 16384
 
+  cc.default_app_log_rate_limit_in_bytes_per_second:
+    default: 9999
+    description: "Default application log rate limit"
+
   cc.bits_service.enabled:
     description: "Enable integration of the bits-service incubator (experimental)"
     default: false
