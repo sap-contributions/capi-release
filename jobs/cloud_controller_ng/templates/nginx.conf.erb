@@ -118,6 +118,7 @@ http {
     }
   }
 
+<% if_p("cc.prom_scraper_tls.public_cert", "cc.prom_scraper_tls.private_key", "cc.prom_scraper_tls.ca_cert") do %>
   server {
     listen <%= p("cc.prom_metrics_server_tls_port") %> ssl;
     include prom_scraper_mtls.conf;
@@ -176,29 +177,7 @@ http {
       proxy_pass http://cloud_controller;
     }
   }
-  <%# server { %>
-  <%#   listen 9024 ssl; %>
-  <%#   include prom_scraper_mtls.conf; %>
-
-  <%#   server_name  _; %>
-  <%#   server_name_in_redirect off; %>
-  <%#   <% if p("request_timeout_in_seconds").to_i > 0 %1> %>
-  <%#     proxy_send_timeout          <%= p("request_timeout_in_seconds") %1>; %>
-  <%#     proxy_read_timeout          <%= p("request_timeout_in_seconds") %1>; %>
-  <%#   <% end %1> %>
-  <%#   proxy_buffering             off; %>
-  <%#   proxy_set_header            Host $host; %>
-  <%#   proxy_set_header            X-Real_IP $remote_addr; %>
-  <%#   proxy_set_header            X-Forwarded-For $proxy_add_x_forwarded_for; %>
-  <%#   proxy_redirect              off; %>
-  <%#   proxy_connect_timeout       10; %>
-
-
-  <%#   location /internal/v4/metrics { %>
-  <%#     proxy_pass http://cloud_controller; %>
-  <%#   } %>
-  <%# } %>
-
+<% end %>
 
   # This block handles public endpoints over TLS
   server {
