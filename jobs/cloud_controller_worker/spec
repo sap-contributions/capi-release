@@ -46,7 +46,7 @@ packages:
   - nginx_newrelic_plugin
   - libpq
   - mariadb_connector_c
-  - ruby-3.0
+  - ruby-3.1
 
 consumes:
 - name: database
