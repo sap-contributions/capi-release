@@ -1066,6 +1066,19 @@ properties:
     description: "Maximum number of concurrent requests to service brokers per user. Set to 0 to not limit concurrent requests"
     default: 0
 
+  cc.rate_limiter_v2_api.enabled:
+    description: "Enable rate limiting for UAA-authenticated V2 API (v2/*, except v2/info) endpoints per user or client"
+    default: false
+  cc.rate_limiter_v2_api.general_limit:
+    description: "The number of requests a user or client is allowed to make for v2/* endpoints that do not have a custom limit over the configured interval"
+    default: 2000
+  cc.rate_limiter_v2_api.admin_limit:
+    description: "The number of requests an admin user or client is allowed to make for v2/* endpoints over the configured interval"
+    default: 2000
+  cc.rate_limiter_v2_api.reset_interval_in_minutes:
+    description: "The interval in minutes after which a user's available V2 API requests will be reset"
+    default: 60
+
   cc.diego.bbs.url:
     description: "URL of the BBS Server"
     default: https://bbs.service.cf.internal:8889

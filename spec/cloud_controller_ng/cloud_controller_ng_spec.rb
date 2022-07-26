@@ -459,7 +459,7 @@ module Bosh::Template::Test
           expect(template_hash['rate_limiter']['per_process_unauthenticated_limit']).to eq(100)
         end
 
-        it 'uses the calculates the per_process limits based on number of instances from self link' do
+        it 'calculates the per_process limits based on number of instances from self link' do
           self_link = Link.new(
             name: 'cloud_controller',
             instances: (1..4).map do |i| LinkInstance.new(address: "#{i}.capi.service.internal") end
@@ -477,6 +477,57 @@ module Bosh::Template::Test
           template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
           expect(template_hash['rate_limiter']['per_process_general_limit']).to eq(334)
           expect(template_hash['rate_limiter']['per_process_unauthenticated_limit']).to eq(34)
+        end
+      end
+
+      context 'when rate limiting for v2 API is enabled' do
+        let(:self_link) do
+          Link.new(name: 'cloud_controller', instances: [LinkInstance.new(address: '0.capi.service.internal')])
+        end
+
+        before do
+          merged_manifest_properties['cc']['rate_limiter_v2_api'] = {
+            'enabled' => true,
+            'general_limit' => 1000,
+            'admin_limit' => 2000,
+          }
+        end
+
+        it 'enables v2 API rate limiting' do
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
+          expect(template_hash['rate_limiter_v2_api']['enabled']).to be(true)
+        end
+
+        it 'uses the global limits' do
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
+          expect(template_hash['rate_limiter_v2_api']['global_general_limit']).to eq(1000)
+          expect(template_hash['rate_limiter_v2_api']['global_admin_limit']).to eq(2000)
+        end
+
+        it 'uses the global limits as per_process limits for single instance of CC' do
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
+          expect(template_hash['rate_limiter_v2_api']['per_process_general_limit']).to eq(1000)
+          expect(template_hash['rate_limiter_v2_api']['per_process_admin_limit']).to eq(2000)
+        end
+
+        it 'calculates the per_process limits based on number of instances from self link' do
+          self_link = Link.new(
+            name: 'cloud_controller',
+            instances: (1..4).map do |i| LinkInstance.new(address: "#{i}.capi.service.internal") end
+          )
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
+          expect(template_hash['rate_limiter_v2_api']['per_process_general_limit']).to eq(250)
+          expect(template_hash['rate_limiter_v2_api']['per_process_admin_limit']).to eq(500)
+        end
+
+        it 'rounds per_process limits up when calculation results in fractions' do
+          self_link = Link.new(
+            name: 'cloud_controller',
+            instances: (1..3).map do |i| LinkInstance.new(address: "#{i}.capi.service.internal") end
+          )
+          template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links + [self_link]))
+          expect(template_hash['rate_limiter_v2_api']['per_process_general_limit']).to eq(334)
+          expect(template_hash['rate_limiter_v2_api']['per_process_admin_limit']).to eq(667)
         end
       end
 
