@@ -381,10 +381,6 @@ properties:
     description: "Do not allow the API client to create app deployments (temporary)"
     default: false
 
-  cc.temporary_use_logcache:
-    description: "Use logcache instead of Traffic Controller for retrieving container metrics"
-    default: false
-
   cc.temporary_enable_v2:
     description: "Enable V2 endpoints"
     default: true
@@ -796,6 +792,10 @@ properties:
   cc.app_bits_max_body_size:
     default: "1536M"
     description: "Maximum body size for nginx bits uploads"
+
+  cc.default_app_log_rate_limit_in_bytes_per_second:
+    default: -1
+    description: "Default application log rate limit"
 
   cc.disable_custom_buildpacks:
     default: false
