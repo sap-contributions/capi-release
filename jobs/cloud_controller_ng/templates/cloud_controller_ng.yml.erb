@@ -53,6 +53,7 @@ local_route: <%= p('cc.nginx.ip') %>
 external_port: <%= p("cc.external_port") %>
 tls_port: <%= p("cc.tls_port") %>
 internal_service_hostname: <%= p("cc.internal_service_hostname") %>
+webserver: <%= p("cc.experimental.use_puma_webserver") ? 'puma' : 'thin' %>
 
 pid_filename: /var/vcap/data/cloud_controller_ng/cloud_controller_ng.pid
 newrelic_enabled: <%= !!properties.cc.newrelic.license_key || p("cc.development_mode") %>
