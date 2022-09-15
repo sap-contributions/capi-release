@@ -1232,6 +1232,10 @@ properties:
     description: "Use Puma in place of Thin as the webserver. This may increase performance as Puma forks Cloud Controller processes to avoid relying on threads"
     default: false
 
+  cc.puma.workers:
+    description: "Number of workers for Puma webserver."
+    default: 3
+
   cc.kubernetes.host_url:
     description: "Kubernetes master API URL"
   cc.kubernetes.service_account.name:
