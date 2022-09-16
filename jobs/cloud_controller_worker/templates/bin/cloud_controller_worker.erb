@@ -5,5 +5,10 @@ source /var/vcap/jobs/cloud_controller_worker/bin/blobstore_waiter.sh
 
 wait_for_blobstore
 
+<% if link("cloud_controller_internal").p('cc.experimental.use_yjit_compiler') %>
+export RUBYOPT='--yjit'
+<% end %>
+
+
 cd /var/vcap/packages/cloud_controller_ng/cloud_controller_ng
 exec bundle exec rake jobs:generic[cc_global_worker.<%= spec.job.name %>.<%= spec.index %>.${INDEX}]

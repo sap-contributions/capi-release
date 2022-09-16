@@ -14,5 +14,9 @@ echo 'Running migrations and seeds'
 echo 'Finished migrations and seeds'
 <% end %>
 
+<% if p('cc.experimental.use_yjit_compiler') %>
+export RUBYOPT='--yjit'
+<% end %>
+
 exec /var/vcap/packages/cloud_controller_ng/cloud_controller_ng/bin/cloud_controller \
   -c /var/vcap/jobs/cloud_controller_ng/config/cloud_controller_ng.yml

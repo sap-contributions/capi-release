@@ -5,5 +5,9 @@ source /var/vcap/jobs/cloud_controller_ng/bin/blobstore_waiter.sh
 
 wait_for_blobstore
 
+<% if p('cc.experimental.use_yjit_compiler') %>
+export RUBYOPT='--yjit'
+<% end %>
+
 cd /var/vcap/packages/cloud_controller_ng/cloud_controller_ng
 exec bundle exec rake "jobs:local[cc_api_worker.<%= spec.job.name %>.<%= spec.index %>.${INDEX}]"
