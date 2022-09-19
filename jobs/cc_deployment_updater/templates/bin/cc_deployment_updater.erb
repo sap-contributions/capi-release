@@ -2,4 +2,9 @@
 
 source /var/vcap/jobs/cc_deployment_updater/bin/ruby_version.sh
 cd /var/vcap/packages/cloud_controller_ng/cloud_controller_ng
+
+<% if link("cloud_controller_internal").p('cc.experimental.use_yjit_compiler') %>
+export RUBYOPT='--yjit'
+<% end %>
+
 exec bundle exec rake deployment_updater:start

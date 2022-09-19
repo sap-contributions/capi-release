@@ -162,6 +162,7 @@ provides:
   - cc.external_host
   - cc.external_port
   - cc.external_protocol
+  - cc.experimental.use_yjit_compiler
   - cc.internal_service_hostname
   - cc.log_db_queries
   - cc.logging.format.timestamp
@@ -1222,7 +1223,9 @@ properties:
   cc.experimental.thin_server.thread_pool_size:
     description: "How many threads a single cloud controller instance's thin server will attempt to use. Alter at your own peril."
     default: 20 # inherited from default in Thin/EventMachine
-
+  cc.experimental.use_yjit_compiler:
+    description: "Use Ruby's YJIT compiler when running Cloud Controller API servers and workers. This feature is experimental and not recommended. Please review the drawbacks and benefits of YJIT before enabling."
+    default: false
   cc.kubernetes.host_url:
     description: "Kubernetes master API URL"
   cc.kubernetes.service_account.name:
