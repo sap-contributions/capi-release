@@ -11,3 +11,5 @@ pushd mariadb-connector-c-${VERSION}-src > /dev/null
 	make
 	make install
 popd > /dev/null
+
+cp mariadb-customization/mariadb_config-wrapper.sh ${BOSH_INSTALL_TARGET}/bin/
