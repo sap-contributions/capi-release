@@ -1225,3 +1225,12 @@ properties:
   cc.kubernetes.kpack.registry_tag_base:
     description: "The first part of the registry tag where built images will be uploaded"
 
+  cc.locket.host:
+    default: "locket.service.cf.internal"
+    description: "Hostname of the Locket server"
+  cc.locket.port:
+    default: 8891
+    description: "Port of the Locket server"
+  cc.locket.diego_client_timeout:
+    default: 5
+    description: "Timeout in seconds for calls by CC's diego client to locket to discover the identity of the active bbs node"

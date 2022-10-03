@@ -549,3 +549,11 @@ kubernetes:
 
 default_app_lifecycle: buildpack
 custom_metric_tag_prefix_list: <%= p("cc.custom_metric_tag_prefix_list") %>
+
+locket:
+  host: <%= p("cc.locket.host") %>
+  port: <%= p("cc.locket.port") %>
+  key_file: /var/vcap/jobs/cloud_controller_ng/config/certs/mutual_tls.key
+  cert_file: /var/vcap/jobs/cloud_controller_ng/config/certs/mutual_tls.crt
+  ca_file: /var/vcap/jobs/cloud_controller_ng/config/certs/mutual_tls_ca.crt
+  diego_client_timeout: <%= p("cc.locket.diego_client_timeout") %>
