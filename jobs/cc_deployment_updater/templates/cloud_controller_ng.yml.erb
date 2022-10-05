@@ -253,13 +253,6 @@ buildpacks:
   fog_connection: <%= link("cloud_controller_internal").p("cc.buildpacks.fog_connection", {}).to_json %>
   fog_aws_storage_options: <%= link("cloud_controller_internal").p("cc.buildpacks.fog_aws_storage_options", {}).to_json %>
 
-bits_service:
-  enabled: <%= link("cloud_controller_internal").p("cc.bits_service.enabled") %>
-  public_endpoint: <%= link("cloud_controller_internal").p("cc.bits_service.public_endpoint") %>
-  private_endpoint: <%= link("cloud_controller_internal").p("cc.bits_service.private_endpoint") %>
-  username: <%= link("cloud_controller_internal").p("cc.bits_service.username") %>
-  password: <%= yaml_escape(link("cloud_controller_internal").p("cc.bits_service.password")) %>
-
 skip_cert_verify: <%= link("cloud_controller_internal").p("ssl.skip_cert_verify") %>
 
 <% if_link("credhub") do |credhub| %>

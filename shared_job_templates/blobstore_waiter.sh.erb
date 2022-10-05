@@ -27,13 +27,7 @@ function wait_for_blobstore {
     max_attempts=30
     sleep_length=1
 
-    <% if p('cc.bits_service.enabled') %>
-
-    echo "Checking for bits-service availability"
-    try_to_curl "<%= p('cc.bits_service.private_endpoint') %>" $max_attempts $sleep_length
-    echo "Bits-service is available"
-
-    <% elsif properties.nfs_server.address && p('cc.buildpacks.blobstore_type') == 'fog' %>
+    <% if properties.nfs_server.address && p('cc.buildpacks.blobstore_type') == 'fog' %>
 
     NFS_SHARE=/var/vcap/data/nfs
 
