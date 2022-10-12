@@ -281,16 +281,6 @@ default_app_ssh_access: <%= p("cc.default_app_ssh_access") %>
 
 skip_cert_verify: <%= p("ssl.skip_cert_verify") %>
 
-bits_service:
-  enabled: <%= p("cc.bits_service.enabled") %>
-  public_endpoint: <%= p("cc.bits_service.public_endpoint") %>
-  private_endpoint: <%= p("cc.bits_service.private_endpoint") %>
-  username: <%= p("cc.bits_service.username") %>
-  password: <%= yaml_escape(p("cc.bits_service.password")) %>
-  <% if p("cc.bits_service.ca_cert") != "" && p("cc.bits_service.ca_cert") != nil %>
-  ca_cert_path: /var/vcap/jobs/cloud_controller_worker/config/certs/bits_service_ca.crt
-  <% end %>
-
 <%
 file_server_url = p("cc.diego.file_server_url")
 if_link("file_server") do |file_server|

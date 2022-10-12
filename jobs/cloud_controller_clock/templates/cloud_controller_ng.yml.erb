@@ -178,13 +178,6 @@ staging:
 
 default_health_check_timeout: <%= p("cc.default_health_check_timeout") %>
 
-bits_service:
-  enabled: <%= p("cc.bits_service.enabled") %>
-  public_endpoint: <%= p("cc.bits_service.public_endpoint") %>
-  private_endpoint: <%= p("cc.bits_service.private_endpoint") %>
-  username: <%= p("cc.bits_service.username") %>
-  password: <%= yaml_escape(p("cc.bits_service.password")) %>
-
 resource_pool:
   blobstore_type: <%= p("cc.resource_pool.blobstore_type") %>
   webdav_config:
