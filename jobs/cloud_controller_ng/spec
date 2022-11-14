@@ -1210,6 +1210,10 @@ properties:
     description: "Number of workers for Puma webserver."
     default: 3
 
+  cc.puma.max_threads:
+    description: "Maximum number of threads per Puma webserver worker."
+    default: 2
+
   cc.kubernetes.host_url:
     description: "Kubernetes master API URL"
   cc.kubernetes.service_account.name:
