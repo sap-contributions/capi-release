@@ -18,7 +18,9 @@ function on_exit {
 trap on_exit EXIT
 echo "$BASHPID" > "$PIDFILE"
 
-LOGFILE="/var/vcap/sys/log/cloud_controller_ng/drain/restart_drain.log"
+LOGPATH="/var/vcap/sys/log/cloud_controller_ng/drain"
+mkdir -p "$LOGPATH"
+LOGFILE="$LOGPATH/restart_drain.log"
 echo "$(date) - pid: $BASHPID - Monit triggered shutdown drain" >> "$LOGFILE"
 
 # Unmonitor cloud_controller_ng. This also unmonitors nginx_cc and
