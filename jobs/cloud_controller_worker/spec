@@ -572,3 +572,10 @@ properties:
   cc.credential_references.interpolate_service_bindings:
     description: "Controls whether CredHub credentials are automatically interpolated in VCAP_SERVICES"
     default: true
+
+  cc.max_manifest_service_binding_poll_duration_in_seconds:
+    description: "Max time in seconds to wait for individual asynchronous service binding creation
+                  when applying manifests.  If a service broker fails to complete a service binding request
+                  before the specified duration, the manifest job will fail."
+    default: 60
+
