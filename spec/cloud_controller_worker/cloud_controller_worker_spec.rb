@@ -17,7 +17,6 @@ module Bosh::Template::Test
         'system_domain' => 'brook-sentry.capi.land',
 
         'cc' => {
-          'internal_api_password' => '((cc_internal_api_password))',
 
           'db_logging_level' => 100,
           'staging_upload_user' => 'staging_user',

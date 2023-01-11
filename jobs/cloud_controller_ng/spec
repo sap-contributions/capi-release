@@ -386,12 +386,6 @@ properties:
     default: "/var/vcap/data/cloud_controller_ng/diagnostics"
     description: "The directory where operator requested diagnostic files should be placed"
 
-  cc.internal_api_user:
-    default: "internal_user"
-    description: "User name used by Diego to access internal endpoints"
-  cc.internal_api_password:
-    description: "Password used by Diego to access internal endpoints"
-
   cc.min_cli_version:
     description: "Minimum version of the CF CLI to work with the API."
     default: ~

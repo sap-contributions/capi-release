@@ -101,10 +101,6 @@ instance_file_descriptor_limit: <%= p("cc.instance_file_descriptor_limit") %>
 
 request_timeout_in_seconds: <%= p("request_timeout_in_seconds") %>
 
-internal_api:
-  auth_user: <%= p("cc.internal_api_user") %>
-  auth_password: <%= yaml_escape(p("cc.internal_api_password")) %>
-
 nginx:
   use_nginx: true
   instance_socket: "/var/vcap/data/cloud_controller_ng/cloud_controller.sock"
