@@ -100,9 +100,6 @@ pending_builds:
 diego_sync:
   frequency_in_seconds: <%= p("cc.diego_sync.frequency_in_seconds") %>
 
-internal_api:
-  auth_user: <%= p("cc.internal_api_user") %>
-  auth_password: <%= yaml_escape(p("cc.internal_api_password")) %>
 
 nginx:
   use_nginx: true

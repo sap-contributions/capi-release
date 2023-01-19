@@ -62,10 +62,6 @@ instance_file_descriptor_limit: <%= p("cc.instance_file_descriptor_limit") %>
 
 default_app_log_rate_limit_in_bytes_per_second: <%= p("cc.default_app_log_rate_limit_in_bytes_per_second") %>
 
-internal_api:
-  auth_user: <%= p("cc.internal_api_user") %>
-  auth_password: <%= yaml_escape(p("cc.internal_api_password")) %>
-
 nginx:
   use_nginx: true
   instance_socket: "/var/vcap/sys/run/cloud_controller_worker/cloud_controller.sock"

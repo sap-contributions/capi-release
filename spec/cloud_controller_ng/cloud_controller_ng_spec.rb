@@ -61,7 +61,6 @@ module Bosh::Template::Test
                { 'name' => 'python_buildpack', 'package' => 'python-buildpack' },
                { 'name' => 'php_buildpack', 'package' => 'php-buildpack' },
                { 'name' => 'binary_buildpack', 'package' => 'binary-buildpack' }],
-            'internal_api_password' => '((cc_internal_api_password))',
             'mutual_tls' =>
               { 'ca_cert' => '((service_cf_internal_ca.certificate))',
                 'private_key' => '((cc_tls.private_key))',
