@@ -204,6 +204,31 @@ module Bosh
             end
           end
         end
+
+        describe 'broker_client_response_parser config' do
+          context 'when nothing is configured' do
+            it 'renders default values' do
+              template_hash = YAML.safe_load(template.render(manifest_properties, consumes: links))
+              expect(template_hash['broker_client_response_parser']['log_errors']).to be(false)
+              expect(template_hash['broker_client_response_parser']['log_validators']).to be(false)
+              expect(template_hash['broker_client_response_parser']['log_response_fields']).to eq({})
+            end
+          end
+
+          context 'when config values are provided' do
+            it 'renders the corresponding Cloud Controller Worker config' do
+              manifest_properties['cc']['broker_client_response_parser'] = {
+                'log_errors' => true,
+                'log_validators' => true,
+                'log_response_fields' => { 'a' => ['b'] }
+              }
+              template_hash = YAML.safe_load(template.render(manifest_properties, consumes: links))
+              expect(template_hash['broker_client_response_parser']['log_errors']).to be(true)
+              expect(template_hash['broker_client_response_parser']['log_validators']).to be(true)
+              expect(template_hash['broker_client_response_parser']['log_response_fields']).to eq({ 'a' => ['b'] })
+            end
+          end
+        end
       end
     end
   end
