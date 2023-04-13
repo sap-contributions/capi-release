@@ -71,6 +71,8 @@ builds:
     version: 1.139.0
   45a550e2-cfb9-4252-9e69-2620e5fbfbb1:
     version: 1.15.0
+  45f1df7b-6145-48ec-5105-e8516b40915d:
+    version: 1.149.0
   47069dd7-029e-434d-ac86-759343c22d72:
     version: 1.23.0
   48e5352d-79cb-48e9-757e-0cf3c5a6cd8b:
