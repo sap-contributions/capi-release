@@ -1,7 +1,7 @@
 ---
 name: cc_deployment_updater
 
-description: "The Cloud Controller deployment updater periodically updates app deployments (experimental)"
+description: "The Cloud Controller deployment updater periodically updates app deployments"
 
 templates:
   bpm.yml.erb: config/bpm.yml
