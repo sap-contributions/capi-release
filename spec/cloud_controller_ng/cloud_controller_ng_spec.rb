@@ -102,7 +102,7 @@ module Bosh
                      'rules' => [{ 'destination' => '10.244.0.34', 'protocol' => 'all' }] }],
                 'stacks' =>
                   [{ 'description' => 'Cloud Foundry Linux-based filesystem',
-                     'name' => 'cflinuxfs3' }],
+                     'name' => 'cflinuxfs4' }],
                 'staging_upload_password' => '((cc_staging_upload_password))',
                 'staging_upload_user' => 'staging_user' },
             'ccdb' =>
