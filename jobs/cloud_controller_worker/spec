@@ -470,6 +470,16 @@ properties:
     default: 1.0
     description: "Exponential backoff for service related polling jobs. Default is 1.0, which means there is no exponential backoff."
 
+  cc.broker_client_response_parser.log_errors:
+    default: false
+    description: "Log errors happening when parsing service broker responses."
+  cc.broker_client_response_parser.log_validators:
+    default: false
+    description: "Log the stack of validators used to process the service broker response, e.g. for a 202 response to a 'provision' request, the following is logged: [\"CommonErrorValidator\", \"JsonSchemaValidator[provision_response_schema]\", \"SuccessValidator[in progress]\"]"
+  cc.broker_client_response_parser.log_response_fields:
+    default: {}
+    description: "Specify service broker response fields to be logged. This configuration is a hash, where the key indicates the request type and the value is a list of fields in the response JSON that should be logged. The following request types exist: catalog, provision, update, deprovision, bind, unbind, fetch_service_instance_last_operation, fetch_service_binding_last_operation, fetch_service_instance, fetch_service_binding"
+
   cc.diego.bbs.url:
     description: "URL of the BBS Server"
     default: https://bbs.service.cf.internal:8889
