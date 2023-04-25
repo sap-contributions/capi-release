@@ -52,6 +52,20 @@ function wait_for_server_to_become_healthy() {
   return 1
 }
 
+function wait_for_server_to_become_healthy_without_setminuse() {
+  local url=$1
+  local timeout=$2
+  for _ in $(seq "${timeout}"); do
+    curl -k -f --connect-timeout 1 "${url}" > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
+      return 0
+    fi
+    sleep 1
+  done
+
+  echo "Endpoint ${url} failed to become healthy after ${timeout} seconds"
+  return 1
+}
 # monit_monitor_job
 #
 # @param job_name

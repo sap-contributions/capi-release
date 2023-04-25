@@ -17,6 +17,10 @@ source /var/vcap/packages/capi_utils/syslog_utils.sh
   <% (1..(p("cc.jobs.local.number_of_workers"))).each do |index| %>
   monit_start_job cloud_controller_worker_local_<%= index %>
   <% end %>
-  wait_for_server_to_become_healthy <%= "localhost:#{p("cc.external_port")}/healthz" %> <%= p("cc.post_bbr_healthcheck_timeout_in_seconds") %>
-  sleep 30
+  set +e
+  wait_for_server_to_become_healthy_without_setminuse <%= "localhost:#{p("cc.external_port")}/healthz" %> <%= p("cc.post_bbr_healthcheck_timeout_in_seconds") %>
+  set -e
+  if [ $? -eq 0 ]; then
+    wait_for_server_to_become_healthy <%= "#{p("cc.external_protocol")}://#{p("cc.external_host")}.#{p("system_domain")}/info" %> <%= p("cc.post_bbr_healthcheck_timeout_in_seconds") %>
+  fi
 <% end %>
