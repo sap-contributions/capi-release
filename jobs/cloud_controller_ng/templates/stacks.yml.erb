@@ -1,1 +1,2 @@
-../../../shared_job_templates/stacks.yml.erb
+default: <%= p("cc.default_stack") %>
+stacks: <%= p("cc.stacks", []).to_yaml.gsub("---", "") %>
