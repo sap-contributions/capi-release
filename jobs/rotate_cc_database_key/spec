@@ -33,3 +33,6 @@ properties:
     description: "If provided, overrides cc.log_db_queries from cloud_controller_internal link"
   cc.db_logging_level:
     description: "If provided, overrides cc.db_logging_level from cloud_controller_internal link"
+  cc.stdout_logging_enabled:
+    default: true
+    description: "Enable logging to stdout"
