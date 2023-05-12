@@ -43,6 +43,7 @@ logging:
   max_retries: <%= link("cloud_controller_internal").p("cc.logging_max_retries") %>
   format:
     timestamp: <%= link("cloud_controller_internal").p("cc.logging.format.timestamp") %>
+  stdout_sink_enabled: <%= p("cc.stdout_logging_enabled") %>
 
 <% db = link("cloud_controller_db").p("ccdb.databases").find { |db| db["tag"] == "cc" } %>
 <% db_role = link("cloud_controller_db").p("ccdb.roles").find { |role| role["tag"] == "admin" } %>

@@ -78,6 +78,24 @@ module Bosh
             end.not_to raise_error
           end
 
+          describe 'logging configuration' do
+            it 'sets `stdout_sink_enabled` to default `true`' do
+              template_hash = YAML.safe_load(template.render(manifest_properties, consumes: links))
+              expect(template_hash['logging']['stdout_sink_enabled']).to be_truthy
+            end
+
+            context 'when `stdout_logging_enabled` is set to `false`' do
+              before do
+                manifest_properties['cc']['stdout_logging_enabled'] = false
+              end
+
+              it 'sets `stdout_sink_enabled` to `false`' do
+                template_hash = YAML.safe_load(template.render(manifest_properties, consumes: links))
+                expect(template_hash['logging']['stdout_sink_enabled']).to be_falsey
+              end
+            end
+          end
+
           describe 'database_encryption block' do
             context 'when the database_encryption block is not present' do
               before do
