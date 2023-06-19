@@ -1,0 +1,18 @@
+---
+name: redis
+
+description: "Co-deployed Redis used for rate limiting and metrics"
+
+templates:
+  bpm.yml.erb: config/bpm.yml
+  pre-start.sh.erb: bin/pre-start.sh
+  redis-cli.sh.erb: bin/redis-cli.sh
+
+packages:
+  - redis
+
+consumes:
+  - name: cloud_controller_internal
+    type: cloud_controller_internal
+
+properties: {}

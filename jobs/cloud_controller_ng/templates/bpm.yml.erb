@@ -12,6 +12,16 @@ def mount_nfs_volume!(config)
   end
 end
 
+def mount_redis_volume!(config)
+  if p("cc.experimental.use_puma_webserver") || p("cc.experimental.use_redis")
+    config['additional_volumes'] = [] unless config.key?('additional_volumes')
+    config['additional_volumes'] << {
+      "path" => "/var/vcap/data/redis",
+      "mount_only" => true,
+    }
+  end
+end
+
 def enable_fog_debugging!(config)
     if p("cc.log_fog_requests")
         case p("cc.packages.fog_connection.provider", "").downcase
@@ -67,6 +77,7 @@ if properties.env
     end
 end
 mount_nfs_volume!(cloud_controller_ng_config)
+mount_redis_volume!(cloud_controller_ng_config)
 
 nginx_config = {
   "name" => "nginx",

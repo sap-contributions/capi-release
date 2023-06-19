@@ -599,6 +599,31 @@ module Bosh
               end
             end
           end
+
+          describe 'redis config' do
+            context 'when the puma webserver is used' do
+              it 'renders the redis socket into the ccng config' do
+                merged_manifest_properties['cc']['experimental'] = { 'use_puma_webserver' => true }
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash['redis']['socket']).to eq('/var/vcap/data/redis/redis.sock')
+              end
+            end
+
+            context "when 'cc.experimental.use_redis' is set to 'true'" do
+              it 'renders the redis socket into the ccng config' do
+                merged_manifest_properties['cc']['experimental'] = { 'use_redis' => true }
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash['redis']['socket']).to eq('/var/vcap/data/redis/redis.sock')
+              end
+            end
+
+            context "when neither the puma webserver is used nor 'cc.experimental.use_redis' is set to 'true'" do
+              it 'does not render the redis socket into the ccng config' do
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash).not_to have_key('redis')
+              end
+            end
+          end
         end
       end
     end
