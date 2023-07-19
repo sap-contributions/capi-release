@@ -27,7 +27,6 @@ templates:
   logcache_tls.crt.erb: config/certs/logcache_tls.crt
   logcache_tls.key.erb: config/certs/logcache_tls.key
   logcache_tls_ca.crt.erb: config/certs/logcache_tls_ca.crt
-  kubernetes_ca.crt.erb: config/certs/kubernetes_ca.crt
   nginx_external_endpoints.conf.erb: config/nginx_external_endpoints.conf
   migrate_db.sh.erb: bin/migrate_db
   mime.types: config/mime.types
@@ -42,9 +41,6 @@ templates:
   newrelic_plugin.yml.erb: config/newrelic_plugin.yml
   nginx.conf.erb: config/nginx.conf
   nginx_maintenance.conf.erb: config/nginx_maintenance.conf
-  opi_tls.crt.erb: config/certs/opi_tls.crt
-  opi_tls.key.erb: config/certs/opi_tls.key
-  opi_tls_ca.crt.erb: config/certs/opi_tls_ca.crt
   packages_ca_cert.pem.erb: config/certs/packages_ca_cert.pem
   perform_blobstore_benchmarks.erb: bin/perform_blobstore_benchmarks
   post-start.sh.erb: bin/post-start
@@ -164,12 +160,6 @@ provides:
   - cc.max_labels_per_resource
   - cc.max_annotations_per_resource
   - cc.maximum_health_check_timeout
-  - cc.opi.ca_cert
-  - cc.opi.client_cert
-  - cc.opi.client_key
-  - cc.opi.enabled
-  - cc.opi.opi_staging
-  - cc.opi.url
   - cc.packages.app_package_directory_key
   - cc.packages.blobstore_type
   - cc.packages.cdn.key_pair_id
@@ -647,22 +637,6 @@ properties:
   cc.buildpacks.cdn.key_pair_id:
     description: "Key pair name for signed download URIs"
     default: ""
-
-  cc.opi.enabled:
-    description: "Set to true to enable running apps on Kubernetes, using Eirini"
-    default: false
-  cc.opi.opi_staging:
-    description: "Set to true to enable staging apps on Kubernetes, using Eirini"
-    default: false
-  cc.opi.url:
-    description: "URL of the Eirini server"
-    default: ""
-  cc.opi.client_cert:
-    description: "Client certificate for connecting to the OPI server"
-  cc.opi.client_key:
-    description: "Client key for connecting to the OPI server"
-  cc.opi.ca_cert:
-    description: "The ca cert of the OPI server"
 
   ccdb.databases:
     description: "Contains the name of the database on the database server"
@@ -1223,21 +1197,6 @@ properties:
   cc.puma.max_threads:
     description: "Maximum number of threads per Puma webserver worker."
     default: 2
-
-  cc.kubernetes.host_url:
-    description: "Kubernetes master API URL"
-  cc.kubernetes.service_account.name:
-    description: "The Kubernetes service account name"
-  cc.kubernetes.service_account.token:
-    description: "The Kubernetes service account token"
-  cc.kubernetes.ca:
-    description: "The CA certificate for connecting to the master"
-  cc.kubernetes.kpack.builder_namespace:
-    description: "The namespace where kpack images and builds will be created"
-  cc.kubernetes.kpack.registry_service_account_name:
-    description: "The name of the kubernetes ServiceAccount that has the credentials to upload to the registry"
-  cc.kubernetes.kpack.registry_tag_base:
-    description: "The first part of the registry tag where built images will be uploaded"
 
   cc.update_metric_tags_on_rename:
     description: "Enable sending a Desired LRP update when an app is renamed"

@@ -65,12 +65,6 @@ module Bosh
               'uaa' => {
                 'client_timeout' => 10
               },
-              'opi' => {
-                'url' => '',
-                'opi_staging' => '',
-                'enabled' => false
-
-              },
               'database_encryption' => {
                 'experimental_pbkdf2_hmac_iterations' => 123,
                 'skip_validation' => false,
