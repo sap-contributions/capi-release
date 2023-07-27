@@ -916,6 +916,8 @@ properties:
   cc.renderer.max_inline_relations_depth:
     description: "Maximum depth of inlined relationships in the result"
     default: 2
+  cc.renderer.max_total_results:
+    description: "Maximum number of total results (page * per_page)"
 
   uaa.clients.cc_service_broker_client.secret:
     description: "(DEPRECATED) - Used for generating SSO clients for service brokers"
