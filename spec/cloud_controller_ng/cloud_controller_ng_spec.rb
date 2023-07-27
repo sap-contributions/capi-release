@@ -624,6 +624,23 @@ module Bosh
               end
             end
           end
+
+          describe  'max_total_results' do
+            context "when 'cc.renderer.max_total_results' is set" do
+              it 'renders max_total_results into the ccng config' do
+                merged_manifest_properties['cc'].store('renderer', { 'max_total_results' => 1000 })
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash['renderer']['max_total_results']).to eq(1000)
+              end
+            end
+
+            context "when 'cc.renderer.max_total_results' is not set (default)" do
+              it 'does not render max_total_results into the ccng config' do
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash['renderer']).not_to have_key(:max_total_results)
+              end
+            end
+          end
         end
       end
     end
