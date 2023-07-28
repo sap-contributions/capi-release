@@ -215,13 +215,3 @@ properties:
   cc.locket.port:
     default: 8891
     description: "Port of the Locket server"
-
-  cc.opi.enabled:
-    description: "Set to true to enable running apps on Kubernetes, using Eirini"
-    default: false
-  cc.opi.opi_staging:
-    description: "Set to true to enable staging apps on Kubernetes, using Eirini"
-    default: false
-  cc.opi.url:
-    description: "URL of the Eirini server"
-    default: ""

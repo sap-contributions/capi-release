@@ -206,11 +206,6 @@ packages:
   fog_connection: <%= link("cloud_controller_internal").p("cc.packages.fog_connection", {}).to_json %>
   fog_aws_storage_options: <%= link("cloud_controller_internal").p("cc.packages.fog_aws_storage_options", {}).to_json %>
 
-opi:
-  url: "<%= p("cc.opi.url") %>"
-  opi_staging: <%= p("cc.opi.opi_staging") %>
-  enabled: <%= p("cc.opi.enabled") %>
-
 droplets:
   blobstore_type: <%= link("cloud_controller_internal").p("cc.droplets.blobstore_type") %>
   webdav_config:

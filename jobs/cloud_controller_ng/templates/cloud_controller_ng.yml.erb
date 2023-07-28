@@ -393,6 +393,9 @@ renderer:
   max_results_per_page: <%= p("cc.renderer.max_results_per_page") %>
   default_results_per_page: <%= p("cc.renderer.default_results_per_page") %>
   max_inline_relations_depth: <%= p("cc.renderer.max_inline_relations_depth") %>
+  <% if_p("cc.renderer.max_total_results") do |max_total_results| %>
+  max_total_results: <%= max_total_results %>
+  <% end %>
 
 <% if_p("uaa.clients.cc_service_broker_client.secret") do %>
 uaa_client_name: "cc_service_broker_client"
@@ -498,16 +501,6 @@ diego:
   use_privileged_containers_for_running: <%= p("cc.diego.use_privileged_containers_for_running") %>
   use_privileged_containers_for_staging: <%= p("cc.diego.use_privileged_containers_for_staging") %>
 
-opi:
-  url: "<%= p("cc.opi.url") %>"
-  opi_staging: <%= p("cc.opi.opi_staging") %>
-  enabled: <%= p("cc.opi.enabled") %>
-  cc_uploader_url: "<%= cc_uploader_url %>"
-<% if_p("cc.opi.client_cert", "cc.opi.client_key", "cc.opi.ca_cert") do %>
-  ca_file: /var/vcap/jobs/cloud_controller_ng/config/certs/opi_tls_ca.crt
-  client_cert_file: /var/vcap/jobs/cloud_controller_ng/config/certs/opi_tls.crt
-  client_key_file: /var/vcap/jobs/cloud_controller_ng/config/certs/opi_tls.key
-<% end %>
 perm:
   enabled: false
 
@@ -536,24 +529,6 @@ max_annotations_per_resource: <%= p("cc.max_annotations_per_resource") %>
 internal_route_vip_range: <%= internal_vip_range %>
 
 threadpool_size: <%= p("cc.experimental.thin_server.thread_pool_size") %>
-
-<% if_p("cc.kubernetes.host_url") do %>
-kubernetes:
-  host_url: <%= p("cc.kubernetes.host_url") %>
-
-  service_account:
-    name: <%= p("cc.kubernetes.service_account.name") %>
-    token: <%= p("cc.kubernetes.service_account.token") %>
-
-  ca_file: /var/vcap/jobs/cloud_controller_ng/config/certs/kubernetes_ca.crt
-
-  <% if_p("cc.kubernetes.kpack.builder_namespace") do %>
-  kpack:
-    builder_namespace: <%= p("cc.kubernetes.kpack.builder_namespace") %>
-    registry_service_account_name: <%= p("cc.kubernetes.kpack.registry_service_account_name") %>
-    registry_tag_base: <%= p("cc.kubernetes.kpack.registry_tag_base") %>
-  <% end %>
-<% end %>
 
 default_app_lifecycle: buildpack
 custom_metric_tag_prefix_list: <%= p("cc.custom_metric_tag_prefix_list") %>
