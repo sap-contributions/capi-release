@@ -85,7 +85,9 @@ audit_events:
 
 failed_jobs:
   cutoff_age_in_days: <%= p("cc.failed_jobs.cutoff_age_in_days") %>
-  max_number_of_failed_delayed_jobs: <%= p("cc.failed_jobs.max_number_of_failed_delayed_jobs") %>
+  <% if_p("cc.failed_jobs.max_number_of_failed_delayed_jobs") do |max_number_of_failed_delayed_jobs| %>
+  max_number_of_failed_delayed_jobs: <%= max_number_of_failed_delayed_jobs %>
+  <% end %>
   frequency_in_seconds: <%= p("cc.failed_jobs.frequency_in_seconds") %>
 
 completed_tasks:

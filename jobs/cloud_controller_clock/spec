@@ -116,7 +116,6 @@ properties:
 
   cc.failed_jobs.max_number_of_failed_delayed_jobs:
     description: "Maximum number of failed jobs that should stay in cloud controller database before being cleaned up"
-    default: 100000
 
   cc.pending_droplets.frequency_in_seconds:
     description: "How often the pending droplets cleanup job runs"
