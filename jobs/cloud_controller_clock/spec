@@ -110,6 +110,9 @@ properties:
     description: "The age at which completed tasks are pruned from the Cloud Controller database"
     default: 31
 
+  cc.failed_jobs.max_number_of_failed_delayed_jobs:
+    description: "Maximum number of failed jobs that should stay in cloud controller database before being cleaned up"
+
   cc.pending_droplets.frequency_in_seconds:
     description: "How often the pending droplets cleanup job runs"
     default: 300
@@ -119,6 +122,9 @@ properties:
   cc.diego_sync.frequency_in_seconds:
     description: "How often to synchronize CC's database with Diego's"
     default: 30
+  cc.failed_jobs.frequency_in_seconds:
+    description: "How often the failed_jobs cleanup job runs"
+    default: 144000 # 4 hours
 
   cc.external_protocol:
     default: "https"
