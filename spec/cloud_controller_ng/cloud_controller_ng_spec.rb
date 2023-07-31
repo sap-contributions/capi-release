@@ -625,23 +625,6 @@ module Bosh
             end
           end
 
-          describe  'max_number_of_failed_delayed_jobs' do
-            context "when 'cc.failed_jobs.max_number_of_failed_delayed_jobs' is set" do
-              it 'renders max_number_of_failed_delayed_jobs into the ccng config' do
-                merged_manifest_properties['cc'].store('failed_jobs', { 'max_number_of_failed_delayed_jobs' => 1000 })
-                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
-                expect(template_hash['failed_jobs']['max_number_of_failed_delayed_jobs']).to eq(1000)
-              end
-            end
-
-            context "when 'cc.failed_jobs.max_number_of_failed_delayed_jobs' is not set (default)" do
-              it 'does not render max_number_of_failed_delayed_jobs into the ccng config' do
-                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
-                expect(template_hash['failed_jobs']).not_to have_key(:max_number_of_failed_delayed_jobs)
-              end
-            end
-          end
-
           describe  'max_total_results' do
             context "when 'cc.renderer.max_total_results' is set" do
               it 'renders max_total_results into the ccng config' do
