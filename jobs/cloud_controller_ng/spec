@@ -919,12 +919,6 @@ properties:
   cc.renderer.max_total_results:
     description: "Maximum number of total results (page * per_page)"
 
-  uaa.clients.cc_service_broker_client.secret:
-    description: "(DEPRECATED) - Used for generating SSO clients for service brokers"
-  uaa.clients.cc_service_broker_client.scope:
-    description: "(DEPRECATED) - Used to grant scope for SSO clients for service brokers"
-    default: "openid,cloud_controller_service_permissions.read"
-
   uaa.clients.cc-service-dashboards.secret:
     description: "Used for generating SSO clients for service brokers."
   uaa.clients.cc-service-dashboards.scope:
