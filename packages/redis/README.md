@@ -6,4 +6,4 @@ This file can be downloaded from the following locations:
 
 | Filename | Download URL |
 | -------- | ------------ |
-| 7.0.12.tar.gz | https://github.com/redis/redis/archive/7.0.12.tar.gz |
+| 7.2.0.tar.gz | https://github.com/redis/redis/archive/7.2.0.tar.gz |

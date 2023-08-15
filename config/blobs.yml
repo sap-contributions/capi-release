@@ -90,7 +90,7 @@ postgres/postgresql-11.18.tar.gz:
   size: 26714356
   object_id: 3836fb7b-3c82-4b7e-40af-8e001b7a3b55
   sha: sha256:3c693225e26b3c40f40d7cbbc1409edb2e7db8072a9b3a7d4d3eb73c131c5a3b
-redis/7.0.12.tar.gz:
-  size: 3023342
-  object_id: f1a84923-0772-491b-7f05-e31a00adcfc8
-  sha: sha256:754c5a32e546b798a1fd74f95a819fa844e48d66ddb348a2a990a1ae7a1b167a
+redis/7.2.0.tar.gz:
+  size: 3420964
+  object_id: 94988a70-79ed-468b-4e56-42ce4a648701
+  sha: sha256:4ba263c661f93c12e7cb26bc34d360387bbd555fb83ec0050a6491222e87b247
