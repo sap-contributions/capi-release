@@ -30,15 +30,16 @@ http {
 
   keepalive_timeout    <%= p("cc.server_keepalive_timeout") %> 20;
 
-  <% if_p("cc.nginx_rate_limit_general") do %>
+<% if_p("cc.nginx_rate_limit_general") do -%>
   limit_req_zone $http_authorization zone=all:10m rate=<%=p("cc.nginx_rate_limit_general")['limit'] %>;
-  <% end %>
+<% end -%>
 
-  <% if_p("cc.nginx_rate_limit_zones") do %>
-    <% p("cc.nginx_rate_limit_zones").each do |zone| %>
-  limit_req_zone $http_authorization zone=<%= zone['name'] %>:10m rate=<%= zone['limit'] %>;
-    <% end %>
-  <% end %>
+<% if_p("cc.nginx_rate_limit_zones") do -%>
+  <% p("cc.nginx_rate_limit_zones").each do |zone| -%>
+limit_req_zone $http_authorization zone=<%= zone['name'] %>:10m rate=<%= zone['limit'] %>;
+  <% end -%>
+<% end -%>
+
   limit_req_status 429;
 
   client_max_body_size <%= p("cc.client_max_body_size") %>; #already enforced upstream/but doesn't hurt.
@@ -62,8 +63,8 @@ http {
     server_name  _;
     server_name_in_redirect off;
     <% if p("request_timeout_in_seconds").to_i > 0 %>
-      proxy_send_timeout          <%= p("request_timeout_in_seconds") %>;
-      proxy_read_timeout          <%= p("request_timeout_in_seconds") %>;
+    proxy_send_timeout          <%= p("request_timeout_in_seconds") %>;
+    proxy_read_timeout          <%= p("request_timeout_in_seconds") %>;
     <% end %>
     proxy_buffering             off;
     proxy_set_header            Host $host;
@@ -71,7 +72,6 @@ http {
     proxy_set_header            X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_redirect              off;
     proxy_connect_timeout       10;
-
 
     location /internal/v4/ {
       proxy_pass http://cloud_controller;
@@ -118,38 +118,62 @@ http {
     }
   }
 
-  # This block handles public endpoints over TLS
+<% if_p("cc.prom_scraper_tls.public_cert", "cc.prom_scraper_tls.private_key", "cc.prom_scraper_tls.ca_cert") do -%>
   server {
-  listen <%= p("cc.public_tls.port") %> ssl;
-  include nginx_server_public_tls.conf;
+    listen <%= p("cc.prom_metrics_server_tls_port") %> ssl;
+    include prom_scraper_mtls.conf;
 
-  server_name  _;
-  server_name_in_redirect off;
-  <% if p("request_timeout_in_seconds").to_i > 0 %>
+    server_name  "<%= p("cc.internal_service_hostname") %>";
+    server_name_in_redirect off;
+    <% if p("request_timeout_in_seconds").to_i > 0 %>
     proxy_send_timeout          <%= p("request_timeout_in_seconds") %>;
     proxy_read_timeout          <%= p("request_timeout_in_seconds") %>;
-  <% end %>
+    <% end %>
+    proxy_buffering             off;
+    proxy_set_header            Host $host;
+    proxy_set_header            X-Real_IP $remote_addr;
+    proxy_set_header            X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_redirect              off;
+    proxy_connect_timeout       10;
 
-  include local_blobstore_downloads.conf;
-  include nginx_external_endpoints.conf;
+    location /internal/v4/metrics {
+      proxy_pass http://cloud_controller;
+    }
+  }
+<% end -%>
+
+  # This block handles public endpoints over TLS
+  server {
+    listen <%= p("cc.public_tls.port") %> ssl;
+    include nginx_server_public_tls.conf;
+
+    server_name  _;
+    server_name_in_redirect off;
+    <% if p("request_timeout_in_seconds").to_i > 0 %>
+    proxy_send_timeout          <%= p("request_timeout_in_seconds") %>;
+    proxy_read_timeout          <%= p("request_timeout_in_seconds") %>;
+    <% end -%>
+
+    include local_blobstore_downloads.conf;
+    include nginx_external_endpoints.conf;
   }
 
   <% unless p('temporary_disable_non_tls_endpoints')  %>
   # This block handles public endpoints over non-TLS secured HTTP
   # This is required for backwards compatibility during a rolling-deploy
   server {
-  <% if p("cc.nginx.ip").empty? %>
-    listen    <%= p("cc.external_port") %>;
-  <% else %>
-    listen    <%= p("cc.nginx.ip") %>:<%= p("cc.external_port") %>;
-  <% end %>
+  <% if p("cc.nginx.ip").empty? -%>
+  listen    <%= p("cc.external_port") %>;
+  <% else -%>
+  listen    <%= p("cc.nginx.ip") %>:<%= p("cc.external_port") %>;
+  <% end -%>
 
     server_name  _;
     server_name_in_redirect off;
     <% if p("request_timeout_in_seconds").to_i > 0 %>
-      proxy_send_timeout          <%= p("request_timeout_in_seconds") %>;
-      proxy_read_timeout          <%= p("request_timeout_in_seconds") %>;
-    <% end %>
+    proxy_send_timeout          <%= p("request_timeout_in_seconds") %>;
+    proxy_read_timeout          <%= p("request_timeout_in_seconds") %>;
+    <% end -%>
 
     include local_blobstore_downloads.conf;
     include nginx_external_endpoints.conf;
