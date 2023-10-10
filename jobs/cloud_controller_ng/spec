@@ -124,6 +124,7 @@ provides:
   - cc.buildpacks.cdn.private_key
   - cc.buildpacks.cdn.uri
   - cc.buildpacks.fog_aws_storage_options
+  - cc.buildpacks.fog_gcp_storage_options
   - cc.buildpacks.fog_connection
   - cc.buildpacks.webdav_config.blobstore_timeout
   - cc.buildpacks.webdav_config.ca_cert
@@ -148,6 +149,7 @@ provides:
   - cc.droplets.cdn.uri
   - cc.droplets.droplet_directory_key
   - cc.droplets.fog_aws_storage_options
+  - cc.droplets.fog_gcp_storage_options
   - cc.droplets.fog_connection
   - cc.droplets.webdav_config.blobstore_timeout
   - cc.droplets.webdav_config.ca_cert
@@ -173,6 +175,7 @@ provides:
   - cc.packages.cdn.private_key
   - cc.packages.cdn.uri
   - cc.packages.fog_aws_storage_options
+  - cc.packages.fog_gcp_storage_options
   - cc.packages.fog_connection
   - cc.packages.max_package_size
   - cc.packages.webdav_config.blobstore_timeout
@@ -186,6 +189,7 @@ provides:
   - cc.resource_pool.cdn.private_key
   - cc.resource_pool.cdn.uri
   - cc.resource_pool.fog_aws_storage_options
+  - cc.resource_pool.fog_gcp_storage_options
   - cc.resource_pool.fog_connection
   - cc.resource_pool.maximum_size
   - cc.resource_pool.minimum_size
@@ -483,6 +487,9 @@ properties:
   cc.resource_pool.fog_aws_storage_options:
     description: "Storage options passed to fog for aws blobstores. See http://docs.cloudfoundry.org/deploying/common/cc-blobstore-config.html#fog-aws-sse for example configuration."
     default: {}
+  cc.resource_pool.fog_gcp_storage_options:
+    description: "Storage options passed to fog for gcp blobstores"
+    default: {}
   cc.resource_pool.webdav_config.blobstore_timeout:
     description: "The timeout in seconds for requests to the blobstore"
     default: 5
@@ -527,6 +534,9 @@ properties:
     default: "fog"
   cc.packages.fog_aws_storage_options:
     description: "Storage options passed to fog for aws blobstores. See http://docs.cloudfoundry.org/deploying/common/cc-blobstore-config.html#fog-aws-sse for example configuration."
+    default: {}
+  cc.packages.fog_gcp_storage_options:
+    description: "Storage options passed to fog for gcp blobstores"
     default: {}
   cc.packages.webdav_config.blobstore_timeout:
     description: "The timeout in seconds for requests to the blobstore"
@@ -573,6 +583,9 @@ properties:
   cc.droplets.fog_aws_storage_options:
     description: "Storage options passed to fog for aws blobstores. See http://docs.cloudfoundry.org/deploying/common/cc-blobstore-config.html#fog-aws-sse for example configuration."
     default: {}
+  cc.droplets.fog_gcp_storage_options:
+    description: "Storage options passed to fog for gcp blobstores"
+    default: {}
   cc.droplets.webdav_config.blobstore_timeout:
     description: "The timeout in seconds for requests to the blobstore"
     default: 5
@@ -614,6 +627,9 @@ properties:
     default: "fog"
   cc.buildpacks.fog_aws_storage_options:
     description: "Storage options passed to fog for aws blobstores. See http://docs.cloudfoundry.org/deploying/common/cc-blobstore-config.html#fog-aws-sse for example configuration."
+    default: {}
+  cc.buildpacks.fog_gcp_storage_options:
+    description: "Storage options passed to fog for gcp blobstores"
     default: {}
   cc.buildpacks.webdav_config.blobstore_timeout:
     description: "The timeout in seconds for requests to the blobstore"
