@@ -183,6 +183,7 @@ resource_pool:
   <% end %>
   fog_connection: <%= link("cloud_controller_internal").p("cc.resource_pool.fog_connection", {}).to_json %>
   fog_aws_storage_options: <%= link("cloud_controller_internal").p("cc.resource_pool.fog_aws_storage_options", {}).to_json %>
+  fog_gcp_storage_options: <%= link("cloud_controller_internal").p("cc.resource_pool.fog_gcp_storage_options", {}).to_json %>
 
 packages:
   blobstore_type: <%= link("cloud_controller_internal").p("cc.packages.blobstore_type") %>
@@ -205,6 +206,8 @@ packages:
   <% end %>
   fog_connection: <%= link("cloud_controller_internal").p("cc.packages.fog_connection", {}).to_json %>
   fog_aws_storage_options: <%= link("cloud_controller_internal").p("cc.packages.fog_aws_storage_options", {}).to_json %>
+  fog_gcp_storage_options: <%= link("cloud_controller_internal").p("cc.packages.fog_gcp_storage_options", {}).to_json %>
+
 
 droplets:
   blobstore_type: <%= link("cloud_controller_internal").p("cc.droplets.blobstore_type") %>
@@ -226,6 +229,7 @@ droplets:
   <% end %>
   fog_connection: <%= link("cloud_controller_internal").p("cc.droplets.fog_connection", {}).to_json %>
   fog_aws_storage_options: <%= link("cloud_controller_internal").p("cc.droplets.fog_aws_storage_options", {}).to_json %>
+  fog_gcp_storage_options: <%= link("cloud_controller_internal").p("cc.droplets.fog_gcp_storage_options", {}).to_json %>
 
 buildpacks:
   blobstore_type: <%= link("cloud_controller_internal").p("cc.buildpacks.blobstore_type") %>
@@ -247,6 +251,7 @@ buildpacks:
   <% end %>
   fog_connection: <%= link("cloud_controller_internal").p("cc.buildpacks.fog_connection", {}).to_json %>
   fog_aws_storage_options: <%= link("cloud_controller_internal").p("cc.buildpacks.fog_aws_storage_options", {}).to_json %>
+  fog_gcp_storage_options: <%= link("cloud_controller_internal").p("cc.buildpacks.fog_gcp_storage_options", {}).to_json %>
 
 skip_cert_verify: <%= link("cloud_controller_internal").p("ssl.skip_cert_verify") %>
 

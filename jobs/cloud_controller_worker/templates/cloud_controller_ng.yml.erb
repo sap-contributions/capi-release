@@ -167,6 +167,7 @@ resource_pool:
   <% end %>
   fog_connection: <%= p("cc.resource_pool.fog_connection", {}).to_json %>
   fog_aws_storage_options: <%= p("cc.resource_pool.fog_aws_storage_options", {}).to_json %>
+  fog_gcp_storage_options: <%= p("cc.resource_pool.fog_gcp_storage_options", {}).to_json %>
 
 packages:
   blobstore_type: <%= p("cc.packages.blobstore_type") %>
@@ -189,6 +190,7 @@ packages:
   <% end %>
   fog_connection: <%= p("cc.packages.fog_connection", {}).to_json %>
   fog_aws_storage_options: <%= p("cc.packages.fog_aws_storage_options", {}).to_json %>
+  fog_gcp_storage_options: <%= p("cc.packages.fog_gcp_storage_options", {}).to_json %>
 
 droplets:
   blobstore_type: <%= p("cc.droplets.blobstore_type") %>
@@ -210,6 +212,7 @@ droplets:
   <% end %>
   fog_connection: <%= p("cc.droplets.fog_connection", {}).to_json %>
   fog_aws_storage_options: <%= p("cc.droplets.fog_aws_storage_options", {}).to_json %>
+  fog_gcp_storage_options: <%= p("cc.droplets.fog_gcp_storage_options", {}).to_json %>
 
 buildpacks:
   blobstore_type: <%= p("cc.buildpacks.blobstore_type") %>
@@ -231,6 +234,7 @@ buildpacks:
   <% end %>
   fog_connection: <%= p("cc.buildpacks.fog_connection", {}).to_json %>
   fog_aws_storage_options: <%= p("cc.buildpacks.fog_aws_storage_options", {}).to_json %>
+  fog_gcp_storage_options: <%= p("cc.buildpacks.fog_gcp_storage_options", {}).to_json %>
 
 db_encryption_key: <%= p("cc.db_encryption_key") %>
 
