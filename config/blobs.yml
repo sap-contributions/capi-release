@@ -90,7 +90,7 @@ postgres/postgresql-11.21.tar.gz:
   size: 26792160
   object_id: f09b27ec-4351-499d-6414-8d5656e7f45c
   sha: sha256:e48b5d5dc68cd5549ef6258facaaf7941ae8bd1cde56709203846167aa20af04
-redis/7.2.2.tar.gz:
-  size: 3422521
-  object_id: 18ca58f1-fe42-4167-4a03-c3186a5eefc0
-  sha: sha256:6f645eb10f8f3659136c4f9ae1301915bd6071c0bc895b2de841eac5e7a8a0c0
+redis/7.2.3.tar.gz:
+  size: 3422683
+  object_id: 25d46db4-ccd7-45ce-6907-569564baedc4
+  sha: sha256:d45487554079a5de466e7a1106c353cfb5773cfbaaa288c1e3c149260d007110

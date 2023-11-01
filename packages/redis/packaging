@@ -2,7 +2,7 @@
 
 function main() {
   local redis_version
-  redis_version="7.2.2"
+  redis_version="7.2.3"
 
   mkdir -p "redis-${redis_version}" && tar xzf "redis/${redis_version}.tar.gz" -C "redis-${redis_version}" --strip-components=1
 
