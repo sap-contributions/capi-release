@@ -1073,6 +1073,10 @@ properties:
   cc.public_tls.private_key:
     description: "PEM-encoded key for secure TLS communication over external endpoints"
 
+  cc.prom_scraper.disabled:
+    description: "When set to true, the prom_scraper job won't scrape the Cloud Controller's metrics. 
+                  Use this if you have another scraper in place and to prevent scraping metrics twice."
+    default: false
   cc.prom_scraper_tls.ca_cert:
     description: "PEM-encoded CA certificate for secure, mutually authenticated TLS communication with prom_scraper"
   cc.prom_scraper_tls.public_cert:
