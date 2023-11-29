@@ -71,6 +71,8 @@ module Bosh
                 'current_key_label' => 'encryption_key_0',
                 :keys => { 'encryption_key_0' => '((cc_db_encryption_key))' }
               },
+              'statsd_host' => '127.0.0.1',
+              'statsd_port' => 8125,
               'max_labels_per_resource' => true,
               'max_annotations_per_resource' => 'yus',
               'disable_private_domain_cross_space_context_path_route_sharing' => false,
@@ -129,6 +131,14 @@ module Bosh
               template_hash = YAML.safe_load(template.render(manifest_properties, consumes: links))
               expect(template_hash['failed_jobs']).not_to have_key(:max_number_of_failed_delayed_jobs)
             end
+          end
+        end
+
+        describe 'statsd' do
+          it 'renders statsd_host and statsd_port from cloud_controller_internal link' do
+            template_hash = YAML.safe_load(template.render(manifest_properties, consumes: links))
+            expect(template_hash['statsd_host']).to eq(properties['cc']['statsd_host'])
+            expect(template_hash['statsd_port']).to eq(properties['cc']['statsd_port'])
           end
         end
       end
