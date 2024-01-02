@@ -51,8 +51,10 @@ while true; do
   status=$?
   set -e
   if [[ $status > 0 ]] ; then
-    echo $(date --rfc-3339=ns) "ccng_monit_http_healthcheck failed to curl <${URL}>: exit code $status"
-    exit $status
+    echo "$(date --rfc-3339=ns) ccng_monit_http_healthcheck failed to curl <${URL}>: exit code $status"
+    if [[ $status != 7 ]] ; then
+      exit $status
+    fi
   fi
   sleep 10
 done
