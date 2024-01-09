@@ -1,4 +1,4 @@
 ---
 name: redis
 files:
-- redis/7.2.3.tar.gz
+- redis/7.2.4.tar.gz
