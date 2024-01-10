@@ -617,7 +617,7 @@ module Bosh
 
               it 'renders the correct value into the ccng config' do
                 template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
-                expect(template_hash['legacy_md5_buildpack_paths_enabled']).to be(true)
+                expect(template_hash['staging']['legacy_md5_buildpack_paths_enabled']).to be(true)
               end
             end
 
@@ -628,7 +628,7 @@ module Bosh
 
               it 'renders the correct value into the ccng config' do
                 template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
-                expect(template_hash['legacy_md5_buildpack_paths_enabled']).to be(false)
+                expect(template_hash['staging']['legacy_md5_buildpack_paths_enabled']).to be(false)
               end
             end
           end
