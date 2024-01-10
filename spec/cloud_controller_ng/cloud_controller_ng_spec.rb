@@ -592,7 +592,7 @@ module Bosh
             end
           end
 
-          describe  'max_total_results' do
+          describe 'max_total_results' do
             context "when 'cc.renderer.max_total_results' is set" do
               it 'renders max_total_results into the ccng config' do
                 merged_manifest_properties['cc'].store('renderer', { 'max_total_results' => 1000 })
@@ -605,6 +605,30 @@ module Bosh
               it 'does not render max_total_results into the ccng config' do
                 template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
                 expect(template_hash['renderer']).not_to have_key(:max_total_results)
+              end
+            end
+          end
+
+          describe 'legacy_md5_buildpack_paths_enabled' do
+            context 'when legacy md5 buildpack paths are enabled' do
+              before do
+                merged_manifest_properties['cc']['legacy_md5_buildpack_paths_enabled'] = true
+              end
+
+              it 'renders the correct value into the ccng config' do
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash['legacy_md5_buildpack_paths_enabled']).to be(true)
+              end
+            end
+
+            context 'when legacy md5 buildpack paths are disabled' do
+              before do
+                merged_manifest_properties['cc']['legacy_md5_buildpack_paths_enabled'] = false
+              end
+
+              it 'renders the correct value into the ccng config' do
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash['legacy_md5_buildpack_paths_enabled']).to be(false)
               end
             end
           end
