@@ -220,6 +220,7 @@ provides:
   - uaa.clients.cc_routing.secret
   - cc.experimental.use_puma_webserver
   - cc.experimental.use_redis
+  - cc.experimental.disable_statsd_metrics
 
 consumes:
 - name: database
@@ -1200,6 +1201,11 @@ properties:
   cc.experimental.use_redis:
     description: "Use co-deployed Redis for rate limiting and metrics. If the Puma webserver is enabled, Redis will automatically be used."
     default: false
+
+  cc.experimental.disable_statsd_metrics:
+    description: "Use prometheus metrics, disable statsd metrics on api vms."
+    default: false
+
 
   cc.puma.workers:
     description: "Number of workers for Puma webserver."
