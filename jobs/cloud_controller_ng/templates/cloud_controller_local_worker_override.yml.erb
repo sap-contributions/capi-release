@@ -1,0 +1,7 @@
+# This file is intended to override configurations for the cc local workers.
+# It will be merged with the cc_ng configuration file, and then cc_ng local workers will be started with the resulting configuration file.
+---
+<% if_p('ccdb.max_connections_per_local_worker') do |max_connections| %>
+db:
+  max_connections: <%= max_connections %>
+<% end %>

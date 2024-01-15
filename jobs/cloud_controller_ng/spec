@@ -62,6 +62,7 @@ templates:
   db_ca.crt.erb: config/certs/db_ca.crt
   credhub_ca.crt.erb: config/certs/credhub_ca.crt
   prom_scraper_config.yml.erb: config/prom_scraper_config.yml
+  cloud_controller_local_worker_override.yml.erb: config/cloud_controller_local_worker_override.yml
 
 packages:
   - capi_utils
@@ -690,6 +691,8 @@ properties:
     description: "The period in seconds after which connections are expired (omit to never expire connections), passed directly to the Sequel gem - see https://sequel.jeremyevans.net/rdoc-plugins/files/lib/sequel/extensions/connection_expiration_rb.html for details"
   ccdb.connection_expiration_random_delay:
     description: "The random delay in seconds to the expiration timeout (to prevent all connections being recreated simultaneously), passed directly to the Sequel gem - see https://sequel.jeremyevans.net/rdoc-plugins/files/lib/sequel/extensions/connection_expiration_rb.html for details"
+  ccdb.max_connections_per_local_worker:
+    description: "Maximum database connections per cc local worker, if not set the ccng value is used (default)"
 
   uaa.cc.token_secret:
     description: "Symmetric secret used to decode uaa tokens."
