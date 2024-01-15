@@ -63,7 +63,7 @@ db: &db
     user: <%= db_role["name"] %>
     password: <%= yaml_escape(db_role["password"]) %>
     database: <%= db["name"] %>
-  max_connections: <%= link("cloud_controller_db").p("ccdb.max_connections") %>
+  max_connections: <%= p("ccdb.max_connections", link("cloud_controller_db").p("ccdb.max_connections")) %>
   pool_timeout: <%= link("cloud_controller_db").p("ccdb.pool_timeout") %>
   log_level: "<%= p("cc.db_logging_level", link("cloud_controller_internal").p("cc.db_logging_level")) %>"
   log_db_queries: <%= p("cc.log_db_queries", link("cloud_controller_internal").p("cc.log_db_queries")) %>
