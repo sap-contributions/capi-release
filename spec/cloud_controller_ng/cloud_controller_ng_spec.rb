@@ -632,6 +632,26 @@ module Bosh
               end
             end
           end
+
+          describe 'puma.max_connections_per_process' do
+            context 'when puma max connections per process is enabled' do
+              before do
+                merged_manifest_properties['cc']['puma'] = { 'max_connections_per_process' => 10 }
+              end
+
+              it 'renders the correct value into the ccng config' do
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash['puma']['max_connections']).to be(10)
+              end
+            end
+
+            context 'when puma max connections per process is not provided' do
+              it 'does not renders max_connections value' do
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash['puma']['max_connections']).to be_nil
+              end
+            end
+          end
         end
       end
     end
