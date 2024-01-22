@@ -17,6 +17,9 @@ module Bosh
           {
             'cc' => {
               'db_logging_level' => 100
+            },
+            'ccdb' => {
+              'max_connections' => 100
             }
           }
         end
@@ -178,6 +181,24 @@ module Bosh
                                                                              'encryption_key_0' => 'blah',
                                                                              'encryption_key_1' => 'other_key'
                                                                            })
+              end
+            end
+          end
+
+          describe 'max_connections from cloud_controller_db' do
+            it 'overrides max_connections when value is set' do
+              template_hash = YAML.safe_load(template.render(manifest_properties, consumes: links))
+              expect(template_hash['db']['max_connections']).to eq(100)
+            end
+
+            context 'when max_connections is not overriden' do
+              before do
+                manifest_properties['ccdb'].delete('max_connections')
+              end
+
+              it 'sets the default value' do
+                template_hash = YAML.safe_load(template.render(manifest_properties, consumes: links))
+                expect(template_hash['db']['max_connections']).to eq('foo2')
               end
             end
           end
