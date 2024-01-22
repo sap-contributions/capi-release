@@ -205,6 +205,7 @@ provides:
   - cc.staging_upload_user
   - cc.statsd_host
   - cc.statsd_port
+  - cc.enable_statsd_metrics
   - cc.system_hostnames
   - cc.tls_port
   - cc.uaa.client_timeout
@@ -979,6 +980,10 @@ properties:
   cc.statsd_port:
     description: "The port for the statsd server, defaults to the local metron agent"
     default: 8125
+
+  cc.enable_statsd_metrics:
+    description: "Use statsd metrics on api vms."
+    default: true
 
   router.route_services_secret:
     description: "Support for route services is disabled when no value is configured."
