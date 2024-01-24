@@ -632,6 +632,26 @@ module Bosh
               end
             end
           end
+
+          describe 'max_db_connections_per_process' do
+            context "when 'cc.puma.max_db_connections_per_process' is set" do
+              before do
+                merged_manifest_properties['cc']['puma'] = { 'max_db_connections_per_process' => 10 }
+              end
+
+              it 'renders the correct value into the ccng config' do
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash['puma']['max_db_connections_per_process']).to be(10)
+              end
+            end
+
+            context 'when cc.puma.max_db_connections_per_process is not set' do
+              it 'does not render max_db_connections_per_process into the ccng config' do
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash['puma']).not_to have_key(:max_db_connections_per_process)
+              end
+            end
+          end
         end
       end
     end
