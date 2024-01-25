@@ -94,6 +94,8 @@ jobs:
   priorities: <%= priorities.to_json %>
   <% end %>
 
+cpu_weight_min_memory: <%= p("cc.cpu_weight_min_memory") %>
+cpu_weight_max_memory: <%= p("cc.cpu_weight_max_memory") %>
 default_app_memory: <%= p("cc.default_app_memory") %>
 default_app_disk_in_mb: <%= p("cc.default_app_disk_in_mb") %>
 maximum_app_disk_in_mb: <%= p("cc.maximum_app_disk_in_mb") %>
