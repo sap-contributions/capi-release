@@ -131,6 +131,8 @@ provides:
   - cc.buildpacks.webdav_config.private_endpoint
   - cc.buildpacks.webdav_config.public_endpoint
   - cc.buildpacks.webdav_config.username
+  - cc.cpu_weight_min_memory
+  - cc.cpu_weight_max_memory
   - cc.credential_references.interpolate_service_bindings
   - cc.custom_metric_tag_prefix_list
   - cc.database_encryption.current_key_label
