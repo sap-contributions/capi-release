@@ -131,6 +131,8 @@ provides:
   - cc.buildpacks.webdav_config.private_endpoint
   - cc.buildpacks.webdav_config.public_endpoint
   - cc.buildpacks.webdav_config.username
+  - cc.cpu_weight_min_memory
+  - cc.cpu_weight_max_memory
   - cc.credential_references.interpolate_service_bindings
   - cc.custom_metric_tag_prefix_list
   - cc.database_encryption.current_key_label
@@ -755,6 +757,12 @@ properties:
     default: false
     description: "Skip validations of database encryption properties"
 
+  cc.cpu_weight_min_memory:
+    default: 128
+    description: "The default minimum application instance memory used for the CPU weight calculation"
+  cc.cpu_weight_max_memory:
+    default: 8192
+    description: "The default maximum application instance memory used for the CPU weight calculation"
   cc.default_app_memory:
     default: 1024
     description: "How much memory given to an app if not specified"
