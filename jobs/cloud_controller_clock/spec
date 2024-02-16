@@ -125,7 +125,7 @@ properties:
     default: 30
   cc.failed_jobs.frequency_in_seconds:
     description: "How often the failed_jobs cleanup job runs"
-    default: 144000 # 4 hours
+    default: 14400 # 4 hours
 
   cc.external_protocol:
     default: "https"
