@@ -53,6 +53,7 @@ jobs:
   <% if_p("cc.jobs.priorities") do |priorities| %>
   priorities: <%= priorities.to_json %>
   <% end %>
+  threads: <%= p("cc.jobs.generic.number_of_threads") %>
 
 default_app_memory: <%= p("cc.default_app_memory") %>
 default_app_disk_in_mb: <%= p("cc.default_app_disk_in_mb") %>

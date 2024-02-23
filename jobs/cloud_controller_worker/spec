@@ -416,6 +416,9 @@ properties:
   cc.jobs.generic.number_of_workers:
     default: 1
     description: "Number of generic cloud_controller_worker workers"
+  cc.jobs.generic.number_of_threads:
+    default: 0
+    description: "Number of threads per generic cloud_controller_worker worker. 0 means that no threads are used."
 
   uaa.clients.cc-service-dashboards.secret:
     description: "Used for generating SSO clients for service brokers."
