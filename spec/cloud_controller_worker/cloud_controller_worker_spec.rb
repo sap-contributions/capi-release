@@ -76,7 +76,10 @@ module Bosh
               'disable_private_domain_cross_space_context_path_route_sharing' => false,
               'cpu_weight_min_memory' => 128,
               'cpu_weight_max_memory' => 8192,
-              'custom_metric_tag_prefix_list' => ['heck.yes.example.com']
+              'custom_metric_tag_prefix_list' => ['heck.yes.example.com'],
+              'jobs' => {
+                'enable_dynamic_job_priorities' => false
+              }
             }
           }
         end
@@ -222,6 +225,26 @@ module Bosh
               expect(template_hash['broker_client_response_parser']['log_errors']).to be(true)
               expect(template_hash['broker_client_response_parser']['log_validators']).to be(true)
               expect(template_hash['broker_client_response_parser']['log_response_fields']).to eq({ 'a' => ['b'] })
+            end
+          end
+        end
+
+        describe 'enable_dynamic_job_priorities' do
+          context "when 'enable_dynamic_job_priorities' is set to false" do
+            it 'renders false into ccng config' do
+              template_hash = YAML.safe_load(template.render(manifest_properties, consumes: links))
+              expect(template_hash['jobs']['enable_dynamic_job_priorities']).to be(false)
+            end
+          end
+
+          context "when 'enable_dynamic_job_priorities' is set to true" do
+            before do
+              properties['cc']['jobs']['enable_dynamic_job_priorities'] = true
+            end
+
+            it 'renders true into ccng config' do
+              template_hash = YAML.safe_load(template.render(manifest_properties, consumes: links))
+              expect(template_hash['jobs']['enable_dynamic_job_priorities']).to be(true)
             end
           end
         end

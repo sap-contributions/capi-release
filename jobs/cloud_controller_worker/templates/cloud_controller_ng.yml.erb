@@ -44,6 +44,7 @@ external_protocol: <%= p("cc.external_protocol") %>
 external_domain: <%= p("cc.external_host") %>.<%= p("system_domain") %>
 
 jobs:
+  enable_dynamic_job_priorities: <%= link("cloud_controller_internal").p("cc.jobs.enable_dynamic_job_priorities") %>
   global:
     timeout_in_seconds: <%= p("cc.jobs.global.timeout_in_seconds") %>
   <% if_p("cc.jobs.blobstore_delete.timeout_in_seconds") do |timeout| %>
