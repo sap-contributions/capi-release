@@ -80,6 +80,7 @@ reserved_private_domains: <%= p("cc.reserved_private_domains", nil) %>
 disable_private_domain_cross_space_context_path_route_sharing: <%= p("cc.disable_private_domain_cross_space_context_path_route_sharing", false) %>
 
 jobs:
+  enable_dynamic_job_priorities: <%= p("cc.jobs.enable_dynamic_job_priorities") %>
   global:
     timeout_in_seconds: <%= p("cc.jobs.global.timeout_in_seconds") %>
   <% if_p("cc.jobs.blobstore_delete.timeout_in_seconds") do |timeout| %>

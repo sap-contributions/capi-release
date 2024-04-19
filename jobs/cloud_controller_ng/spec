@@ -164,6 +164,7 @@ provides:
   - cc.experimental.use_yjit_compiler
   - cc.experimental.use_jemalloc_memory_allocator
   - cc.internal_service_hostname
+  - cc.jobs.enable_dynamic_job_priorities
   - cc.log_db_queries
   - cc.logging.format.timestamp
   - cc.logging_level
@@ -370,6 +371,10 @@ properties:
     description: "The longest this job can take before it is cancelled"
   cc.jobs.priorities:
     description: "List of hashes containing delayed jobs 'display_name' and its desired priority. This will overwrite the default priority of ccng"
+  cc.jobs.enable_dynamic_job_priorities:
+    description: "When enabled, the priority of asynchronous jobs will be increased by 1 for each active asynchronous job for that user. 
+                  This prevents that a single user, who creates many asynchronous jobs, slows down job execution for other users."
+    default: false
 
   cc.temporary_disable_deployments:
     description: "Do not allow the API client to create app deployments (temporary)"

@@ -690,6 +690,26 @@ module Bosh
               end
             end
           end
+
+          describe 'enable_dynamic_job_priorities' do
+            context "when 'enable_dynamic_job_priorities' is set to true" do
+              before do
+                merged_manifest_properties['cc']['jobs'] = { 'enable_dynamic_job_priorities' => true }
+              end
+
+              it 'renders true into ccng config' do
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash['jobs']['enable_dynamic_job_priorities']).to be(true)
+              end
+            end
+
+            context "when 'enable_dynamic_job_priorities' is not set" do
+              it 'renders false into ccng config' do
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash['jobs']['enable_dynamic_job_priorities']).to be(false)
+              end
+            end
+          end
         end
       end
     end
