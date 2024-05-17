@@ -1256,4 +1256,4 @@ properties:
 
   cc.legacy_md5_buildpack_paths_enabled:
     description: "Enable legacy MD5 buildpack paths. If disabled, xxhash64 is used for calculating paths in buildpack image layers."
-    default: true
+    default: false
