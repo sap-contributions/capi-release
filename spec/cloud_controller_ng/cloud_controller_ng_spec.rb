@@ -721,6 +721,24 @@ module Bosh
               end
             end
           end
+
+          describe 'cc_jobs_queues' do
+            context 'when cc.jobs.queues is not set' do
+              it 'does not render ccng config' do
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash['jobs']['queues']).to be_nil
+              end
+            end
+
+            context  "when 'cc.jobs.queues.cc_generic.timeout_in_seconds' is set" do
+              before { merged_manifest_properties['cc']['jobs'] = { 'queues' => { 'cc_generic' => { 'timeout_in_seconds' => 10 } } } }
+
+              it 'renders the correct value into the ccng config' do
+                template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
+                expect(template_hash['jobs']['queues']['cc_generic']['timeout_in_seconds']).to eq(10)
+              end
+            end
+          end
         end
       end
     end

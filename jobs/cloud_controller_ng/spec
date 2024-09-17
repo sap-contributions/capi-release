@@ -368,6 +368,8 @@ properties:
   cc.jobs.global.timeout_in_seconds:
     description: "The longest any job can take before it is cancelled unless overridden per job"
     default: 14400 # 4 hours
+  cc.jobs.queues.cc_generic.timeout_in_seconds:
+    description: "The longest jobs in the cc-generic queue can take before they are cancelled"
   cc.jobs.blobstore_delete.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
   cc.jobs.droplet_upload.timeout_in_seconds:

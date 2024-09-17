@@ -83,6 +83,11 @@ jobs:
   enable_dynamic_job_priorities: <%= p("cc.jobs.enable_dynamic_job_priorities") %>
   global:
     timeout_in_seconds: <%= p("cc.jobs.global.timeout_in_seconds") %>
+  queues:
+    <% if_p("cc.jobs.queues.cc_generic.timeout_in_seconds") do |timeout| %>
+    cc_generic:
+      timeout_in_seconds: <%= timeout %>
+    <% end %>
   <% if_p("cc.jobs.blobstore_delete.timeout_in_seconds") do |timeout| %>
   blobstore_delete:
     timeout_in_seconds: <%= timeout %>
