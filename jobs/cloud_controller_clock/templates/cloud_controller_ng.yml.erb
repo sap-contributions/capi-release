@@ -90,6 +90,9 @@ failed_jobs:
   <% end %>
   frequency_in_seconds: <%= p("cc.failed_jobs.frequency_in_seconds") %>
 
+pollable_jobs:
+  cutoff_age_in_days: <%= p("cc.pollable_jobs.cutoff_age_in_days") %>
+
 service_operations_initial_cleanup:
   frequency_in_seconds: <%= p("cc.service_operations_initial_cleanup.frequency_in_seconds") %>
 
