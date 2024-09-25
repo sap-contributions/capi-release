@@ -110,6 +110,9 @@ properties:
   cc.completed_tasks.cutoff_age_in_days:
     description: "The age at which completed tasks are pruned from the Cloud Controller database"
     default: 31
+  cc.pollable_jobs.cutoff_age_in_days:
+    description: "How old a pollable job should stay in cloud controller database before being cleaned up"
+    default: 90
 
   cc.failed_jobs.max_number_of_failed_delayed_jobs:
     description: "Maximum number of failed jobs that should stay in cloud controller database before being cleaned up"
