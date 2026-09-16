@@ -1,4 +1,4 @@
 name: ruby-4.0
-fingerprint: e33c6fb21a7a9e5cbf9df3cc9a23ee245e38227d64739abf95c7b9622866b0a8
+fingerprint: e6e07f92af67b66860edeb504134703683f4b36aeb8c0197eac2786f80ba5242
 dependencies:
 - rust-1-linux
