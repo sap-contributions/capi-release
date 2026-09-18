@@ -502,8 +502,6 @@ concurrency_rate_limiter:
   enabled: <%= p("cc.concurrency_rate_limiter.enabled") %>
   blocking_limit: <%= p("cc.concurrency_rate_limiter.blocking_limit") %>
   logging_limit: <%= p("cc.concurrency_rate_limiter.logging_limit") %>
-  redis_connection_pool_size: <%= p("cc.concurrency_rate_limiter.redis_connection_pool_size") %>
-  redis_counter_ttl_seconds: <%= p("cc.concurrency_rate_limiter.redis_counter_ttl_seconds") %>
 
 max_concurrent_service_broker_requests: <%= p("cc.max_concurrent_service_broker_requests") %>
 

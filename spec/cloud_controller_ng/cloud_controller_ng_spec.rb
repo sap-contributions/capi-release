@@ -478,9 +478,7 @@ module Bosh
               merged_manifest_properties['cc']['concurrency_rate_limiter'] = {
                 'enabled' => true,
                 'blocking_limit' => 20,
-                'logging_limit' => 10,
-                'redis_connection_pool_size' => 40,
-                'redis_counter_ttl_seconds' => 901
+                'logging_limit' => 10
               }
             end
 
@@ -497,16 +495,6 @@ module Bosh
             it 'sets logging_limit' do
               template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
               expect(template_hash['concurrency_rate_limiter']['logging_limit']).to eq(10)
-            end
-
-            it 'sets redis_connection_pool_size' do
-              template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
-              expect(template_hash['concurrency_rate_limiter']['redis_connection_pool_size']).to eq(40)
-            end
-
-            it 'sets redis_counter_ttl_seconds' do
-              template_hash = YAML.safe_load(template.render(merged_manifest_properties, consumes: links))
-              expect(template_hash['concurrency_rate_limiter']['redis_counter_ttl_seconds']).to eq(901)
             end
           end
 
